@@ -1,12 +1,24 @@
 #!/bin/bash
 
 ##################################################
-################# Programs #######################
+############### General Setup ####################
 ##################################################
-echo "Downloading plug/tmux/oh my zsh"
+echo "Setup directories"
+mkdir $HOME/work
+mkdir $HOME/personal
+mkdir $HOME/tools
+
+
+echo "Downloading manual programs"
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
+cd $HOME/tools/1password
+makepkg -si
+ch $HOME/dotfiles
+
 ##################################################
 ################# Symlinks #######################
 ##################################################
