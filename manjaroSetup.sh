@@ -49,4 +49,6 @@ nvim --headless +UpdateRemotePlugins +qa
 chsh -s $(which zsh)
 source "$HOME/.zshrc"
 
-echo "Boom"
+echo "Done"
+echo "Start TMUX and run tmux-plugin-manager install"
+echo "Reboot"
