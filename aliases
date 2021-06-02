@@ -1,0 +1,11 @@
+alias vi="nvim"
+alias sphp="php -S localhost:8000 -t public"
+alias app="cd $HOME/work/grow-app"
+alias auth="cd $HOME/work/grow-auth"
+alias core="cd $HOME/work/core"
+alias gjp="cd $HOME/work/grow-job-processor"
+alias gg="lazygit"
+alias ld="lazydocker"
+alias diskusage="du -mx | sort --reverse --numeric-sort | head -41 | tail -40 | (echo 'Mb      Directory\n-----------------' && cat)"
+alias ip="curl 'https://api.ipify.org'"
+

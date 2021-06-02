@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Smart Console log
+# key: cons
+# --
+console.log('$1: ', $1);

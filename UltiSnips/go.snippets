@@ -1,0 +1,12 @@
+
+snippet err "Quick Error Handling"
+if err != nil {
+	fmt.Println(err)
+}
+endsnippet
+
+snippet hand "Basic Handler Func"
+func $1 (w http.ResponseWriter, r *http.Request) {
+	$2
+}
+endsnippet

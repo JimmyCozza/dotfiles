@@ -1,0 +1,9 @@
+[user]
+	name = Jimmy Cozza
+	email = moatcozza@gmail.com
+[pull]
+	rebase = false
+[github]
+	user = jimmycozza
+[core]
+	excludesfile = ~/.gitignore_global

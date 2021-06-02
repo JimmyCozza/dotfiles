@@ -1,0 +1,50 @@
+snippet cons "Quick Console Log wih variable"
+console.log('${VISUAL}$1: ', ${VISUAL}${1});
+endsnippet
+
+snippet conj "Console Log JSON stringified variable"
+console.log('${VISUAL}$1: ', JSON.stringify(${VISUAL}${1}, null, 2));
+endsnippet
+
+snippet log "Quick Console Log"
+console.log('$1');
+endsnippet
+
+snippet func "Basic Function Block"
+function $1($2) {
+	$3
+}
+endsnippet
+
+snippet then "Basic Then block"
+.then(($1) => {
+	$2
+})
+endsnippet
+
+snippet catch "Basic catch block"
+.catch((err) => {
+	$1
+});
+endsnippet
+
+snippet fin "Basic Finally block"
+.finally(($1) => {
+	$2
+})
+endsnippet
+
+snippet pbody "Response body parse w/ Lodash"
+const body = _.attempt(JSON.parse, response.body);
+if (_.isError(body)) {
+	throw body;
+}
+$1
+endsnippet
+
+snippet wfunc "Wrap inside function"
+function $1() {
+	${VISUAL}
+}
+endsnippet
+
