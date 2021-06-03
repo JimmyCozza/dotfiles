@@ -38,14 +38,14 @@ ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ################## Pacman ########################
 ##################################################
 
-sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord
+sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker
 source "$HOME/.zshrc"
 
 ##################################################
 ############### AUR Packages #####################
 ##################################################
 
-pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono zsh-syntax-highlighting-git slack-desktop
+pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono zsh-syntax-highlighting-git slack-desktop tableplus
 
 ##################################################
 ################## Neovim ########################
