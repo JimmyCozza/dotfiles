@@ -32,7 +32,7 @@ set splitright
 
 "=============Visual====================="
 
-let g:nord_disable_background = 0
+let g:nord_disable_background = 1
 colo nord
 
 highlight Normal ctermbg=none
@@ -64,8 +64,8 @@ let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsSnippetDirectories = [$HOME.'/dotfiles/UltiSnips']
 
 "================Wiki================="
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/vimwiki/'}]
+                     "\ 'syntax': 'markdown', 'ext': '.md'}]
 
 "================LINTING===================="
 let g:ale_fixers = {

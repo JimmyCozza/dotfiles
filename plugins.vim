@@ -9,7 +9,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'arcticicestudio/nord-vim'
-
+Plug 'ap/vim-css-color'
 
 "Navigation
 Plug 'scrooloose/nerdtree'
