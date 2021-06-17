@@ -45,26 +45,18 @@ local mappings = {
     ["c"] = "Close Buffer",
     ["e"] = "Explorer",
     ["f"] = "Find File",
-    d = {
-      name = "+DB/Docker",
-      l = {
-        name = "Local",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts WHERE id = ;", "Account by ID"},
-        A = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"},
-        b = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Datasources"},
-        c = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Auths"},
-        d = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All "}
-      },
-      d = {
-        name = "Develop",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
-      },
-      u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
-    },
+    --d = {
+      --name = "+Debug",
+      --A = {"<cmd>lua require'dap'.gjp<cr>", "Dap Attach"},
+      --b = {"<cmd>Telescope dap list_breakpoints<cr>", "Dap List Breakpoints"},
+      --c = {"<cmd>Telescope dap commands<cr>", "Dap Commands"},
+      --f = {"<cmd>Telescope dap frames<cr>", "Dap Frames"},
+      --u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
+    --},
     e = {
       name = "+Quick edit files",
       f = {"<cmd>ALEFix<cr>", "ALE Fix"},
-      p = {"<cmd>:e $HOME/dotfiles/plugins.vim<cr>", "Edit Plugfile"},
+      p = {"<cmd>:e $HOME/dotfiles/nvim/plugins.vim<cr>", "Edit Plugfile"},
       v = {"<cmd>:e $HOME/.config/nvim/init.vim<cr>", "Edit Vimrc"},
       z = {"<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit Zshrc"}
     },
