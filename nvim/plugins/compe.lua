@@ -21,6 +21,7 @@ require'compe'.setup {
         vsnip = {kind = "   (Snippet)"},
         ultisnips = {kind = "   (Snippet)"},
         nvim_lsp = {kind = "   (LSP)"},
+        orgmode = true,
         -- nvim_lua = {kind = "  "},
 		nvim_lua = false,
         spell = {kind = "   (Spell)"},
