@@ -63,6 +63,7 @@ local mappings = {
     },
     e = {
       name = "+Quick edit files",
+      a = {"<cmd>:e $HOME/dotfiles/alacritty.yml<cr>", "Edit Alacritty.yml"},
       f = {"<cmd>ALEFix<cr>", "ALE Fix"},
       p = {"<cmd>:e $HOME/dotfiles/plugins.vim<cr>", "Edit Plugfile"},
       v = {"<cmd>:e $HOME/.config/nvim/init.vim<cr>", "Edit Vimrc"},

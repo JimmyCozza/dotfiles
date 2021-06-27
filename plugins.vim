@@ -16,7 +16,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 "Father Pope
 Plug 'tpope/vim-abolish'
@@ -43,6 +44,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips'
 Plug 'folke/which-key.nvim'
+Plug 'folke/trouble.nvim'
 Plug 'svermeulen/vimpeccable'
 
 "Javascript/Node
@@ -55,7 +57,7 @@ Plug 'leafgarland/typescript-vim'
 "Other Language Stuff
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'rust-lang/rust.vim'

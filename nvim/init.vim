@@ -3,6 +3,7 @@ so $HOME/.config/nvim/mappings.vim "All mappings beginning with <Leader> are def
 luafile $HOME/.config/nvim/plugins/which-key.lua
 luafile $HOME/.config/nvim/plugins/telescope.lua
 luafile $HOME/.config/nvim/plugins/lualine.lua
+luafile $HOME/.config/nvim/plugins/compe.lua
 luafile $HOME/.config/nvim/lsp/init.lua
 
 "=============General Settings=============="
