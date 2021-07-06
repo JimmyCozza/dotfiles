@@ -29,6 +29,9 @@ ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 source "$HOME/.zshrc"
 
 ln -s "$CONFIG_FILES_PATH/alacritty.yml" "$HOME/.alacritty.yml"
+ln -s "$CONFIG_FILES_PATH/polybar" "$HOME/.config/polybar"
+ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
+ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
 ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
@@ -38,14 +41,14 @@ ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ################## Pacman ########################
 ##################################################
 
-sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker
+sudo pacman -Syuv --noconfirm awesomewm alacritty fzf ripgrep tmux firefox bat discord docker rofi polybar sxhkd
 source "$HOME/.zshrc"
 
 ##################################################
 ############### AUR Packages #####################
 ##################################################
 
-pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono zsh-syntax-highlighting-git slack-desktop tableplus
+pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus
 
 ##################################################
 ################## Neovim ########################
