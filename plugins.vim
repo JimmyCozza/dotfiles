@@ -46,6 +46,7 @@ Plug 'SirVer/ultisnips'
 Plug 'folke/which-key.nvim'
 Plug 'folke/trouble.nvim'
 Plug 'svermeulen/vimpeccable'
+Plug 'kristijanhusak/orgmode.nvim'
 
 "Javascript/Node
 Plug 'pangloss/vim-javascript'
