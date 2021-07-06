@@ -9,6 +9,7 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! seoul256-theme)
+(package! nord-theme)
 (package! eslintd-fix)
 (package! org-pomodoro)
 (package! dap-mode)

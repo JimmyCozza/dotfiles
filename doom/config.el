@@ -19,13 +19,13 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 14))
+(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'nord)
+(setq doom-theme 'doom-nord)
 (setq doom-themes-treemacs-theme "doom-colors")
 
 ;; Transparent background
@@ -75,22 +75,22 @@
 ;;===================================================================================
 ;;                                    JAVASCRIPT
 ;; ===================================================================================
-(setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
-(add-hook 'js2-mode-hook 'eslintd-fix-mode)
-(require 'dap-node)
-(setq dap-node-debug-program "~/.emacs.d/modules/vscode/extension/out/src/nodeDebug.js")
-(setq lsp-log-io t)
-(setq dap-print-io t)
-(dap-register-debug-template
-  "Attach to node process "
-  (list :type "node"
-        :request "attach"
-        :program "__ignored"
-        :port 9230
-        :name "Attach to node process in docker container"))
- (defun you-track-integration ()
-  (interactive)
-  (insert (shell-command-to-string (format "python3 %s" buffer-file-name))))
+;(setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
+;(add-hook 'js2-mode-hook 'eslintd-fix-mode)
+;(require 'dap-node)
+;(setq dap-node-debug-program "~/tools/vscode-node-debug2/out/src/nodeDebug.js")
+;(setq lsp-log-io t)
+;(setq dap-print-io t)
+;(dap-register-debug-template
+  ;"Attach to node process "
+  ;(list :type "node"
+        ;:request "attach"
+        ;:program "__ignored"
+        ;:port 9230
+        ;:name "Attach to node process in docker container"))
+ ;(defun you-track-integration ()
+  ;(interactive)
+  ;(insert (shell-command-to-string (format "python3 %s" buffer-file-name))))
 ;;===================================================================================
 ;;                                    ORG MODE
 ;; ===================================================================================
