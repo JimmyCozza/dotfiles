@@ -13,7 +13,7 @@ cd $HOME/work/core
 ################ Setup Node ######################
 ##################################################
 npm login --scope=@grow
-npm -g install yarn
+npm -g install yarn gulp
 yarn config set registry https://registry.npmjs.org
 
 #Install & Link local core
