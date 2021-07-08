@@ -1,4 +1,4 @@
-so $HOME/dotfiles/plugins.vim "Plug File
+so $HOME/dotfiles/nvim/plugins.vim "Plug File
 so $HOME/.config/nvim/mappings.vim "All mappings beginning with <Leader> are defined in which-key.lua
 luafile $HOME/.config/nvim/plugins/which-key.lua
 luafile $HOME/.config/nvim/plugins/telescope.lua

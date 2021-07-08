@@ -1,3 +1,9 @@
+super + enter
+  alacritty
+super + p
+	rofi -show drun
+super + ctrl + BackSpace
+  ~/.config/rofi/power.sh
 super + ctrl + p
 	flameshot gui
 F12
