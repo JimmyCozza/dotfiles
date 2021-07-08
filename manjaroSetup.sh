@@ -56,6 +56,8 @@ fnm install 14
 fnm default 14
 sudo groupadd docker
 sudo usermod -aG docker jimmy
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 
 ##################################################
 ################## Neovim ########################
