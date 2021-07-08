@@ -42,7 +42,7 @@ ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ################## Pacman ########################
 ##################################################
 
-sudo pacman -Syuv --noconfirm awesome alacritty fzf ripgrep tmux firefox bat discord docker rofi polybar sxhkd flameshot
+sudo pacman -Syuv --noconfirm awesome alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi polybar sxhkd flameshot emacs aws-cli
 source "$HOME/.zshrc"
 
 ##################################################
