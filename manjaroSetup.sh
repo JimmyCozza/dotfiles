@@ -55,6 +55,8 @@ pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mo
 ################## Neovim ########################
 ##################################################
 
+fnm install 14
+fnm default 14
 source "$HOME/.zshrc"
 sudo pip3 install neovim
 sudo pip3 install neovim-remote
