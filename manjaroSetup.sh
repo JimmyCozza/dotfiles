@@ -51,12 +51,16 @@ source "$HOME/.zshrc"
 
 pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus
 
+# Some things
+fnm install 14
+fnm default 14
+sudo groupadd docker
+sudo usermod -aG docker jimmy
+
 ##################################################
 ################## Neovim ########################
 ##################################################
 
-fnm install 14
-fnm default 14
 source "$HOME/.zshrc"
 sudo pip3 install neovim
 sudo pip3 install neovim-remote
