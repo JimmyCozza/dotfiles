@@ -49,7 +49,7 @@ source "$HOME/.zshrc"
 ############### AUR Packages #####################
 ##################################################
 
-pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus
+pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git
 
 # Some things
 fnm install 14

@@ -7,4 +7,4 @@ super + ctrl + BackSpace
 super + ctrl + p
 	flameshot gui
 F12
-  emacs
+  tdrop -ma -w 50% -h 60% -x 5% -y 8 -s work alacritty
