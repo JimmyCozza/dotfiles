@@ -19,8 +19,9 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :size 14))
+(setq doom-font (font-spec :family "Go Mono Nerd Font" :size 18)
+      doom-variable-pitch-font (font-spec :family "Go Mono Nerd Font" :size 18))
+      ;; doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :size 18))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -31,10 +32,6 @@
 ;; Transparent background
  (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
  (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -75,19 +72,19 @@
 ;;===================================================================================
 ;;                                    JAVASCRIPT
 ;; ===================================================================================
-;(setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
-;(add-hook 'js2-mode-hook 'eslintd-fix-mode)
-;(require 'dap-node)
-;(setq dap-node-debug-program "~/tools/vscode-node-debug2/out/src/nodeDebug.js")
-;(setq lsp-log-io t)
-;(setq dap-print-io t)
-;(dap-register-debug-template
-  ;"Attach to node process "
-  ;(list :type "node"
-        ;:request "attach"
-        ;:program "__ignored"
-        ;:port 9230
-        ;:name "Attach to node process in docker container"))
+(setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
+(add-hook 'js2-mode-hook 'eslintd-fix-mode)
+(require 'dap-node)
+(setq dap-node-debug-program "~/tools/vscode-node-debug2/out/src/nodeDebug.js")
+(setq lsp-log-io t)
+(setq dap-print-io t)
+(dap-register-debug-template
+  "Attach to node process "
+  (list :type "node"
+        :request "attach"
+        :program "__ignored"
+        :port 9230
+        :name "Attach to node process in docker container"))
  ;(defun you-track-integration ()
   ;(interactive)
   ;(insert (shell-command-to-string (format "python3 %s" buffer-file-name))))
@@ -95,6 +92,7 @@
 ;;                                    ORG MODE
 ;; ===================================================================================
 ;; Setting a TODO to DONE sets a Closed timestamp
+(setq org-directory "~/org/")
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (setq org-agenda-start-with-log-mode t)
@@ -108,28 +106,27 @@
   "~/org/schedule.org"
   "~/org/standups.org"))
 
-;; Org Habit
+(defun make-youtrack-link (yt_id)
+  (browse-url (concat "https://growmies.myjetbrains.com/youtrack/issue/GA-" yt_id)))
+(after! org
+  ;; Org Habit
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
   (setq org-habit-graph-column 60)
-
-
-;; Replace list hyphen with dot
-(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (defun efs/org-font-setup ()
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
-
-;; Set faces for heading levels
-(dolist (face '((org-level-1 . 1.5)
-                (org-level-2 . 1.3)
-                (org-level-3 . 1.1)
-                (org-level-4 . 1.0)
-                (org-level-5 . 1.1)
-                (org-level-6 . 1.1)
-                (org-level-7 . 1.1)
-                (org-level-8 . 1.1)))
-(set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
-
-;; Set ellipsis to down arrow
-(setq org-ellipsis " ▾")
+                          (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.5)
+                  (org-level-2 . 1.3)
+                  (org-level-3 . 1.1)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Go Mono Nerd Font" :weight 'regular :height (cdr face)))
+  (setq org-ellipsis " ▾")
+  (org-add-link-type "youtrack" #'make-youtrack-link))
