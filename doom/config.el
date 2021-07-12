@@ -19,8 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Go Mono Nerd Font" :size 18)
-      doom-variable-pitch-font (font-spec :family "Go Mono Nerd Font" :size 18))
+(setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "GoMono Nerd Font" :size 16))
       ;; doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :size 18))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -123,10 +123,10 @@
                   (org-level-2 . 1.3)
                   (org-level-3 . 1.1)
                   (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-  (set-face-attribute (car face) nil :font "Go Mono Nerd Font" :weight 'regular :height (cdr face)))
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9)))
+  (set-face-attribute (car face) nil :font "GoMono Nerd Font" :weight 'regular :height (cdr face)))
   (setq org-ellipsis " ▾")
   (org-add-link-type "youtrack" #'make-youtrack-link))
