@@ -14,28 +14,11 @@ vim.api.nvim_set_keymap("i", "<C-j>", "<C-\\><C-N><C-w>j", { silent = true, nore
 vim.api.nvim_set_keymap("i", "<C-k>", "<C-\\><C-N><C-w>k", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("i", "<C-l>", "<C-\\><C-N><C-w>l", { silent = true, noremap = true })
 
--- TODO: fix this
--- resize with arrows
-if vim.fn.has "mac" == 1 then
-  vim.api.nvim_set_keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
-else
-  vim.api.nvim_set_keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
-end
-
 -- better indenting
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 
--- I hate escape
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 
 -- Tab switch buffer
 -- vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
@@ -63,21 +46,6 @@ vim.cmd 'inoremap <expr> <c-k> ("\\<C-p>")'
 
 vim.cmd 'vnoremap p "0p'
 vim.cmd 'vnoremap P "0P'
-
--- vim.api.nvim_set_keymap('v', 'p', '"0p', {silent = true})
--- vim.api.nvim_set_keymap('v', 'P', '"0P', {silent = true})
-
--- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
--- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
-
--- vim.api.nvim_set_keymap('i', '<C-TAB>', 'compe#complete()', {noremap = true, silent = true, expr = true})
-
--- vim.cmd([[
--- map p <Plug>(miniyank-autoput)
--- map P <Plug>(miniyank-autoPut)
--- map <leader>n <Plug>(miniyank-cycle)
--- map <leader>N <Plug>(miniyank-cycleback)
--- ]])
 
 -- Toggle the QuickFix window
 vim.api.nvim_set_keymap("", "<C-q>", ":call QuickFixToggle()<CR>", { noremap = true, silent = true })
