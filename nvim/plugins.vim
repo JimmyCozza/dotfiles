@@ -6,7 +6,6 @@ Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/lsp-colors.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ap/vim-css-color'
@@ -55,11 +54,15 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'leafgarland/typescript-vim'
 
 "Other Language Stuff
-Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'rust-lang/rust.vim'
+
+"LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'folke/lsp-colors.nvim'
+Plug 'glepnir/lspsaga.nvim'
 
 call plug#end()
