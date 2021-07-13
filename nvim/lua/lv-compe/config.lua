@@ -23,7 +23,7 @@ O.completion = {
     tags = false,
     vim_dadbod_completion = false,
     snippets_nvim = false,
-    ultisnips = false,
+    ultisnips = { kind = "   (Snippet)"},
     treesitter = false,
     emoji = { kind = " ﲃ  (Emoji)", filetypes = { "markdown", "text" } },
     neorg = true

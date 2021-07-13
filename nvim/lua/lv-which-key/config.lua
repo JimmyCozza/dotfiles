@@ -76,19 +76,7 @@ O.plugin.which_key = {
     },
 
     d = {
-      name = "+DB/Docker",
-      l = {
-        name = "Local",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts WHERE id = ;", "Account by ID"},
-        A = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"},
-        b = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Datasources"},
-        c = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Auths"},
-        d = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All "}
-      },
-      -- d = {
-      --   name = "Develop",
-      --   a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
-      -- },
+      name = "+Debug",
       u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
     },
 
