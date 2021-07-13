@@ -70,6 +70,11 @@ O.plugin.which_key = {
     -- " Debug Adapter protocol:
     -- "   https://microsoft.github.io/debug-adapter-protocol/
     -- " Debugging
+    c = {
+      name = "+Code",
+      [" "] = { "<cmd>CommentToggle<CR>", "Comment" },
+    },
+
     d = {
       name = "+DB/Docker",
       l = {
@@ -80,10 +85,10 @@ O.plugin.which_key = {
         c = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Auths"},
         d = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All "}
       },
-      d = {
-        name = "Develop",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
-      },
+      -- d = {
+      --   name = "Develop",
+      --   a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
+      -- },
       u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
     },
 
@@ -99,11 +104,12 @@ O.plugin.which_key = {
     g = {
       name = "Git",
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+      B = { "<cmd>Git blame<cr>", "Blame" },
       c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
       C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
       j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
       k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-      l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+      l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame Line" },
       o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
       p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
       r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
@@ -170,9 +176,15 @@ O.plugin.which_key = {
       t = { "<cmd>Telescope live_grep<cr>", "Text" },
       T = { "<cmd>Telescope commands<cr>", "Commands" },
     },
+
     T = {
       name = "Treesitter",
       i = { ":TSConfigInfo<cr>", "Info" },
     },
+
+    u = {
+      name = "Utilities",
+      c = { "<cmd><cr>", "Clear Job Cache"}
+    }
   },
 }

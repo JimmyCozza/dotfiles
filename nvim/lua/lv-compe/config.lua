@@ -26,6 +26,7 @@ O.completion = {
     ultisnips = false,
     treesitter = false,
     emoji = { kind = " ﲃ  (Emoji)", filetypes = { "markdown", "text" } },
+    neorg = true
     -- for emoji press : (idk if that in compe tho)
   },
 }

@@ -3,7 +3,7 @@
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 O.completion.autocomplete = true
-O.default_options.relativenumber = true
+O.default_options.relativenumber = false
 O.colorscheme = 'nord'
 O.default_options.timeoutlen = 100
 O.leader_key = ' '
@@ -51,7 +51,27 @@ O.user_plugins = {
     event = "InsertEnter"
   },
   {"shaunsingh/nord.nvim"},
-  {"tpope/vim-fugitive"}
+  {"tpope/vim-fugitive"},
+  {
+    "vhyrro/neorg",
+    config = function()
+        require('neorg').setup {
+            -- Tell Neorg what modules to load
+            load = {
+                ["core.defaults"] = {}, -- Load all the default modules
+                ["core.norg.concealer"] = {}, -- Allows for use of icons
+                ["core.norg.dirman"] = { -- Manage your directories with Neorg
+                    config = {
+                        workspaces = {
+                            my_workspace = "~/neorg"
+                        }
+                    }
+                }
+            },
+        }
+    end,
+    requires = "nvim-lua/plenary.nvim"
+  },
 
 }
 
