@@ -42,23 +42,9 @@ require("which-key").setup {
 
 local mappings = {
     ["/"] = {"<cmd>Telescope live_grep<cr>", "Search project"},
-    ["c"] = "Close Buffer",
-    ["e"] = "Explorer",
-    ["f"] = "Find File",
     d = {
-      name = "+DB/Docker",
-      l = {
-        name = "Local",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts WHERE id = ;", "Account by ID"},
-        A = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"},
-        b = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Datasources"},
-        c = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Auths"},
-        d = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All "}
-      },
-      d = {
-        name = "Develop",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
-      },
+      name = "+Docker",
+      d = {"<CMD>lua _G.__fterm_lazydocker()<CR>", "Lazydocker"},
       u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
     },
     e = {
@@ -76,7 +62,7 @@ local mappings = {
       c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
       C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
       d = {"<cmd>Git diff<cr>", "Git diff"},
-      g = {"<CMD>lua _G.__fterm_gitui()<CR>", "Lazygit"},
+      g = {"<CMD>lua _G.__fterm_lazygit()<CR>", "Lazygit"},
       j = {"<cmd>NextHunk<cr>", "Next Hunk"},
       k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
       o = {"<cmd>Telescope git_status<cr>", "Git Status"},
@@ -87,7 +73,8 @@ local mappings = {
       u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
     },
     h = {
-      name = "+Help"
+      name = "+Help",
+      b = {"<CMD>lua _G.__fterm_bpytop()<CR>", "Bpytop"},
     },
     m = {
       name = "Mode (CHANGE ME)",
