@@ -13,7 +13,7 @@ end
 
 
 -- ****************************
--- Bootstrapping Packer
+-- Plugins
 -- ****************************
 return require('packer').startup(function()
   -- Packer can manage itself
@@ -81,10 +81,11 @@ return require('packer').startup(function()
   use 'dense-analysis/ale'
   use {
     'fatih/vim-go',
-    ft = '.go'
+    ft = 'go'
   }
   --use 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
   use 'rust-lang/rust.vim'
+  use "numtostr/FTerm.nvim"
   
 end)
 
