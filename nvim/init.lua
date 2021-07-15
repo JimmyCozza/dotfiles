@@ -7,6 +7,7 @@ require('mappings')
 require('configs.which-key')
 require('configs.telescope')
 require('configs.floatterm')
+require('configs.nvimtree')
 
 -- ****************************
 -- General Settings
