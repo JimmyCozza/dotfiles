@@ -27,7 +27,7 @@ vim.opt.inccommand   = 'nosplit'
 vim.opt.mouse        = 'a'
 vim.opt.swapfile     = false
 vim.opt.undofile     = true
-vim.opt.completeopt  = 'menu,preview'
+vim.opt.completeopt  = 'menu,noselect'
 vim.opt.splitbelow   = true
 vim.opt.splitright   = true
 
