@@ -65,6 +65,7 @@ local mappings = {
       g = {"<CMD>lua _G.__fterm_lazygit()<CR>", "Lazygit"},
       j = {"<cmd>NextHunk<cr>", "Next Hunk"},
       k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
+      l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame Line" },
       o = {"<cmd>Telescope git_status<cr>", "Git Status"},
       p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
       r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
@@ -74,7 +75,9 @@ local mappings = {
     },
     h = {
       name = "+Help",
-      b = {"<CMD>lua _G.__fterm_bpytop()<CR>", "Bpytop"},
+      b = {"<cmd>lua _G.__fterm_bpytop()<cr>", "Bpytop"},
+      h = {"<cmd>Telescope help_tags<cr>", "Help Tags"},
+      m = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
     },
     m = {
       name = "Mode (CHANGE ME)",

@@ -51,6 +51,12 @@ return require('packer').startup(function()
   use 'simnalamburt/vim-mundo'
   
   --Git
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
   use 'tpope/vim-fugitive'
   use 'junegunn/gv.vim' --Git commit browser. Needs fugitive
   use 'AndrewRadev/linediff.vim' --Creates diff buffer between selected line(s)
@@ -65,7 +71,6 @@ return require('packer').startup(function()
   use 'folke/which-key.nvim'
   use 'folke/trouble.nvim'
   use 'svermeulen/vimpeccable'
-  use 'kristijanhusak/orgmode.nvim'
   
   --Javascript/Node
   use 'pangloss/vim-javascript'
@@ -86,6 +91,25 @@ return require('packer').startup(function()
   --use 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
   use 'rust-lang/rust.vim'
   use "numtostr/FTerm.nvim"
-  
+  use { 
+    "vhyrro/neorg",
+    config = function()
+      require('neorg').setup {
+        -- Tell Neorg what modules to load
+        load = {
+          ["core.defaults"] = {}, -- Load all the default modules
+          ["core.norg.concealer"] = {}, -- Allows for use of icons
+          ["core.norg.dirman"] = { -- Manage your directories with Neorg
+            config = {
+              workspaces = {
+                my_workspace = "~/neorg"
+              }
+            }
+          }
+        },
+      }
+    end,
+    requires = "nvim-lua/plenary.nvim"
+  }
 end)
 
