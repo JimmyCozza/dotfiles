@@ -10,6 +10,7 @@ require('configs.floatterm')
 require('configs.nvimtree')
 require('configs.lualine')
 require('configs.compe')
+require('configs.dap')
 
 -- ****************************
 -- General Settings

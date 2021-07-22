@@ -91,25 +91,7 @@ return require('packer').startup(function()
   --use 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
   use 'rust-lang/rust.vim'
   use "numtostr/FTerm.nvim"
-  use { 
-    "vhyrro/neorg",
-    config = function()
-      require('neorg').setup {
-        -- Tell Neorg what modules to load
-        load = {
-          ["core.defaults"] = {}, -- Load all the default modules
-          ["core.norg.concealer"] = {}, -- Allows for use of icons
-          ["core.norg.dirman"] = { -- Manage your directories with Neorg
-            config = {
-              workspaces = {
-                my_workspace = "~/neorg"
-              }
-            }
-          }
-        },
-      }
-    end,
-    requires = "nvim-lua/plenary.nvim"
-  }
+  use "mfussenegger/nvim-dap"
+  use "Pocco81/DAPInstall.nvim"
 end)
 
