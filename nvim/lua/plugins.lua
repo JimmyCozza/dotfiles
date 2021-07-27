@@ -70,7 +70,16 @@ return require('packer').startup(function()
   use 'SirVer/ultisnips'
   use 'folke/which-key.nvim'
   use 'folke/trouble.nvim'
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim"
+  }
   use 'svermeulen/vimpeccable'
+  use {'kristijanhusak/orgmode.nvim', config = function()
+          require('orgmode').setup{}
+    end
+  }
+
   
   --Javascript/Node
   use 'pangloss/vim-javascript'

@@ -113,7 +113,9 @@ local mappings = {
         s = { "<cmd>PackerSync<cr>", "Sync" },
         u = { "<cmd>PackerUpdate<cr>", "Update" },
       },
-      s = {"<cmd>Telescope grep_string<cr>", "Search string under cursor"}
+      q = {"<cmd>TodoQuickFix<cr>", "Send TODOs to QuickFix List"},
+      s = {"<cmd>Telescope grep_string<cr>", "Search string under cursor"},
+      t = {"<cmd>TodoTelescope<cr>", "Search TODOs"}
     },
     s = {
       name = "+Search",
