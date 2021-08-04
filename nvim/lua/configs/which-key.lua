@@ -132,7 +132,8 @@ local mappings = {
     },
     y = {
       name = "+Yarn",
-      i = {"<cmd>! yarn install<cr>", "Yarn Install"}
+      i = {"<cmd>! yarn install<cr>", "Yarn Install"},
+      t = {"<cmd>! yarn test<cr>", "Yarn Test"}
     }
 }
 local opts = {

@@ -51,15 +51,11 @@ return require('packer').startup(function()
   use 'simnalamburt/vim-mundo'
   
   --Git
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
-  }
-  use 'tpope/vim-fugitive'
-  use 'junegunn/gv.vim' --Git commit browser. Needs fugitive
-  use 'AndrewRadev/linediff.vim' --Creates diff buffer between selected line(s)
+  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  --use 'tpope/vim-fugitive'
+  --use 'junegunn/gv.vim' --Git commit browser. Needs fugitive
+  --use 'AndrewRadev/linediff.vim' --Creates diff buffer between selected line(s)
   
   --Utilities
   use 'vimwiki/vimwiki'
