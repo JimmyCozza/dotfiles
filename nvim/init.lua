@@ -4,13 +4,15 @@ require('mappings')
 -- ****************************
 -- Plugin Configurations
 -- ****************************
-require('configs.which-key')
-require('configs.telescope')
-require('configs.floatterm')
-require('configs.nvimtree')
-require('configs.lualine')
 require('configs.compe')
 require('configs.dap')
+require('configs.floatterm')
+require('configs.gitsigns')
+require('configs.lualine')
+require('configs.neogit')
+require('configs.nvimtree')
+require('configs.telescope')
+require('configs.which-key')
 
 -- ****************************
 -- General Settings

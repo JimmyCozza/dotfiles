@@ -83,7 +83,7 @@ local mappings = {
       p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
       r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
       R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
-      s = {"<cmd>Git status<cr>", "Git Status"},
+      s = {"<cmd>Neogit kind=split<cr>", "Neogit Status"},
       u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
     },
     h = {
