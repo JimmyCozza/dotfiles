@@ -388,8 +388,7 @@ schemes:
       cyan:    '0x89b482'
       white:   '0xdfbf8e'
 
-colors: *everforest_dark_medium
-#colors: *nord_dark
+colors: *seoul256_dark
 
 # Visual Bell
 #

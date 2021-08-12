@@ -41,10 +41,17 @@ vim.opt.splitright   = true
 -- ****************************
 -- Visual Settings
 -- ****************************
-vim.nord_contrast = true
-vim.g.nord_borders = true
-vim.g.nord_disable_background = true
-require('nord').set()
+--vim.g.nord_contrast = true
+--vim.g.nord_borders = true
+--vim.g.nord_disable_background = true
+--require('nord').set()
+
+vim.g.seoul256_italic_comments = true
+vim.g.seoul256_contrast = true
+vim.g.seoul256_borders = true
+vim.g.seoul256_disable_background = true
+require('seoul256').set()
+--require('todo-comments').setup()
 
 -- ****************************
 -- ALE Settings

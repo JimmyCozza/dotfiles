@@ -29,6 +29,7 @@ return require('packer').startup(function()
   use 'folke/lsp-colors.nvim'
   use 'hoob3rt/lualine.nvim'
   use 'shaunsingh/nord.nvim'
+  use 'shaunsingh/seoul256.nvim'
   use 'ap/vim-css-color'
   
   --Navigation
@@ -74,8 +75,9 @@ return require('packer').startup(function()
   use 'folke/which-key.nvim'
   use 'folke/trouble.nvim'
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim"
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require('todo-comments').setup() end
   }
   use 'svermeulen/vimpeccable'
   use {'kristijanhusak/orgmode.nvim', config = function()
@@ -100,10 +102,9 @@ return require('packer').startup(function()
     'fatih/vim-go',
     ft = 'go'
   }
-  --use 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
   use 'rust-lang/rust.vim'
-  use "numtostr/FTerm.nvim"
-  use "mfussenegger/nvim-dap"
-  use "Pocco81/DAPInstall.nvim"
+  use 'numtostr/FTerm.nvim'
+  use 'mfussenegger/nvim-dap'
+  use 'Pocco81/DAPInstall.nvim'
 end)
 
