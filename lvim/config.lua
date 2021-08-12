@@ -18,7 +18,15 @@ lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
+
+-- ****************************
+-- Plugin Configurations
+-- ****************************
 -- Use which-key to add extra bindings with the leader-key prefix
+
+-- ****************************
+-- which-key
+-- ****************************
 lvim.builtin.which_key.mappings["/"] = {"<cmd>Telescope live_grep<cr>", "Search project"}
 lvim.builtin.which_key.vmappings["c"] = {
   name = "+code",
@@ -100,8 +108,20 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 -- ****************************
--- Plugin Configurations
+-- Telescope
 -- ****************************
+lvim.builtin.telescope.defaults.find_command = {
+  "rg",
+  "--no-heading",
+  "--with-filename",
+  "--line-number",
+  "--column",
+  "--smart-case",
+}
+lvim.builtin.telescope.defaults.file_sorter = require("telescope.sorters").get_fzy_sorter
+lvim.builtin.telescope.defaults.file_ignore_patterns = {".git"}
+lvim.builtin.telescope.defaults.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
+
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.bufferline.active = false
 lvim.builtin.dashboard.active = false
@@ -125,20 +145,18 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- set a formatter if you want to override the default lsp one (if it exists)
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---     args = {}
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---     args = {}
---   }
--- }
+lvim.lang.javascript.formatters = {
+  {
+    exe = "eslint_d",
+    args = {}
+  }
+}
+lvim.lang.javascript.linters = {
+  {
+    exe = "eslint_d",
+    args = {}
+  }
+}
 
 -- Additional Plugins
 lvim.plugins = {
@@ -156,6 +174,17 @@ lvim.plugins = {
     }
     end
   },
+  {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
   {"ray-x/lsp_signature.nvim",
     config = function() require"lsp_signature".on_attach() end,
     event = "InsertEnter"
