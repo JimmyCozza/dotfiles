@@ -1,4 +1,5 @@
 require('mapping')
+require('floatterm')
 
 -- ****************************
 -- General Settings
@@ -69,8 +70,10 @@ lvim.builtin.which_key.mappings["p"] = {
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
+    C = { "<cmd>PackerClean<cr>", "Clean" },
     i = { "<cmd>PackerInstall<cr>", "Install" },
     s = { "<cmd>PackerSync<cr>", "Sync" },
+    S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
   q = {"<cmd>TodoQuickFix<cr>", "Send TODOs to QuickFix List"},
@@ -139,6 +142,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {'vimwiki/vimwiki'},
   {'junegunn/seoul256.vim'},
   {'numtostr/FTerm.nvim'},
   {
