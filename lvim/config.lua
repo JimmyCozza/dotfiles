@@ -9,11 +9,15 @@ lvim.lint_on_save = true
 vim.cmd [[ set showtabline=0 ]] --if I so much as sniff a tabline, I riot.
 
 -- Colorscheme
-vim.g.seoul256_italic_comments = true
-vim.g.seoul256_contrast = true
-vim.g.seoul256_borders = true
-vim.g.seoul256_disable_background = true
-lvim.colorscheme = "seoul256"
+-- vim.g.seoul256_italic_comments = true
+-- vim.g.seoul256_contrast = true
+-- vim.g.seoul256_borders = true
+-- vim.g.seoul256_disable_background = true
+lvim.colorscheme = "gruvbox-flat"
+-- vim.g.nord_italic_comments = true
+-- vim.g.nord_contrast = true
+-- vim.g.nord_borders = true
+-- vim.g.nord_disable_background = true
 lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -61,6 +65,24 @@ lvim.builtin.which_key.mappings["e"] = {
   v = {"<cmd>:e $HOME/.config/lvim/config.lua<cr>", "Edit Vimrc"},
   z = {"<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit Zshrc"}
 }
+lvim.builtin.which_key.mappings["g"] = {
+  name = "+Git",
+  b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
+  B = {"<cmd>Git blame<cr>", "Git blame"},
+  c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+  C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
+  d = {"<cmd>Git diff<cr>", "Git diff"},
+  g = {"<CMD>lua _G.__fterm_lazygit()<CR>", "Lazygit"},
+  j = {"<cmd>NextHunk<cr>", "Next Hunk"},
+  k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
+  l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame Line" },
+  o = {"<cmd>Telescope git_status<cr>", "Git Status"},
+  p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
+  r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
+  R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
+  s = {"<cmd>Neogit kind=split<cr>", "Neogit Status"},
+  u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
+}
 lvim.builtin.which_key.mappings["h"] = {
   name = "+Help",
   b = {"<cmd>lua _G.__fterm_bpytop()<cr>", "Bpytop"},
@@ -86,7 +108,8 @@ lvim.builtin.which_key.mappings["p"] = {
   },
   q = {"<cmd>TodoQuickFix<cr>", "Send TODOs to QuickFix List"},
   s = {"<cmd>Telescope grep_string<cr>", "Search string under cursor"},
-  t = {"<cmd>TodoTelescope<cr>", "Search TODOs"}
+  t = {"<cmd>TodoTrouble<cr>", "Todo Trouble"},
+  T = {"<cmd>TodoTelescope<cr>", "Todo Telescope"}
 }
 lvim.builtin.which_key.mappings["s"] = {
     name = "+Search",
@@ -121,6 +144,7 @@ lvim.builtin.telescope.defaults.find_command = {
 lvim.builtin.telescope.defaults.file_sorter = require("telescope.sorters").get_fzy_sorter
 lvim.builtin.telescope.defaults.file_ignore_patterns = {".git"}
 lvim.builtin.telescope.defaults.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
+lvim.builtin.telescope.defaults.path_display = {'absolute'}
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.bufferline.active = false
@@ -161,8 +185,14 @@ lvim.lang.javascript.linters = {
 -- Additional Plugins
 lvim.plugins = {
   {'vimwiki/vimwiki'},
+  {'ap/vim-css-color'},
   {'junegunn/seoul256.vim'},
+  {'tpope/vim-fugitive'},
+  {'shaunsingh/nord.nvim'},
+  {'shaunsingh/seoul256.nvim'},
+  {'eddyekofo94/gruvbox-flat.nvim'},
   {'numtostr/FTerm.nvim'},
+  {'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'},
   {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
@@ -188,6 +218,20 @@ lvim.plugins = {
   {"ray-x/lsp_signature.nvim",
     config = function() require"lsp_signature".on_attach() end,
     event = "InsertEnter"
+  },
+  {
+  "norcalli/nvim-colorizer.lua",
+    config = function()
+    require("colorizer").setup({ "*" }, {
+      RGB = true, -- #RGB hex codes
+      RRGGBB = true, -- #RRGGBB hex codes
+      RRGGBBAA = true, -- #RRGGBBAA hex codes
+      rgb_fn = true, -- CSS rgb() and rgba() functions
+      hsl_fn = true, -- CSS hsl() and hsla() functions
+      css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+      css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+    })
+  end,
   }
 }
 

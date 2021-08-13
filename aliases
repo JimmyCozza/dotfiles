@@ -1,4 +1,4 @@
-alias vi="nvim"
+alias vi="lvim"
 alias sphp="php -S localhost:8000 -t public"
 alias app="cd $HOME/work/grow-app"
 alias auth="cd $HOME/work/grow-auth"
