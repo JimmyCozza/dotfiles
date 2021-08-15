@@ -1,5 +1,4 @@
 require('mapping')
-require('floatterm')
 
 -- ****************************
 -- General Settings
@@ -234,6 +233,12 @@ lvim.plugins = {
   end,
   }
 }
+
+-- TODO: Learn how packer *after* works
+-- ****************************
+-- Plugin extra configs
+-- ****************************
+require('floatterm')
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
