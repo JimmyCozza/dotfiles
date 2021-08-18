@@ -32,12 +32,6 @@ return require('packer').startup(function()
   use "rcarriga/nvim-notify"
   
   --Navigation
-  use {
-    'kyazdani42/nvim-tree.lua',
-    config = function()
-      require('configs.nvimtree')
-    end
-  }
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use {
@@ -78,6 +72,7 @@ return require('packer').startup(function()
   --Utilities
   use 'vimwiki/vimwiki'
   use 'scrooloose/nerdcommenter'
+  use 'scrooloose/nerdtree'
   use 'jiangmiao/auto-pairs'
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'

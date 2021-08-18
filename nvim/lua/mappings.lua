@@ -12,7 +12,7 @@ map('t', '<A-t>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>', { noremap
 -- ****************************
 map('n', 'n', 'nzz', { noremap = true })
 map('n', 'N', 'Nzz', { noremap = true })
-map('n', '<C-n>', ':NvimTreeToggle<cr>', {})
+map('n', '<C-n>', ':NERDTreeToggle<cr>', {})
 
 -- ****************************
 -- Telescope

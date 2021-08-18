@@ -54,6 +54,3 @@ vim.g.ale_sign_warning = '--'
 vim.g.UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' }
 
 vim.notify = require('notify')
-vim.api.nvim_exec([[
-	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) | execute 'cd '.argv()[0] | execute 'NvimTreeOpen' | wincmd l | endif
-]], false)

@@ -99,9 +99,9 @@ local mappings = {
       t = {"<cmd>GoTest<cr>", "Go Test"}
     },
     n = {
-      name = "+NvimTree",
-      n = {"<cmd>NvimTreeToggle<cr>", "Toggle Explorer"},
-      t = {"<cmd>NvimTreeFind<cr>", "Find at file"}
+      name = "+NERDTree",
+      n = {"<cmd>NERDTreeToggle<cr>", "Toggle Explorer"},
+      t = {"<cmd>NERDTreeFind<cr>", "Find at file"}
     },
     p = {
       name = "+Project",
