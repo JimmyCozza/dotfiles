@@ -27,17 +27,21 @@ return require('packer').startup(function()
   use 'eddyekofo94/gruvbox-flat.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'folke/lsp-colors.nvim'
-  use 'hoob3rt/lualine.nvim'
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
   use 'ap/vim-css-color'
+  use "rcarriga/nvim-notify"
   
   --Navigation
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  --use 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  use {
+  'nvim-telescope/telescope.nvim',
+  config = function()
+    require('configs.telescope')
+  end
+  }
   
   --Father Pope
   use 'tpope/vim-abolish'
@@ -54,7 +58,8 @@ return require('packer').startup(function()
   --Git
   use { 
     'TimUntersberger/neogit', {
-      requires = 'nvim-lua/plenary.nvim'
+      requires = 'nvim-lua/plenary.nvim',
+      config = require('configs.neogit')
     }
   }
   use {
@@ -62,20 +67,22 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    config = function()
-      require('configs.gitsigns').setup()
-    end
+    config = function() require('gitsigns').setup() end
   }
   use 'tpope/vim-fugitive'
   
   --Utilities
   use 'vimwiki/vimwiki'
-  --use 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
   use 'scrooloose/nerdcommenter'
   use 'jiangmiao/auto-pairs'
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'
-  use 'folke/which-key.nvim'
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      require('configs.which-key')
+    end
+  }
   use 'folke/trouble.nvim'
   use {
     'folke/todo-comments.nvim',
@@ -85,6 +92,12 @@ return require('packer').startup(function()
   use 'svermeulen/vimpeccable'
   use {'kristijanhusak/orgmode.nvim', config = function()
           require('orgmode').setup{}
+    end
+  }
+  use {
+    'hoob3rt/lualine.nvim',
+    config = function() 
+      require('configs.lualine')
     end
   }
 
@@ -99,15 +112,30 @@ return require('packer').startup(function()
   --Other Language Stuff
   use 'neovim/nvim-lspconfig'
   use 'glepnir/lspsaga.nvim'
-  use 'hrsh7th/nvim-compe'
+  use {
+    'hrsh7th/nvim-compe',
+    config = function() 
+      require('configs.compe')
+    end
+  }
   use 'dense-analysis/ale'
   use {
     'fatih/vim-go',
     ft = 'go'
   }
   use 'rust-lang/rust.vim'
-  use 'numtostr/FTerm.nvim'
-  use 'mfussenegger/nvim-dap'
+  use {
+    'numtostr/FTerm.nvim',
+    config = function()
+      require('configs.floatterm')
+    end
+  }
+  use {
+    'mfussenegger/nvim-dap',
+    config = function() 
+      require('configs.dap')
+    end
+  }
   use 'Pocco81/DAPInstall.nvim'
 end)
 

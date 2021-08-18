@@ -2,19 +2,6 @@ require('plugins')
 require('mappings')
 
 -- ****************************
--- Plugin Configurations
--- ****************************
-require('configs.compe')
-require('configs.dap')
-require('configs.floatterm')
---require('configs.gitsigns')
-require('configs.lualine')
-require('configs.neogit')
-require('configs.nvimtree')
-require('configs.telescope')
-require('configs.which-key')
-
--- ****************************
 -- General Settings
 -- ****************************
 vim.g.mapleader      = ' '
@@ -69,3 +56,8 @@ vim.g.ale_sign_warning = '--'
 -- Snippets
 -- ****************************
 vim.g.UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' }
+
+vim.notify = require('notify')
+vim.api.nvim_exec([[
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) | execute 'cd '.argv()[0] | execute 'NvimTreeOpen' | wincmd l | endif
+]], false)
