@@ -21,19 +21,23 @@ return require('packer').startup(function()
 
   -- Simple plugins can be specified as strings
   use '9mm/vim-closer'
-  use 'junegunn/seoul256.vim'
   use 'junegunn/limelight.vim'
   use 'ryanoasis/vim-devicons'
-  use 'eddyekofo94/gruvbox-flat.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'folke/lsp-colors.nvim'
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
+  use 'EdenEast/nightfox.nvim'
   use 'ap/vim-css-color'
   use "rcarriga/nvim-notify"
   
   --Navigation
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function()
+      require('configs.nvimtree')
+    end
+  }
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use {
