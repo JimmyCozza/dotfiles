@@ -19,17 +19,15 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Simple plugins can be specified as strings
-  use '9mm/vim-closer'
-  use 'junegunn/limelight.vim'
+  -- Visualization
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
   use 'folke/lsp-colors.nvim'
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
+  use 'eddyekofo94/gruvbox-flat.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'ap/vim-css-color'
-  use "rcarriga/nvim-notify"
   
   --Navigation
   use 'nvim-lua/popup.nvim'
@@ -45,21 +43,13 @@ return require('packer').startup(function()
   use 'tpope/vim-abolish'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
-  use 'tpope/vim-dadbod'
-  
-  use 'kristijanhusak/vim-dadbod-ui'
+  use 'tpope/vim-fugitive'
   
   --Undo
   use 'mbbill/undotree'
   use 'simnalamburt/vim-mundo'
   
   --Git
-  use { 
-    'TimUntersberger/neogit', {
-      requires = 'nvim-lua/plenary.nvim',
-      config = require('configs.neogit')
-    }
-  }
   use {
   'lewis6991/gitsigns.nvim',
     requires = {
@@ -67,13 +57,13 @@ return require('packer').startup(function()
     },
     config = function() require('gitsigns').setup() end
   }
-  use 'tpope/vim-fugitive'
   
   --Utilities
+  use 'rstacruz/vim-closer'
+  use "rcarriga/nvim-notify"
   use 'vimwiki/vimwiki'
   use 'scrooloose/nerdcommenter'
   use 'scrooloose/nerdtree'
-  use 'jiangmiao/auto-pairs'
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'
   use {
@@ -93,12 +83,7 @@ return require('packer').startup(function()
           require('orgmode').setup{}
     end
   }
-  use {
-    'hoob3rt/lualine.nvim',
-    config = function() 
-      require('configs.lualine')
-    end
-  }
+  use 'hoob3rt/lualine.nvim'
 
   
   --Javascript/Node

@@ -122,8 +122,9 @@ local mappings = {
       c = {"<cmd>nohlsearch<cr>", "Clear Search Highlighting"}
     },
     t = {
-      name = "+Tabs",
+      name = "+Trouble",
       c = {"<cmd>tabc<cr>", "Close Tab"}
+      t = {"<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List"},
     },
     w = {
       name = "Vim Wiki",

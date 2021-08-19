@@ -1,5 +1,6 @@
 require('plugins')
 require('mappings')
+require('configs.lualine')
 
 -- ****************************
 -- General Settings
@@ -30,11 +31,15 @@ vim.opt.splitright   = true
 -- ****************************
 
 -- Load the colorscheme
-vim.g.nightfox_style = "nightfox"
-vim.g.nightfox_transparent = 1
-vim.g.nightfox_color_delimiter = "red"
-vim.g.nightfox_italic_comments = 1
-require('nightfox').set()
+-- Example config in Lua
+vim.g.gruvbox_italic_functions = true
+vim.g.gruvbox_transparent = true
+vim.g.gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
+-- Load the colorscheme
+vim.cmd[[colorscheme gruvbox-flat]]
+
 
 -- ****************************
 -- ALE Settings
