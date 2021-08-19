@@ -44,6 +44,7 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-endwise'
   
   --Undo
   use 'mbbill/undotree'
