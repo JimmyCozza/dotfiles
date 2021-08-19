@@ -123,8 +123,8 @@ local mappings = {
     },
     t = {
       name = "+Trouble",
-      c = {"<cmd>tabc<cr>", "Close Tab"}
-      t = {"<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List"},
+      c = {"<cmd>tabc<cr>", "Close Tab"},
+      t = {"<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List"}
     },
     w = {
       name = "Vim Wiki",
