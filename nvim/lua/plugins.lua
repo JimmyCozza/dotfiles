@@ -26,7 +26,6 @@ return require('packer').startup(function()
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
   use 'eddyekofo94/gruvbox-flat.nvim'
-  use 'EdenEast/nightfox.nvim'
   use 'ap/vim-css-color'
   
   --Navigation
@@ -62,7 +61,16 @@ return require('packer').startup(function()
   --Utilities
   use 'rstacruz/vim-closer'
   use "rcarriga/nvim-notify"
-  use 'vimwiki/vimwiki'
+  use {
+    'vimwiki/vimwiki',
+    config = function()
+      vim.g.vimwiki_list = {
+        {
+          path = '~/notes/vimwiki'
+        }
+      }
+    end
+  }
   use 'scrooloose/nerdcommenter'
   use 'scrooloose/nerdtree'
   use 'junegunn/vim-easy-align'
