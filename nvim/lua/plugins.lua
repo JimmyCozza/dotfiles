@@ -88,10 +88,22 @@ return require('packer').startup(function()
     config = function() require('todo-comments').setup() end
   }
   use 'svermeulen/vimpeccable'
-  use {'kristijanhusak/orgmode.nvim', config = function()
-          require('orgmode').setup{}
+  use {
+    'kristijanhusak/orgmode.nvim',
+    config = function()
+      require('orgmode').setup{}
     end
   }
+  use {
+    "akinsho/org-bullets.nvim",
+    config = function()
+      require("org-bullets").setup {
+        symbols = { "◉", "○", "✸", "✿" }
+      }
+    end
+  }
+
+
   use 'hoob3rt/lualine.nvim'
 
   

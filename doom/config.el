@@ -92,19 +92,19 @@
 ;;                                    ORG MODE
 ;; ===================================================================================
 ;; Setting a TODO to DONE sets a Closed timestamp
-(setq org-directory "~/org/")
+(setq org-directory "~/notes/org/")
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (setq org-agenda-start-with-log-mode t)
 
 (setq org-agenda-files
-'("~/org/habit.org"
-  "~/org/todo.org"
-  "~/org/notes.org"
-  "~/org/organizer.org"
-  "~/org/projects.org"
-  "~/org/schedule.org"
-  "~/org/standups.org"))
+'("~/notes/org/habit.org"
+  "~/notes/org/todo.org"
+  "~/notes/org/notes.org"
+  "~/notes/org/organizer.org"
+  "~/notes/org/projects.org"
+  "~/notes/org/schedule.org"
+  "~/notes/org/standups.org"))
 
 (defun make-youtrack-link (yt_id)
   (browse-url (concat "https://growmies.myjetbrains.com/youtrack/issue/GA-" yt_id)))
