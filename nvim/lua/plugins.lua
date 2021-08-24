@@ -85,7 +85,7 @@ return require('packer').startup(function()
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
-    config = function() require('todo-comments').setup() end
+    config = function() require('configs.todo-comments') end
   }
   use 'svermeulen/vimpeccable'
   use {
