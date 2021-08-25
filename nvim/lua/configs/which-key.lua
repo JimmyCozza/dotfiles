@@ -42,31 +42,30 @@ require("which-key").setup {
 
 local mappings = {
     ["/"] = {"<cmd>Telescope live_grep<cr>", "Search project"},
-    ["c"] = "Close Buffer",
-    ["e"] = "Explorer",
-    ["f"] = "Find File",
     d = {
-      name = "+DB/Docker",
-      l = {
-        name = "Local",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts WHERE id = ;", "Account by ID"},
-        A = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"},
-        b = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Datasources"},
-        c = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Auths"},
-        d = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All "}
-      },
-      d = {
-        name = "Develop",
-        a = {"<cmd>DB postgresql://grow:gogrow1983@localhost/grow SELECT * FROM accounts;<cr>", "All Accounts"}
-      },
+      name = "+Debug",
+      b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+      c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+      C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+      d = {"<CMD>lua _G.__fterm_lazydocker()<CR>", "Lazydocker"},
+      D = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+      g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+      i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+      o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+      O = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+      p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+      q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
+      r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+      s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+      t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
       u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
     },
     e = {
       name = "+Quick edit files",
       a = {"<cmd>:e $HOME/dotfiles/alacritty.yml<cr>", "Edit Alacritty.yml"},
       f = {"<cmd>ALEFix<cr>", "ALE Fix"},
-      p = {"<cmd>:e $HOME/dotfiles/nvim/plugins.vim<cr>", "Edit Plugfile"},
-      v = {"<cmd>:e $HOME/.config/nvim/init.vim<cr>", "Edit Vimrc"},
+      p = {"<cmd>:e $HOME/dotfiles/nvim/lua/plugins.lua<cr>", "Edit Plugfile"},
+      v = {"<cmd>:e $HOME/.config/nvim/init.lua<cr>", "Edit Vimrc"},
       z = {"<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit Zshrc"}
     },
     g = {
@@ -76,17 +75,22 @@ local mappings = {
       c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
       C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
       d = {"<cmd>Git diff<cr>", "Git diff"},
+      g = {"<CMD>lua _G.__fterm_lazygit()<CR>", "Lazygit"},
       j = {"<cmd>NextHunk<cr>", "Next Hunk"},
       k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
+      l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame Line" },
       o = {"<cmd>Telescope git_status<cr>", "Git Status"},
       p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
       r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
       R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
-      s = {"<cmd>Git status<cr>", "Git Status"},
+      s = {"<cmd>Neogit kind=split<cr>", "Neogit Status"},
       u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
     },
     h = {
-      name = "+Help"
+      name = "+Help",
+      b = {"<cmd>lua _G.__fterm_bpytop()<cr>", "Bpytop"},
+      h = {"<cmd>Telescope help_tags<cr>", "Help Tags"},
+      m = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
     },
     m = {
       name = "Mode (CHANGE ME)",
@@ -100,17 +104,27 @@ local mappings = {
       t = {"<cmd>NERDTreeFind<cr>", "Find at file"}
     },
     p = {
-      name = "Project",
+      name = "+Project",
       f = {"<cmd>Telescope find_files<cr>", "Find file in project"},
-      s = {"<cmd>Telescope grep_string<cr>", "Search string under cursor"}
+      p = {
+        name = "Packer",
+        c = { "<cmd>PackerCompile<cr>", "Compile" },
+        i = { "<cmd>PackerInstall<cr>", "Install" },
+        s = { "<cmd>PackerSync<cr>", "Sync" },
+        u = { "<cmd>PackerUpdate<cr>", "Update" },
+      },
+      q = {"<cmd>TodoQuickFix<cr>", "Send TODOs to QuickFix List"},
+      s = {"<cmd>Telescope grep_string<cr>", "Search string under cursor"},
+      t = {"<cmd>TodoTelescope<cr>", "Search TODOs"}
     },
     s = {
       name = "+Search",
       c = {"<cmd>nohlsearch<cr>", "Clear Search Highlighting"}
     },
     t = {
-      name = "+Tabs",
-      c = {"<cmd>tabc<cr>", "Close Tab"}
+      name = "+Trouble",
+      c = {"<cmd>tabc<cr>", "Close Tab"},
+      t = {"<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List"}
     },
     w = {
       name = "Vim Wiki",
@@ -119,7 +133,8 @@ local mappings = {
     },
     y = {
       name = "+Yarn",
-      i = {"<cmd>! yarn install<cr>", "Yarn Install"}
+      i = {"<cmd>! yarn install<cr>", "Yarn Install"},
+      t = {"<cmd>! yarn test<cr>", "Yarn Test"}
     }
 }
 local opts = {
@@ -132,4 +147,3 @@ local opts = {
 }
 local wk = require("which-key")
 wk.register(mappings, opts)
-

@@ -102,7 +102,7 @@ font:
   #italic:
     #family: fira code
     #style: Italic
-  size: 13.5
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -161,146 +161,234 @@ debug:
 draw_bold_text_with_bright_colors: true
 
 
-# NORD THEME
-colors:
-  primary:
-    background: '#2e3440'
-    foreground: '#d8dee9'
-    dim_foreground: '#a5abb6'
-  cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  vi_mode_cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  selection:
-    text: CellForeground
-    background: '#4c566a'
-  search:
-    matches:
-      foreground: CellBackground
-      background: '#88c0d0'
-    bar:
-      background: '#434c5e'
+# COLORSCHEMES
+schemes:
+  everforest_dark_hard: &everforest_dark_hard
+    primary:
+      background: '#2b3339'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_medium: &everforest_dark_medium
+    primary:
+      background: '#2f383e'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_soft: &everforest_dark_soft
+    primary:
+      background: '#323d43'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_light_hard: &everforest_light_hard
+    primary:
+      background: '#fff9e8'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+  everforest_light_medium: &everforest_light_medium
+    primary:
+      background: '#fdf6e3'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+  everforest_light_soft: &everforest_light_soft
+    primary:
+      background: '#f8f0dc'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+  nord_dark: &nord_dark
+    primary:
+      background: '#2e3440'
       foreground: '#d8dee9'
-  normal:
-    black: '#3b4252'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#88c0d0'
-    white: '#e5e9f0'
-  bright:
-    black: '#4c566a'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#8fbcbb'
-    white: '#eceff4'
-  dim:
-    black: '#373e4d'
-    red: '#94545d'
-    green: '#809575'
-    yellow: '#b29e75'
-    blue: '#68809a'
-    magenta: '#8c738c'
-    cyan: '#6d96a5'
-    white: '#aeb3bb'
+      dim_foreground: '#a5abb6'
+    cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    vi_mode_cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    selection:
+      text: CellForeground
+      background: '#4c566a'
+    search:
+      matches:
+        foreground: CellBackground
+        background: '#88c0d0'
+      bar:
+        background: '#434c5e'
+        foreground: '#d8dee9'
+    normal:
+      black: '#3b4252'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#88c0d0'
+      white: '#e5e9f0'
+    bright:
+      black: '#4c566a'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#8fbcbb'
+      white: '#eceff4'
+    dim:
+      black: '#373e4d'
+      red: '#94545d'
+      green: '#809575'
+      yellow: '#b29e75'
+      blue: '#68809a'
+      magenta: '#8c738c'
+      cyan: '#6d96a5'
+      white: '#aeb3bb'
+  seoul256_dark: &seoul256_dark
+    primary:
+      background: '0x3a3a3a'
+      foreground: '0xd0d0d0'
+    normal:
+      black:   '0x4e4e4e'
+      red:     '0xd68787'
+      green:   '0x5f865f'
+      yellow:  '0xd8af5f'
+      blue:    '0x85add4'
+      magenta: '0xd7afaf'
+      cyan:    '0x87afaf'
+      white:   '0xd0d0d0'
+    bright:
+      black:   '0x626262'
+      red:     '0xd75f87'
+      green:   '0x87af87'
+      yellow:  '0xffd787'
+      blue:    '0xadd4fb'
+      magenta: '0xffafaf'
+      cyan:    '0x87d7d7'
+      white:   '0xe4e4e4'
+  gruvbox_material: &gruvbox_material
+    primary:
+      background: '0x282828'
+      foreground: '0xdfbf8e'
+    normal:
+      black:   '0x665c54'
+      red:     '0xea6962'
+      green:   '0xa9b665'
+      yellow:  '0xe78a4e'
+      blue:    '0x7daea3'
+      magenta: '0xd3869b'
+      cyan:    '0x89b482'
+      white:   '0xdfbf8e'
+    bright:
+      black:   '0x928374'
+      red:     '0xea6962'
+      green:   '0xa9b665'
+      yellow:  '0xe3a84e'
+      blue:    '0x7daea3'
+      magenta: '0xd3869b'
+      cyan:    '0x89b482'
+      white:   '0xdfbf8e'
 
-# gruvbox Alacritty Colors
-#colors:
-  ## Default colors
-  #primary:
-    #background: '0x282828'
-    #foreground: '0xd4be98'
-
-  ## Normal colors
-  #normal:
-    #black:   '0x262627'
-    #red:     '0xea6962'
-    #green:   '0xa9b665'
-    #yellow:  '0xd8a657'
-    #blue:    '0x7daea3'
-    #magenta: '0xd3869b'
-    #cyan:    '0x89b482'
-    #white:   '0xd4be98'
-
-  ## Bright colors
-  #bright:
-    #black:   '0x1d2021'
-    #red:     '0xea6962'
-    #green:   '0xa9b665'
-    #yellow:  '0xd8a657'
-    #blue:    '0x7daea3'
-    #magenta: '0xd3869b'
-    #cyan:    '0x89b482'
-    #white:   '0xd4be98'
-
-  #indexed_colors:
-    #- { index: 16, color: '0xe78a4e' }
-    #- { index: 17, color: '0xc14a4a' }
-
-  
-#Seoul256 Dark Colorscheme
-# Colors (Seoul256)
-#colors:
-   #Default colors
-  #primary:
-    #background: '0x3a3a3a'
-    #foreground: '0xd0d0d0'
-
-  # Normal colors
-  #normal:
-    #black:   '0x4e4e4e'
-    #red:     '0xd68787'
-    #green:   '0x5f865f'
-    #yellow:  '0xd8af5f'
-    #blue:    '0x85add4'
-    #magenta: '0xd7afaf'
-    #cyan:    '0x87afaf'
-    #white:   '0xd0d0d0'
-
-   #Bright colors
-  #bright:
-    #black:   '0x626262'
-    #red:     '0xd75f87'
-    #green:   '0x87af87'
-    #yellow:  '0xffd787'
-    #blue:    '0xadd4fb'
-    #magenta: '0xffafaf'
-    #cyan:    '0x87d7d7'
-    #white:   '0xe4e4e4'
-
-# Colors (Gruvbox Material)
-#colors:
-  #primary:
-    #background: '0x282828'
-    #foreground: '0xdfbf8e'
-
-  #normal:
-    #black:   '0x665c54'
-    #red:     '0xea6962'
-    #green:   '0xa9b665'
-    #yellow:  '0xe78a4e'
-    #blue:    '0x7daea3'
-    #magenta: '0xd3869b'
-    #cyan:    '0x89b482'
-    #white:   '0xdfbf8e'
-
-  #bright:
-    #black:   '0x928374'
-    #red:     '0xea6962'
-    #green:   '0xa9b665'
-    #yellow:  '0xe3a84e'
-    #blue:    '0x7daea3'
-    #magenta: '0xd3869b'
-    #cyan:    '0x89b482'
-    #white:   '0xdfbf8e'
-
+colors: *seoul256_dark
 
 # Visual Bell
 #
@@ -332,7 +420,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+background_opacity: 0.96
 
 # Mouse bindings
 #
