@@ -24,6 +24,7 @@ vim.opt.undofile     = true
 vim.opt.completeopt  = 'menu,noselect'
 vim.opt.splitbelow   = true
 vim.opt.splitright   = true
+vim.opt.termguicolors = true
 
 
 -- ****************************
