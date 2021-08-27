@@ -9,7 +9,8 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful  = require("beautiful")
+local revelation = require("revelation")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -18,11 +19,12 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local utils      = require("utils")
-local battery    = require("widgets.battery")
-local volume     = require("widgets.volume")
+----------------------
+--Widgets
+----------------------
 local mpd        = require("widgets.mpd")
-local net_widget = require("widgets.net")
-local run_shell  = require("widgets.run-shell")
+local gpmdp      = require("widgets.gpmdp")
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -54,6 +56,7 @@ end
 --local theme = "gruvbox"
 --beautiful.init("/home/jimmy/.config/awesome/themes/" .. theme .."/theme.lua")
 beautiful.init("/home/jimmy/.config/awesome/themes/gruvbox/theme.lua")
+revelation.init()
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -106,30 +109,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = wibox.widget(utils.widget.compose{{
-  {
-    awful.widget.launcher {
-      image = beautiful.archlinux_icon,
-      menu  = { toggle = function()
-          mymainmenu:toggle {
-            coords = {
-              x = beautiful.gap,
-              y = beautiful.wibar_height + beautiful.gap
-            }
-          }
-        end
-      }
-    },
-    status_box,
-    spacing = beautiful.gap,
-    layout  = wibox.layout.fixed.horizontal,
-  },
-  shape = utils.shape.rightangled.left,
-  color = beautiful.lightaqua,
-  margin = beautiful.small_gap
-}})
---mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     --menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -243,7 +224,10 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            --Google Play Music
+            docker_widget{
+                number_of_containers = 5
+            },
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -262,6 +246,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+    awful.key({ modkey,           }, "e",      revelation,
+              {description="Expose style", group="awesome"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,

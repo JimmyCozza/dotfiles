@@ -93,7 +93,7 @@ theme.taglist_bg_occupied = theme.bg1
 theme.taglist_bg_volatile = theme.lightpurple
 theme.taglist_bg_empty    = theme.bg1
 theme.taglist_bg_hover    = theme.bg2
-theme.taglist_font        = "DejaVu Sans Bold 18"
+theme.taglist_font        = "DejaVu Sans Bold 14"
 
 -- Menu
 theme.menu_height       = dpi(16)

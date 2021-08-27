@@ -20,13 +20,13 @@ if [[ $chosen = "Logout" ]]; then
 elif [[ $chosen = "Shutdown" ]]; then
 	systemctl poweroff
 elif [[ $chosen = "Reboot" ]]; then
-	xfce4-session-logout --reboot
+	systemctl reboot
 elif [[ $chosen = "Suspend" ]]; then
-	xfce4-session-logout --suspend
+	systemctl suspend
 elif [[ $chosen = "Hibernate" ]]; then
-	xfce4-session-logout --hibernate
+	systemctl hibernate
 elif [[ $chosen = "Hybrid-sleep" ]]; then
-	xfce4-session-logout --hybrid-sleep
+	systemctl hybrid-sleep
 elif [[ $chosen = "Suspend-then-hibernate" ]]; then
 	systemctl suspend-then-hibernate
 fi
