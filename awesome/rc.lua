@@ -17,6 +17,12 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local utils      = require("utils")
+local battery    = require("widgets.battery")
+local volume     = require("widgets.volume")
+local mpd        = require("widgets.mpd")
+local net_widget = require("widgets.net")
+local run_shell  = require("widgets.run-shell")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -45,7 +51,9 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/jimmy/.config/awesome/theme.lua")
+--local theme = "gruvbox"
+--beautiful.init("/home/jimmy/.config/awesome/themes/" .. theme .."/theme.lua")
+beautiful.init("/home/jimmy/.config/awesome/themes/gruvbox/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -83,11 +91,14 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+  { "Hotkeys", function() return false, hotkeys_popup.show_help end},
+  { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+  { "Restart", awesome.restart },
+  { "Quit", function() awesome.quit() end},
+  { "Open Terminal", terminal },
+  { "Lock", function() awesome.spawn("physlock -s") end },
+  { "Reboot", function() awesome.spawn("systemctl reboot") end },
+  { "Shutdown", function() awesome.spawn("systemctl poweroff") end },
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -95,8 +106,30 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+mylauncher = wibox.widget(utils.widget.compose{{
+  {
+    awful.widget.launcher {
+      image = beautiful.archlinux_icon,
+      menu  = { toggle = function()
+          mymainmenu:toggle {
+            coords = {
+              x = beautiful.gap,
+              y = beautiful.wibar_height + beautiful.gap
+            }
+          }
+        end
+      }
+    },
+    status_box,
+    spacing = beautiful.gap,
+    layout  = wibox.layout.fixed.horizontal,
+  },
+  shape = utils.shape.rightangled.left,
+  color = beautiful.lightaqua,
+  margin = beautiful.small_gap
+}})
+--mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     --menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -376,7 +409,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 4 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,

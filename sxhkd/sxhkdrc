@@ -8,3 +8,19 @@ super + ctrl + p
 	flameshot gui
 F12
   tdrop -ma -w 50% -h 60% -x 5% -y 8 -s work alacritty
+
+####################
+# Media Keys
+####################
+
+# Pulse Audio Volume Control
+super + p
+    pavucontrol
+
+# Pulse Audio Master Volume
+super + {Down,Up}
+    amixer set Master {5%-,5%+}
+
+# Speaker Volume
+XF86Audio{Mute,Play,LowerVolume,RaiseVolume}
+    amixer set Master {toggle,toggle,5%-,5%+}
