@@ -1,4 +1,4 @@
 configuration {
-  theme: "~/.config/rofi/gruvbox.rasi";
+  theme: "~/.config/rofi/gruv.rasi";
 }
 
