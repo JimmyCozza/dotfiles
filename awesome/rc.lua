@@ -385,7 +385,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 4 do
+for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -465,6 +465,8 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
+    -- Clients should always start as slave instead of master
+    {rule = { }, properties = {}, callback = awful.client.setslave },
 
     -- Floating clients.
     { rule_any = {
@@ -519,7 +521,6 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 
-    awful.client.setslave(c)
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
