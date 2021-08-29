@@ -19,12 +19,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local utils      = require("utils")
-----------------------
---Widgets
-----------------------
-local mpd        = require("widgets.mpd")
-local gpmdp      = require("widgets.gpmdp")
-local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -53,9 +47,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
---local theme = "gruvbox"
---beautiful.init("/home/jimmy/.config/awesome/themes/" .. theme .."/theme.lua")
-beautiful.init("/home/jimmy/.config/awesome/themes/gruvbox/theme.lua")
+local awesomeTheme = "default"
+beautiful.init("/home/jimmy/.config/awesome/themes/" .. awesomeTheme .."/theme.lua")
 revelation.init()
 
 -- This is used later as the default terminal and editor to run.
@@ -219,18 +212,15 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
             s.mytaglist,
+            s.mylayoutbox,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             --Google Play Music
-            docker_widget{
-                number_of_containers = 5
-            },
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)
