@@ -9,7 +9,8 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful  = require("beautiful")
+local revelation = require("revelation")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -17,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local utils      = require("utils")
+local wibar = require("widgets.wibar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -45,7 +48,9 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/jimmy/.config/awesome/theme.lua")
+local awesomeTheme = "default"
+beautiful.init("/home/jimmy/.config/awesome/themes/" .. awesomeTheme .."/theme.lua")
+revelation.init()
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -83,11 +88,14 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+  { "Hotkeys", function() return false, hotkeys_popup.show_help end},
+  { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+  { "Restart", awesome.restart },
+  { "Quit", function() awesome.quit() end},
+  { "Open Terminal", terminal },
+  { "Lock", function() awesome.spawn("physlock -s") end },
+  { "Reboot", function() awesome.spawn("systemctl reboot") end },
+  { "Shutdown", function() awesome.spawn("systemctl poweroff") end },
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -106,9 +114,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -169,53 +174,9 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-    }
-
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
+    wibar.get(s)
 end)
 -- }}}
 
@@ -229,6 +190,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+    awful.key({ modkey,           }, "e",      revelation,
+              {description="Expose style", group="awesome"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -456,6 +419,8 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
+    -- Clients should always start as slave instead of master
+    {rule = { }, properties = {}, callback = awful.client.setslave },
 
     -- Floating clients.
     { rule_any = {
@@ -510,7 +475,6 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 
-    awful.client.setslave(c)
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
