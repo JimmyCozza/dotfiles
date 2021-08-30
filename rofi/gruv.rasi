@@ -73,13 +73,13 @@ message {
 }
 
 inputbar {
-    color: @gruvbox6;
+    color: @gruvbox16;
     padding: 11px;
     background-color: @gruvbox18;
 
     border: 1px;
     border-radius:  6px 6px 0px 0px;
-    border-color: @gruvbox4;
+    border-color: @gruvbox17;
 }
 
 entry, prompt, case-indicator {
@@ -94,7 +94,7 @@ prompt {
 listview {
     padding: 8px;
     border-radius: 0px 0px 6px 6px;
-    border-color: @gruvbox4;
+    border-color: @gruvbox17;
     border: 0px 1px 1px 1px;
     background-color: @gruvbox19;
     /*background-color: rgba(46,52,64,0.9);*/
@@ -112,7 +112,7 @@ element {
 }
 
 element selected.normal {
-	background-color: @gruvbox7;
+	background-color: @gruvbox5;
   text-color: #2e3440;
 }
 
