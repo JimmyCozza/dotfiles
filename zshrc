@@ -69,3 +69,5 @@ autoload -U add-zsh-hook
 export PATH=/Users/jimmy/.fnm:$PATH
 eval "`fnm env`"
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
+eval "$(direnv hook zsh)"
+
