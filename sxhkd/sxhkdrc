@@ -16,11 +16,3 @@ F12
 # Pulse Audio Volume Control
 super + v
     pavucontrol
-
-# Pulse Audio Master Volume
-super + {Down,Up}
-    amixer set Master {5%-,5%+}
-
-# Speaker Volume
-XF86Audio{Mute,Play,LowerVolume,RaiseVolume}
-    amixer set Master {toggle,toggle,5%-,5%+}

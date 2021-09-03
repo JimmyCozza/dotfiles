@@ -19,7 +19,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local utils      = require("utils")
-local wibar = require("widgets.wibar")
+--local wibar = require("widgets.wibar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -68,20 +68,6 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
-    --awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -103,56 +89,9 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
--- {{{ Wibar
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
-
-local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -176,7 +115,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
 
-    wibar.get(s)
+    --wibar.get(s)
 end)
 -- }}}
 
@@ -271,25 +210,7 @@ globalkeys = gears.table.join(
                     )
                   end
               end,
-              {description = "restore minimized", group = "client"}),
-
-    -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
-    -- Menubar
-    --awful.key({ modkey }, "p", function() menubar.show() end,
-              --{description = "show the menubar", group = "launcher"})
+              {description = "restore minimized", group = "client"})
 )
 
 clientkeys = gears.table.join(
@@ -488,4 +409,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+awful.spawn.with_shell("~/dotfiles/polybar/launch.sh")
 awful.spawn.with_shell("~/dotfiles/awesome/autostart.sh")
