@@ -17,15 +17,22 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #5e81ac
-background-alt = #5e81ac
-;foreground = ${xrdb:color7:#222}
-foreground = #8fbcbb
-foreground-alt = #8fbcbb
-primary = #ffb52a
-secondary = #e60053
-alert = #bf616a
+;background = ${xrdb:color14}
+;;background = #5e81ac
+;background-alt = #5e81ac
+;;foreground = ${xrdb:color7:#222}
+;foreground = #8fbcbb
+;foreground-alt = #8fbcbb
+;primary = #ffb52a
+;secondary = #e60053
+;alert = #bf616a
+background = #282828
+background-alt = #504945
+foreground = #fbf1c7
+foreground-alt = #ebdbb2
+primary = #98971a
+secondary = #d65d0e
+alert = #cc241d
 
 [bar/mybar]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -57,11 +64,11 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = date
-modules-right =
+modules-right = mpd cpu memory pulseaudio
 
 tray-position = right
 tray-padding = 2
-tray-background = #5e81ac
+tray-background = background-alt
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -263,7 +270,7 @@ interval = 5
 date =
 date-alt = " %a %Y-%m-%d"
 
-time = %H:%M
+time = %I:%M
 time-alt = 
 
 format-prefix = 
@@ -298,6 +305,19 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/audio]
+    type = internal/pulseaudio
+    sink = alsa_output.pci-0000_12_00.3.analog-stereo
+    use-ui-max = true
+    format-volume = <ramp-volume> <label-volume>
+    label-muted = " "
+    ramp-volume-0 = " "
+    ramp-volume-1 = " "
+    click-right = "pactl set-sink-volume @DEFAULT_SINK@ -1000"
+    click-middle = "pavucontrol"
+    interval = 5
+    label-active-font = 1
 
 [module/alsa]
 type = internal/alsa

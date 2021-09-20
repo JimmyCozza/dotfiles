@@ -1,0 +1,71 @@
+#define COLOR_0 #282828; // bg (235)
+#define COLOR_1 #3c3836; // bg1 (237)
+#define COLOR_2 #504945; // bg2 (237)
+#define COLOR_3 #665c54; // bg3 (241)
+#define COLOR_4 #7c6f64; // bg4 (243)
+
+#define COLOR_5 #fbf1c7; // fg0 (229)
+#define COLOR_6 #ebdbb2; // fg1 (223)
+#define COLOR_7 #d5c4a1; // fg2 (250)
+#define COLOR_8 #bdae93; // fg3 (248)
+#define COLOR_9 #a89984; // fg4 (246)
+
+#define COLOR_10 #928374; // gray (245)
+
+#define COLOR_11 #cc241d; // red (124)
+#define COLOR_12 #fb4934; // red (167)
+#define COLOR_13 #98971a; // green (106)
+#define COLOR_14 #b8bb26; // green (142)
+#define COLOR_15 #d79921; // yellow (172)
+#define COLOR_16 #fabd2f; // yellow (214)
+#define COLOR_17 #458588; // blue (66)
+#define COLOR_18 #83a598; // blue (109)
+#define COLOR_19 #b16286; // purple (132)
+#define COLOR_20 #d3869b; // purple (175)
+#define COLOR_21 #689d6a; // aqua (72)
+#define COLOR_22 #8ec07c; // aqua (108)
+#define COLOR_23 #d65d0e; // orange (166)
+#define COLOR_24 #fe8019; // orange (208)
+
+
+*background:  COLOR_0
+*foreground:  COLOR_5
+*cursorColor: COLOR_5
+*fading:      40
+*fadeColor:   COLOR_0
+
+! Black
+*color0:      COLOR_0
+*color1:      COLOR_1
+
+! Red
+*color2:      COLOR_11
+*color3:      COLOR_12
+
+! Green
+*color4:      COLOR_13
+*color5:      COLOR_14
+
+! Yellow
+*color6:      COLOR_15
+*color7:      COLOR_16
+
+! Blue
+*color8:      COLOR_17
+*color9:      COLOR_18
+
+! Purple
+*color10:     COLOR_19
+*color11:     COLOR_20
+
+! Aqua
+*color12:     COLOR_21
+*color13:     COLOR_22
+
+! Orange
+*color14:     COLOR_23
+*color15:     COLOR_24
+
+! White
+*color16:     COLOR_5
+*color17:     COLOR_6

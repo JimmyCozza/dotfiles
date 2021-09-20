@@ -47,7 +47,7 @@ local mappings = {
       b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
       c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
       C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-      d = {"<CMD>lua _G.__fterm_lazydocker()<CR>", "Lazydocker"},
+      d = { "<cmd>lua _G.__fterm_lazydocker()<CR>", "Lazydocker"},
       D = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
       g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
       i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
@@ -58,7 +58,7 @@ local mappings = {
       r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
       s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
       t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-      u = {"<cmd>! docker-compose up -d<cr>", "docker-compose up"}
+      u = { "<cmd>! docker-compose up -d<cr>", "docker-compose up"}
     },
     e = {
       name = "+Quick edit files",
