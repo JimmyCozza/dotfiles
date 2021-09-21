@@ -1,99 +1,209 @@
+--[[
+
+     Awesome WM configuration template
+     github.com/lcpz
+
+--]]
+
+-- {{{ Required libraries
+
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
-require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
--- Theme handling library
-local beautiful  = require("beautiful")
-local revelation = require("revelation")
--- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
+local gears         = require("gears")
+local awful         = require("awful")
+                      require("awful.autofocus")
+local wibox         = require("wibox")
+local beautiful     = require("beautiful")
+local naughty       = require("naughty")
+local lain          = require("lain")
+--local menubar       = require("menubar")
+local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
-local utils      = require("utils")
---local wibar = require("widgets.wibar")
+                      require("awful.hotkeys_popup.keys")
+local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
+
+-- }}}
 
 -- {{{ Error handling
+
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+    naughty.notify {
+        preset = naughty.config.presets.critical,
+        title = "Oops, there were errors during startup!",
+        text = awesome.startup_errors
+    }
 end
 
 -- Handle runtime errors after startup
 do
     local in_error = false
+
     awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
         if in_error then return end
+
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
+        naughty.notify {
+            preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = tostring(err)
+        }
+
         in_error = false
     end)
 end
+
+-- }}}
+
+-- {{{ Autostart windowless processes
+
+-- This function will run once every time Awesome is started
+local function run_once(cmd_arr)
+    for _, cmd in ipairs(cmd_arr) do
+        awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+    end
+end
+
+run_once({ "urxvtd", "unclutter -root" }) -- comma-separated entries
+
+-- This function implements the XDG autostart specification
+--[[
+awful.spawn.with_shell(
+    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
+    'xrdb -merge <<< "awesome.started:true";' ..
+    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
+    'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart"' -- https://github.com/jceb/dex
+)
+--]]
+
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-local awesomeTheme = "default"
-beautiful.init("/home/jimmy/.config/awesome/themes/" .. awesomeTheme .."/theme.lua")
-revelation.init()
 
--- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nvim"
-editor_cmd = terminal .. " -e " .. editor
+local themes = {
+    "blackburn",       -- 1
+    "copland",         -- 2
+    "dremora",         -- 3
+    "holo",            -- 4
+    "multicolor",      -- 5
+    "powerarrow",      -- 6
+    "powerarrow-dark", -- 7
+    "rainbow",         -- 8
+    "steamburn",       -- 9
+    "vertex"           -- 10
+}
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local chosen_theme = themes[2]
+local modkey       = "Mod4"
+local altkey       = "Mod1"
+local terminal     = "urxvtc"
+local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
+local editor       = os.getenv("EDITOR") or "nvim"
+local browser      = "librewolf"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+awful.util.terminal = terminal
+awful.util.tagnames = { "", "", "", "", "" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
 }
+
+lain.layout.termfair.nmaster           = 3
+lain.layout.termfair.ncol              = 1
+lain.layout.termfair.center.nmaster    = 3
+lain.layout.termfair.center.ncol       = 1
+lain.layout.cascade.tile.offset_x      = 2
+lain.layout.cascade.tile.offset_y      = 32
+lain.layout.cascade.tile.extra_padding = 5
+lain.layout.cascade.tile.nmaster       = 5
+lain.layout.cascade.tile.ncol          = 2
+
+awful.util.taglist_buttons = mytable.join(
+    awful.button({ }, 1, function(t) t:view_only() end),
+    awful.button({ modkey }, 1, function(t)
+        if client.focus then client.focus:move_to_tag(t) end
+    end),
+    awful.button({ }, 3, awful.tag.viewtoggle),
+    awful.button({ modkey }, 3, function(t)
+        if client.focus then client.focus:toggle_tag(t) end
+    end),
+    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
+
+awful.util.tasklist_buttons = mytable.join(
+     awful.button({ }, 1, function(c)
+         if c == client.focus then
+             c.minimized = true
+         else
+             c:emit_signal("request::activate", "tasklist", { raise = true })
+         end
+     end),
+     awful.button({ }, 3, function()
+         awful.menu.client_list({ theme = { width = 250 } })
+     end),
+     awful.button({ }, 4, function() awful.client.focus.byidx(1) end),
+     awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
+)
+
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+
 -- }}}
 
 -- {{{ Menu
+
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-  { "Hotkeys", function() return false, hotkeys_popup.show_help end},
-  { "Edit Config", editor_cmd .. " " .. awesome.conffile },
-  { "Restart", awesome.restart },
-  { "Quit", function() awesome.quit() end},
-  { "Open Terminal", terminal },
-  { "Lock", function() awesome.spawn("physlock -s") end },
-  { "Reboot", function() awesome.spawn("systemctl reboot") end },
-  { "Shutdown", function() awesome.spawn("systemctl poweroff") end },
+local myawesomemenu = {
+   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "Manual", string.format("%s -e man awesome", terminal) },
+   { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+   { "Restart", awesome.restart },
+   { "Quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+awful.util.mymainmenu = freedesktop.menu.build {
+    before = {
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+        -- other triads can be put here
+    },
+    after = {
+        { "Open terminal", terminal },
+        -- other triads can be put here
+    }
+}
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Hide the menu when the mouse leaves it
+--[[
+awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
+    if not awful.util.mymainmenu.active_child or
+       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
+       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
+        awful.util.mymainmenu:hide()
+    else
+        awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave",
+        function()
+            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+                awful.util.mymainmenu:hide()
+            end
+        end)
+    end
+end)
+--]]
+
+-- Set the Menubar terminal for applications that require it
+--menubar.utils.terminal = terminal
+
 -- }}}
 
-local function set_wallpaper(s)
+-- {{{ Screen
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
@@ -103,31 +213,37 @@ local function set_wallpaper(s)
         end
         gears.wallpaper.maximized(wallpaper, s, true)
     end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
-awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
-
-    -- Each screen has its own tag table.
-    awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
-
-    --wibar.get(s)
 end)
+
+-- No borders when rearranging only 1 non-floating or maximized client
+screen.connect_signal("arrange", function (s)
+    local only_one = #s.tiled_clients == 1
+    for _, c in pairs(s.clients) do
+        if only_one and not c.floating or c.maximized or c.fullscreen then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
+
+-- Create a wibox for each screen and add it
+awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
+
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+
+root.buttons(mytable.join(
+    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
+
 -- }}}
 
 -- {{{ Key bindings
+
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "e",      revelation,
               {description="Expose style", group="awesome"}),
@@ -261,7 +377,7 @@ clientkeys = gears.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    globalkeys = gears.table.join(globalkeys,
+    globalkeys = mytable.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
@@ -307,7 +423,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = gears.table.join(
+clientbuttons = mytable.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),
@@ -323,9 +439,11 @@ clientbuttons = gears.table.join(
 
 -- Set keys
 root.keys(globalkeys)
+
 -- }}}
 
 -- {{{ Rules
+
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -349,6 +467,7 @@ awful.rules.rules = {
           "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
           "pinentry",
+          "kubernetic"
         },
         class = {
           "Arandr",
@@ -387,9 +506,11 @@ awful.rules.rules = {
      { rule = { class = "Steam" },
        properties = { screen = 1, tag = "3" } },
 }
+
 -- }}}
 
 -- {{{ Signals
+
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -404,10 +525,56 @@ client.connect_signal("manage", function (c)
     end
 end)
 
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal("request::titlebars", function(c)
+    -- Custom
+    if beautiful.titlebar_fun then
+        beautiful.titlebar_fun(c)
+        return
+    end
+
+    -- Default
+    -- buttons for the titlebar
+    local buttons = mytable.join(
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.move(c)
+        end),
+        awful.button({ }, 3, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.resize(c)
+        end)
+    )
+
+    awful.titlebar(c, { size = 16 }) : setup {
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Right
+            awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.stickybutton   (c),
+            awful.titlebar.widget.ontopbutton    (c),
+            awful.titlebar.widget.closebutton    (c),
+            layout = wibox.layout.fixed.horizontal()
+        },
+        layout = wibox.layout.align.horizontal
+    }
+end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
 
-awful.spawn.with_shell("~/dotfiles/polybar/launch.sh")
+-- }}}
 awful.spawn.with_shell("~/dotfiles/awesome/autostart.sh")
+awful.spawn.with_shell("feh --bg-fill ~/Pictures/wallpapers/gruvbox/spaceman.jpg")
