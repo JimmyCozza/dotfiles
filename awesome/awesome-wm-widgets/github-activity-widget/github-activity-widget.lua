@@ -7,7 +7,6 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local wibox = require("wibox")
 local json = require("json")
