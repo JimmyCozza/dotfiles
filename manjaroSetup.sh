@@ -30,6 +30,7 @@ source "$HOME/.zshrc"
 
 ln -s "$CONFIG_FILES_PATH/alacritty.yml" "$HOME/.alacritty.yml"
 ln -s "$CONFIG_FILES_PATH/polybar" "$HOME/.config/polybar"
+ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
 ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
 ln -s "$CONFIG_FILES_PATH/autostart/sxhkd.desktop" "$HOME/.config/sxhkd/sxhkd.desktop"
