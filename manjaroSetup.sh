@@ -42,14 +42,14 @@ ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ################## Pacman ########################
 ##################################################
 
-sudo pacman -Syuv --noconfirm awesome alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi polybar sxhkd flameshot emacs aws-cli nginx python2
+sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi polybar sxhkd flameshot emacs aws-cli nginx python2
 source "$HOME/.zshrc"
 
 ##################################################
 ############### AUR Packages #####################
 ##################################################
 
-pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git
+pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git
 
 # Some things
 fnm install 14
