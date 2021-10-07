@@ -1,0 +1,1 @@
+("~/work/grow-job-processor/" "~/dotfiles/")

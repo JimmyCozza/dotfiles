@@ -1,7 +1,7 @@
 nvim/plugin/packer_compiled.lua
-emacs/elpa
-emacs/eshell
-emacs/transient
-emacs/auto-save-list
-emacs/projectile-bookmarks.eld
-emacs/forge-database.sqlite
+emacs-from-scratch/elpa
+emacs-from-scratch/eshell
+emacs-from-scratch/transient
+emacs-from-scratch/auto-save-list
+emacs-from-scratch/projectile-bookmarks.eld
+emacs-from-scratch/forge-database.sqlite
