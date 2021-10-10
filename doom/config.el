@@ -72,11 +72,11 @@
 ;;===================================================================================
 ;;                                    JAVASCRIPT
 ;; ===================================================================================
-(setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
+;; (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
 (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 (require 'dap-node)
 (setq dap-node-debug-program "~/tools/vscode-node-debug2/out/src/nodeDebug.js")
-(setq lsp-log-io t)
+;; (setq lsp-log-io t)
 (setq dap-print-io t)
 (dap-register-debug-template
   "Attach to node process "
