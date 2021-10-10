@@ -1,14 +1,26 @@
+* Initial Setup
+** Font.  I shot the serif.
+#+begin_src emacs-lisp
 (setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
       doom-variable-pitch-font (font-spec :family "GoMono Nerd Font" :size 16))
+#+end_src
 
+** Gruvbox is king
+#+begin_src emacs-lisp
 (setq doom-theme 'gruvbox-dark-soft)
 (setq doom-themes-treemacs-theme "doom-colors")
-
+#+end_src
+** Transparent Background
+#+begin_src emacs-lisp
  (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
  (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
-
+#+end_src
+** Line Numbers
+#+begin_src emacs-lisp
 (setq display-line-numbers-type t)
-
+#+end_src
+* Keybindings
+#+begin_src emacs-lisp
 ;; nohlsearch is baked into my brain
 (map! :leader
       :desc "nohlsearch"
@@ -22,7 +34,9 @@
 (map! :leader
       :desc "Comment Line"
       "c l " #'comment-line)
-
+#+end_src
+* Javascript specific
+#+begin_src emacs-lisp
 ;; (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
 (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 (require 'dap-node)
@@ -39,7 +53,9 @@
  ;(defun you-track-integration ()
   ;(interactive)
   ;(insert (shell-command-to-string (format "python3 %s" buffer-file-name))))
-
+#+end_src
+* Org Mode
+#+begin_src emacs-lisp
 ;; Setting a TODO to DONE sets a Closed timestamp
 (setq org-directory "~/notes/org/")
 (setq org-log-done 'time)
@@ -83,7 +99,9 @@
 ;; Loads ox-gfm for github flavored markdown exports
 (eval-after-load "org"
   '(require 'ox-gfm nil t))
-
+#+end_src
+* EXWM
+#+begin_src emacs-lisp
 (defun efs/exwm-update-class ()
   (exwm-workspace-rename-buffer exwm-class-name))
 
@@ -140,3 +158,4 @@
                     (number-sequence 0 9))))
 
   (exwm-enable))
+ #+end_src
