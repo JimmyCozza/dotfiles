@@ -1,43 +1,38 @@
-#!/usr/bin/env bash
-# .scripts/awesome/autostart.sh
-# Launch Apps when AwesomeWM starts.
+#!/bin/bash
 
 function run {
-  if ! pgrep -f $1 ;
+  if ! pgrep $1 ;
   then
     $@&
   fi
 }
-
-# List the apps you wish to run on startup below preceded with "run"
-
-# Policy kit (needed for GUI apps to ask for password)
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# xrandr layout for AwesomeWM
-run ~/.scripts/awesome/awesome_display_layout.sh &
+run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+#run xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal
+#run xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
+#autorandr horizontal
+run nm-applet
+#run caffeine
+run pamac-tray
+run variety
+run xfce4-power-manager
+run blueberry-tray
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run numlockx on
+run volumeicon
+#run nitrogen --restore
+run conky -c $HOME/.config/awesome/system-overview
+#you can set wallpapers in themes as well
+feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 # Start compositor
 run picom --experimental-backend &
 # sxhkd Hotkeys
 run sxhkd &
-# Start Volume Control applet
-run volctl &
-# Start Network Manager Applet 
-run nm-applet &
-# Set Numlock key to active.
-run numlockx &
-# Start Guake terminal  
-run guake &
-# Screensaver
-run xscreensaver -no-splash &
-# Greenclip for Rofi
-run greenclip daemon &
-# Pamac system update notifications
-run pamac-tray &
-# Start Dropbox
-run dropbox &
-# Bluetooth
-run blueman-tray &
-# MPD
-run mpd ~/.config/mpd/mpd.conf &
-# Unclutter - (hides mouse pointer after 5 seconds of inactivity)
-run unclutter &
+#run applications from startup
+#run firefox
+#run atom
+#run dropbox
+#run insync start
+#run spotify
+#run ckb-next -b
+#run discord
+#run telegram-desktop
