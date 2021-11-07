@@ -12,7 +12,7 @@ export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 ZSH_THEME="muse"
 plugins=(
   git
-  osx
+  macos
 )
 
 source $ZSH/oh-my-zsh.sh
