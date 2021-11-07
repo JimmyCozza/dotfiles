@@ -5,40 +5,37 @@ require('configs.lualine')
 -- ****************************
 -- General Settings
 -- ****************************
-vim.g.mapleader      = ' '
-vim.opt.number       = true
-vim.opt.wrap         = false
-vim.opt.tabstop      = 2
-vim.opt.softtabstop  = 2
-vim.opt.shiftwidth   = 2
-vim.opt.hidden       = true
-vim.opt.expandtab    = true
-vim.opt.ignorecase   = true
-vim.opt.smartcase    = true
-vim.opt.clipboard    = 'unnamedplus'
-vim.opt.cursorline   = true
-vim.opt.inccommand   = 'nosplit'
-vim.opt.mouse        = 'a'
-vim.opt.swapfile     = false
-vim.opt.undofile     = true
-vim.opt.completeopt  = 'menu,noselect'
-vim.opt.splitbelow   = true
-vim.opt.splitright   = true
+vim.g.mapleader       = ' '
+vim.opt.number        = true
+vim.opt.wrap          = false
+vim.opt.tabstop       = 2
+vim.opt.softtabstop   = 2
+vim.opt.shiftwidth    = 2
+vim.opt.hidden        = true
+vim.opt.expandtab     = true
+vim.opt.ignorecase    = true
+vim.opt.smartcase     = true
+vim.opt.clipboard     = 'unnamedplus'
+vim.opt.cursorline    = true
+vim.opt.inccommand    = 'nosplit'
+vim.opt.mouse         = 'a'
+vim.opt.swapfile      = false
+vim.opt.undofile      = true
+vim.opt.completeopt   = 'menu,noselect'
+vim.opt.splitbelow    = true
+vim.opt.splitright    = true
 vim.opt.termguicolors = true
+vim.opt.scrolloff     = 8
 
 
 -- ****************************
 -- Visual Settings
 -- ****************************
 
--- Load the colorscheme
--- Example config in Lua
 vim.g.gruvbox_italic_functions = true
 vim.g.gruvbox_transparent = true
 vim.g.gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" }
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
--- Load the colorscheme
 vim.cmd[[colorscheme gruvbox-flat]]
 
 

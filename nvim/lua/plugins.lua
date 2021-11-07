@@ -102,20 +102,20 @@ return require('packer').startup(function()
     config = function() require('configs.todo-comments') end
   }
   use 'svermeulen/vimpeccable'
-  use {
-    'kristijanhusak/orgmode.nvim',
-    config = function()
-      require('orgmode').setup{}
-    end
-  }
-  use {
-    "akinsho/org-bullets.nvim",
-    config = function()
-      require("org-bullets").setup {
-        symbols = { "◉", "○", "✸", "✿" }
-      }
-    end
-  }
+  --use {
+    --'kristijanhusak/orgmode.nvim',
+    --config = function()
+      --require('orgmode').setup{}
+    --end
+  --}
+  --use {
+    --"akinsho/org-bullets.nvim",
+    --config = function()
+      --require("org-bullets").setup {
+        --symbols = { "◉", "○", "✸", "✿" }
+      --}
+    --end
+  --}
 
 
   use 'hoob3rt/lualine.nvim'
@@ -158,5 +158,6 @@ return require('packer').startup(function()
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
+  use 'github/copilot.vim'
 end)
 

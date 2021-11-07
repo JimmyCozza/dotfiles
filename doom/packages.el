@@ -20,9 +20,8 @@
 (package! csv-mode)
 (package! ox-report)
 (package! ox-gfm)
-(unpin! org-roam)
 (package! websocket)
-(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
+(package! org-drill)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
