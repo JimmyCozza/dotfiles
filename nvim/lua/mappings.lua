@@ -6,6 +6,7 @@ map('i', 'jk', '<Esc>:w<cr>', { noremap = true })
 map('v', 'dp', '_dP', { noremap = true })
 map('n', '<A-t>', '<cmd>lua require("FTerm").toggle()<CR>', { noremap = true })
 map('t', '<A-t>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>', { noremap = true })
+map('t', '<esc>', '<C-\\><C-n>', {})
 
 -- ****************************
 -- Search
