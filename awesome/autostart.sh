@@ -27,6 +27,7 @@ feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 run picom --experimental-backend &
 # sxhkd Hotkeys
 run sxhkd &
+run $HOME/.screenlayout/laptop.sh &
 #run applications from startup
 #run firefox
 #run atom
