@@ -92,6 +92,13 @@ local mappings = {
       h = {"<cmd>Telescope help_tags<cr>", "Help Tags"},
       m = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
     },
+    l = {
+      name = "+LSP",
+      i = {"<cmd>LspInfo<cr>", "LSP Info"},
+      r = {"<cmd>LspRestart<cr>", "LSP Restart"},
+      s = {"<cmd>LspStart<cr>", "LSP Start"},
+      S = {"<cmd>LspStop<cr>", "LSP Stop"},
+    },
     m = {
       name = "Mode (CHANGE ME)",
       b = {"<cmd>GoBuild<cr>", "Go Build"},

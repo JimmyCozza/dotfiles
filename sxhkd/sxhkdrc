@@ -1,9 +1,9 @@
 super + enter
   alacritty
 super + p
-	rofi -show drun
+	~/.config/rofi/launchers/text/launcher.sh
 super + ctrl + BackSpace
-  ~/.config/rofi/power.sh
+	~/.config/rofi/powermenu/powermenu.sh
 super + ctrl + p
 	flameshot gui
 F12

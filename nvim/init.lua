@@ -52,8 +52,14 @@ vim.g.ale_sign_error = ''
 vim.g.ale_sign_warning = '--'
 
 -- ****************************
+-- LSP
+-- ****************************
+require('lspconfig').tsserver.setup{}
+
+-- ****************************
 -- Snippets
 -- ****************************
 vim.g.UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' }
 
 vim.notify = require('notify')
+

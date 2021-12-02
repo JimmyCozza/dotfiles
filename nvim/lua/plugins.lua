@@ -26,6 +26,7 @@ return require('packer').startup(function()
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
   use 'eddyekofo94/gruvbox-flat.nvim'
+  use 'glepnir/dashboard-nvim'
   use 'ap/vim-css-color'
   use {
     'norcalli/nvim-colorizer.lua',
