@@ -42,6 +42,9 @@ return require('packer').startup(function()
       })
     end
 }
+
+  -- Local tinkering
+  use '~/projects/aoc'
   
   --Navigation
   use 'nvim-lua/popup.nvim'
@@ -96,27 +99,32 @@ return require('packer').startup(function()
       require('configs.which-key')
     end
   }
-  use 'folke/trouble.nvim'
+  use {
+    'folke/trouble.nvim',
+    disable = true
+  }
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function() require('configs.todo-comments') end
   }
   use 'svermeulen/vimpeccable'
-  --use {
-    --'kristijanhusak/orgmode.nvim',
-    --config = function()
-      --require('orgmode').setup{}
-    --end
-  --}
-  --use {
-    --"akinsho/org-bullets.nvim",
-    --config = function()
-      --require("org-bullets").setup {
-        --symbols = { "◉", "○", "✸", "✿" }
-      --}
-    --end
-  --}
+  use {
+    'kristijanhusak/orgmode.nvim',
+    disable = true,
+    config = function()
+      require('orgmode').setup{}
+    end
+  }
+  use {
+    "akinsho/org-bullets.nvim",
+    disable = true,
+    config = function()
+      require("org-bullets").setup {
+        symbols = { "◉", "○", "✸", "✿" }
+      }
+    end
+  }
 
 
   use 'hoob3rt/lualine.nvim'
@@ -130,7 +138,12 @@ return require('packer').startup(function()
   use 'leafgarland/typescript-vim'
   
   --Other Language Stuff
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('lspconfig').tsserver.setup{}
+    end
+  }
   use 'glepnir/lspsaga.nvim'
   use {
     'hrsh7th/nvim-compe',
