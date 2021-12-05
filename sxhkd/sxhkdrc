@@ -2,6 +2,12 @@ super + enter
   alacritty
 super + p
 	~/.config/rofi/launchers/text/launcher.sh
+super + shift + b
+	~/.config/rofi/applets/menu/brightness.sh
+super + shift + t
+	~/.config/rofi/applets/menu/time.sh
+super + shift + v
+	~/.config/rofi/applets/menu/volume.sh
 super + ctrl + BackSpace
 	~/.config/rofi/powermenu/powermenu.sh
 super + ctrl + p

@@ -1,4 +1,6 @@
-configuration {
-  theme: "~/.config/rofi/gruv.rasi";
-}
+/** Basic config file **/
 
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+}

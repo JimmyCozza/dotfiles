@@ -111,14 +111,14 @@ return require('packer').startup(function()
   use 'svermeulen/vimpeccable'
   use {
     'kristijanhusak/orgmode.nvim',
-    disable = true,
+    disable = false,
     config = function()
       require('orgmode').setup{}
     end
   }
   use {
     "akinsho/org-bullets.nvim",
-    disable = true,
+    disable = false,
     config = function()
       require("org-bullets").setup {
         symbols = { "◉", "○", "✸", "✿" }
@@ -147,8 +147,21 @@ return require('packer').startup(function()
   use 'glepnir/lspsaga.nvim'
   use {
     'hrsh7th/nvim-compe',
+    disable = true,
     config = function() 
       require('configs.compe')
+    end
+  }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+
+  use {
+    'hrsh7th/nvim-cmp',
+    disable = false,
+    config = function()
+      require('configs.cmp')
     end
   }
   use 'dense-analysis/ale'
