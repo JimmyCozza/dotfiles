@@ -45,6 +45,7 @@ return require('packer').startup(function()
 
   -- Local tinkering
   use '~/projects/aoc'
+  use '~/projects/gh_issues'
   
   --Navigation
   use 'nvim-lua/popup.nvim'
@@ -78,7 +79,13 @@ return require('packer').startup(function()
   
   --Utilities
   use 'rstacruz/vim-closer'
-  use "rcarriga/nvim-notify"
+  use {
+    "rcarriga/nvim-notify",
+    disable = true,
+    config = function()
+      require('notify').setup()
+    end
+  }
   use {
     'vimwiki/vimwiki',
     config = function()
@@ -145,18 +152,11 @@ return require('packer').startup(function()
     end
   }
   use 'glepnir/lspsaga.nvim'
-  use {
-    'hrsh7th/nvim-compe',
-    disable = true,
-    config = function() 
-      require('configs.compe')
-    end
-  }
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
   use {
     'hrsh7th/nvim-cmp',
     disable = false,

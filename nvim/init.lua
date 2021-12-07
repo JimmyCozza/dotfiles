@@ -55,6 +55,3 @@ vim.g.ale_sign_warning = '--'
 -- Snippets
 -- ****************************
 vim.g.UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' }
-
-vim.notify = require('notify')
-
