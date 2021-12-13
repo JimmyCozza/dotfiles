@@ -45,7 +45,6 @@ return require('packer').startup(function()
 
   -- Local tinkering
   use '~/projects/aoc'
-  use '~/projects/gh_issues'
   
   --Navigation
   use 'nvim-lua/popup.nvim'
@@ -78,12 +77,13 @@ return require('packer').startup(function()
   }
   
   --Utilities
+  use 'nvim-treesitter/nvim-treesitter'
   use 'rstacruz/vim-closer'
   use {
     "rcarriga/nvim-notify",
-    disable = true,
+    disable = false,
     config = function()
-      require('notify').setup()
+      require('configs.notify')
     end
   }
   use {
@@ -120,7 +120,7 @@ return require('packer').startup(function()
     'kristijanhusak/orgmode.nvim',
     disable = false,
     config = function()
-      require('orgmode').setup{}
+      require('configs.orgmode')
     end
   }
   use {
@@ -149,6 +149,7 @@ return require('packer').startup(function()
     'neovim/nvim-lspconfig',
     config = function()
       require('lspconfig').tsserver.setup{}
+      require('lspconfig').gopls.setup{}
     end
   }
   use 'glepnir/lspsaga.nvim'
