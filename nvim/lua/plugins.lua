@@ -170,7 +170,6 @@ return require('packer').startup(function()
     'fatih/vim-go',
     ft = 'go'
   }
-  use 'rust-lang/rust.vim'
   use {
     'numtostr/FTerm.nvim',
     config = function()
