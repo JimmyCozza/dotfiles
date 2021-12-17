@@ -44,7 +44,10 @@ return require('packer').startup(function()
 }
 
   -- Local tinkering
-  use '~/projects/aoc'
+  use {
+    '~/projects/slack.nvim',
+    requires = {'NTBBloodbath/rest.nvim'}
+  }
   
   --Navigation
   use 'nvim-lua/popup.nvim'
