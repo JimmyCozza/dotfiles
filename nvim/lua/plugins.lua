@@ -41,7 +41,6 @@ return require('packer').startup(function()
   -- Visualization
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
-  use 'folke/lsp-colors.nvim'
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
   use 'eddyekofo94/gruvbox-flat.nvim'
@@ -122,6 +121,8 @@ return require('packer').startup(function()
   use 'scrooloose/nerdtree'
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'
+  use "L3MON4D3/LuaSnip" 
+  use "rafamadriz/friendly-snippets"
   use {
     'folke/which-key.nvim',
     config = function()
@@ -157,16 +158,16 @@ return require('packer').startup(function()
 
 
   use 'hoob3rt/lualine.nvim'
-
   
-  --Javascript/Node
+  -- Javascript/Node
   use 'pangloss/vim-javascript'
   use 'mxw/vim-jsx'
   use 'othree/yajs.vim'
   use 'othree/javascript-libraries-syntax.vim'
   use 'leafgarland/typescript-vim'
   
-  --Other Language Stuff
+  -- LSP
+  use 'folke/lsp-colors.nvim'
   use {
     'neovim/nvim-lspconfig',
     config = function()
@@ -174,11 +175,15 @@ return require('packer').startup(function()
       require('lspconfig').gopls.setup{}
     end
   }
+  use 'williamboman/nvim-lsp-installer'
   use 'glepnir/lspsaga.nvim'
+
+  -- Completion
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
+  use "saadparwaiz1/cmp_luasnip"
   use 'quangnguyen30192/cmp-nvim-ultisnips'
   use {
     'hrsh7th/nvim-cmp',
@@ -187,7 +192,7 @@ return require('packer').startup(function()
       require('configs.cmp')
     end
   }
-  use 'dense-analysis/ale'
+  --use 'dense-analysis/ale'
   use {
     'fatih/vim-go',
     ft = 'go'
