@@ -96,10 +96,11 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "multicolor",		-- 1
-    "powerarrow",      		-- 2
-    "powerarrow-blue",	 	-- 3
-    "blackburn",		-- 4
+    "multicolor",		   -- 1
+    "powerarrow",      -- 2
+    "powerarrow-blue", -- 3
+    "blackburn",		   -- 4
+    "forest",      		 -- 5
 }
 
 -- choose your theme here
