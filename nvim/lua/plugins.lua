@@ -169,7 +169,9 @@ return require('packer').startup(function()
   use 'leafgarland/typescript-vim'
 
   -- LSP
-  --use 'folke/lsp-colors.nvim'
+  use 'dense-analysis/ale'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'folke/lsp-colors.nvim'
   use {
     'neovim/nvim-lspconfig',
     config = function()
@@ -195,7 +197,6 @@ return require('packer').startup(function()
       require('configs.cmp')
     end
   }
-  --use 'dense-analysis/ale'
   --use {
     --'fatih/vim-go',
     --ft = 'go'

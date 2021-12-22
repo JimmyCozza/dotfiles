@@ -16,7 +16,7 @@ local global = {
   --ale_fixers = { 
     --javascript = { 'eslint', 'prettier' },
     --css = { 'eslint' },
-    --json = { 'prettier' } 
+    --json = { 'prettier' },
   --},
   --ale_fix_on_save = 1,
   --ale_sign_error = '',
