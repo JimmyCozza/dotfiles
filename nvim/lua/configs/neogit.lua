@@ -1,9 +1,15 @@
-local neogit = require("neogit")
-
-neogit.setup {
+require('neogit').setup({
   disable_signs = false,
+  disable_hint = false,
   disable_context_highlighting = false,
   disable_commit_confirmation = false,
+  auto_refresh = true,
+  disable_builtin_notifications = false,
+  commit_popup = {
+      kind = "split",
+  },
+  -- Change the default way of opening neogit
+  kind = "tab",
   -- customize displayed signs
   signs = {
     -- { CLOSED, OPENED }
@@ -16,15 +22,39 @@ neogit.setup {
     -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
     --
     -- Requires you to have `sindrets/diffview.nvim` installed.
-    -- use { 
-    --   'TimUntersberger/neogit', 
-    --   requires = { 
+    -- use {
+    --   'TimUntersberger/neogit',
+    --   requires = {
     --     'nvim-lua/plenary.nvim',
-    --     'sindrets/diffview.nvim' 
+    --     'sindrets/diffview.nvim'
     --   }
     -- }
     --
-    diffview = false  
+    diffview = false
+  },
+  -- Setting any section to `false` will make the section not render at all
+  sections = {
+    untracked = {
+      folded = false
+    },
+    unstaged = {
+      folded = false
+    },
+    staged = {
+      folded = false
+    },
+    stashes = {
+      folded = true
+    },
+    unpulled = {
+      folded = true
+    },
+    unmerged = {
+      folded = false
+    },
+    recent = {
+      folded = true
+    },
   },
   -- override/add mappings
   mappings = {
@@ -36,5 +66,4 @@ neogit.setup {
       ["s"] = "",
     }
   }
-}
-
+})

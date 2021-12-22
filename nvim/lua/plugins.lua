@@ -1,6 +1,3 @@
---  ****************************
--- Bootstrapping Packer
--- ****************************
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
@@ -31,9 +28,7 @@ packer.init {
     end,
   },
 }
--- ****************************
--- Plugins
--- ****************************
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -66,7 +61,7 @@ return require('packer').startup(function()
     '~/projects/slack.nvim',
     rocks = {"openssl", "http"}
   }
-  
+
   --Navigation
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
@@ -76,19 +71,19 @@ return require('packer').startup(function()
     require('configs.telescope')
   end
   }
-  
-  --Father Pope
+
+  -- tpope
   use 'tpope/vim-abolish'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-endwise'
-  
-  --Undo
+
+  -- Undo
   use 'mbbill/undotree'
   use 'simnalamburt/vim-mundo'
-  
-  --Git
+
+  -- Git
   use {
   'lewis6991/gitsigns.nvim',
     requires = {
@@ -96,7 +91,14 @@ return require('packer').startup(function()
     },
     config = function() require('gitsigns').setup() end
   }
-  
+  use { 
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('configs.neogit')
+    end
+  }
+
   --Utilities
   use 'nvim-treesitter/nvim-treesitter'
   use 'rstacruz/vim-closer'
@@ -121,7 +123,7 @@ return require('packer').startup(function()
   use 'scrooloose/nerdtree'
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'
-  use "L3MON4D3/LuaSnip" 
+  use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
   use {
     'folke/which-key.nvim',
@@ -158,16 +160,16 @@ return require('packer').startup(function()
 
 
   use 'hoob3rt/lualine.nvim'
-  
+
   -- Javascript/Node
   use 'pangloss/vim-javascript'
   use 'mxw/vim-jsx'
   use 'othree/yajs.vim'
   use 'othree/javascript-libraries-syntax.vim'
   use 'leafgarland/typescript-vim'
-  
+
   -- LSP
-  use 'folke/lsp-colors.nvim'
+  --use 'folke/lsp-colors.nvim'
   use {
     'neovim/nvim-lspconfig',
     config = function()
@@ -176,10 +178,11 @@ return require('packer').startup(function()
     end
   }
   use 'williamboman/nvim-lsp-installer'
-  use 'glepnir/lspsaga.nvim'
+  --use 'glepnir/lspsaga.nvim'
 
   -- Completion
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
@@ -193,25 +196,26 @@ return require('packer').startup(function()
     end
   }
   --use 'dense-analysis/ale'
-  use {
-    'fatih/vim-go',
-    ft = 'go'
-  }
+  --use {
+    --'fatih/vim-go',
+    --ft = 'go'
+  --}
   use {
     'numtostr/FTerm.nvim',
     config = function()
       require('configs.floatterm')
     end
   }
-  use {
-    'mfussenegger/nvim-dap',
-    config = function() 
-      require('configs.dap')
-    end
-  }
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-  use 'theHamsta/nvim-dap-virtual-text'
-  use 'nvim-telescope/telescope-dap.nvim'
+  -- DAP
+  --use {
+    --'mfussenegger/nvim-dap',
+    --config = function()
+      --require('configs.dap')
+    --end
+  --}
+  --use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  --use 'theHamsta/nvim-dap-virtual-text'
+  --use 'nvim-telescope/telescope-dap.nvim'
   use 'github/copilot.vim'
 end
 )
