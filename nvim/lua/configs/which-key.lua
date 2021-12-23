@@ -42,6 +42,7 @@ require("which-key").setup {
 
 local mappings = {
     ["/"] = {"<cmd>Telescope live_grep<cr>", "Search project"},
+    ["b"] = {"<cmd>NvimTreeToggle<cr>", "Toggle Explorer"},
     d = {
       name = "+Debug",
       b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
@@ -94,10 +95,30 @@ local mappings = {
     },
     l = {
       name = "+LSP",
+      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+      d = {
+        "<cmd>Telescope lsp_document_diagnostics<cr>",
+        "Document Diagnostics",
+      },
+      f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+      j = {
+        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+        "Next Diagnostic",
+      },
+      k = {
+        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+        "Prev Diagnostic",
+      },
       i = {"<cmd>LspInfo<cr>", "LSP Info"},
+      I = {"<cmd>LspInstallInfo<cr>", "LSP Installer Info"},
+      q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
       r = {"<cmd>LspRestart<cr>", "LSP Restart"},
       s = {"<cmd>LspStart<cr>", "LSP Start"},
       S = {"<cmd>LspStop<cr>", "LSP Stop"},
+      w = {
+        "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+        "Workspace Diagnostics",
+      },
     },
     m = {
       name = "Mode (CHANGE ME)",
@@ -106,9 +127,9 @@ local mappings = {
       t = {"<cmd>GoTest<cr>", "Go Test"}
     },
     n = {
-      name = "+NERDTree",
-      n = {"<cmd>NERDTreeToggle<cr>", "Toggle Explorer"},
-      t = {"<cmd>NERDTreeFind<cr>", "Find at file"}
+      name = "+NvimTree",
+      n = {"<cmd>NvimTreeToggle<cr>", "Toggle Explorer"},
+      t = {"<cmd>NvimTreeFindFileToggle<cr>", "Find at file"}
     },
     p = {
       name = "+Project",

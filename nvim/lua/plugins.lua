@@ -39,7 +39,11 @@ return require('packer').startup(function()
   use 'shaunsingh/nord.nvim'
   use 'shaunsingh/seoul256.nvim'
   use 'eddyekofo94/gruvbox-flat.nvim'
-  use 'glepnir/dashboard-nvim'
+  use {'goolord/alpha-nvim',
+    config = function()
+      require('configs.alpha')
+    end
+  }
   use 'ap/vim-css-color'
   use {
     'norcalli/nvim-colorizer.lua',
@@ -91,7 +95,7 @@ return require('packer').startup(function()
     },
     config = function() require('gitsigns').setup() end
   }
-  use { 
+  use {
     'TimUntersberger/neogit',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
@@ -100,7 +104,12 @@ return require('packer').startup(function()
   }
 
   --Utilities
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('configs.treesitter')
+    end
+}
   use 'rstacruz/vim-closer'
   use {
     "rcarriga/nvim-notify",
@@ -120,7 +129,12 @@ return require('packer').startup(function()
     end
   }
   use 'scrooloose/nerdcommenter'
-  use 'scrooloose/nerdtree'
+  use {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require('configs.nvim-tree')
+    end
+  }
   use 'junegunn/vim-easy-align'
   use 'SirVer/ultisnips'
   use "L3MON4D3/LuaSnip"
@@ -159,7 +173,11 @@ return require('packer').startup(function()
   }
 
 
-  use 'hoob3rt/lualine.nvim'
+  use {'hoob3rt/lualine.nvim',
+    config = function() 
+      require('configs.lualine')
+    end
+  }
 
   -- Javascript/Node
   use 'pangloss/vim-javascript'

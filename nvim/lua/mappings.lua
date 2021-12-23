@@ -14,7 +14,7 @@ map('t', '<esc>', '<C-\\><C-n>', { silent = true })
 -- ****************************
 map('n', 'n', 'nzz', opts)
 map('n', 'N', 'Nzz', opts)
-map('n', '<C-n>', ':NERDTreeToggle<cr>', opts)
+map('n', '<C-b>', ':NvimTreeToggle<cr>', opts)
 
 -- ****************************
 -- Telescope
