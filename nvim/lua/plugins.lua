@@ -174,7 +174,7 @@ return require('packer').startup(function()
 
 
   use {'hoob3rt/lualine.nvim',
-    config = function() 
+    config = function()
       require('configs.lualine')
     end
   }
@@ -238,4 +238,3 @@ return require('packer').startup(function()
   use 'github/copilot.vim'
 end
 )
-

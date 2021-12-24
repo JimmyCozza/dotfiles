@@ -1,4 +1,5 @@
 local opts = {
+  cmdheight     = 1,
   number        = true,
   wrap          = false,
   tabstop       = 2,
@@ -19,6 +20,7 @@ local opts = {
   splitright    = true,
   termguicolors = true,
   scrolloff     = 8,
+
 }
 
 vim.opt.shortmess:append "c"
