@@ -34,8 +34,8 @@ map('n', '<C-l>', '<C-w>l', opts)
 -- ****************************
 -- ALE
 -- ****************************
---map('n', '<Right>', '<cmd>ALENext<cr>', {})
---map('n', '<Left>', '<cmd>ALEPrevious<cr>', {})
+map('n', '<Right>', '<cmd>ALENext<cr>', {})
+map('n', '<Left>', '<cmd>ALEPrevious<cr>', {})
 
 -- ****************************
 -- COMPLETION

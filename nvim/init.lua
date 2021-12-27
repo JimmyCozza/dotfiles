@@ -13,12 +13,12 @@ local global = {
   gruvbox_transparent = true,
   gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" },
   gruvbox_colors = { hint = "orange", error = "#ff0000" },
-  --ale_fixers = { 
-    --javascript = { 'eslint', 'prettier' },
-    --css = { 'eslint' },
-    --json = { 'prettier' },
-  --},
-  --ale_fix_on_save = 1,
+  ale_fixers = { 
+    javascript = { 'eslint', 'prettier' },
+    css = { 'eslint' },
+    json = { 'prettier' },
+  },
+  ale_fix_on_save = 1,
   --ale_sign_error = '',
   --ale_sign_warning = '--',
   --UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' },

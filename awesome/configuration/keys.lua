@@ -248,7 +248,7 @@ client.connect_signal("request::default_keybindings", function()
             c:raise()
         end, {description = "(un)maximize vertically", group = "client"}),
       -- modkey + shift
-        awful.key({modkey, "Shift"}, "space", awful.client.floating.toggle,
+        awful.key({modkey, "Shift"}, "w", awful.client.floating.toggle,
                   {description = "toggle floating", group = "client"}),
         awful.key({modkey, "Shift"}, "f", function(c)
             c.fullscreen = not c.fullscreen
