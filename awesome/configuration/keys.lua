@@ -183,8 +183,6 @@ awful.keyboard.append_global_keybindings({
         group = "layout"
     }), awful.key({modkey}, "space", function() awful.layout.inc(1) end,
                   {description = "select next", group = "layout"}),
-    awful.key({modkey, "Shift"}, "space", function() awful.layout.inc(-1) end,
-              {description = "select previous", group = "layout"}), -- Set Layout 
     awful.key({modkey, "Control"}, "w",
               function() awful.layout.set(awful.layout.suit.max) end,
               {description = "set max layout", group = "tag"}),
