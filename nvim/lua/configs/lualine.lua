@@ -5,7 +5,7 @@ end
 
 lualine.setup {
   options = {
-    theme = 'gruvbox-flat'
+    theme = 'nord'
     -- ... your lualine config
   }
 }

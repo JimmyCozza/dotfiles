@@ -97,45 +97,45 @@ end)
 
 -- Volume Bar Widget ---------------------------------------------------------
 
-local volume_icon = wibox.widget {
-    font = beautiful.icon_font_name .. "14",
-    align = "center",
-    valign = "center",
-    widget = wibox.widget.textbox
-}
+--local volume_icon = wibox.widget {
+    --font = beautiful.icon_font_name .. "14",
+    --align = "center",
+    --valign = "center",
+    --widget = wibox.widget.textbox
+--}
 
-local volume_prog = wibox.widget {
-    max_value = 100,
-    min_value = 0,
-    value = 20,
-    forced_height = 3,
-    forced_width = 75,
-    color = beautiful.xcolor2,
-    background_color = beautiful.lighter_bg,
-    shape = gears.shape.rounded_bar,
-    widget = wibox.widget.progressbar
-}
+--local volume_prog = wibox.widget {
+    --max_value = 100,
+    --min_value = 0,
+    --value = 20,
+    --forced_height = 3,
+    --forced_width = 75,
+    --color = beautiful.xcolor2,
+    --background_color = beautiful.lighter_bg,
+    --shape = gears.shape.rounded_bar,
+    --widget = wibox.widget.progressbar
+--}
 
-awesome.connect_signal("signal::volume", function(vol, muted)
-    local value = vol or 0
+--awesome.connect_signal("signal::volume", function(vol, muted)
+    --local value = vol or 0
 
-    local vol_icon = ""
+    --local vol_icon = ""
 
-    if value >= 77 and value <= 100 then
-        vol_icon = ""
-    elseif value >= 20 and value < 77 then
-        vol_icon = ""
-    else
-        vol_icon = ""
-    end
+    --if value >= 77 and value <= 100 then
+        --vol_icon = ""
+    --elseif value >= 20 and value < 77 then
+        --vol_icon = ""
+    --else
+        --vol_icon = ""
+    --end
 
-    if muted then vol_icon = "婢" end
+    --if muted then vol_icon = "婢" end
 
-    volume_prog.value = vol
+    --volume_prog.value = vol
 
-    volume_icon.markup = "<span foreground='" .. beautiful.xcolor2 .. "'>" ..
-                             vol_icon .. "</span>"
-end)
+    --volume_icon.markup = "<span foreground='" .. beautiful.xcolor2 .. "'>" ..
+                             --vol_icon .. "</span>"
+--end)
 
 -- Clock Widget ----------------------------------------------------------------
 -- Stolen from No37

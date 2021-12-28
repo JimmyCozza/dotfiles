@@ -418,7 +418,7 @@ schemes:
       - { index: 16, color: '0xe78a4e' }
       - { index: 17, color: '0xc14a4a' }
 
-colors: *gruvbox_flat
+colors: *nord_dark
 
 # Visual Bell
 #

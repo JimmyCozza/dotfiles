@@ -9,10 +9,14 @@ require('lsp')
 -- ****************************
 local global = {
   mapleader = ' ',
-  gruvbox_italic_functions = true,
-  gruvbox_transparent = true,
-  gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" },
-  gruvbox_colors = { hint = "orange", error = "#ff0000" },
+  --gruvbox_italic_functions = true,
+  --gruvbox_transparent = true,
+  --gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" },
+  --gruvbox_colors = { hint = "orange", error = "#ff0000" },
+  nord_contrast = true,
+  nord_borders = false,
+  nord_disable_background = true,
+  nord_italic = true,
   ale_fixers = { 
     javascript = { 'eslint', 'prettier' },
     css = { 'eslint' },
@@ -28,4 +32,4 @@ for k, v in pairs(global) do
   vim.g[k] = v
 end
 
-vim.cmd[[colorscheme gruvbox-flat]]
+require('nord').set()
