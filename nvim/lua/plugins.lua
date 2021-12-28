@@ -154,7 +154,6 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim',
     config = function() require('configs.todo-comments') end
   }
-  use 'svermeulen/vimpeccable'
   use {
     'kristijanhusak/orgmode.nvim',
     disable = false,
@@ -171,8 +170,6 @@ return require('packer').startup(function()
       }
     end
   }
-
-
   use {'hoob3rt/lualine.nvim',
     config = function()
       require('configs.lualine')
