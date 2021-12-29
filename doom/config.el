@@ -7,7 +7,7 @@
 (setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
       doom-variable-pitch-font (font-spec :family "GoMono Nerd Font" :size 16))
 
-(setq doom-theme 'gruvbox-dark-soft)
+(setq doom-theme 'nord)
 (setq doom-themes-treemacs-theme "doom-colors")
 
 (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
