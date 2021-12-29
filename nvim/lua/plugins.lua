@@ -147,7 +147,7 @@ return require('packer').startup(function()
   }
   use {
     'folke/trouble.nvim',
-    disable = true
+    disable = false
   }
   use {
     'folke/todo-comments.nvim',
