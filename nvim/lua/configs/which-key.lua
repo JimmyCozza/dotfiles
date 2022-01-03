@@ -120,12 +120,6 @@ local mappings = {
         "Workspace Diagnostics",
       },
     },
-    m = {
-      name = "Mode (CHANGE ME)",
-      b = {"<cmd>GoBuild<cr>", "Go Build"},
-      r = {"<cmd>GoRun<cr>", "Go Run"},
-      t = {"<cmd>GoTest<cr>", "Go Test"}
-    },
     n = {
       name = "+NvimTree",
       n = {"<cmd>NvimTreeToggle<cr>", "Toggle Explorer"},
@@ -160,9 +154,9 @@ local mappings = {
       h = {"<cmd>VimwikiAll2HTML<cr>", "Export all"}
     },
     y = {
-      name = "+Yarn",
-      i = {"<cmd>! yarn install<cr>", "Yarn Install"},
-      t = {"<cmd>! yarn test<cr>", "Yarn Test"}
+      name = "+Youtrack",
+      i = {"<cmd>lua require('youtrack').issues.get()<cr>", "Get my issues"},
+      I = {"<cmd>lua require('youtrack').issues.get()", "Get single issue"},
     }
 }
 local opts = {

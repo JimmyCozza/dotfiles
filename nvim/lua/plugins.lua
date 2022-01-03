@@ -57,6 +57,10 @@ return require('packer').startup(function()
 
   -- Local tinkering
   use {
+    '~/projects/youtrack',
+    requires = {'nvim-lua/plenary.nvim'}
+  }
+  use {
     '~/projects/slack.nvim',
     rocks = {"openssl", "http"}
   }
@@ -88,7 +92,10 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    config = function() require('gitsigns').setup() end
+    config = function()
+      require('configs.gitsigns')
+    end
+    --config = function() require('gitsigns').setup() end
   }
   use {
     'TimUntersberger/neogit',
@@ -131,8 +138,13 @@ return require('packer').startup(function()
     end
   }
   use 'junegunn/vim-easy-align'
+  use {'windwp/nvim-autopairs',
+    config = function()
+      require('configs.autopairs')
+    end
+  }
   use 'SirVer/ultisnips'
-  use "L3MON4D3/LuaSnip"
+  --use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
   use {
     'folke/which-key.nvim',
@@ -198,7 +210,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use "saadparwaiz1/cmp_luasnip"
+  --use "saadparwaiz1/cmp_luasnip"
   use 'quangnguyen30192/cmp-nvim-ultisnips'
   use {
     'hrsh7th/nvim-cmp',
