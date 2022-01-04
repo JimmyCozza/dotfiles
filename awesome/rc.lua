@@ -68,6 +68,7 @@ local mymainmenu = awful.menu({
 awful.mouse.append_global_mousebindings({
     awful.button({}, 3, function() mymainmenu:toggle() end)
 })
+awful.spawn.with_shell("feh --bg-fill ~/Pictures/wallpapers/nord/*")
 
 -- Garbage Collector Settings
 collectgarbage("setpause", 110)
