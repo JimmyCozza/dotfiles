@@ -1,7 +1,7 @@
 -- Provides:
 -- signal::temperature
 --      temperature (integer - in Celcius)
-local awful = require("awful")
+local awful = require "awful"
 
 local update_interval = 15
 local temp_script = [[
@@ -11,5 +11,5 @@ local temp_script = [[
 
 -- Periodically get temperature info
 awful.widget.watch(temp_script, update_interval, function(widget, stdout)
-    awesome.emit_signal("signal::temp", tonumber(stdout))
+  awesome.emit_signal("signal::temp", tonumber(stdout))
 end)

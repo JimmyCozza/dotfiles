@@ -1,9 +1,9 @@
-local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
+local awful = require "awful"
+local wibox = require "wibox"
+local beautiful = require "beautiful"
 
 -- Set Autostart Applications
-require("configuration.autostart")
+require "configuration.autostart"
 
 -- Default Applications
 terminal = "alacritty"
@@ -32,30 +32,31 @@ ctrl = "Control"
 
 -- Set Wallpaper
 screen.connect_signal("request::wallpaper", function(s)
-    awful.wallpaper {
-        screen = s,
-        bg = beautiful.lighter_bg
-        --[[
+  awful.wallpaper {
+    screen = s,
+    bg = beautiful.lighter_bg,
+    --[[
 	widget = {
          horizontal_fit_policy = "fit",
          vertical_fit_policy   = "fit",
          image                 = beautiful.wallpaper,
          widget                = wibox.widget.imagebox,
-        }]]--
-    }
+        }]]
+    --
+  }
 end)
 
 -- Get Bling Config
-require("configuration.bling")
+require "configuration.bling"
 
 -- Get Keybinds
-require("configuration.keys")
+require "configuration.keys"
 
 -- Get Rules
-require("configuration.ruled")
+require "configuration.ruled"
 
 -- Layouts and Window Stuff
-require("configuration.window")
+require "configuration.window"
 
 -- Scratchpad
-require("configuration.scratchpad")
+require "configuration.scratchpad"

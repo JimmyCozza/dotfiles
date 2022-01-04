@@ -2,8 +2,8 @@
 -- signal::disk
 --      used (integer - mega bytes)
 --      total (integer - mega bytes)
-local awful = require("awful")
-local helpers = require("helpers")
+local awful = require "awful"
+local helpers = require "helpers"
 
 local update_interval = 10 -- every 3 minutes
 
@@ -16,7 +16,7 @@ local disk_script = [[
 
 -- Periodically get disk space info
 awful.widget.watch(disk_script, update_interval, function(_, stdout)
-    local available = tonumber(stdout:match('^(.*)@')) / 1000
-    local used = tonumber(stdout:match('@(.*)$')) / 1000
-    awesome.emit_signal("signal::disk", used, available + used)
+  local available = tonumber(stdout:match "^(.*)@") / 1000
+  local used = tonumber(stdout:match "@(.*)$") / 1000
+  awesome.emit_signal("signal::disk", used, available + used)
 end)

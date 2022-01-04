@@ -1,14 +1,18 @@
 -- local awful = require("awful")
 
-require("ui.decorations.playerctl")
+require "ui.decorations.playerctl"
 
-local add_decorations = function(c) require("ui.decorations.top")(c) end
+local add_decorations = function(c)
+  require "ui.decorations.top"(c)
+end
 
 client.connect_signal("request::titlebars", function(c)
-    c.titlebars = true
-    if not c.bling_tabbed then
-        if c.class ~= "music" then add_decorations(c) end
+  c.titlebars = true
+  if not c.bling_tabbed then
+    if c.class ~= "music" then
+      add_decorations(c)
     end
+  end
 end)
 
 --[[

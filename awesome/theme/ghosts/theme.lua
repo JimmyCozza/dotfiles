@@ -3,14 +3,14 @@
 -- | __| '_ \ / _ \ '_ ` _ \ / _ \
 -- | |_| | | |  __/ | | | | |  __/
 --  \__|_| |_|\___|_| |_| |_|\___|
-local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
+local theme_assets = require "beautiful.theme_assets"
+local xresources = require "beautiful.xresources"
 local dpi = xresources.apply_dpi
 local xrdb = xresources.get_current_theme()
-local gears = require("gears")
-local gfs = require("gears.filesystem")
+local gears = require "gears"
+local gfs = require "gears.filesystem"
 local themes_path = gfs.get_themes_dir()
-local helpers = require("helpers")
+local helpers = require "helpers"
 
 -- Inherit default theme
 --
@@ -24,13 +24,11 @@ local icon_path = gfs.get_configuration_dir() .. "icons/"
 
 -- PFP
 --
-theme.me = gears.surface.load_uncached(gfs.get_configuration_dir() ..
-                                           "images/me.png")
+theme.me = gears.surface.load_uncached(gfs.get_configuration_dir() .. "images/me.png")
 
 -- Distro Logo
 --
-theme.distro_logo = gears.surface.load_uncached(
-                        gfs.get_configuration_dir() .. "images/distro.png")
+theme.distro_logo = gears.surface.load_uncached(gfs.get_configuration_dir() .. "images/distro.png")
 
 -- Icons for Notif Center
 --
@@ -103,10 +101,8 @@ theme.widget_border_color = theme.darker_bg
 --
 -- Generate taglist squares:
 local taglist_square_size = dpi(0)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-                                taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-                                  taglist_square_size, theme.fg_normal)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 theme.taglist_font = theme.font_taglist
 theme.taglist_bg = theme.wibar_bg
 theme.taglist_bg_focus = theme.lighter_bg
@@ -126,7 +122,6 @@ theme.taglist_shape_empty = helpers.rrect(theme.border_radius)
 theme.taglist_shape = helpers.rrect(theme.border_radius)
 theme.taglist_shape_urgent = helpers.rrect(theme.border_radius)
 theme.taglist_shape_volatile = helpers.rrect(theme.border_radius)
-
 
 -- Tasklist
 --
@@ -178,8 +173,7 @@ theme.menu_bg_focus = theme.xcolor4 .. 70
 theme.menu_fg_focus = theme.xcolor7
 theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
-theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..
-                              "theme/icons/submenu.png"
+theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. "theme/icons/submenu.png"
 theme.menu_height = dpi(20)
 theme.menu_width = dpi(130)
 theme.menu_border_color = theme.xcolor8
@@ -287,7 +281,10 @@ theme.notification_border_width = dpi(0)
 -- Swallowing
 --
 theme.dont_swallow_classname_list = {
-    "firefox", "gimp", "Google-chrome", "Thunar"
+  "firefox",
+  "gimp",
+  "Google-chrome",
+  "Thunar",
 }
 
 -- Calendar
