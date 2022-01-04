@@ -1,5 +1,5 @@
-local actions = require('telescope.actions')
-require('telescope').setup{
+local actions = require "telescope.actions"
+require("telescope").setup {
   defaults = {
     find_command = {
       "rg",
@@ -24,7 +24,7 @@ require('telescope').setup{
       vertical = { mirror = false },
     },
     file_sorter = require("telescope.sorters").get_fzy_sorter,
-    file_ignore_patterns = {".git"},
+    file_ignore_patterns = { ".git" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "absolute" },
     winblend = 0,
@@ -49,7 +49,6 @@ require('telescope').setup{
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["?"] = actions.which_key,
-
       },
     },
   },

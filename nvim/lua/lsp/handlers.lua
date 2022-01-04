@@ -76,7 +76,7 @@ local function lsp_keymaps(bufnr)
     bufnr,
     "n",
     "gl",
-    '<cmd>lua vim.diagnostic.open_float()<CR>',
+    "<cmd>lua vim.diagnostic.open_float()<CR>",
     --'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
     opts
   )
@@ -86,6 +86,7 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  print(vim.inspect(client))
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
@@ -103,4 +104,3 @@ end
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M
-

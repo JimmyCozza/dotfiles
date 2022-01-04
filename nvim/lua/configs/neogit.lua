@@ -1,4 +1,4 @@
-require('neogit').setup({
+require("neogit").setup {
   disable_signs = false,
   disable_hint = false,
   disable_context_highlighting = false,
@@ -6,7 +6,7 @@ require('neogit').setup({
   auto_refresh = true,
   disable_builtin_notifications = false,
   commit_popup = {
-      kind = "split",
+    kind = "split",
   },
   -- Change the default way of opening neogit
   kind = "tab",
@@ -30,30 +30,30 @@ require('neogit').setup({
     --   }
     -- }
     --
-    diffview = false
+    diffview = false,
   },
   -- Setting any section to `false` will make the section not render at all
   sections = {
     untracked = {
-      folded = false
+      folded = false,
     },
     unstaged = {
-      folded = false
+      folded = false,
     },
     staged = {
-      folded = false
+      folded = false,
     },
     stashes = {
-      folded = true
+      folded = true,
     },
     unpulled = {
-      folded = true
+      folded = true,
     },
     unmerged = {
-      folded = false
+      folded = false,
     },
     recent = {
-      folded = true
+      folded = true,
     },
   },
   -- override/add mappings
@@ -64,6 +64,6 @@ require('neogit').setup({
       ["B"] = "BranchPopup",
       -- Removes the default mapping of "s"
       ["s"] = "",
-    }
-  }
-})
+    },
+  },
+}

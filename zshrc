@@ -5,6 +5,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 export PATH=$HOME/.emacs.d/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 export EDITOR="nvim"
 export VISUAL=nvim
 export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
