@@ -155,7 +155,7 @@ local mappings = {
     },
     y = {
       name = "+Youtrack",
-      i = {"<cmd>lua require('youtrack').issues.get()<cr>", "Get my issues"},
+      i = {"<cmd>lua require('youtrack').issues.list()<cr>", "Get my issues"},
       I = {"<cmd>lua require('youtrack').issues.get()", "Get single issue"},
     }
 }

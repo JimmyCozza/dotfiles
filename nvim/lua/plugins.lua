@@ -48,13 +48,13 @@ return require('packer').startup(function()
   }
 
   -- Local tinkering
+  --use {
+    --'~/projects/youtrack',
+    --requires = {'nvim-lua/plenary.nvim'}
+  --}
   use {
-    '~/projects/youtrack',
-    requires = {'nvim-lua/plenary.nvim'}
-  }
-  use {
-    '~/projects/slack.nvim',
-    rocks = {"openssl", "http"}
+    'trip-zip/youtrack',
+    requires = {'trip-zip/plenary.nvim'}
   }
 
   --Navigation
