@@ -43,6 +43,7 @@ require("which-key").setup {
 local mappings = {
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search project" },
   ["b"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
+  ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
   d = {
     name = "+Debug",
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
