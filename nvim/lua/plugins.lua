@@ -155,22 +155,22 @@ return require("packer").startup(function()
       require "configs.todo-comments"
     end,
   }
-  use {
-    "kristijanhusak/orgmode.nvim",
-    disable = false,
-    config = function()
-      require "configs.orgmode"
-    end,
-  }
-  use {
-    "akinsho/org-bullets.nvim",
-    disable = false,
-    config = function()
-      require("org-bullets").setup {
-        symbols = { "◉", "○", "✸", "✿" },
-      }
-    end,
-  }
+  --use {
+  --"kristijanhusak/orgmode.nvim",
+  --disable = false,
+  --config = function()
+  --require "configs.orgmode"
+  --end,
+  --}
+  --use {
+  --"akinsho/org-bullets.nvim",
+  --disable = false,
+  --config = function()
+  --require("org-bullets").setup {
+  --symbols = { "◉", "○", "✸", "✿" },
+  --}
+  --end,
+  --}
   use {
     "hoob3rt/lualine.nvim",
     config = function()

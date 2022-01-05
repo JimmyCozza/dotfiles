@@ -66,6 +66,7 @@ local mappings = {
     a = { "<cmd>:e $HOME/dotfiles/alacritty.yml<cr>", "Edit Alacritty.yml" },
     p = { "<cmd>:e $HOME/dotfiles/nvim/lua/plugins.lua<cr>", "Edit Plugfile" },
     v = { "<cmd>:e $HOME/.config/nvim/init.lua<cr>", "Edit Vimrc" },
+    w = { "<cmd>:e $HOME/dotfiles/nvim/lua/configs/which-key.lua<cr>", "Edit Which Key" },
     z = { "<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit Zshrc" },
   },
   g = {
@@ -154,8 +155,12 @@ local mappings = {
   },
   y = {
     name = "+Youtrack",
+    c = { "<cmd>lua require('youtrack').issues.comment()<cr>", "Comment on issue" },
+    C = { "<cmd>lua require('youtrack').issues.create()<cr>", "Create issue" },
     i = { "<cmd>lua require('youtrack').issues.list()<cr>", "Get my issues" },
-    I = { "<cmd>lua require('youtrack').issues.get()", "Get single issue" },
+    I = { "<cmd>lua require('youtrack').issues.get()<cr>", "Get single issue" },
+    p = { "<cmd>lua require('youtrack').projects.list()<cr>", "Get projects" },
+    P = { "<cmd>lua require('youtrack').projects.get()<cr>", "Get single project" },
   },
 }
 local opts = {
