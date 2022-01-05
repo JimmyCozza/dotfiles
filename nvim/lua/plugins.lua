@@ -38,13 +38,14 @@ return require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+  }
   use "eddyekofo94/gruvbox-flat.nvim"
   use "ap/vim-css-color"
   use {
     "norcalli/nvim-colorizer.lua",
-    config = function()
-      require "configs.colorizer"
-    end,
   }
 
   -- Local tinkering
@@ -62,9 +63,6 @@ return require("packer").startup(function()
   use "trip-zip/plenary.nvim"
   use {
     "nvim-telescope/telescope.nvim",
-    config = function()
-      require "configs.telescope"
-    end,
   }
 
   -- tpope
@@ -84,32 +82,21 @@ return require("packer").startup(function()
     requires = {
       "trip-zip/plenary.nvim",
     },
-    config = function()
-      require "configs.gitsigns"
-    end,
   }
   use {
     "TimUntersberger/neogit",
     requires = "trip-zip/plenary.nvim",
-    config = function()
-      require "configs.neogit"
-    end,
+    --nd,
   }
 
   --Utilities
   use {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require "configs.treesitter"
-    end,
   }
   use "rstacruz/vim-closer"
   use {
     "rcarriga/nvim-notify",
     disable = false,
-    config = function()
-      require "configs.notify"
-    end,
   }
   use {
     "vimwiki/vimwiki",
@@ -124,25 +111,17 @@ return require("packer").startup(function()
   use "scrooloose/nerdcommenter"
   use {
     "kyazdani42/nvim-tree.lua",
-    config = function()
-      require "configs.nvim-tree"
-    end,
+    --after = "catppuccin",
   }
   use "junegunn/vim-easy-align"
   use {
     "windwp/nvim-autopairs",
-    config = function()
-      require "configs.autopairs"
-    end,
   }
   use "SirVer/ultisnips"
   --use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
   use {
     "folke/which-key.nvim",
-    config = function()
-      require "configs.which-key"
-    end,
   }
   use {
     "folke/trouble.nvim",
@@ -151,31 +130,10 @@ return require("packer").startup(function()
   use {
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
-    config = function()
-      require "configs.todo-comments"
-    end,
   }
-  --use {
-  --"kristijanhusak/orgmode.nvim",
-  --disable = false,
-  --config = function()
-  --require "configs.orgmode"
-  --end,
-  --}
-  --use {
-  --"akinsho/org-bullets.nvim",
-  --disable = false,
-  --config = function()
-  --require("org-bullets").setup {
-  --symbols = { "◉", "○", "✸", "✿" },
-  --}
-  --end,
-  --}
   use {
     "hoob3rt/lualine.nvim",
-    config = function()
-      require "configs.lualine"
-    end,
+    --after = "catppuccin",
   }
 
   -- Javascript/Node
@@ -209,9 +167,6 @@ return require("packer").startup(function()
   use {
     "hrsh7th/nvim-cmp",
     disable = false,
-    config = function()
-      require "configs.cmp"
-    end,
   }
   --use {
   --'fatih/vim-go',
@@ -219,19 +174,13 @@ return require("packer").startup(function()
   --}
   use {
     "numtostr/FTerm.nvim",
-    config = function()
-      require "configs.floatterm"
-    end,
   }
   -- DAP
-  --use {
-  --'mfussenegger/nvim-dap',
-  --config = function()
-  --require('configs.dap')
-  --end
-  --}
-  --use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use {
+    "mfussenegger/nvim-dap",
+  }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   --use 'theHamsta/nvim-dap-virtual-text'
-  --use 'nvim-telescope/telescope-dap.nvim'
+  use "nvim-telescope/telescope-dap.nvim"
   use "github/copilot.vim"
 end)

@@ -1,31 +1,24 @@
+require "global"
 require "options"
-require "plugins"
 require "mappings"
+require "plugins"
+-- Plugin configuration
+require "configs.autopairs"
+require "configs.catppuccin"
+require "configs.cmp"
+require "configs.colorizer"
+require "configs.dap"
+require "configs.floatterm"
+require "configs.gitsigns"
 require "configs.lualine"
+require "configs.neogit"
+require "configs.notify"
+require "configs.nvim-tree"
+--require "configs.orgmode"
+require "configs.telescope"
+require "configs.todo-comments"
+require "configs.treesitter"
+require "configs.which-key"
 require "lsp"
 
--- ****************************
--- General Settings
--- ****************************
-local global = {
-  mapleader = " ",
-  nord_contrast = true,
-  nord_borders = false,
-  nord_disable_background = true,
-  nord_italic = true,
-  --ale_fixers = {
-  --javascript = { "eslint", "prettier" },
-  --css = { "eslint" },
-  --json = { "prettier" },
-  --},
-  --ale_fix_on_save = 1,
-  --ale_sign_error = '',
-  --ale_sign_warning = '--',
-  --UltiSnipsSnippetDirectories = { os.getenv('HOME') .. '/dotfiles/UltiSnips' },
-}
-
-for k, v in pairs(global) do
-  vim.g[k] = v
-end
-
-require("nord").set()
+vim.cmd [[colorscheme nord]]
