@@ -12,8 +12,10 @@ super + ctrl + BackSpace
 	~/.config/rofi/powermenu/powermenu.sh
 super + ctrl + p
 	flameshot gui
+F11
+  tdrop -ma -w 63% -h 60% -x 2% -y 26 alacritty
 F12
-  tdrop -ma -w 63% -h 60% -x 1% -y 27 emacs
+  tdrop -ma -w 63% -h 60% -x 2% -y 26 emacs
 ####################
 # Media Keys
 ####################

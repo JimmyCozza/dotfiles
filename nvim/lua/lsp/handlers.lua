@@ -89,6 +89,7 @@ M.on_attach = function(client, bufnr)
   print(vim.inspect(client))
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
