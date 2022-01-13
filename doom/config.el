@@ -32,6 +32,11 @@
 (map! :n "<left>" #'flycheck-previous-error)
 (map! :n "<right>" #'flycheck-next-error)
 
+(setq evil-split-window-right t)
+(setq evil-split-window-below t)
+
+(setq auth-sources '("~/.authinfo"))
+
 ;; (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
 (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 (require 'dap-node)
@@ -49,7 +54,6 @@
   ;(interactive)
   ;(insert (shell-command-to-string (format "python3 %s" buffer-file-name))))
 
-;; Setting a TODO to DONE sets a Closed timestamp
 (setq org-directory "~/notes/org/")
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)

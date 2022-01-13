@@ -46,6 +46,16 @@
 (map! :n "<left>" #'flycheck-previous-error)
 (map! :n "<right>" #'flycheck-next-error)
 #+end_src
+* Evil
+#+begin_src emacs-lisp
+(setq evil-split-window-right t)
+(setq evil-split-window-below t)
+#+end_src
+* Git
+#+begin_src emacs-lisp
+(setq auth-sources '("~/.authinfo"))
+#+end_src
+
 * Javascript specific
 #+begin_src emacs-lisp
 ;; (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
@@ -67,7 +77,6 @@
 #+end_src
 * Org Mode
 #+begin_src emacs-lisp
-;; Setting a TODO to DONE sets a Closed timestamp
 (setq org-directory "~/notes/org/")
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
