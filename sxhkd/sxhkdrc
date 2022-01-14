@@ -13,9 +13,9 @@ super + ctrl + BackSpace
 super + ctrl + p
 	flameshot gui
 F11
-  tdrop -ma -w 63% -h 60% -x 2% -y 26 alacritty
+  tdrop -ma -w 63% -h 60% -x 2% alacritty
 F12
-  tdrop -ma -w 63% -h 60% -x 2% -y 26 emacs
+  tdrop -ma -w 63% -h 60% -x 2% emacs
 ####################
 # Media Keys
 ####################
