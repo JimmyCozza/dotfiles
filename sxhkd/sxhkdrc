@@ -1,7 +1,3 @@
-# super + enter
-#   alacritty
-# super + p
-# 	~/.config/rofi/launchers/text/launcher.sh
 super + shift + b
 	~/.config/rofi/applets/menu/brightness.sh
 super + shift + t
@@ -10,8 +6,6 @@ super + shift + v
 	~/.config/rofi/applets/menu/volume.sh
 super + ctrl + BackSpace
 	~/.config/rofi/powermenu/powermenu.sh
-super + ctrl + p
-	flameshot gui
 F11
   tdrop -ma -w 63% -h 60% -x 2% alacritty
 F12
