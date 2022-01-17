@@ -1,7 +1,7 @@
-super + enter
-  alacritty
-super + p
-	~/.config/rofi/launchers/text/launcher.sh
+# super + enter
+#   alacritty
+# super + p
+# 	~/.config/rofi/launchers/text/launcher.sh
 super + shift + b
 	~/.config/rofi/applets/menu/brightness.sh
 super + shift + t
