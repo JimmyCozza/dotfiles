@@ -11,33 +11,33 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # yay -Syu $AUR_LIST
 
 # echo "Setup directories"
-# mkdir $HOME/work
-# mkdir $HOME/personal
-# mkdir $HOME/tools
+mkdir $HOME/work
+mkdir $HOME/personal
+mkdir $HOME/tools
 
 # # Generate ssh key
-# ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
+ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
 
-# echo "Downloading manual programs"
+echo "Downloading manual programs"
 # #Packer.nvim
-# git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-#  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 # #oh-my-zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # #tmux
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # #1password
-# curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-# git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
-# cd $HOME/tools/1password && makepkg -si
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
+cd $HOME/tools/1password && makepkg -si
 # #Build Neovim nightly
-# git clone https://github.com/neovim/neovim $HOME/tools/neovim
-# cd $HOME/tools/neovim && make
-# sudo make install
+git clone https://github.com/neovim/neovim $HOME/tools/neovim
+cd $HOME/tools/neovim && make
+sudo make install
 # # Doom Emacs
-# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-# ~/.emacs.d/bin/doom install
-# rm -r $HOME/.doom.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+rm -r $HOME/.doom.d
 
 # ##################################################
 # ################# Symlinks #######################
