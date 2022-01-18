@@ -1,0 +1,18 @@
+* Dotfiles
+** Basic Structure
+*** When I set up a new laptop.  I usually just go [[https://github.com/archlinux/archinstall][Archinstall]] or something like [[https://endeavouros.com/][EndeavourOS]].
+*** I use [[https://awesomewm.org/][AwesomeWM]] as my everyday Window Manager.  I also have xfce installed just in case I break awesome beyond repair...
+** Install
+*** `git clone https://github.com/jimmycozza/dotfiles`
+*** `cd dotfiles && ./archSetup.sh`
+*** enjoy
+** Neovim
+*** Mostly Lua
+*** Packer.nvim as my plugin manager
+** Doom Emacs
+*** I can't stop using org mode and magit, so I also have some basic config for when I use doom as my daily driver.
+** Arch Setup
+** Rofi
+** Alacritty
+** Sxhkd
+** Picom
