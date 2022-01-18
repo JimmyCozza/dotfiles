@@ -44,6 +44,7 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # ################# Symlinks #######################
 # ##################################################
 mv $HOME/.zshrc $HOME/.zshrc.bak
+mv $HOME/.config/autostart $HOME/.config/bak.autostart
 echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
@@ -52,7 +53,7 @@ ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
 ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
-ln -s "$CONFIG_FILES_PATH/autostart/sxhkd.desktop" "$HOME/.config/sxhkd/sxhkd.desktop"
+ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
 ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
