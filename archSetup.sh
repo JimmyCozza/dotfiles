@@ -47,6 +47,7 @@ mv $HOME/.zshrc $HOME/.zshrc.bak
 mv $HOME/.config/autostart $HOME/.config/bak.autostart
 echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+source "$HOME/.zshrc"
 
 ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
 ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
