@@ -35,32 +35,30 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # cd $HOME/tools/neovim && make
 # sudo make install
 # # Doom Emacs
-rm -rf $HOME/.emacs.d
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-rm -r $HOME/.doom.d
+# rm -rf $HOME/.emacs.d
+# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+# ~/.emacs.d/bin/doom install
+# rm -r $HOME/.doom.d
 
 # ##################################################
 # ################# Symlinks #######################
 # ##################################################
-# mv $HOME/.zshrc $HOME/.zshrc.bak
-# echo "symlinking dotfiles"
-# ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+mv $HOME/.zshrc $HOME/.zshrc.bak
+echo "symlinking dotfiles"
+ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
-# source "$HOME/.zshrc"
+ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
+ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
+ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
+ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
+ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
+ln -s "$CONFIG_FILES_PATH/autostart/sxhkd.desktop" "$HOME/.config/sxhkd/sxhkd.desktop"
+ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
+ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
+ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
+ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 
-# ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
-# ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
-# ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
-# ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
-# ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
-# ln -s "$CONFIG_FILES_PATH/autostart/sxhkd.desktop" "$HOME/.config/sxhkd/sxhkd.desktop"
-# ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
-# ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
-# ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
-# ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
-
-# source "$HOME/.zshrc"
+source "$HOME/.zshrc"
 
 # # FNM/node default
 # fnm install 12

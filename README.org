@@ -11,8 +11,9 @@
 *** Packer.nvim as my plugin manager
 *** Built in LSP, still considering tinkering with DAP
 ** Doom Emacs
-*** I can't stop using org mode and magit, so I also have some basic config for when I use doom as my daily driver.
-** Arch Setup
+*** I can't seem to stop using [[https://orgmode.org/][org mode]] and [[https://magit.vc/][magit]], so I also have some basic config for when I use emacs as my daily driver.
+** AwesomeWM
+*** awesomewm-git is the better version for me.
 ** Rofi
 ** Alacritty
 ** Sxhkd
