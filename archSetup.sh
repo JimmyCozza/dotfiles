@@ -63,14 +63,14 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # source "$HOME/.zshrc"
 
 # # FNM/node default
-fnm install 12
-fnm default 12
+# fnm install 12
+# fnm default 12
 
 # # Docker
-# sudo groupadd docker
-# sudo usermod -aG docker jimmy
-# sudo systemctl enable docker.service
-# sudo systemctl enable containerd.service
+sudo groupadd docker
+sudo usermod -aG docker jimmy
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 
 # ##################################################
 # ############### Neovim Setup #####################
