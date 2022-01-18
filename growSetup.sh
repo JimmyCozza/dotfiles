@@ -1,4 +1,11 @@
 #!/bin/bash
+echo "This will work best if you have ALL your passwords/secrets ready to go & are connected to the VPN.  Do you want to continue? [ y/n ]"
+read CONTINUE
+if [[ $CONTINUE != "y" ]]
+then
+    exit 1
+fi
+
 APP="$HOME/work/grow-app"
 AUTH="$HOME/work/grow-auth"
 CONFIG="$HOME/work/grow-config"
@@ -69,7 +76,7 @@ aws configure
 echo 'export PATH="/usr/local/opt/awscli@1/bin:$PATH"' >> $HOME/.zshrc && source $HOME/.zshrc
 aws s3 cp s3://grow-files/nginx-local/nginx.conf /etc/nginx/
 aws s3 cp s3://grow-files/nginx-local/local.grow.com.conf /etc/nginx/servers/
-sed -i "" "s/$USER/jimmy/g" /etc/nginx/servers/local.grow.com.conf
+sed -i "" "s/ADDYOURUSERNAME/<YOURHOMEDIRECTORY>/g" /usr/local/etc/nginx/servers/local.grow.com.conf
 echo "Test to make sure your nginx conf is good.  If this isn't successful, figure it out in the grow-app README.md"
 sudo nginx -t
 sudo nginx -s reload
@@ -108,27 +115,27 @@ echo "Grow cryptokey (Ask a dev for this):"
 read CRYPTO_KEY
 
 echo "export DEVELOPMENT_DB_HOST='appdb-dev.gogrow.com'" >> $HOME/.growvars
-echo "export DEVELOPMENT_DB_USER=$DEV_DB_USER" >> $HOME/.growvars
+echo "export DEVELOPMENT_DB_USER='$DEV_DB_USER'" >> $HOME/.growvars
 echo "export DEVELOPMENT_DB_DB='grow'" >> $HOME/.growvars
 echo "export DEVELOPMENT_DB_PASSWORD='$DEV_DB_PASS'" >> $HOME/.growvars
 echo "export STAGING_DB_HOST='appdb-stg.gogrow.com'" >> $HOME/.growvars
-echo "export STAGING_DB_USER=$STAGING_DB_USER" >> $HOME/.growvars
+echo "export STAGING_DB_USER='$STAGING_DB_USER'" >> $HOME/.growvars
 echo "export STAGING_DB_DB='grow'" >> $HOME/.growvars
-echo "export STAGING_DB_PASSWORD=$STAGING_DB_PASS" >> $HOME/.growvars
+echo "export STAGING_DB_PASSWORD='$STAGING_DB_PASS'" >> $HOME/.growvars
 echo "export PRODUCTION_DB_HOST='appdb-prod-source.gogrow.com'" >> $HOME/.growvars
-echo "export PRODUCTION_DB_USER=$PROD_DB_USER" >> $HOME/.growvars
+echo "export PRODUCTION_DB_USER='$PROD_DB_USER'" >> $HOME/.growvars
 echo "export PRODUCTION_DB_DB='grow'" >> $HOME/.growvars
-echo "export PRODUCTION_DB_PASSWORD=$PROD_DB_PASS" >> $HOME/.growvars
+echo "export PRODUCTION_DB_PASSWORD='$PROD_DB_PASS'" >> $HOME/.growvars
 echo "export REDIS_APP_CACHE_HOST_MASTER='redis-cache'" >> $HOME/.growvars
 echo "export REDIS_APP_CACHE_HOST_REPLICA='redis-cache'" >> $HOME/.growvars
 echo "export REDIS_APP_CACHE_PORT='6381'" >> $HOME/.growvars
 echo "export REDIS_APP_CACHE_TTL='86400' # 1 day" >> $HOME/.growvars
-echo "export NEW_RELIC_LICENSE_KEY=$NEW_RELIC_KEY" >> $HOME/.growvars
-echo "export COMMON_GROW_APP_CRYPTOKEY=$CRYPTO_KEY" >> $HOME/.growvars
+echo "export NEW_RELIC_LICENSE_KEY='$NEW_RELIC_KEY'" >> $HOME/.growvars
+echo "export COMMON_GROW_APP_CRYPTOKEY='$CRYPTO_KEY'" >> $HOME/.growvars
 
 source $HOME/.zshrc
 
-echo "Are you connected to the VPN? (y/n)"
+echo "Are you connected to the VPN? [ y/n ]"
 read vpn
 if [[ $vpn = "y" ]]
 then
