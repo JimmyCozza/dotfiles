@@ -1,3 +1,7 @@
+#+TITLE:     Dotfiles Readme
+#+AUTHOR:    Jimmy Cozza
+#+OPTIONS:   toc:2
+
 * Dotfiles
 ** Basic Structure
 *** I use arch, btw.
