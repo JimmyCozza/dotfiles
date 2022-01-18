@@ -11,12 +11,12 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # yay -Syu $AUR_LIST
 
 # echo "Setup directories"
-# mkdir $HOME/work
-# mkdir $HOME/personal
-# mkdir $HOME/tools
+mkdir $HOME/work
+mkdir $HOME/personal
+mkdir $HOME/tools
 
 # # Generate ssh key
-# ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
+ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
 
 # echo "Downloading manual programs"
 # # #Packer.nvim
@@ -35,9 +35,9 @@ git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make
 sudo make install
 # # Doom Emacs
-# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-# ~/.emacs.d/bin/doom install
-# rm -r $HOME/.doom.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+rm -r $HOME/.doom.d
 
 # ##################################################
 # ################# Symlinks #######################
