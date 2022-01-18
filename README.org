@@ -1,11 +1,11 @@
-#+TITLE:     Dotfiles Readme
+#+TITLE:     Dotfiles
 #+AUTHOR:    Jimmy Cozza
 #+OPTIONS:   toc:2
 
 * Basic Structure
 ** I use arch, btw.
-** When I set up a new machine.  I usually just go with [[https://github.com/archlinux/archinstall][Archinstall]] or something like [[https://endeavouros.com/][EndeavourOS]].
-** I use [[https://awesomewm.org/][AwesomeWM]] as my everyday Window Manager.  I also have xfce installed just in case I break awesome beyond repair...it's nice to have a backup
+*** When I set up a new machine.  I usually just go with [[https://github.com/archlinux/archinstall][Archinstall]] or something like [[https://endeavouros.com/][EndeavourOS]].
+*** I use [[https://awesomewm.org/][AwesomeWM]] as my everyday Window Manager.  I also have xfce installed just in case I break awesome beyond repair...it's nice to have a backup
 * Install from empty machine
 ** Make sure you have an ssh key generated and added to github if you care about that kind of thing:
 ** `ssh-keygen -t ed25519 -C "email@email.com"`
