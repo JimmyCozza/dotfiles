@@ -13,6 +13,8 @@ mkdir $HOME/work
 mkdir $HOME/personal
 mkdir $HOME/tools
 
+# Generate ssh key
+ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
 
 echo "Downloading manual programs"
 #Packer.nvim
