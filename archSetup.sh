@@ -67,21 +67,20 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # fnm default 12
 
 # # Docker
-sudo groupadd docker
-sudo usermod -aG docker jimmy
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
+# sudo groupadd docker
+# sudo usermod -aG docker jimmy
+# sudo systemctl enable docker.service
+# sudo systemctl enable containerd.service
 
 # ##################################################
 # ############### Neovim Setup #####################
 # ##################################################
 
-# source "$HOME/.zshrc"
-# sudo pip3 install neovim
-# sudo pip3 install neovim-remote
-# sudo gem install neovim
-# nvim --headless +PlugInstall +qa
-# nvim --headless +UpdateRemotePlugins +qa
+sudo pip3 install neovim
+sudo pip3 install neovim-remote
+sudo gem install neovim
+nvim --headless +PlugInstall +qa
+nvim --headless +UpdateRemotePlugins +qa
 
 # chsh -s $(which zsh)
 # source "$HOME/.zshrc"
