@@ -5,7 +5,7 @@
 ##################################################
 
 #Pre-reqs
-$PACKAGE_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl"
+PACKAGE_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl"
 # sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit
 #yay fnm-bin && lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl
 yay -Syu $PACKAGE_LIST
