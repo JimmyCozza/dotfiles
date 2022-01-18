@@ -38,10 +38,6 @@ return require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
-  use {
-    "catppuccin/nvim",
-    as = "catppuccin",
-  }
   use "eddyekofo94/gruvbox-flat.nvim"
   use "ap/vim-css-color"
   use {
@@ -111,7 +107,6 @@ return require("packer").startup(function()
   use "scrooloose/nerdcommenter"
   use {
     "kyazdani42/nvim-tree.lua",
-    --after = "catppuccin",
   }
   use "junegunn/vim-easy-align"
   use {
@@ -133,7 +128,6 @@ return require("packer").startup(function()
   }
   use {
     "hoob3rt/lualine.nvim",
-    --after = "catppuccin",
   }
 
   -- Javascript/Node

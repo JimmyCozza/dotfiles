@@ -4,35 +4,35 @@
 ############### General Setup ####################
 ##################################################
 
-#Pre-reqs
-sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit
-yay fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl
+# Pre-reqs
+ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl"
+sudo pacman -Syuv --noconfirm $ARCH_LIST
+yay -Syu $AUR_LIST
 
 echo "Setup directories"
 mkdir $HOME/work
 mkdir $HOME/personal
 mkdir $HOME/tools
 
-# Generate ssh key
-ssh-keygen -t ed25519 -C "moatcozza@gmail.com"
-
 echo "Downloading manual programs"
-#Packer.nvim
+# Packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-#oh-my-zsh
+# oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#tmux
+# tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-#1password
+# 1password
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 cd $HOME/tools/1password && makepkg -si
-#Build Neovim nightly
+# Build Neovim nightly
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make
 sudo make install
 # Doom Emacs
+rm -rf $HOME/.emacs.d
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 rm -r $HOME/.doom.d
@@ -41,9 +41,9 @@ rm -r $HOME/.doom.d
 ################# Symlinks #######################
 ##################################################
 mv $HOME/.zshrc $HOME/.zshrc.bak
+mv $HOME/.config/autostart $HOME/.config/bak.autostart
 echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-
 source "$HOME/.zshrc"
 
 ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
@@ -51,7 +51,7 @@ ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
 ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
-ln -s "$CONFIG_FILES_PATH/autostart/sxhkd.desktop" "$HOME/.config/sxhkd/sxhkd.desktop"
+ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
 ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
@@ -73,16 +73,15 @@ sudo systemctl enable containerd.service
 ############### Neovim Setup #####################
 ##################################################
 
-source "$HOME/.zshrc"
 sudo pip3 install neovim
 sudo pip3 install neovim-remote
 sudo gem install neovim
-nvim --headless +PlugInstall +qa
-nvim --headless +UpdateRemotePlugins +qa
 
 chsh -s $(which zsh)
 source "$HOME/.zshrc"
 
+# All good
 echo "Done"
 echo "Start TMUX and run tmux-plugin-manager install"
+echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'" #I don't care enough to make this work right now...
 echo "Reboot"
