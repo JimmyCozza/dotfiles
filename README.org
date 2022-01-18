@@ -6,15 +6,16 @@
 *** `git clone https://github.com/jimmycozza/dotfiles`
 *** `cd dotfiles && ./archSetup.sh`
 *** enjoy
-** Neovim
-*** Mostly converted to lua
-*** Packer.nvim as my plugin manager
-*** Built in LSP, still considering tinkering with DAP
-** Doom Emacs
-*** I can't seem to stop using [[https://orgmode.org/][org mode]] and [[https://magit.vc/][magit]], so I also have some basic config for when I use emacs as my daily driver.
-** AwesomeWM
-*** awesomewm-git is the better version for me.
-** Rofi
-** Alacritty
-** Sxhkd
-** Picom
+** Basics
+*** Neovim
+**** Mostly converted to lua
+**** Packer.nvim as my plugin manager
+**** Built in LSP, still considering tinkering with DAP
+*** Doom Emacs
+**** I can't seem to stop using [[https://orgmode.org/][org mode]] and [[https://magit.vc/][magit]], so I also have some basic config for when I use emacs as my daily driver.
+*** AwesomeWM
+**** awesomewm-git is the better version for me.
+*** Rofi
+*** Alacritty
+*** Sxhkd
+*** Picom
