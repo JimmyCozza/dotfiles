@@ -3,6 +3,11 @@
 ##################################################
 ############### General Setup ####################
 ##################################################
+
+#Pre-reqs
+sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi polybar sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit
+yay fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome playerctl
+
 echo "Setup directories"
 mkdir $HOME/work
 mkdir $HOME/personal
@@ -10,14 +15,25 @@ mkdir $HOME/tools
 
 
 echo "Downloading manual programs"
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#Packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+#oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#1password
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
-cd $HOME/tools/1password
-makepkg -si
-ch $HOME/dotfiles
+cd $HOME/tools/1password && makepkg -si
+#Build Neovim nightly
+git clone https://github.com/neovim/neovim $HOME/tools/neovim
+cd $HOME/tools/neovim && make
+sudo make install
+# Doom Emacs
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+rm -r $HOME/.doom.d
 
 ##################################################
 ################# Symlinks #######################
@@ -28,8 +44,8 @@ ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
 source "$HOME/.zshrc"
 
-ln -s "$CONFIG_FILES_PATH/alacritty.yml" "$HOME/.alacritty.yml"
-ln -s "$CONFIG_FILES_PATH/polybar" "$HOME/.config/polybar"
+ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
+ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
 ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
@@ -39,29 +55,20 @@ ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 
-##################################################
-################## Pacman ########################
-##################################################
-
-sudo pacman -Syuv --noconfirm alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi polybar sxhkd flameshot emacs aws-cli nginx python2
 source "$HOME/.zshrc"
 
-##################################################
-############### AUR Packages #####################
-##################################################
+# FNM/node default
+fnm install 12
+fnm default 12
 
-pamac install neovim-nightly-bin fnm-bin lazygit-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git
-
-# Some things
-fnm install 14
-fnm default 14
+# Docker
 sudo groupadd docker
 sudo usermod -aG docker jimmy
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 
 ##################################################
-################## Neovim ########################
+############### Neovim Setup #####################
 ##################################################
 
 source "$HOME/.zshrc"
