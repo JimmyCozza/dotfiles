@@ -7,27 +7,24 @@ CONFIG="$HOME/work/grow-config"
 CORE="$HOME/work/core"
 GJP="$HOME/work/grow-job-processor"
 
-# git clone git@github.com:Growmies/grow-app.git $APP
-# git clone git@github.com:Growmies/grow-auth.git $AUTH
-# git clone git@github.com:Growmies/grow-config.git $CONFIG
-# git clone git@github.com:Growmies/core.git $CORE
-# git clone git@github.com:Growmies/grow-job-processor.git $GJP
+git clone git@github.com:Growmies/grow-app.git $APP
+git clone git@github.com:Growmies/grow-auth.git $AUTH
+git clone git@github.com:Growmies/grow-config.git $CONFIG
+git clone git@github.com:Growmies/core.git $CORE
+git clone git@github.com:Growmies/grow-job-processor.git $GJP
 
 
 ##################################################
 ################ Setup Node ######################
 ##################################################
-# echo "Enter your Grow NPM Token (npm.js -> profile pic -> Access Tokens -> Generate New): "
-# read NPM_TOKEN
-# echo export GROW_NPM_TOKEN=$NPM_TOKEN >> ~/.zshrc && source ~/.zshrc
-# echo "Logging into NPM.  Get your password handy."
-# npm login --scope=@grow
-# npm -g install yarn gulp
-# yarn config set registry https://registry.npmjs.org
+echo "Enter your Grow NPM Token (npm.js -> profile pic -> Access Tokens -> Generate New): "
+read NPM_TOKEN
+echo export GROW_NPM_TOKEN=$NPM_TOKEN >> ~/.zshrc && source ~/.zshrc
+echo "Logging into NPM.  Get your password handy."
+npm login --scope=@grow
+npm -g install yarn gulp
+yarn config set registry https://registry.npmjs.org
 
-#Install & Link local core
-# yarn
-# yarn link
 
 ##################################################
 ################ Setup app #######################
@@ -35,8 +32,20 @@ GJP="$HOME/work/grow-job-processor"
 
 # cd $HOME/work/grow-job-processor
 # yarn link @grow/core
+echo "yarn install & link grow core"
+fnm use $CORE/.nvmrc
 yarn --cwd $CORE install
-yarn --cwd $CORE link @grow/core
+yarn --cwd $CORE link
+
+# echo "yarn install & link grow-config"
+# fnm use $CONFIG/.nvmrc
+# yarn --cwd $CONFIG install
+# yarn --cwd $CONFIG link
+
+echo "yarn install & link grow-app"
+fnm use $APP/.nvmrc
+yarn --cwd $APP install
+yarn --cwd $APP link @grow/core
 
 # cd $HOME/work/grow-app
 # cp docker-compose.yml.sample docker-compose.yml
