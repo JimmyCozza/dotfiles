@@ -35,6 +35,7 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # cd $HOME/tools/neovim && make
 # sudo make install
 # # Doom Emacs
+rm -rf $HOME/.emacs.d
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 rm -r $HOME/.doom.d
