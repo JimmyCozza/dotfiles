@@ -7,8 +7,9 @@
 *** `cd dotfiles && ./archSetup.sh`
 *** enjoy
 ** Neovim
-*** Mostly Lua
+*** Mostly converted to lua
 *** Packer.nvim as my plugin manager
+*** Built in LSP, still considering tinkering with DAP
 ** Doom Emacs
 *** I can't stop using org mode and magit, so I also have some basic config for when I use doom as my daily driver.
 ** Arch Setup
