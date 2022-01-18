@@ -31,13 +31,13 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 # cd $HOME/tools/1password && makepkg -si
 # #Build Neovim nightly
-git clone https://github.com/neovim/neovim $HOME/tools/neovim
-cd $HOME/tools/neovim && make
-sudo make install
+# git clone https://github.com/neovim/neovim $HOME/tools/neovim
+# cd $HOME/tools/neovim && make
+# sudo make install
 # # Doom Emacs
-# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-# ~/.emacs.d/bin/doom install
-# rm -r $HOME/.doom.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+rm -r $HOME/.doom.d
 
 # ##################################################
 # ################# Symlinks #######################
