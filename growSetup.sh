@@ -74,8 +74,8 @@ cp $AUTH/.env.sample $AUTH/.env
 
 aws configure
 echo 'export PATH="/usr/local/opt/awscli@1/bin:$PATH"' >> $HOME/.zshrc && source $HOME/.zshrc
-aws s3 cp s3://grow-files/nginx-local/nginx.conf /etc/nginx/
-aws s3 cp s3://grow-files/nginx-local/local.grow.com.conf /etc/nginx/servers/
+sudo aws s3 cp s3://grow-files/nginx-local/nginx.conf /etc/nginx/
+sudo aws s3 cp s3://grow-files/nginx-local/local.grow.com.conf /etc/nginx/servers/
 sed -i "" "s/ADDYOURUSERNAME/<YOURHOMEDIRECTORY>/g" /usr/local/etc/nginx/servers/local.grow.com.conf
 echo "Test to make sure your nginx conf is good.  If this isn't successful, figure it out in the grow-app README.md"
 sudo nginx -t
@@ -83,18 +83,18 @@ sudo nginx -s reload
 
 
 #Hosts File
-echo "127.0.0.1    localhost" >> /etc/hosts
-echo "255.255.255.255 broadcasthost" >> /etc/hosts
-echo "::1             localhost" >> /etc/hosts
-echo "127.0.0.1       local.gogrow.com" >> /etc/hosts
-echo "127.0.0.1       local.admin.gogrow.com" >> /etc/hosts
-echo "127.0.0.1:8080  local.admin.gogrow.com" >> /etc/hosts
-echo "127.0.0.1       grow-php" >> /etc/hosts
-echo "127.0.0.1       redis" >> /etc/hosts
-echo "127.0.0.1       redis-auth" >> /etc/hosts
-echo "127.0.0.1       redis-cache" >> /etc/hosts
-echo "127.0.0.1       postgres" >> /etc/hosts
-echo "127.0.0.1       rabbitmq" >> /etc/hosts
+echo "127.0.0.1    localhost" | sudo tee -a /etc/hosts
+echo "255.255.255.255 broadcasthost" | sudo tee -a /etc/hosts
+echo "::1             localhost" | sudo tee -a /etc/hosts
+echo "127.0.0.1       local.gogrow.com" | sudo tee -a /etc/hosts
+echo "127.0.0.1       local.admin.gogrow.com" | sudo tee -a /etc/hosts
+echo "127.0.0.1:8080  local.admin.gogrow.com" | sudo tee -a /etc/hosts
+echo "127.0.0.1       grow-php" | sudo tee -a /etc/hosts
+echo "127.0.0.1       redis" | sudo tee -a /etc/hosts
+echo "127.0.0.1       redis-auth" | sudo tee -a /etc/hosts
+echo "127.0.0.1       redis-cache" | sudo tee -a /etc/hosts
+echo "127.0.0.1       postgres" | sudo tee -a /etc/hosts
+echo "127.0.0.1       rabbitmq" | sudo tee -a /etc/hosts
 
 #growvars
 echo "Your Dev DB_USER:"
