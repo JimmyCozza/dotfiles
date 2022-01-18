@@ -76,14 +76,14 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # ############### Neovim Setup #####################
 # ##################################################
 
-sudo pip3 install neovim
-sudo pip3 install neovim-remote
-sudo gem install neovim
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# sudo pip3 install neovim
+# sudo pip3 install neovim-remote
+# sudo gem install neovim
 
-# chsh -s $(which zsh)
-# source "$HOME/.zshrc"
+chsh -s $(which zsh)
+source "$HOME/.zshrc"
 
-# echo "Done"
-# echo "Start TMUX and run tmux-plugin-manager install"
-# echo "Reboot"
+echo "Done"
+echo "Start TMUX and run tmux-plugin-manager install"
+echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+echo "Reboot"
