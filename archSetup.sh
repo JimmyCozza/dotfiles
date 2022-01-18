@@ -43,28 +43,28 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 # ##################################################
 # ################# Symlinks #######################
 # ##################################################
-mv $HOME/.zshrc $HOME/.zshrc.bak
-mv $HOME/.config/autostart $HOME/.config/bak.autostart
-echo "symlinking dotfiles"
-ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-source "$HOME/.zshrc"
+# mv $HOME/.zshrc $HOME/.zshrc.bak
+# mv $HOME/.config/autostart $HOME/.config/bak.autostart
+# echo "symlinking dotfiles"
+# ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+# source "$HOME/.zshrc"
 
-ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
-ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
-ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
-ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
-ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
-ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
-ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
-ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
-ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
-ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+# ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
+# ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
+# ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
+# ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
+# ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
+# ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
+# ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
+# ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
+# ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
+# ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 
-source "$HOME/.zshrc"
+# source "$HOME/.zshrc"
 
 # # FNM/node default
-# fnm install 12
-# fnm default 12
+fnm install 12
+fnm default 12
 
 # # Docker
 # sudo groupadd docker
