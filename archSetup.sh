@@ -79,8 +79,7 @@ AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-
 sudo pip3 install neovim
 sudo pip3 install neovim-remote
 sudo gem install neovim
-nvim --headless +PackerInstall +qa
-nvim --headless +PackerCompile +qa
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # chsh -s $(which zsh)
 # source "$HOME/.zshrc"
