@@ -2,12 +2,12 @@
 
 mkdir -p $HOME/work
 
-git clone git@github.com:Growmies/core.git $HOME/work/core
-git clone git@github.com:Growmies/grow-app.git $HOME/work/grow-app
-git clone git@github.com:Growmies/grow-auth.git $HOME/work/grow-auth
-git clone git@github.com:Growmies/grow-config.git $HOME/work/grow-config
-git clone git@github.com:Growmies/grow-job-processor.git $HOME/work/grow-job-processor
-git clone git@github.com:Growmies/grow-php.git $HOME/work/grow-php
+# git clone git@github.com:Growmies/core.git $HOME/work/core
+# git clone git@github.com:Growmies/grow-app.git $HOME/work/grow-app
+# git clone git@github.com:Growmies/grow-auth.git $HOME/work/grow-auth
+# git clone git@github.com:Growmies/grow-config.git $HOME/work/grow-config
+# git clone git@github.com:Growmies/grow-job-processor.git $HOME/work/grow-job-processor
+# git clone git@github.com:Growmies/grow-php.git $HOME/work/grow-php
 
 # cd $HOME/work/core
 
@@ -15,6 +15,7 @@ git clone git@github.com:Growmies/grow-php.git $HOME/work/grow-php
 ##################################################
 ################ Setup Node ######################
 ##################################################
+echo "Logging into NPM.  Get your password handy."
 npm login --scope=@grow
 npm -g install yarn gulp
 yarn config set registry https://registry.npmjs.org
