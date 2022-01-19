@@ -10,8 +10,8 @@
 (setq doom-theme 'nord)
 (setq doom-themes-treemacs-theme "doom-colors")
 
- (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
- (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
 (setq display-line-numbers-type t)
 
