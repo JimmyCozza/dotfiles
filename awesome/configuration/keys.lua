@@ -116,9 +116,9 @@ awful.keyboard.append_global_keybindings {
   -- Awesome stuff
   awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
   awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
-  awful.key({ modkey, shift }, "x", function()
-    require("ui.pop.exitscreen").exit_screen_show()
-  end, { description = "show exit screen", group = "awesome" }),
+  -- awful.key({ modkey, shift }, "x", function()
+  --   require("ui.pop.exitscreen").exit_screen_show()
+  -- end, { description = "show exit screen", group = "awesome" }),
   awful.key({ modkey, shift }, "d", function()
     awesome.emit_signal "panel::open"
   end, { description = "show panel", group = "awesome" }),
