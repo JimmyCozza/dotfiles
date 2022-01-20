@@ -32,7 +32,7 @@ ruled.client.connect_signal("request::rules", function()
       role = {
         "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
       },
-      name = { "Friends List", "Steam - News" },
+      name = { "Friends List", "Steam - News", "emacs-run-launcher" },
       instance = { "spad", "music" },
     },
     properties = { floating = true, placement = awful.placement.centered },
