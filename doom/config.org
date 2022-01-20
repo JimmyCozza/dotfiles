@@ -7,10 +7,10 @@
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
 #+end_src
-** Font.  I shot the serif.
+** Font.
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
-      doom-variable-pitch-font (font-spec :family "GoMono Nerd Font" :size 16))
+(setq doom-font (font-spec :family "Cousine Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono Nerd Font" :size 18))
 #+end_src
 
 ** Gruvbox is king

@@ -4,8 +4,8 @@
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
 
-(setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
-      doom-variable-pitch-font (font-spec :family "GoMono Nerd Font" :size 16))
+(setq doom-font (font-spec :family "Cousine Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono Nerd Font" :size 18))
 
 (setq doom-theme 'nord)
 (setq doom-themes-treemacs-theme "doom-colors")
