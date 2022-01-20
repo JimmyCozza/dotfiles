@@ -32,6 +32,18 @@
 (map! :n "<left>" #'flycheck-previous-error)
 (map! :n "<right>" #'flycheck-next-error)
 
+;; Credit to https://github.com/Vidianos-Giannitsis
+ (defun emacs-run-launcher ()
+   "Create and select a frame called emacs-run-launcher which consists only of a minibuffer and has specific dimensions. Run counsel-linux-app on that frame, which is an emacs command that prompts you to select an app and open it in a dmenu like behaviour. Delete the frame after that command has exited"
+   (interactive)
+   (with-selected-frame (make-frame '((name . "emacs-run-launcher")
+				       (minibuffer . only)
+				       (width . 120)
+				       (height . 11)))
+     (unwind-protect
+	  (counsel-linux-app)
+	(delete-frame))))
+
 (setq evil-split-window-right t)
 (setq evil-split-window-below t)
 

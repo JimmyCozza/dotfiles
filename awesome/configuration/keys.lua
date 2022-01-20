@@ -127,6 +127,9 @@ awful.keyboard.append_global_keybindings {
   awful.key({ modkey }, "x", function()
     awful.util.spawn "arcolinux-logout"
   end, { description = "exit", group = "hotkeys" }),
+  awful.key({ modkey, shift }, "e", function()
+    awful.util.spawn "emacsclient --eval \"(emacs-everywhere)\""
+  end, { description = "emacs everywhere", group = "hotkeys" }),
 }
 
 -- ************************************

@@ -7,7 +7,7 @@ require "configuration.autostart"
 
 -- Default Applications
 terminal = "alacritty"
-editor = "neovide"
+editor = "emacsclient -c"
 editor_cmd = editor
 browser = "firefox"
 filemanager = "nautilus"
