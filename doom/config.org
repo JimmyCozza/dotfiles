@@ -7,6 +7,7 @@
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
 #+end_src
+*** TODO Tangle the other config files too.
 ** Font.
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Cousine Nerd Font" :size 16)

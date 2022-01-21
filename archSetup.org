@@ -1,0 +1,136 @@
+#+TITLE: Arch Setup
+#+AUTHOR: Jimmy Cozza
+* Arch Setup
+** One day I'll remove this with something like a custom arch iso, but today is not that day.  For now, I just set up the basic directories I like to work with.
+
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+#!/bin/bash
+#########################################################
+#########################################################
+# THIS WAS AUTO GENERATED VIA ORG-BABEL-TANGLE
+# CHECK THE archSetup.org FILE FOR MORE DETAILS
+#########################################################
+#########################################################
+echo "Setup directories"
+mkdir $HOME/work
+mkdir $HOME/projects
+mkdir $HOME/tools
+#+end_src
+** Also, I need to learn about tangling...I'm just kind of copying this offline right now from what I am reading in the doom literate module's readme and adapting it for this file.  Do I need to define the tangle output file in each src block?  Doubt it.  Is there a more elegant way?  probably.  Does this output the file right now?  Yup.
+* Packages
+** I just use pacman & yay for package management.  Pamac was sort of neat, but not really needed in my regular flow.
+** Standard Arch Packages
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit"
+#+end_src
+** AUR packages
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+AUR_LIST="fnm-bin lazydocker nerd-fonts-go-mono nerd-fonts-fira-code zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome-dev playerctl arcolinux-logout"
+#+end_src
+** Install packages.  This will take a while, especially the emacs-git one.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+echo "Fetching standard arch packages"
+sudo pacman -Syu --noconfirm $ARCH_LIST
+echo "Fetching AUR packages"
+yay -Syu $AUR_LIST
+#+end_src
+** Manual Package installations (Ones that I don't install via arch/aur)
+*** TODO Add fzf to this list to get the built in keybindings that don't come with the arch repo version.
+*** Packer.nvim
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+#+end_src
+*** oh-my-zsh
+**** I don't know why I keep using this.  But I can't be bothered to set up zsh from scratch right now.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#+end_src
+*** tmux plugin manager.  I love the resurrect plugin and I use a little nord plugin for the statusbar
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#+end_src
+*** 1password
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
+cd $HOME/tools/1password && makepkg -si
+#+end_src
+*** Neovim Nightly
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone https://github.com/neovim/neovim $HOME/tools/neovim
+cd $HOME/tools/neovim && make
+sudo make install
+#+end_src
+*** Doom Emacs
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+rm -rf $HOME/.emacs.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+rm -r $HOME/.doom.d
+#+end_src
+*** Pritunl
+**** On the pritunl site they say to install that last numix-theme, but I have never gotten it to download and I frankly don't care.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+sudo tee -a /etc/pacman.conf << EOF
+[pritunl]
+Server = https://repo.pritunl.com/stable/pacman
+EOF
+
+sudo pacman-key --keyserver hkp://keyserver.ubuntu.com -r 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+sudo pacman-key --lsign-key 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+sudo pacman -Sy
+sudo pacman -S pritunl-client-electron
+sudo pacman -S pritunl-client-electron-numix-theme
+#+end_src
+* Symlink the good stuff
+** I just want to make sure I don't blast things like the .zshrc or the existing config autostart (just in case), so I'll back those up
+** Next I'll symlink the .zshrc file and source it so I get access to a couple of variables, CONFIG_FILES_PATH chief among them.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+mv $HOME/.zshrc $HOME/.zshrc.bak
+mv $HOME/.config/autostart $HOME/.config/bak.autostart
+
+echo "symlinking dotfiles"
+ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+source "$HOME/.zshrc"
+
+ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
+ln -s "$CONFIG_FILES_PATH/awesome" "$HOME/.config/awesome"
+ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
+ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
+ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
+ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
+ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
+ln -s "$CONFIG_FILES_PATH/tmux.conf" "$HOME/.tmux.conf"
+ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
+ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
+ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+
+source "$HOME/.zshrc"
+#+END_SRC
+** Then I'll finally symlink the main pieces of my system that I must have in place and resource my .zshrc
+* Final setup, mostly stuff I haven't thought about much
+** Use fnm to install node 12 and make 12 the default.  I use 12 at work and I'm not using node much in my personal time, so it's easier for me to have my system default be the work default.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+fnm install 12
+fnm default 12
+#+END_SRC
+** Do some installing of neovim for specific python/ruby remote plugins.  Would be cool to cut those out of my flow.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+sudo pip3 install neovim
+sudo pip3 install neovim-remote
+sudo gem install neovim
+#+END_SRC
+** Change shell because who knows if oh-my-zsh did it?  I can't remember and I am not going to test this script right now
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+chsh -s $(which zsh)
+source "$HOME/.zshrc"
+#+END_SRC
+** Finally, remind myself that I need to actively run tpm install & PackerInstall in neovim because I can't get either of those commands to work from the shell.  Well, I haven't tried the TPM one, it just now occurred to me.
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+echo "I have exercised the demons.  This house is clean"
+echo "Start TMUX and run tmux-plugin-manager install"
+echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'" #I don't care enough to make this work right now...
+echo "Reboot"
+#+END_SRC
+** Reboot the system and enjoy
