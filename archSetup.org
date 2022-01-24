@@ -64,10 +64,10 @@ sudo make install
 #+end_src
 *** Doom Emacs
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-rm -rf $HOME/.emacs.d
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-rm -r $HOME/.doom.d
+# rm -rf $HOME/.emacs.d
+# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+# ~/.emacs.d/bin/doom install
+# rm -r $HOME/.doom.d
 #+end_src
 *** Pritunl
 **** On the pritunl site they say to install that last numix-theme, but I have never gotten it to download and I frankly don't care.

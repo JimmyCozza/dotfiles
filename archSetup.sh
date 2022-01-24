@@ -34,10 +34,10 @@ git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make
 sudo make install
 
-rm -rf $HOME/.emacs.d
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-rm -r $HOME/.doom.d
+# rm -rf $HOME/.emacs.d
+# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+# ~/.emacs.d/bin/doom install
+# rm -r $HOME/.doom.d
 
 sudo tee -a /etc/pacman.conf << EOF
 [pritunl]
