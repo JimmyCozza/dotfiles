@@ -25,9 +25,9 @@ ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose 
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome-dev playerctl arcolinux-logout"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git google-chrome-dev playerctl arcolinux-logout"
 #+end_src
-** Install packages.  This will take a while, especially the emacs-git one.
+** Install packages.  This will take a while.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -132,5 +132,6 @@ echo "I have exercised the demons.  This house is clean"
 echo "Start TMUX and run tmux-plugin-manager install"
 echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'" #I don't care enough to make this work right now...
 echo "Reboot"
+echo "install emacs-git sometime, but do it when the system is up and running because that takes as long as the rest of this install combined."
 #+END_SRC
 ** Reboot the system and enjoy

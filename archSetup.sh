@@ -12,7 +12,7 @@ mkdir $HOME/tools
 
 ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git emacs-git google-chrome-dev playerctl arcolinux-logout"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git google-chrome-dev playerctl arcolinux-logout"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -85,3 +85,4 @@ echo "I have exercised the demons.  This house is clean"
 echo "Start TMUX and run tmux-plugin-manager install"
 echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'" #I don't care enough to make this work right now...
 echo "Reboot"
+echo "install emacs-git sometime, but do it when the system is up and running because that takes as long as the rest of this install combined."
