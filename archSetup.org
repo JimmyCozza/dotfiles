@@ -123,9 +123,11 @@ sudo pip3 install neovim-remote
 sudo gem install neovim
 #+END_SRC
 ** Change shell because who knows if oh-my-zsh did it?  I can't remember and I am not going to test this script right now
+** Set chrome to be the default browser, otherwise it'll default to firefox which is great except I really prefer chrome for the node debugger...
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 chsh -s $(which zsh)
 source "$HOME/.zshrc"
+xdg-mime default google-chrome-unstable.desktop x-scheme-handler/https x-scheme-handler/http
 #+END_SRC
 ** Finally, remind myself that I need to actively run tpm install & PackerInstall in neovim because I can't get either of those commands to work from the shell.  Well, I haven't tried the TPM one, it just now occurred to me.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh

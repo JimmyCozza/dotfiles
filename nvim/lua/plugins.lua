@@ -45,14 +45,14 @@ return require("packer").startup(function()
   }
 
   -- Local tinkering
+  --use {
+  --"~/projects/youtrack",
+  --requires = { "trip-zip/plenary.nvim" },
+  --}
   use {
-    "~/projects/youtrack",
+    "trip-zip/youtrack",
     requires = { "trip-zip/plenary.nvim" },
   }
-  --use {
-  --'trip-zip/youtrack',
-  --requires = {'trip-zip/plenary.nvim'}
-  --}
 
   --Navigation
   use "nvim-lua/popup.nvim"
@@ -78,11 +78,6 @@ return require("packer").startup(function()
     requires = {
       "trip-zip/plenary.nvim",
     },
-  }
-  use {
-    "TimUntersberger/neogit",
-    requires = "trip-zip/plenary.nvim",
-    --nd,
   }
 
   --Utilities
