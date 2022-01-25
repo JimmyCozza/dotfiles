@@ -73,7 +73,8 @@ source "$HOME/.zshrc"
 
 fnm install 12
 fnm default 12
-
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 sudo pip3 install neovim
 sudo pip3 install neovim-remote
 sudo gem install neovim
