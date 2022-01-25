@@ -36,7 +36,7 @@ read NPM_TOKEN
 echo export GROW_NPM_TOKEN=$NPM_TOKEN >> $GVARS && source $HOME/.zshrc
 echo "Logging into NPM.  Get your password handy."
 npm login --scope=@grow
-npm -g install yarn gulp
+npm -g install yarn gulp gulp-autocompletion-zsh
 yarn config set registry https://registry.npmjs.org
 
 
