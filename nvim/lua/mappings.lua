@@ -35,6 +35,8 @@ map("n", "<C-l>", "<C-w>l", opts)
 -- ****************************
 --map('n', '<Right>', '<cmd>ALENext<cr>', {})
 --map('n', '<Left>', '<cmd>ALEPrevious<cr>', {})
+map("n", "<Right>", "<cmd>lua vim.diagnostic.goto_next()<cr>", {})
+map("n", "<Left>", "<cmd>lua vim.diagnostic.goto_prev()<cr>", {})
 
 -- ****************************
 -- COMPLETION

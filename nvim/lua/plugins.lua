@@ -107,9 +107,6 @@ return require("packer").startup(function()
   use {
     "windwp/nvim-autopairs",
   }
-  use "SirVer/ultisnips"
-  --use "L3MON4D3/LuaSnip"
-  use "rafamadriz/friendly-snippets"
   use {
     "folke/which-key.nvim",
   }
@@ -151,16 +148,17 @@ return require("packer").startup(function()
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-cmdline"
-  --use "saadparwaiz1/cmp_luasnip"
   use "quangnguyen30192/cmp-nvim-ultisnips"
   use {
     "hrsh7th/nvim-cmp",
     disable = false,
   }
-  --use {
-  --'fatih/vim-go',
-  --ft = 'go'
-  --}
+  use "SirVer/ultisnips"
+  use "rafamadriz/friendly-snippets"
+  use {
+    "fatih/vim-go",
+    ft = "go",
+  }
   use {
     "numtostr/FTerm.nvim",
   }
