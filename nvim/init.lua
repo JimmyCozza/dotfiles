@@ -17,6 +17,6 @@ require "configs.telescope"
 require "configs.todo-comments"
 require "configs.treesitter"
 require "configs.which-key"
-require "lsp"
+require "configs.lspconfig"
 
 vim.cmd [[colorscheme nord]]

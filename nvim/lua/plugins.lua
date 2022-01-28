@@ -132,15 +132,7 @@ return require("packer").startup(function()
   -- LSP
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/lsp-colors.nvim"
-  use {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("lspconfig").tsserver.setup {}
-      require("lspconfig").gopls.setup {}
-    end,
-  }
-  use "williamboman/nvim-lsp-installer"
-  --use 'glepnir/lspsaga.nvim'
+  use "neovim/nvim-lspconfig"
 
   -- Completion
   use "hrsh7th/cmp-nvim-lsp"
@@ -155,10 +147,10 @@ return require("packer").startup(function()
   }
   use "SirVer/ultisnips"
   use "rafamadriz/friendly-snippets"
-  use {
-    "fatih/vim-go",
-    ft = "go",
-  }
+  --use {
+    --"fatih/vim-go",
+    --ft = "go",
+  --}
   use {
     "numtostr/FTerm.nvim",
   }
