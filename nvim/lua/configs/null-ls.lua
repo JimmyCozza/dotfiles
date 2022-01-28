@@ -7,7 +7,7 @@ local builtins = null_ls.builtins
 
 null_ls.setup {
   on_attach = function(client)
-    vim.notify "attaching to lsp"
+    vim.notify "attaching to null-ls lsp"
     if client.resolved_capabilities.document_formatting then
       vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
     end
@@ -17,5 +17,6 @@ null_ls.setup {
     builtins.formatting.prettier,
     builtins.diagnostics.eslint,
     builtins.formatting.stylua,
+    builtins.formatting.gofmt,
   },
 }
