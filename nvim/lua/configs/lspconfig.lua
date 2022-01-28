@@ -80,7 +80,7 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = {'tsserver', 'sumneko_lua', 'gopls'}
 for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
+  lspConfig[lsp].setup {
     on_attach = on_attach,
     settings = custom_settings[lsp],
     flags = {
