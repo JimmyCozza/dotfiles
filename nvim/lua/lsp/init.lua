@@ -36,7 +36,6 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
-  --vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
 end
 
