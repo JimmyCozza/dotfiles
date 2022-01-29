@@ -1,5 +1,5 @@
 local opts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 -- ****************************
 -- General
 -- ****************************
@@ -29,14 +29,6 @@ map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
-
--- ****************************
--- ALE
--- ****************************
---map('n', '<Right>', '<cmd>ALENext<cr>', {})
---map('n', '<Left>', '<cmd>ALEPrevious<cr>', {})
-map("n", "<Right>", "<cmd>lua vim.diagnostic.goto_next()<cr>", {})
-map("n", "<Left>", "<cmd>lua vim.diagnostic.goto_prev()<cr>", {})
 
 -- ****************************
 -- COMPLETION
