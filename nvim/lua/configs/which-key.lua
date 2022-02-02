@@ -42,7 +42,7 @@ require("which-key").setup {
 
 local mappings = {
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search project" },
-  ["b"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
+  ["b"] = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
   d = {
     name = "+Debug",
@@ -123,9 +123,9 @@ local mappings = {
     },
   },
   n = {
-    name = "+NvimTree",
-    n = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
-    t = { "<cmd>NvimTreeFindFileToggle<cr>", "Find at file" },
+    name = "+NERDTree",
+    n = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
+    t = { "<cmd>NERDTreeFind<cr>", "Find at file" },
   },
   p = {
     name = "+Project",

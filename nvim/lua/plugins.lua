@@ -83,9 +83,7 @@ return require("packer").startup(function()
   }
 
   --Utilities
-  use {
-    "nvim-treesitter/nvim-treesitter",
-  }
+  use "nvim-treesitter/nvim-treesitter"
   use "rstacruz/vim-closer"
   use {
     "rcarriga/nvim-notify",
@@ -102,9 +100,8 @@ return require("packer").startup(function()
     end,
   }
   use "scrooloose/nerdcommenter"
-  use {
-    "kyazdani42/nvim-tree.lua",
-  }
+  use "preservim/nerdtree"
+
   use "junegunn/vim-easy-align"
   use {
     "windwp/nvim-autopairs",
