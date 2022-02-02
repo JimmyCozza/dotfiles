@@ -45,10 +45,12 @@ return require("packer").startup(function()
   }
 
   -- Local tinkering
+  --use "~/projects/npmInfo"
   --use {
   --"~/projects/youtrack",
   --requires = { "trip-zip/plenary.nvim" },
   --}
+  use "trip-zip/npmInfo.nvim"
   use {
     "trip-zip/youtrack",
     requires = { "trip-zip/plenary.nvim" },
@@ -148,8 +150,8 @@ return require("packer").startup(function()
   use "SirVer/ultisnips"
   use "rafamadriz/friendly-snippets"
   --use {
-    --"fatih/vim-go",
-    --ft = "go",
+  --"fatih/vim-go",
+  --ft = "go",
   --}
   use {
     "numtostr/FTerm.nvim",
