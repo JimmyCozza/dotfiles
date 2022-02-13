@@ -146,10 +146,10 @@ return require("packer").startup(function()
   }
   use "SirVer/ultisnips"
   use "rafamadriz/friendly-snippets"
-  --use {
-  --"fatih/vim-go",
-  --ft = "go",
-  --}
+  use {
+    "fatih/vim-go",
+    ft = "go",
+  }
   use {
     "numtostr/FTerm.nvim",
   }

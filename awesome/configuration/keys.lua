@@ -125,10 +125,10 @@ awful.keyboard.append_global_keybindings {
     awful.util.spawn "arcolinux-logout"
   end, { description = "exit", group = "hotkeys" }),
   awful.key({ modkey, shift }, "e", function()
-    awful.util.spawn "emacsclient --eval \"(emacs-everywhere)\""
+    awful.util.spawn 'emacsclient --eval "(emacs-everywhere)"'
   end, { description = "emacs everywhere", group = "hotkeys" }),
   awful.key({ modkey, shift }, "p", function()
-    awful.util.spawn "emacsclient --eval \"(emacs-run-launcher)\""
+    awful.util.spawn 'emacsclient --eval "(emacs-run-launcher)"'
   end, { description = "app launcher", group = "hotkeys" }),
 }
 
@@ -153,7 +153,8 @@ awful.keyboard.append_global_keybindings {
 -- ************************************
 -- Launcher and screen
 -- ************************************
-awful.keyboard.append_global_keybindings {awful.key({ modkey, ctrl }, "j", function()
+awful.keyboard.append_global_keybindings {
+  awful.key({ modkey, ctrl }, "j", function()
     awful.screen.focus_relative(1)
   end, { description = "focus the next screen", group = "screen" }),
   awful.key({ modkey, ctrl }, "k", function()
@@ -176,16 +177,16 @@ awful.keyboard.append_global_keybindings {awful.key({ modkey, ctrl }, "j", funct
     awful.spawn(filemanager)
   end, { description = "open file browser", group = "launcher" }),
   awful.key({ modkey }, "p", function()
-    awful.spawn.with_shell("~/.config/rofi/launchers/text/launcher.sh")
+    awful.spawn.with_shell "~/.config/rofi/launchers/text/launcher.sh"
   end, { description = "launch rofi", group = "launcher" }),
   awful.key({ modkey }, "v", function()
     awesome.emit_signal "scratch::chat"
   end, { description = "open chats", group = "scratchpad" }),
   awful.key({ modkey }, "w", function()
     awful.spawn.with_shell(browser)
-  end, { description = "open firefox", group = "launcher" }),
+  end, { description = "open browser", group = "launcher" }),
   awful.key({ modkey, ctrl }, "p", function()
-    awful.spawn.with_shell("flameshot gui")
+    awful.spawn.with_shell "flameshot gui"
   end, { description = "flameshot", group = "launcher" }),
 
   awful.key({ modkey }, "l", function()
