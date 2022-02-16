@@ -122,6 +122,11 @@ local mappings = {
       "Workspace Diagnostics",
     },
   },
+  m = {
+    name = "Language Mode", --hardcoded for now just for go.  Make this use an autocmd and be dynamic based on filetype?
+    b = { "<cmd>!go test -bench=.<cr>", "Go Benchmark" },
+    t = { "<cmd>GoTest<cr>", "Go Test" },
+  },
   n = {
     name = "+NERDTree",
     n = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
