@@ -21,11 +21,11 @@ mkdir -p $HOME/tools
 ** I just use pacman & yay for package management.  Pamac was sort of neat, but not really needed in my regular flow.
 ** Standard Arch Packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom"
+ARCH_LIST="alacritty ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git playerctl arcolinux-logout"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer"
 #+end_src
 ** Install packages.  This will take a while.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
@@ -56,6 +56,11 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 cd $HOME/tools/1password && makepkg -si
 #+end_src
+*** fzf
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+#+end_src
 *** Neovim Nightly
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
@@ -64,24 +69,10 @@ sudo make install
 #+end_src
 *** Doom Emacs
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-# rm -rf $HOME/.emacs.d
-# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-# ~/.emacs.d/bin/doom install
-# rm -r $HOME/.doom.d
-#+end_src
-*** Pritunl
-**** On the pritunl site they say to install that last numix-theme, but I have never gotten it to download and I frankly don't care.
-#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-sudo tee -a /etc/pacman.conf << EOF
-[pritunl]
-Server = https://repo.pritunl.com/stable/pacman
-EOF
-
-sudo pacman-key --keyserver hkp://keyserver.ubuntu.com -r 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-sudo pacman-key --lsign-key 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-sudo pacman -Sy
-sudo pacman -S pritunl-client-electron
-sudo pacman -S pritunl-client-electron-numix-theme
+ rm -rf $HOME/.emacs.d
+ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+ ~/.emacs.d/bin/doom install
+ rm -r $HOME/.doom.d
 #+end_src
 * Symlink the good stuff
 ** I just want to make sure I don't blast things like the .zshrc or the existing config autostart (just in case), so I'll back those up
@@ -110,12 +101,12 @@ source "$HOME/.zshrc"
 #+END_SRC
 ** Then I'll finally symlink the main pieces of my system that I must have in place and resource my .zshrc
 * Final setup, mostly stuff I haven't thought about much
-** Use fnm to install node 12 and make 12 the default.  I use 12 at work and I'm not using node much in my personal time, so it's easier for me to have my system default be the work default.
+** Use fnm to install node 14 and make 14 the default.  I use 14 at work and I'm not using node much in my personal time, so it's easier for me to have my system default be the work default.
 ** Enable docker on startup
 ** Do some installing of neovim for specific python/ruby remote plugins.  Would be cool to cut those out of my flow.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-fnm install 12
-fnm default 12
+fnm install 14
+fnm default 14
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 sudo pip3 install neovim

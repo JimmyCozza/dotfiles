@@ -50,8 +50,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #export PATH="/usr/local/opt/awscli@1/bin:$PATH"
 eval "$(direnv hook zsh)"
 
-source /home/jimmy/.gulp-autocompletion-zsh/gulp-autocompletion.zsh
-
 # fnm
 export PATH=/home/jimmy/.fnm:$PATH
 eval "`fnm env`"

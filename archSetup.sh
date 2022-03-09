@@ -10,9 +10,9 @@ mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit"
+ARCH_LIST="alacritty ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git playerctl arcolinux-logout"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -30,25 +30,17 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 cd $HOME/tools/1password && makepkg -si
 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make
 sudo make install
 
-# rm -rf $HOME/.emacs.d
-# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-# ~/.emacs.d/bin/doom install
-# rm -r $HOME/.doom.d
-
-sudo tee -a /etc/pacman.conf << EOF
-[pritunl]
-Server = https://repo.pritunl.com/stable/pacman
-EOF
-
-sudo pacman-key --keyserver hkp://keyserver.ubuntu.com -r 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-sudo pacman-key --lsign-key 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-sudo pacman -Sy
-sudo pacman -S pritunl-client-electron
-sudo pacman -S pritunl-client-electron-numix-theme
+ rm -rf $HOME/.emacs.d
+ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+ ~/.emacs.d/bin/doom install
+ rm -r $HOME/.doom.d
 
 mv $HOME/.zshrc $HOME/.zshrc.bak
 mv $HOME/.config/autostart $HOME/.config/bak.autostart
@@ -71,8 +63,8 @@ ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 
 source "$HOME/.zshrc"
 
-fnm install 12
-fnm default 12
+fnm install 14
+fnm default 14
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 sudo pip3 install neovim
@@ -81,6 +73,7 @@ sudo gem install neovim
 
 chsh -s $(which zsh)
 source "$HOME/.zshrc"
+xdg-mime default google-chrome-unstable.desktop x-scheme-handler/https x-scheme-handler/http
 
 echo "I have exercised the demons.  This house is clean"
 echo "Start TMUX and run tmux-plugin-manager install"
