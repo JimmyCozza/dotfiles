@@ -25,7 +25,7 @@ ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose 
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git google-chrome-dev playerctl arcolinux-logout"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop tableplus tdrop-git awesome-git google-chrome playerctl arcolinux-logout"
 #+end_src
 ** Install packages.  This will take a while.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
