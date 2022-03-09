@@ -6,9 +6,9 @@
 #########################################################
 #########################################################
 echo "Setup directories"
-mkdir $HOME/work
-mkdir $HOME/projects
-mkdir $HOME/tools
+mkdir -p $HOME/work
+mkdir -p $HOME/projects
+mkdir -p $HOME/tools
 
 ARCH_LIST="alacritty fzf ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit"
 
