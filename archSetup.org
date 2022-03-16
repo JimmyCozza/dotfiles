@@ -21,7 +21,7 @@ mkdir -p $HOME/tools
 ** I just use pacman & yay for package management.  Pamac was sort of neat, but not really needed in my regular flow.
 ** Standard Arch Packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-ARCH_LIST="alacritty ripgrep tmux firefox bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
