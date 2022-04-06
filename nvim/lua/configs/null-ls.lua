@@ -13,7 +13,7 @@ null_ls.setup {
   end,
   debug = true,
   sources = {
-    builtins.formatting.prettier,
+    --builtins.formatting.prettier,
     builtins.diagnostics.eslint,
     builtins.formatting.stylua,
     builtins.formatting.gofmt,

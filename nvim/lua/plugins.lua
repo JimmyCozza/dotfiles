@@ -40,9 +40,8 @@ return require("packer").startup(function()
   use "shaunsingh/seoul256.nvim"
   use "eddyekofo94/gruvbox-flat.nvim"
   use "ap/vim-css-color"
-  use {
-    "norcalli/nvim-colorizer.lua",
-  }
+  use "lukas-reineke/indent-blankline.nvim"
+  use "norcalli/nvim-colorizer.lua"
 
   -- Local tinkering
   --use "~/projects/npmInfo"
@@ -51,10 +50,6 @@ return require("packer").startup(function()
   --requires = { "trip-zip/plenary.nvim" },
   --}
   use "trip-zip/npmInfo.nvim"
-  use {
-    "trip-zip/youtrack",
-    requires = { "trip-zip/plenary.nvim" },
-  }
 
   --Navigation
   use "nvim-lua/popup.nvim"
@@ -103,9 +98,9 @@ return require("packer").startup(function()
   use "preservim/nerdtree"
 
   use "junegunn/vim-easy-align"
-  use {
-    "windwp/nvim-autopairs",
-  }
+  --use {
+    --"windwp/nvim-autopairs",
+  --}
   use {
     "folke/which-key.nvim",
   }
@@ -117,9 +112,7 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
   }
-  use {
-    "hoob3rt/lualine.nvim",
-  }
+  use "hoob3rt/lualine.nvim"
 
   -- Javascript/Node
   use "pangloss/vim-javascript"
@@ -141,6 +134,10 @@ return require("packer").startup(function()
   use "hrsh7th/cmp-cmdline"
   use "quangnguyen30192/cmp-nvim-ultisnips"
   use {
+      "zbirenbaum/copilot-cmp",
+      after = {"copilot.lua", "nvim-cmp"},
+  }
+  use {
     "hrsh7th/nvim-cmp",
     disable = false,
   }
@@ -154,11 +151,15 @@ return require("packer").startup(function()
     "numtostr/FTerm.nvim",
   }
   -- DAP
-  use {
-    "mfussenegger/nvim-dap",
-  }
+  use "mfussenegger/nvim-dap"
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-  --use 'theHamsta/nvim-dap-virtual-text'
   use "nvim-telescope/telescope-dap.nvim"
-  use "github/copilot.vim"
+  --use 'theHamsta/nvim-dap-virtual-text'
+  use {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function ()
+      vim.schedule(function() require("copilot").setup() end)
+    end,
+  }
 end)

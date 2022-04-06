@@ -134,6 +134,7 @@ local mappings = {
   },
   p = {
     name = "+Project",
+    b = { "<cmd>Telescope buffers<cr>", "Find open Buffers" },
     f = { "<cmd>Telescope find_files<cr>", "Find file in project" },
     p = {
       name = "Packer",
