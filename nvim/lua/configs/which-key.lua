@@ -44,6 +44,11 @@ local mappings = {
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search project" },
   ["b"] = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
+  c = {
+    name = "Comment",
+    ["l"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
+    ["space"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
+  },
   d = {
     name = "+Debug",
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },

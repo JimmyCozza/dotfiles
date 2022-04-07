@@ -75,6 +75,17 @@ return require("packer").startup(function()
     requires = {
       "trip-zip/plenary.nvim",
     },
+    use {
+      "pwntester/octo.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "kyazdani42/nvim-web-devicons",
+      },
+      config = function()
+        require("octo").setup()
+      end,
+    },
   }
 
   --Utilities
@@ -99,7 +110,7 @@ return require("packer").startup(function()
 
   use "junegunn/vim-easy-align"
   --use {
-    --"windwp/nvim-autopairs",
+  --"windwp/nvim-autopairs",
   --}
   use {
     "folke/which-key.nvim",
@@ -134,8 +145,8 @@ return require("packer").startup(function()
   use "hrsh7th/cmp-cmdline"
   use "quangnguyen30192/cmp-nvim-ultisnips"
   use {
-      "zbirenbaum/copilot-cmp",
-      after = {"copilot.lua", "nvim-cmp"},
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua", "nvim-cmp" },
   }
   use {
     "hrsh7th/nvim-cmp",
@@ -155,11 +166,14 @@ return require("packer").startup(function()
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use "nvim-telescope/telescope-dap.nvim"
   --use 'theHamsta/nvim-dap-virtual-text'
+  --use "github/copilot.vim"
   use {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
-    config = function ()
-      vim.schedule(function() require("copilot").setup() end)
+    config = function()
+      vim.schedule(function()
+        require("copilot").setup()
+      end)
     end,
   }
 end)

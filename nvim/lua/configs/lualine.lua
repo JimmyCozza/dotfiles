@@ -5,6 +5,7 @@ end
 
 lualine.setup {
   options = {
+    globalstatus = true,
     theme = "nord",
     -- ... your lualine config
   },

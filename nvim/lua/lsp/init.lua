@@ -52,3 +52,9 @@ for _, server in pairs(servers) do
     },
   }
 end
+
+local function setup()
+  -- check for lspConfig
+  -- setup each handler
+  -- setup null-ls
+end
