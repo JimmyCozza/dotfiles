@@ -90,7 +90,6 @@ return require("packer").startup(function()
 
   --Utilities
   use "nvim-treesitter/nvim-treesitter"
-  use "rstacruz/vim-closer"
   use {
     "rcarriga/nvim-notify",
     disable = false,
