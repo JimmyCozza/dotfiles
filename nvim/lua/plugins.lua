@@ -63,7 +63,7 @@ return require("packer").startup(function()
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
   use "tpope/vim-fugitive"
-  use "tpope/vim-endwise"
+  --use "tpope/vim-endwise"
 
   -- Undo
   use "mbbill/undotree"
@@ -109,9 +109,7 @@ return require("packer").startup(function()
   use "preservim/nerdtree"
 
   use "junegunn/vim-easy-align"
-  --use {
-  --"windwp/nvim-autopairs",
-  --}
+  use "windwp/nvim-autopairs"
   use {
     "folke/which-key.nvim",
   }
