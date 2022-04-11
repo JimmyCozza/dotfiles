@@ -96,11 +96,11 @@ updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capab
 updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 local servers = {
-  graphql = true,
+  graphql = false,
   html = true,
   vimls = true,
   yamlls = true,
-  eslint = true,
+  eslint = false,
   cmake = (1 == vim.fn.executable "cmake-language-server"),
   dartls = pcall(require, "flutter-tools"),
   gopls = {

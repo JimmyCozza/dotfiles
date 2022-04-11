@@ -105,7 +105,13 @@ return require("packer").startup(function()
     end,
   }
   use "scrooloose/nerdcommenter"
-  use "preservim/nerdtree"
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+    },
+  }
+  --use "preservim/nerdtree"
 
   use "junegunn/vim-easy-align"
   use "windwp/nvim-autopairs"
