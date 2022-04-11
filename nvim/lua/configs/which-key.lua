@@ -41,7 +41,10 @@ require("which-key").setup {
 }
 
 local mappings = {
-  ["/"] = { "<cmd>Telescope live_grep<cr>", "Search project" },
+  ["/"] = {
+    "<cmd>lua require('telescope.builtin').live_grep({ additional_args = function() return { '--glob=!package-lock.json' } end })<cr>",
+    "Search project",
+  },
   ["b"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
   c = {

@@ -11,7 +11,7 @@ local function split(inputStr, pattern)
 end
 
 local function splitOnSlash(inputStr)
-  return split(inputStr, '([^/]+)')
+  return split(inputStr, "([^/]+)")
 end
 
 local function smartTruncate(opts, path)
@@ -21,13 +21,13 @@ local function smartTruncate(opts, path)
     local parts = splitOnSlash(path)
     local letters = {}
     for index, value in ipairs(parts) do
-      local shifted = {unpack(parts, index+1)}
-        local short = table.concat(shifted, '/')
-        table.insert(letters, string.sub(value, 1, 1))
-        local smartShortPath = table.concat(letters, '/')..'/'..short
-        if string.len(smartShortPath) < maxLength then
-          return smartShortPath
-        end
+      local shifted = { unpack(parts, index + 1) }
+      local short = table.concat(shifted, "/")
+      table.insert(letters, string.sub(value, 1, 1))
+      local smartShortPath = table.concat(letters, "/") .. "/" .. short
+      if string.len(smartShortPath) < maxLength then
+        return smartShortPath
+      end
     end
   end
   return path
@@ -42,6 +42,7 @@ require("telescope").setup {
       "--line-number",
       "--column",
       "--smart-case",
+      "--trim",
     },
     prompt_prefix = " ",
     selection_caret = " ",
@@ -58,7 +59,9 @@ require("telescope").setup {
       vertical = { mirror = false },
     },
     file_sorter = require("telescope.sorters").get_fzy_sorter,
-    file_ignore_patterns = { ".git" },
+    file_ignore_patterns = {
+      ".git/*",
+    },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = smartTruncate,
     winblend = 0,
