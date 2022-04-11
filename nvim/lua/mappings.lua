@@ -8,6 +8,8 @@ map("v", "dp", "_dP", opts)
 map("n", "<A-t>", '<cmd>lua require("FTerm").toggle()<CR>', opts)
 map("t", "<A-t>", '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>', opts)
 map("t", "<esc>", "<C-\\><C-n>", { silent = true })
+map("n", "<Right>", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
+map("n", "<Left>", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 
 -- ****************************
 -- Search
