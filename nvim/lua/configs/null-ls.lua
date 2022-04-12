@@ -16,6 +16,6 @@ null_ls.setup {
     --builtins.formatting.prettier,
     builtins.diagnostics.eslint,
     builtins.formatting.stylua,
-    builtins.formatting.gofmt,
+    --builtins.formatting.gofmt,
   },
 }

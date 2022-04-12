@@ -127,7 +127,6 @@ return require("packer").startup(function()
     requires = "trip-zip/plenary.nvim",
   }
   use "hoob3rt/lualine.nvim"
-  use "nvim-lua/lsp-status.nvim"
 
   -- Javascript/Node
   use "pangloss/vim-javascript"
@@ -141,6 +140,7 @@ return require("packer").startup(function()
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/lsp-colors.nvim"
   use "neovim/nvim-lspconfig"
+  use "nvim-lua/lsp-status.nvim"
 
   -- Completion
   use "hrsh7th/cmp-nvim-lsp"
