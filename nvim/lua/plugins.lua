@@ -79,17 +79,6 @@ return require("packer").startup(function()
     requires = {
       "trip-zip/plenary.nvim",
     },
-    use {
-      "pwntester/octo.nvim",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-        "kyazdani42/nvim-web-devicons",
-      },
-      config = function()
-        require("octo").setup()
-      end,
-    },
   }
 
   --Utilities
@@ -130,8 +119,8 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
   }
-  --use "hoob3rt/lualine.nvim"
-  use "feline-nvim/feline.nvim"
+  use "hoob3rt/lualine.nvim"
+  --use "feline-nvim/feline.nvim"
 
   -- Javascript/Node
   use "pangloss/vim-javascript"
