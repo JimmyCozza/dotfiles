@@ -9,7 +9,7 @@ local nvim_status = require "lsp-status"
 
 local handlers = require "lsp.handlers"
 
-local ts_util = require "typescript"
+local ts_util = require "nvim-lsp-ts-utils"
 
 local status = require "lsp.status"
 status.activate()
@@ -140,6 +140,7 @@ local servers = {
     },
 
     on_attach = function(client)
+      print(vim.inspect(client))
       custom_attach(client)
 
       ts_util.setup { auto_inlay_hints = false }

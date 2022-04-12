@@ -61,6 +61,12 @@ nvimtree.setup {
     side = "left",
     width = 25,
     hide_root_folder = false,
+    mappings = {
+      list = {
+        { key = "g?", action = "" },
+        { key = "?", action = "toggle_help" },
+      },
+    },
   },
   git = {
     enable = true,

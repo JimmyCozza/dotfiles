@@ -106,29 +106,18 @@ local mappings = {
   l = {
     name = "+LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      "Document Diagnostics",
-    },
+    d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
+    D = { "<cmd>TroubleToggle document_diagnostics<cr>", "Trouble Buffer Diagnostics" },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
-    j = {
-      "<cmd>lua vim.diagnostic.goto_next()<CR>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      "Prev Diagnostic",
-    },
+    j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+    k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     i = { "<cmd>LspInfo<cr>", "LSP Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "LSP Installer Info" },
     q = { "<cmd>lua vim.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>LspStart<cr>", "LSP Start" },
     S = { "<cmd>LspStop<cr>", "LSP Stop" },
-    w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-      "Workspace Diagnostics",
-    },
+    w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+    W = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble Diagnostics" },
   },
   m = {
     name = "Language Mode", --hardcoded for now just for go.  Make this use an autocmd and be dynamic based on filetype?
@@ -160,8 +149,7 @@ local mappings = {
     c = { "<cmd>nohlsearch<cr>", "Clear Search Highlighting" },
   },
   t = {
-    name = "+Trouble",
-    c = { "<cmd>tabc<cr>", "Close Tab" },
+    name = "+Todo",
     t = { "<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List" },
   },
   w = {

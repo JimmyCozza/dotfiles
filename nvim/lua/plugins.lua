@@ -138,6 +138,7 @@ return require("packer").startup(function()
 
   -- LSP
   use "jose-elias-alvarez/null-ls.nvim"
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "folke/lsp-colors.nvim"
   use "neovim/nvim-lspconfig"
   use "nvim-lua/lsp-status.nvim"
