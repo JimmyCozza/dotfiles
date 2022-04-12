@@ -79,7 +79,7 @@ awful.mouse.append_global_mousebindings {
     mymainmenu:toggle()
   end),
 }
-awful.spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/nord/*"
+awful.spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/catppuccin/*"
 
 -- Garbage Collector Settings
 collectgarbage("setpause", 110)

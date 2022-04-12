@@ -38,6 +38,10 @@ return require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+  }
   use "eddyekofo94/gruvbox-flat.nvim"
   use "ap/vim-css-color"
   use "lukas-reineke/indent-blankline.nvim"
@@ -126,7 +130,8 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
   }
-  use "hoob3rt/lualine.nvim"
+  --use "hoob3rt/lualine.nvim"
+  use "feline-nvim/feline.nvim"
 
   -- Javascript/Node
   use "pangloss/vim-javascript"
