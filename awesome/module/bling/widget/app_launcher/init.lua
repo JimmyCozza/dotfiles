@@ -299,8 +299,8 @@ local function search(self, text)
 
       -- Check if there's a match by the app name or app command
       if
-        string.find(entry.name, case_insensitive_pattern(text)) ~= nil
-        or self.search_commands and string.find(entry.commandline, case_insensitive_pattern(text)) ~= nil
+        string.find(entry.name:lower(), text:lower(), 1, true) ~= nil
+        or self.search_commands and string.find(entry.commandline, text:lower(), 1, true) ~= nil
       then
         table.insert(self._private.matched_entries, {
           name = entry.name,
@@ -518,7 +518,6 @@ local function scroll_right(self)
   local rows, columns = self._private.grid:get_dimension()
   local pos = self._private.grid:get_widget_position(self._private.active_widget)
   local is_less_than_max_column = pos.col < columns
-  local is_less_than_max_page = self._private.current_page < self._private.pages_count
 
   -- Check if we can scroll down the app list
   if is_less_than_max_column then
@@ -803,6 +802,7 @@ local function new(args)
   args.icon_theme = args.icon_theme or nil
   args.icons_size = args.icons_size or nil
 
+  args.type = args.type or "dock"
   args.show_on_focused_screen = args.show_on_focused_screen == nil and true or args.show_on_focused_screen
   args.screen = args.screen or capi.screen.primary
   args.placement = args.placement or awful.placement.centered
@@ -954,7 +954,7 @@ local function new(args)
     },
   }
   ret._private.widget = awful.popup {
-    type = "dock",
+    type = args.type,
     visible = false,
     ontop = true,
     placement = ret.placement,

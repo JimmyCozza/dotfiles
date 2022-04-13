@@ -65,7 +65,7 @@ local app_launcher = require("module.bling").widget.app_launcher({
 
 awful.keyboard.append_global_keybindings {
   awful.key({ modkey }, "d", function()
-    awful.spawn(launcher)
+    awful.spawn.with_shell(launcher)
   end, { description = "show app launcher", group = "launcher" }),
   awful.key({ modkey }, "e", function()
     awful.spawn(emoji_launcher)

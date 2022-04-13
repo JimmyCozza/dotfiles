@@ -24,9 +24,11 @@ function _filesystem.list_directory_files(path, exts, recursive)
   -- Build a table of files from the path with the required extensions
   local file_list = Gio.File.new_for_path(path):enumerate_children("standard::*", 0)
   if file_list then
-    for file in function()
-      return file_list:next_file()
-    end do
+    for file in
+      function()
+        return file_list:next_file()
+      end
+    do
       local file_type = file:get_file_type()
       if file_type == "REGULAR" then
         local file_name = file:get_display_name()

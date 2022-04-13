@@ -10,7 +10,7 @@ mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi sxhkd flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 
 AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer"
 
@@ -54,7 +54,6 @@ ln -s "$CONFIG_FILES_PATH/awesome" "$HOME/.config/awesome"
 ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
-ln -s "$CONFIG_FILES_PATH/sxhkd" "$HOME/.config/sxhkd"
 ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
 ln -s "$CONFIG_FILES_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"

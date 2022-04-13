@@ -7,6 +7,7 @@ export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export TODO_PATH=$HOME/notes/vimwiki/todo/
 export EDITOR="nvim"
 export VISUAL=nvim
 export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
