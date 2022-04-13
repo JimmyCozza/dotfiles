@@ -1,0 +1,5 @@
+Apr 14 09:31 : config: option 'buffer_time' on line 23 was not recognized
+Apr 14 09:31 : config: option 'max_client' on line 38 was not recognized
+Apr 14 09:32 : client: [0] command "close" during idle
+Apr 14 09:34 : client: [1] command "close" during idle
+Apr 14 09:39 : client: [2] command "close" during idle

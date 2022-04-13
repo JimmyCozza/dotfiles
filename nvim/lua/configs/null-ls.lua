@@ -15,7 +15,7 @@ null_ls.setup {
   sources = {
     --builtins.formatting.prettier,
     builtins.diagnostics.eslint,
-    builtins.formatting.stylua,
+    --builtins.formatting.stylua,
     --builtins.formatting.gofmt,
   },
 }

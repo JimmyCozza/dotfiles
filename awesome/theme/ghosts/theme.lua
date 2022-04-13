@@ -28,7 +28,7 @@ theme.me = gears.surface.load_uncached(gfs.get_configuration_dir() .. "images/me
 
 -- Distro Logo
 --
-theme.distro_logo = gears.surface.load_uncached(gfs.get_configuration_dir() .. "images/distro.png")
+theme.awesome_logo = gears.surface.load_uncached(gfs.get_configuration_dir() .. "images/distro.png")
 
 -- Icons for Notif Center
 --
@@ -40,7 +40,7 @@ theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
 
 -- Load ~/.Xresources colors and set fallback colors
 --
-theme.darker_bg = "#10171e"
+theme.darker_bg = xrdb.background or "#10171e"
 theme.lighter_bg = "#1f272e"
 theme.xbackground = xrdb.background or "#131a21"
 theme.xforeground = xrdb.foreground or "#ffffff"
@@ -60,6 +60,8 @@ theme.xcolor12 = xrdb.color12 or "#bac8ef"
 theme.xcolor13 = xrdb.color13 or "#d7c1ed"
 theme.xcolor14 = xrdb.color14 or "#c7e5d6"
 theme.xcolor15 = xrdb.color15 or "#eaeaea"
+theme.dashboard_fg = "#737a89"
+theme.transparent = "#00000000"
 
 -- Fonts
 --
@@ -76,6 +78,10 @@ theme.bg_normal = theme.xbackground
 theme.bg_focus = theme.xcolor0
 theme.bg_urgent = theme.xcolor8
 theme.bg_minimize = theme.xcolor8
+
+-- Accent colors
+theme.accent = theme.xcolor5
+theme.hover_effect = theme.accent .. "44"
 
 -- Foreground Colors
 --
@@ -321,5 +327,16 @@ theme.task_preview_widget_border_width = theme.widget_border_width * 0
 theme.task_preview_widget_margin = dpi(15)
 
 theme.fade_duration = 250
+
+-- Dashboard
+theme.dashboard_width = dpi(300)
+theme.dashboard_bg = theme.darker_bg
+theme.dashboard_box_bg = theme.xbackground
+theme.dashboard_box_fg = theme.dashboard_fg
+
+--Music
+theme.music_bg = theme.xbackground
+theme.music_bg_accent = theme.darker_bg
+theme.music_accent = theme.xcolor15
 
 return theme

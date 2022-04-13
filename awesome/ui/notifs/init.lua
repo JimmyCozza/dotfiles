@@ -105,7 +105,8 @@ naughty.connect_signal("request::display", function(n)
   naughty.layout.box {
     notification = n,
     type = "notification",
-    bg = beautiful.xbackground .. 00,
+    bg = beautiful.xbackground,
+    --bg = beautiful.xbackground .. 00,
     widget_template = {
       {
         {

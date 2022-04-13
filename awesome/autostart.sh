@@ -6,6 +6,7 @@ function run {
     $@&
   fi
 }
+run xrdb $HOME/dotfiles/.xfiles/catppuccin
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 #run xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal
 #run xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
@@ -23,8 +24,6 @@ run conky -c $HOME/.config/awesome/system-overview
 # feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 # Start compositor
 run picom --experimental-backend &
-# sxhkd Hotkeys
-run sxhkd &
 run $HOME/.screenlayout/laptop.sh &
 #run applications from startup
 #run discord

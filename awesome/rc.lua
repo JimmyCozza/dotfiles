@@ -46,39 +46,6 @@ end)
 require "signal"
 require "ui"
 
--- Create a launcher widget and a main menu
-local awesomemenu = {
-  {
-    "Key Binds",
-    function()
-      hotkeys_popup.show_help(nil, awful.screen.focused())
-    end,
-  },
-  { "Manual", terminal .. " start man awesome" },
-  { "Edit Config", editor .. " " .. awesome.conffile },
-  { "Restart", awesome.restart },
-  {
-    "Quit",
-    function()
-      awesome.quit()
-    end,
-  },
-}
-
-local appmenu = { { "Alacritty", terminal }, { "Emacs", editor } }
-
-local mymainmenu = awful.menu {
-  items = {
-    { "AwesomeWM", awesomemenu, beautiful.awesome_icon },
-    { "Apps", appmenu },
-  },
-}
-
-awful.mouse.append_global_mousebindings {
-  awful.button({}, 3, function()
-    mymainmenu:toggle()
-  end),
-}
 awful.spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/catppuccin/*"
 
 -- Garbage Collector Settings
