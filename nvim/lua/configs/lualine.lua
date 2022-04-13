@@ -51,7 +51,8 @@ lualine.setup {
     disabled_filetypes = {},
     globalstatus = true,
     icons_enabled = true,
-    section_separators = { left = icon_styles.round.right, right = icon_styles.round.left },
+    section_separators = { left = "", right = icon_styles.round.left },
+    --section_separators = { left = icon_styles.round.right, right = icon_styles.round.left },
     theme = "catppuccin",
   },
   sections = {
