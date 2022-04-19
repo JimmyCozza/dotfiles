@@ -31,7 +31,7 @@ user_vars = {
 
   -- Type 'ip a' and check your wlan and ethernet name
   network = {
-    wlan = "wlo1",
+    wlan = "wlan0",
     ethernet = "eno1"
   },
 
