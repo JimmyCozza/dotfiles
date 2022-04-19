@@ -20,6 +20,8 @@ awful.rules.rules = {
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
     }
   },
+  -- Clients should always start as slave instead of master
+  { rule = {}, properties = {}, callback = awful.client.setslave },
   {
     rule_any = {
       instance = {},

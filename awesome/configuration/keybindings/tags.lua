@@ -1,4 +1,5 @@
 local awful = require "awful"
+local naughty = require "naughty"
 local hotkeys_popup = require "awful.hotkeys_popup"
 local tag_keys = {
   awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
@@ -22,6 +23,7 @@ local tag_keys = {
       if tag then
         tag:view_only()
       end
+      client.emit_signal("tag::switched")
     end,
   },
   awful.key {
