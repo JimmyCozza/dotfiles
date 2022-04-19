@@ -75,18 +75,8 @@ user_vars = {
   -- { WM_CLASS, program, name, isSteam }
   dock_programs = {
     { "Alacritty", "alacritty", "Alacritty" },
-    { "firefox", "firefox", "Firefox" },
+    { "google-chrome", "google-chrome-stable", "Chrome" },
     { "discord", "discord", "Discord" },
-    { "Spotify", "flatpak run com.spotify.Client", "Spotify" },
-    { "Code", "code", "Visual Studio Code" },
-    { "processing-app-Base", "arduino", "Arduino IDE" },
-    { "zoom", "zoom", "Zoom" },
-    { "Thunderbird", "thunderbird", "Thunderbird" },
-    { "Mattermost", "mattermost-desktop", "Mattermost" },
-    { "Blender", "blender", "Blender" },
     { "Steam", "steam", "Steams" },
-    { "FreeCAD", "freecad", "Freecad" },
-    { "Nemo", "nemo", "Dateien" },
-    { "Paradox Launcher", "394360", "Hearts of Iron 4", true }
   }
 }
