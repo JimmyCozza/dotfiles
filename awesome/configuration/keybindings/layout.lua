@@ -1,18 +1,5 @@
 local awful = require "awful"
-local machi = require "module.layout-machi"
 local layout_bindings = {
-  awful.key({ modkey }, ".", function()
-    machi.default_editor.start_interactive()
-  end, {
-    description = "edit the current layout if it is a machi layout",
-    group = "layout",
-  }),
-  awful.key({ modkey }, "/", function()
-    machi.switcher.start(client.focus)
-  end, {
-    description = "switch between windows for a machi layout",
-    group = "layout",
-  }),
   awful.key({ modkey }, "l", function()
     awful.tag.incmwfact(0.05)
   end, { description = "increase master width factor", group = "layout" }),

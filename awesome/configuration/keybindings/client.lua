@@ -1,5 +1,4 @@
 local awful = require "awful"
-local bling = require "module.bling"
 
 -- Table will be
 -- { modifier, binding, action, group, description}
@@ -13,22 +12,6 @@ local client_bindings = {
     description = "swap with previous client by index",
     group = "client",
   }),
-  awful.key({ modkey }, "Down", function()
-    awful.client.focus.bydirection "down"
-    bling.module.flash_focus.flashfocus(client.focus)
-  end, { description = "focus down", group = "client" }),
-  awful.key({ modkey }, "Up", function()
-    awful.client.focus.bydirection "up"
-    bling.module.flash_focus.flashfocus(client.focus)
-  end, { description = "focus up", group = "client" }),
-  awful.key({ modkey }, "Left", function()
-    awful.client.focus.bydirection "left"
-    bling.module.flash_focus.flashfocus(client.focus)
-  end, { description = "focus left", group = "client" }),
-  awful.key({ modkey }, "Right", function()
-    awful.client.focus.bydirection "right"
-    bling.module.flash_focus.flashfocus(client.focus)
-  end, { description = "focus right", group = "client" }),
   awful.key({ modkey }, "j", function()
     awful.client.focus.byidx(1)
   end, { description = "focus next by index", group = "client" }),
@@ -36,9 +19,6 @@ local client_bindings = {
     awful.client.focus.byidx(-1)
   end, { description = "focus previous by index", group = "client" }),
   awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
-  awful.key({ altkey }, "Tab", function()
-    awesome.emit_signal "bling::window_switcher::turn_on"
-  end, { description = "Window Switcher", group = "client" }),
   awful.key({ modkey }, "z", function()
     require("ui.pop.peek").run()
   end, { description = "peek", group = "client" }),
@@ -100,15 +80,6 @@ local signal_bindings = {
   end, { description = "(un)maximize horizontally", group = "client" }),
   -- Single tap: Center client
   -- Double tap: Center client + Floating + Resize
-  awful.key({ modkey }, "c", function(c)
-    awful.placement.centered(c, {
-      honor_workarea = true,
-      honor_padding = true,
-    })
-    helpers.single_double_tap(nil, function()
-      helpers.float_and_resize(c, screen_width * 0.25, screen_height * 0.28)
-    end)
-  end),
 }
 
 return {

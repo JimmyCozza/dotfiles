@@ -4,12 +4,24 @@ local media = {
   -- Volume control
   awful.key({}, "XF86AudioRaiseVolume", function()
     awful.spawn "pamixer -i 3"
+    awesome.emit_signal("widget::volume")
+    awesome.emit_signal("module::volume_osd:show", true)
+    awesome.emit_signal("module::slider:update")
+    awesome.emit_signal("widget::volume_osd:rerun")
   end, { description = "increase volume", group = "media" }),
   awful.key({}, "XF86AudioLowerVolume", function()
     awful.spawn "pamixer -d 3"
+    awesome.emit_signal("widget::volume")
+    awesome.emit_signal("module::volume_osd:show", true)
+    awesome.emit_signal("module::slider:update")
+    awesome.emit_signal("widget::volume_osd:rerun")
   end, { description = "decrease volume", group = "media" }),
   awful.key({}, "XF86AudioMute", function()
     awful.spawn "pamixer -t"
+    awesome.emit_signal("widget::volume")
+    awesome.emit_signal("module::volume_osd:show", true)
+    awesome.emit_signal("module::slider:update")
+    awesome.emit_signal("widget::volume_osd:rerun")
   end, { description = "mute volume", group = "media" }),
   awful.key({ modkey }, "v", function()
     awful.spawn "pavucontrol"
