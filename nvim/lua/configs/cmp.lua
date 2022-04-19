@@ -64,9 +64,6 @@ cmp.setup {
       return vim_item
     end,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
   window = {
     completion = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

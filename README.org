@@ -50,7 +50,5 @@
   - { key: W,        mods: Control,        chars: "\x02\x78"                        }
 #+END_SRC
 **** Anyway, I should probably remove these and get those keybindings added to tmux some other way so I don't forget about these 3 bindings I added years ago
-** Sxhkd
-*** I'm still using a couple hotkeys that are keeping me with sxhkd, but I will probably switch everything over to awesomewm keybindings and remove this library completely.
 ** Picom
 *** Really only using the compositor for a blur effect on the awesomewm clients

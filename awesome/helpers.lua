@@ -4,8 +4,7 @@
 local awful = require "awful"
 local gears = require "gears"
 local beautiful = require "beautiful"
-local xresources = require "beautiful.xresources"
-local dpi = xresources.apply_dpi
+local dpi = beautiful.xresources.apply_dpi
 local wibox = require "wibox"
 local naughty = require "naughty"
 local helpers = {}
@@ -478,6 +477,96 @@ function helpers.float_and_resize(c, width, height)
   c:raise()
 end
 
-return helpers
+function helpers.centered_client_placement(c)
+  return gears.timer.delayed_call(function()
+    awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+  end)
+end
 
--- EOF ------------------------------------------------------------------------
+-- Useful for periodically checking the output of a command that
+-- requires internet access.
+-- Ensures that `command` will be run EXACTLY once during the desired
+-- `interval`, even if awesome restarts multiple times during this time.
+-- Saves output in `output_file` and checks its last modification
+-- time to determine whether to run the command again or not.
+-- Passes the output of `command` to `callback` function.
+function helpers.remote_watch(command, interval, output_file, callback)
+  local run_the_thing = function()
+    -- Pass output to callback AND write it to file
+    awful.spawn.easy_async_with_shell(command .. " | tee " .. output_file, function(out)
+      callback(out)
+    end)
+  end
+
+  local timer
+  timer = gears.timer {
+    timeout = interval,
+    call_now = true,
+    autostart = true,
+    single_shot = false,
+    callback = function()
+      awful.spawn.easy_async_with_shell("date -r " .. output_file .. " +%s", function(last_update, _, __, exitcode)
+        -- Probably the file does not exist yet (first time
+        -- running after reboot)
+        if exitcode == 1 then
+          run_the_thing()
+          return
+        end
+
+        local diff = os.time() - tonumber(last_update)
+        if diff >= interval then
+          run_the_thing()
+        else
+          -- Pass the date saved in the file since it is fresh enough
+          awful.spawn.easy_async_with_shell("cat " .. output_file, function(out)
+            callback(out)
+          end)
+
+          -- Schedule an update for when the remaining time to complete the interval passes
+          timer:stop()
+          gears.timer.start_new(interval - diff, function()
+            run_the_thing()
+            timer:again()
+          end)
+        end
+      end)
+    end,
+  }
+end
+
+-- Volume Control
+function helpers.volume_control(step)
+  local cmd
+  if step == 0 then
+    cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  else
+    sign = step > 0 and "+" or ""
+    cmd = "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ "
+      .. sign
+      .. tostring(step)
+      .. "%"
+  end
+  awful.spawn.with_shell(cmd)
+end
+
+function helpers.music_control(state)
+  local cmd
+  if state == "toggle" then
+    cmd = "playerctl -p spotify,mpd play-pause"
+  elseif state == "prev" then
+    cmd = "playerctl -p spotify,mpd previous"
+  elseif state == "next" then
+    cmd = "playerctl -p spotify,mpd next"
+  end
+  awful.spawn.with_shell(cmd)
+end
+
+function helpers.send_key(c, key)
+  awful.spawn.with_shell("xdotool key --window " .. tostring(c.window) .. " " .. key)
+end
+
+function helpers.send_key_sequence(c, seq)
+  awful.spawn.with_shell("xdotool type --delay 5 --window " .. tostring(c.window) .. " " .. seq)
+end
+
+return helpers

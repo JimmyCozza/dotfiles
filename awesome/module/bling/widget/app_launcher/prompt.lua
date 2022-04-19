@@ -415,9 +415,13 @@ function prompt:start()
         self._private_cur_pos = #self.command + 1
       elseif key == "r" then
         self._private.search_term = self._private.search_term or self.command:sub(1, self._private_cur_pos - 1)
-        for i, v in function(a, i)
-          return itera(-1, a, i)
-        end, data.history[self.history_path].table, history_index do
+        for i, v in
+          function(a, i)
+            return itera(-1, a, i)
+          end,
+          data.history[self.history_path].table,
+          history_index
+        do
           if v:find(self._private.search_term, 1, true) ~= nil then
             self.command = v
             history_index = i
@@ -427,9 +431,13 @@ function prompt:start()
         end
       elseif key == "s" then
         self._private.search_term = self._private.search_term or self.command:sub(1, self._private_cur_pos - 1)
-        for i, v in function(a, i)
-          return itera(1, a, i)
-        end, data.history[self.history_path].table, history_index do
+        for i, v in
+          function(a, i)
+            return itera(1, a, i)
+          end,
+          data.history[self.history_path].table,
+          history_index
+        do
           if v:find(self._private.search_term, 1, true) ~= nil then
             self.command = v
             history_index = i
@@ -462,9 +470,13 @@ function prompt:start()
         self._private_cur_pos = 1
       elseif key == "Prior" then
         self._private.search_term = self.command:sub(1, self._private_cur_pos - 1) or ""
-        for i, v in function(a, i)
-          return itera(-1, a, i)
-        end, data.history[self.history_path].table, history_index do
+        for i, v in
+          function(a, i)
+            return itera(-1, a, i)
+          end,
+          data.history[self.history_path].table,
+          history_index
+        do
           if v:find(self._private.search_term, 1, true) == 1 then
             self.command = v
             history_index = i
@@ -473,9 +485,13 @@ function prompt:start()
         end
       elseif key == "Next" then
         self._private.search_term = self.command:sub(1, self._private_cur_pos - 1) or ""
-        for i, v in function(a, i)
-          return itera(1, a, i)
-        end, data.history[self.history_path].table, history_index do
+        for i, v in
+          function(a, i)
+            return itera(1, a, i)
+          end,
+          data.history[self.history_path].table,
+          history_index
+        do
           if v:find(self._private.search_term, 1, true) == 1 then
             self.command = v
             history_index = i

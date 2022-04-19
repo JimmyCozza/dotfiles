@@ -27,7 +27,7 @@ local filetype_attach = setmetatable({
         autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
       augroup END
     ]]
-  end,
+  end
 }, {
   __index = function()
     return function() end
@@ -58,14 +58,9 @@ local custom_attach = function(client)
   nvim_status.on_attach(client)
 
   buf_inoremap { "<c-s>", vim.lsp.buf.signature_help }
-
-  buf_nnoremap { "<space>cr", vim.lsp.buf.rename }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
   buf_nnoremap { "gD", vim.lsp.buf.declaration }
   buf_nnoremap { "gT", vim.lsp.buf.type_definition }
-
-  buf_nnoremap { "<space>gI", handlers.implementation }
-  buf_nnoremap { "<space>rr", "LspRestart" }
 
   if filetype ~= "lua" then
     buf_nnoremap { "K", vim.lsp.buf.hover, { desc = "lsp:hover" } }
@@ -103,6 +98,26 @@ local servers = {
   eslint = false,
   cmake = (1 == vim.fn.executable "cmake-language-server"),
   dartls = pcall(require, "flutter-tools"),
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim", "use", "awesome", "screen" },
+          disable = { "lowercase-global" }
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+            [vim.fn.stdpath "config" .. "/lua"] = true,
+          },
+        },
+      },
+    },
+    on_attach = function(client)
+      vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+      custom_attach(client)
+    end,
+  },
   gopls = {
     root_dir = function(fname)
       local Path = require "plenary.path"
@@ -134,13 +149,13 @@ local servers = {
       "javascript",
       "javascriptreact",
       "javascript.jsx",
+      "json",
       "typescript",
       "typescriptreact",
       "typescript.tsx",
     },
 
     on_attach = function(client)
-      print(vim.inspect(client))
       custom_attach(client)
 
       ts_util.setup { auto_inlay_hints = false }
@@ -174,7 +189,7 @@ for server, config in pairs(servers) do
   setup_server(server, config)
 end
 
-require "configs.null-ls"
+--require "configs.null-ls"
 
 return {
   on_init = custom_init,

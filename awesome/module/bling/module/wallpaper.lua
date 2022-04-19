@@ -53,31 +53,35 @@ function apply(wallpaper_object, args)
   args.offset = args.offset or { x = 0, y = 0 }
   args.scale = args.scale or 1
   local positions = {
-    ["centered"] = function()
-      gears.wallpaper.centered(wallpaper_object, args.screen, args.background, args.scale)
+    ["centered"] = function(s)
+      gears.wallpaper.centered(wallpaper_object, s, args.background, args.scale)
     end,
-    ["tiled"] = function()
-      gears.wallpaper.tiled(wallpaper_object, args.screen, args.offset)
+    ["tiled"] = function(s)
+      gears.wallpaper.tiled(wallpaper_object, s, args.offset)
     end,
-    ["maximized"] = function()
-      gears.wallpaper.maximized(wallpaper_object, args.screen, args.ignore_aspect, args.offset)
+    ["maximized"] = function(s)
+      gears.wallpaper.maximized(wallpaper_object, s, args.ignore_aspect, args.offset)
     end,
-    ["fit"] = function()
-      gears.wallpaper.fit(wallpaper_object, args.screen, args.background)
+    ["fit"] = function(s)
+      gears.wallpaper.fit(wallpaper_object, s, args.background)
     end,
   }
+  local call_func = nil
   if type(wallpaper_object) == "string" and gears.filesystem.file_readable(wallpaper_object) then
     -- path of an image file, we use a position function
     local p = args.position or "centered"
-    positions[p]()
+    call_func = positions[p]
   elseif type(wallpaper_object) == "function" then
     -- function
     wallpaper_object(args)
   elseif (not gears.color.ensure_pango_color(wallpaper_object, nil)) and args.position then
     -- if the user sets a position function, wallpaper_object should be a cairo surface
-    positions[args.position]()
+    call_func = positions[args.position]
   else
     gears.wallpaper.set(wallpaper_object)
+  end
+  if call_func then
+    call_func(args.screen)
   end
 end
 
@@ -134,7 +138,15 @@ local simple_index = 0
 function setters.simple(args)
   local wallpapers = prepare_list(args)
   simple_index = (simple_index % #wallpapers) + 1
-  apply(wallpapers[simple_index], args)
+  if type(args.screen) == "table" then
+    for _, v in ipairs(args.screen) do
+      args.screen = v
+      apply(wallpapers[simple_index], args)
+      args.screen = nil
+    end
+  else
+    apply(wallpapers[simple_index], args)
+  end
 end
 
 --- Set a random wallpaper from a list.
@@ -144,7 +156,15 @@ end
 -- @see prepare_list
 function setters.random(args)
   local wallpapers = prepare_list(args)
-  apply(wallpapers[math.random(#wallpapers)], args)
+  if type(args.screen) == "table" then
+    for _, v in ipairs(args.screen) do
+      args.screen = v
+      apply(wallpapers[math.random(#wallpapers)], args)
+      args.screen = nil
+    end
+  else
+    apply(wallpapers[math.random(#wallpapers)], args)
+  end
 end
 
 local simple_schedule_object = nil
@@ -268,7 +288,12 @@ function setup(args)
   local config = args or {}
   config.set_function = config.set_function or (config.wallpaper and setters.simple or setters.awesome_wallpaper)
   local function set_wallpaper(s)
-    config.screen = s or config.screen
+    if type(config.screen) ~= "table" then
+      if config.screen and s and config.screen ~= s then
+        return
+      end
+      config.screen = s or config.screen
+    end
     config.set_function(config)
   end
 
@@ -282,7 +307,7 @@ function setup(args)
       end,
     }
   end
-  if awesome.version == "v4.3" then
+  if awesome.version == "v4.3" or awesome.version == "4.3" then
     awful.screen.connect_for_each_screen(set_wallpaper)
   else
     screen.connect_signal("request::wallpaper", set_wallpaper)
