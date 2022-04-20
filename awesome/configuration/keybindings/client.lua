@@ -1,88 +1,106 @@
 local awful = require "awful"
 
--- Table will be
--- { modifier, binding, action, group, description}
+local function restore_client()
+  local c = awful.client.restore()
+  -- Focus restored client
+  if c then
+    c:emit_signal("request::activate", "key.unminimize", { raise = true })
+  end
+end
+
+local function focus_next_client()
+  awful.client.focus.byidx(1)
+  if client.focus then
+    client.focus:raise()
+  end
+end
+
+local function focus_prev_client()
+  awful.client.focus.byidx(-1)
+  if client.focus then
+    client.focus:lower()
+  end
+end
+
+local function swap_with_next_client()
+  awful.client.swap.byidx(1)
+end
+
+local function swap_with_prev_client()
+  awful.client.swap.byidx(-1)
+end
+
+
+local function kill_client(c)
+  c:kill()
+end
+
+local function move_to_screen(c)
+  c:move_to_screen()
+end
+
+local function minimize_client(c)
+  c.minimized = true
+end
+
+local function maximize_client(c)
+  c.maximized = not c.maximized
+  c:raise()
+end
+
+-- BUG: doesn't work...getmaster is deprecated
+local function move_to_master(c)
+  c:swap(awful.client.getmaster())
+end
+
+local function maximize_vertically(c)
+  c.maxmized_vertical = not c.maxmized_vertical
+  c:raise()
+end
+
+local function toggle_fullscreen(c)
+  c.fullscreen = not c.fullscreen
+  c:raise()
+end
+
+local function toggle_sticky(c)
+  c.floating = not c.floating
+  c.width = 400
+  c.height = 200
+  awful.placement.bottom_right(c)
+  c.sticky = not c.sticky
+end
+
+local function maximize_horizontally(c)
+  c.maximized_horizontal = not c.maximized_horizontal
+  c:raise()
+end
+
+-- {modifier(s) table, key string, function function, description string, group string}
 local client_bindings = {
-  awful.key({ modkey, shift }, "j", function()
-    awful.client.swap.byidx(1)
-  end, { description = "swap with next client by index", group = "client" }),
-  awful.key({ modkey, shift }, "k", function()
-    awful.client.swap.byidx(-1)
-  end, {
-    description = "swap with previous client by index",
-    group = "client",
-  }),
-  awful.key({ modkey }, "j", function()
-    awful.client.focus.byidx(1)
-  end, { description = "focus next by index", group = "client" }),
-  awful.key({ modkey }, "k", function()
-    awful.client.focus.byidx(-1)
-  end, { description = "focus previous by index", group = "client" }),
-  awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
-  awful.key({ modkey }, "z", function()
-    require("ui.pop.peek").run()
-  end, { description = "peek", group = "client" }),
-  awful.key({ modkey, ctrl }, "n", function()
-    local c = awful.client.restore()
-    -- Focus restored client
-    if c then
-      c:emit_signal("request::activate", "key.unminimize", { raise = true })
-    end
-  end, { description = "restore minimized", group = "client" }),
-  -- modkey
-  -- modkey + shift
-  awful.key(
-    { modkey, shift },
-    "w",
-    awful.client.floating.toggle,
-    { description = "toggle floating", group = "client" }
-  ),
+  { {modkey},        "j", focus_next_client,            "focus next client"            },
+  { {modkey},        "k", focus_prev_client,            "focus prev client"            },
+  { {modkey},        "u", awful.client.urgent.jumpto,   "jump to urgent client"        },
+  { {modkey, ctrl},  "n", restore_client,               "restore minimized"            },
+  { {modkey, shift}, "j", swap_with_next_client,        "swap with next client (index)"},
+  { {modkey, shift}, "k", swap_with_prev_client,        "swap with prev client (index)"},
+  { {modkey, shift}, "w", awful.client.floating.toggle, "toggle floating window"       },
 }
 
+-- {modifier(s) table, key string, function function, description string, group string}
 local signal_bindings = {
-  awful.key({ modkey }, "q", function(c)
-    c:kill()
-  end, { description = "close", group = "client" }),
-  awful.key({ modkey }, "o", function(c)
-    c:move_to_screen()
-  end, { description = "move to screen", group = "client" }),
-  awful.key({ modkey }, "n", function(c)
-    -- The client currently has the input focus, so it cannot be
-    -- minimized, since minimized clients can't have the focus.
-    c.minimized = true
-  end, { description = "minimize", group = "client" }),
-  awful.key({ modkey }, "m", function(c)
-    c.maximized = not c.maximized
-    c:raise()
-  end, { description = "(un)maximize", group = "client" }),
-  -- modkey + ctrl
-  awful.key({ modkey, ctrl }, "Return", function(c)
-    c:swap(awful.client.getmaster())
-  end, { description = "move to master", group = "client" }),
-  awful.key({ modkey, ctrl }, "m", function(c)
-    c.maximized_vertical = not c.maximized_vertical
-    c:raise()
-  end, { description = "(un)maximize vertically", group = "client" }),
-  awful.key({ modkey, shift }, "f", function(c)
-    c.fullscreen = not c.fullscreen
-    c:raise()
-  end, { description = "toggle fullscreen", group = "client" }),
-  awful.key({ modkey, shift }, "b", function(c)
-    c.floating = not c.floating
-    c.width = 400
-    c.height = 200
-    awful.placement.bottom_right(c)
-    c.sticky = not c.sticky
-  end, { description = "toggle keep on top", group = "client" }),
-  awful.key({ modkey, shift }, "m", function(c)
-    c.maximized_horizontal = not c.maximized_horizontal
-    c:raise()
-  end, { description = "(un)maximize horizontally", group = "client" }),
-  -- Single tap: Center client
-  -- Double tap: Center client + Floating + Resize
+  {{modkey},       "m",      maximize_client,       "maximize client"      },
+  {{modkey},       "n",      minimize_client,       "minimize client"      },
+  {{modkey},       "o",      move_to_screen,        "move to next screen"  },
+  {{modkey},       "q",      kill_client,           "kill client"          },
+  {{modkey, ctrl}, "m",      maximize_vertically,   "maximize vertically"  },
+  {{modkey, ctrl}, "Return", move_to_master,        "move client to master"},
+  {{modkey, shift}, "b",     toggle_fullscreen,     "toggle fullscreen"    },
+  {{modkey, shift}, "f",     toggle_sticky,         "toggle sticky"        },
+  {{modkey, shift}, "m",     maximize_horizontally, "maximize horizontally"},
 }
 
 return {
-  standard = client_bindings,
-  signal = signal_bindings,
+  standard = setKeys(client_bindings, "client"),
+  signal = setKeys(signal_bindings, "client signal"),
 }

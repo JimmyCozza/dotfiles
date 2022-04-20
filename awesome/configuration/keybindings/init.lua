@@ -4,6 +4,23 @@ local awful = require "awful"
 local hotkeys_popup = require "awful.hotkeys_popup"
 -- Custom modules
 
+-- I want to be able to glance at keybindings and see what they do a little easier.
+-- This function just wraps a stupid table so each keybinding declaration can just be a 
+-- table of tables aligned for readability like this:
+-- {modifier(s) table, key string, function function, description string, group string}
+function setKeys(keys, group)
+  local key_set = {}
+  for _, g_key in ipairs(keys) do
+    table.insert(key_set, awful.key(
+      g_key[1],
+      g_key[2],
+      g_key[3],
+      { description = g_key[4], group = group })
+    )
+  end
+  return key_set
+end
+
 local client_bindings = require "configuration.keybindings.client"
 local global_bindings = require "configuration.keybindings.global"
 local launcher_bindings = require "configuration.keybindings.launcher"

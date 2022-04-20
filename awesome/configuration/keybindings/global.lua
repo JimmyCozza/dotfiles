@@ -1,19 +1,23 @@
 local awful = require "awful"
+local gears = require "gears"
 local hotkeys_popup = require "awful.hotkeys_popup"
-local global_keys = {
-  -- Awesome stuff
-  awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
-  awful.key({ modkey, shift }, "d", function()
-    awesome.emit_signal "panel::open"
-  end, { description = "show panel", group = "awesome" }),
-  awful.key({ modkey, ctrl }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
-  awful.key({ modkey, shift }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
-  awful.key({ modkey }, "XF86AudioRaiseVolume", function()
-    awful.spawn "brightnessctl s +5%"
-  end, { description = "increase brightness", group = "awesome" }),
-  awful.key({ modkey }, "XF86AudioLowerVolume", function()
-    awful.spawn "brightnessctl s 5%-"
-  end, { description = "decrease brightness", group = "awesome" }),
-}
 
-return global_keys
+local function showPanel()
+  awesome.emit_signal "panel:open"
+end
+
+-- {modifier(s) table, key string, function function, description string, group string}
+-- stylua: ignore start
+local g_keys = {
+  { { modkey },        "s",                    hotkeys_popup.show_help,          "show help"          },
+  { { modkey },        "XF86AudioRaiseVolume", awful.spawn"brightnessctl s +5%", "increase brightness"},
+  { { modkey },        "XF86AudioLowerVolume", awful.spawn"brightnessctl s 5%-", "decrease brightness"},
+  { { modkey, ctrl },  "r",                    awesome.restart,                  "reload awesome"     },
+  { { modkey, shift }, "d",                    showPanel,                        "show panel"         },
+  { { modkey, shift }, "q",                    awesome.quit,                     "quit awesome"       },
+}
+-- stylua: ignore end
+
+
+
+return setKeys(g_keys, "awesome")
