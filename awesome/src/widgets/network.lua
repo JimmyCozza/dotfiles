@@ -34,7 +34,7 @@ return function()
           {
             {
               id = 'icon',
-              image = gears.color.recolor_image(icondir .. "no-internet" .. ".svg", color["Grey900"]),
+              image = gears.color.recolor_image(icondir .. "no-internet" .. ".svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
               resize = false
             },
@@ -61,8 +61,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Red200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.red,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -111,7 +111,7 @@ return function()
       text = message,
       title = title,
       app_name = app_name,
-      icon = gears.color.recolor_image(icon, color["White"]),
+      icon = gears.color.recolor_image(icon, color.xresources_colors.white),
       timeout = 3
     })
   end
@@ -165,7 +165,7 @@ return function()
             update_wireless_data(false)
           end
           network_widget.container.network_layout.spacing = dpi(8)
-          network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color["Grey900"]))
+          network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg))
         end
       )
     end
@@ -261,7 +261,7 @@ return function()
     network_widget.container.network_layout.label.visible = false
     update_tooltip("Network unreachable")
     network_widget.container.network_layout.spacing = dpi(0)
-    network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color["Grey900"]))
+    network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg))
   end
 
   local check_network_mode = function()
@@ -324,7 +324,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(network_widget, color["Red200"])
+  Hover_signal(network_widget, color.xresources_colors.red)
 
   network_widget:connect_signal(
     "button::press",

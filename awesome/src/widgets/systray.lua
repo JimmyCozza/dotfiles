@@ -32,7 +32,7 @@ return function(s)
     bg = color["BlueGrey800"]
   }
   -- Signals
-  Hover_signal(systray.container, color["Red200"])
+  Hover_signal(systray.container, color.xresources_colors.red)
 
   systray.container.st.widget:set_base_size(dpi(20))
 

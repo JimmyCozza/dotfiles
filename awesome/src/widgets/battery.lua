@@ -51,8 +51,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Purple200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.mauve,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -97,7 +97,7 @@ return function()
 
   local battery_warning = function()
     naughty.notify({
-      icon = gears.color.recolor_image(icondir .. "battery-alert.svg", color["White"]),
+      icon = gears.color.recolor_image(icondir .. "battery-alert.svg", color.xresources_colors.white1),
       app_name = "System notification",
       title = "Battery is low",
       message = "Battery is almost battery_labelempty",
@@ -166,7 +166,7 @@ return function()
     )
   end
 
-  Hover_signal(battery_widget, color["Purple200"])
+  Hover_signal(battery_widget, color.xresources_colors.mauve1)
 
   battery_widget:connect_signal(
     'button::press',

@@ -54,7 +54,7 @@ local list_update = function(widget, buttons, label, data, objects)
         layout = wibox.layout.fixed.horizontal
       },
 
-      fg = color["White"],
+      fg = color.xresources_colors.white,
       shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 5)
       end,
@@ -86,13 +86,13 @@ local list_update = function(widget, buttons, label, data, objects)
     local text, bg_color, bg_image, icon, args = label(object, tag_label)
     tag_label:set_text(object.index)
     if object.urgent == true then
-      tag_widget:set_bg(color["RedA200"])
-      tag_widget:set_fg(color["Grey900"])
+      tag_widget:set_bg(color.xresources_colors.red)
+      tag_widget:set_fg(color.xresources_colors.bg)
     elseif object == awful.screen.focused().selected_tag then
-      tag_widget:set_bg(color["White"])
-      tag_widget:set_fg(color["Grey900"])
+      tag_widget:set_bg(color.xresources_colors.white)
+      tag_widget:set_fg(color.xresources_colors.bg)
     else
-      tag_widget:set_bg("#3A475C")
+      tag_widget:set_bg(color["BlueGrey800"])
     end
 
     -- Set the icon for each client
@@ -129,7 +129,7 @@ local list_update = function(widget, buttons, label, data, objects)
         if object == awful.screen.focused().selected_tag then
           tag_widget.bg = '#dddddd' .. 'dd'
         else
-          tag_widget.bg = '#3A475C' .. 'dd'
+          tag_widget.bg = color["BlueGrey800"] .. 'dd'
         end
         local w = mouse.current_wibox
         if w then

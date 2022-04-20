@@ -48,8 +48,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Yellow200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.yellow,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -76,7 +76,7 @@ return function()
           icon = icon .. "-high"
         end
         audio_widget.container.audio_layout.label:set_text(volume .. "%")
-        audio_widget.container.audio_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icon .. ".svg", color["Grey900"]))
+        audio_widget.container.audio_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icon .. ".svg", color.xresources_colors.bg))
       end
     )
   end
@@ -88,7 +88,7 @@ return function()
         if stdout:match("yes") then
           audio_widget.container.audio_layout.label.visible = false
           audio_widget.container:set_right(0)
-          audio_widget.container.audio_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. "volume-mute" .. ".svg", color["Grey900"]))
+          audio_widget.container.audio_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. "volume-mute" .. ".svg", color.xresources_colors.bg))
         else
           audio_widget.container:set_right(10)
           get_volume()
@@ -98,7 +98,7 @@ return function()
   end
 
   -- Signals
-  Hover_signal(audio_widget, color["Yellow200"])
+  Hover_signal(audio_widget, color.xresources_colors.yellow)
 
   audio_widget:connect_signal(
     "button::press",

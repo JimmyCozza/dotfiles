@@ -23,7 +23,7 @@ return function(s)
               id = "icon",
               widget = wibox.widget.imagebox,
               resize = false,
-              image = gears.color.recolor_image(icondir .. "keyboard.svg", color["Grey900"])
+              image = gears.color.recolor_image(icondir .. "keyboard.svg", color.xresources_colors.bg)
             },
             id = "icon_layout",
             widget = wibox.container.place
@@ -47,8 +47,8 @@ return function(s)
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Green200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.green,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -211,15 +211,15 @@ return function(s)
         shape = function(cr, width, height)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
-        bg = color["Grey800"],
-        fg = color["White"],
+        bg = color.xresources_colors.gray1,
+        fg = color.xresources_colors.white,
         widget = wibox.container.background,
         id = "background"
       },
       margins = dpi(5),
       widget = wibox.container.margin
     }
-    Hover_signal(kb_layout_item.background, color["White"], color["Grey900"])
+    Hover_signal(kb_layout_item.background, color.xresources_colors.white, color.xresources_colors.bg)
     kb_layout_item:connect_signal(
       "button::press",
       function()
@@ -251,8 +251,8 @@ return function(s)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
     widget = wibox.container.background,
-    bg = color["Grey900"],
-    fg = color["White"],
+    bg = color.xresources_colors.bg,
+    fg = color.xresources_colors.white,
     width = dpi(100),
     max_height = dpi(600),
     visible = false,
@@ -300,7 +300,7 @@ return function(s)
 
   --kb_menu_widget:move_next_to(mouse.current_widget_geometry)
   -- Signals
-  Hover_signal(kblayout_widget, color["Green200"])
+  Hover_signal(kblayout_widget, color.xresources_colors.green)
 
   local kblayout_keygrabber = awful.keygrabber {
     autostart = false,

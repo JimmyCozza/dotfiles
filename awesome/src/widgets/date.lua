@@ -23,7 +23,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "calendar.svg", color["Grey900"]),
+              image = gears.color.recolor_image(icondir .. "calendar.svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
               resize = false
             },
@@ -49,8 +49,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Teal200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.teal,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -72,7 +72,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(date_widget, color["Teal200"])
+  Hover_signal(date_widget, color.xresources_colors.teal)
 
   date_widget:connect_signal(
     "mouse::enter",

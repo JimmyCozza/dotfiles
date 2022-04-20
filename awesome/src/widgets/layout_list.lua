@@ -25,7 +25,7 @@ return function()
       forced_width = dpi(40),
       widget = wibox.container.margin
     },
-    bg = color["LightBlue200"],
+    bg = color.xresources_colors.sky,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -33,7 +33,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(layout, color["LightBlue200"])
+  Hover_signal(layout, color.xresources_colors.sky)
 
   layout:connect_signal(
     "button::press",

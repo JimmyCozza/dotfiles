@@ -22,7 +22,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "power.svg", color["Grey900"]),
+              image = gears.color.recolor_image(icondir .. "power.svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
               resize = false
             },
@@ -41,8 +41,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Red200"],
-    fg = color["Grey800"],
+    bg = color.xresources_colors.red,
+    fg = color.xresources_colors.grey1,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -50,7 +50,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(power_widget, color["Red200"])
+  Hover_signal(power_widget, color.xresources_colors.red)
 
   power_widget:connect_signal(
     "button::release",

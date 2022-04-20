@@ -33,8 +33,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Blue200"],
-    fg = color["Grey900"],
+    bg = color.xresources_colors.blue,
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -76,13 +76,13 @@ return function()
           end
         )
       end
-      bluetooth_widget.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icon .. ".svg", color["Grey900"]))
+      bluetooth_widget.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icon .. ".svg", color.xresources_colors.bg))
     end,
     bluetooth_widget
   )
 
   -- Signals
-  Hover_signal(bluetooth_widget, color["Blue200"])
+  Hover_signal(bluetooth_widget, color.xresources_colors.blue)
 
   bluetooth_widget:connect_signal(
     "button::press",

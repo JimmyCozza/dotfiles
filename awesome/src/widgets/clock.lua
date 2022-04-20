@@ -23,7 +23,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "clock.svg", color["Grey900"]),
+              image = gears.color.recolor_image(icondir .. "clock.svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
               resize = false
             },
@@ -50,7 +50,7 @@ return function()
       widget = wibox.container.margin
     },
     bg = color["Orange200"],
-    fg = color["Grey900"],
+    fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,

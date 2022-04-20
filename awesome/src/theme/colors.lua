@@ -1,6 +1,8 @@
 -----------------------------------------------------
 -- This is a table with almost all Material colors --
 -----------------------------------------------------
+local xresources = require "beautiful.xresources"
+local xrdb = xresources.get_current_theme()
 
 return {
   ['White'] = '#ffffffdd',
@@ -191,5 +193,25 @@ return {
   ['BlueGrey600'] = '#546E7A',
   ['BlueGrey700'] = '#455A64',
   ['BlueGrey800'] = '#37474F',
-  ['BlueGrey900'] = '#263238'
+  ['BlueGrey900'] = '#263238',
+  xresources_colors = {
+    bg = xrdb.background,
+    fg = xrdb.foreground,
+    gray1 = xrdb.color0,
+    gray2 = xrdb.color8,
+    red = xrdb.color1,
+    green = xrdb.color2,
+    yellow = xrdb.color3,
+    blue = xrdb.color4,
+    mauve = xrdb.color5,
+    pink = xrdb.color6,
+    white = xrdb.color7,
+    peach = xrdb.color9,
+    maroon = xrdb.color10,
+    flamingo = xrdb.color11,
+    teal = xrdb.color12,
+    sky = xrdb.color13,
+    lavender = xrdb.color14,
+    rosewater = xrdb.color15,
+  }
 }
