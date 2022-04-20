@@ -1,12 +1,14 @@
 local awful = require "awful"
 
+local function focus_next_screen()
+  awful.screen.focus_relative(1)
+end
+local function focus_prev_screen()
+  awful.screen.focus_relative(-1)
+end
+
 local screen_bindings = {
-  awful.key({ modkey, ctrl }, "j", function()
-    awful.screen.focus_relative(1)
-  end, { description = "focus the next screen", group = "screen" }),
-  awful.key({ modkey, ctrl }, "k", function()
-    awful.screen.focus_relative(-1)
-  end, { description = "focus the previous screen", group = "screen" }),
-  -- On the fly useless gaps change
+  {{ modkey, ctrl }, "j", focus_next_screen, "focus the next screen"    },
+  {{ modkey, ctrl }, "k", focus_prev_screen, "focus the previous screen"},
 }
-return screen_bindings
+return setKeys(screen_bindings, "screen")

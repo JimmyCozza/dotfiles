@@ -8,10 +8,12 @@ editor = "emacsclient -c"
 editor_cmd = editor
 browser = "google-chrome-stable"
 filemanager = "thunar"
+screenshot = "flameshot gui"
 discord = "discord"
 launcher = "~/.config/rofi/launchers/text/launcher.sh"
 music = terminal .. " --class music -e ncspot"
 emoji_launcher = "rofi -show emoji"
+notes = "tdrop -ma -w 63% -h 60% -x 2% emacs"
 
 -- Global Vars
 screen_width = awful.screen.focused().geometry.width
