@@ -1,5 +1,5 @@
 ----------------------------------------------------------------
--- This class is to output an error if you fuck up the config --
+-- This class is to output an error if you cuss up the config --
 ----------------------------------------------------------------
 -- Awesome Libs
 local naughty = require("naughty")

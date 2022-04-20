@@ -100,7 +100,7 @@ user_vars = {
 
   -- Add your programs exactly like in this example.
   -- First entry has to be how you would start the program in the terminal (just try it if you dont know yahoo it)
-  -- Second can be what ever the fuck you want it to be (will be the displayed name if you hover over it)
+  -- Second can be what ever the cuss you want it to be (will be the displayed name if you hover over it)
   -- For steam games please use this format (look in .local/share/applications for the .desktop file, that will contain the number you need)
   -- {"394360", "Name", true} true will tell the func that it's a steam game
   -- Use xprop | grep WM_CLASS and use the *SECOND* string
