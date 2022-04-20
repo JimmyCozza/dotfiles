@@ -1,5 +1,6 @@
 local awful = require "awful"
 local naughty = require "naughty"
+local mymainmenu = require "configuration.menu"
 
 local mouse_bindings = {
   awful.button({}, 1, function()
