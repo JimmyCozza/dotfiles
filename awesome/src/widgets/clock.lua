@@ -49,7 +49,7 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin
     },
-    bg = color["Orange200"],
+    bg = color.xresources_colors.peach,
     fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
@@ -72,7 +72,7 @@ return function()
     end
   }
 
-  Hover_signal(clock_widget, color["Orange200"])
+  Hover_signal(clock_widget, color.xresources_colors.peach)
 
   return clock_widget
 end

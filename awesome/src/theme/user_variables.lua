@@ -83,5 +83,6 @@ user_vars = {
     { "google-chrome", "google-chrome-stable", "Chrome" },
     { "discord", "discord", "Discord" },
     { "Steam", "steam", "Steams" },
+    { "zoom", "zoom", "Zoom" },
   }
 }

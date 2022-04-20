@@ -17,4 +17,4 @@ require "configuration.keybindings"
 require("crylia_bar")
 require("src.tools.auto_starter")(user_vars.autostart)
 
-require "awful".spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/catppuccin/*"
+require "awful".spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/catppuccin/forrest.png"

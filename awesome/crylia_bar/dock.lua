@@ -46,11 +46,11 @@ return function(screen, programs)
 
     for k, c in ipairs(client.get()) do
       if string.lower(c.class):match(program) and c == client.focus then
-        dock_element.background.bg = color["Grey800"]
+        dock_element.background.bg = color.xresources_colors.grey1
       end
     end
 
-    Hover_signal(dock_element.background, color["Grey800"], color["White"])
+    Hover_signal(dock_element.background, color.xresources_colors.grey1, color.xresources_colors.white)
 
     dock_element:connect_signal(
       "button::press",
@@ -131,21 +131,21 @@ return function(screen, programs)
     local clients = client.get()
     for index, pr in ipairs(prog) do
       local indicators = { layout = wibox.layout.flex.horizontal, spacing = dpi(5) }
-      local col = color["Grey600"]
+      local col = color.xresources_colors.grey2
       for i, c in ipairs(clients) do
         if string.lower(c.class or c.name):match(string.lower(pr[1]) or string.lower(pr[2])) then
           if c == client.focus then
-            col = color["YellowA200"]
+            col = color.xresources_colors.yellow
           elseif c.urgent then
-            col = color["RedA200"]
+            col = color.xresources_colors.red
           elseif c.maximized then
-            col = color["GreenA200"]
+            col = color.xresources_colors.green
           elseif c.minimized then
-            col = color["BlueA200"]
+            col = color.xresources_colors.blue
           elseif c.fullscreen then
-            col = color["PinkA200"]
+            col = color.xresources_colors.pink
           else
-            col = color["Grey600"]
+            col = color.xresources_colors.grey2
           end
           indicators[i] = wibox.widget {
             widget = wibox.container.background,
