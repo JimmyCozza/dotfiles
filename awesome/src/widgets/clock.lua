@@ -58,7 +58,7 @@ return function()
   }
 
   local set_clock = function()
-    clock_widget.container.clock_layout.label:set_text(os.date("%H:%M"))
+    clock_widget.container.clock_layout.label:set_text(os.date("%I:%M"))
   end
 
   -- Updates the clock every 5 seconds, worst case you are 5 seconds behind

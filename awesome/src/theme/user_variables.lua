@@ -36,10 +36,15 @@ user_vars = {
   },
 
   -- Set your font with this format:
+  --font = {
+  --regular = "JetBrainsMono Nerd Font, 14",
+  --bold = "JetBrainsMono Nerd Font, bold 14",
+  --extrabold = "JetBrainsMono Nerd Font, ExtraBold 14"
+  --},
   font = {
-    regular = "JetBrainsMono Nerd Font, 14",
-    bold = "JetBrainsMono Nerd Font, bold 14",
-    extrabold = "JetBrainsMono Nerd Font, ExtraBold 14"
+    regular = "Sarasa UI K, 14",
+    bold = "Sarasa UI K, bold 14",
+    extrabold = "Sarasa UI K, ExtraBold 14"
   },
 
   -- This is your default Terminal
