@@ -22,7 +22,7 @@ M.view_only_tag = function(index)
   if tag then
     tag:view_only()
   end
-  client.emit_signal("tag::switched")
+  client.emit_signal "tag::switched"
 end
 
 M.toggle_tag = function(index)

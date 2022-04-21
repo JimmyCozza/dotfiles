@@ -2,7 +2,7 @@ local awful = require "awful"
 
 local M = {}
 
- M.restore_client = function()
+M.restore_client = function()
   local c = awful.client.restore()
   -- Focus restored client
   if c then
@@ -10,28 +10,27 @@ local M = {}
   end
 end
 
- M.focus_next_client = function()
+M.focus_next_client = function()
   awful.client.focus.byidx(1)
   if client.focus then
     client.focus:raise()
   end
 end
 
- M.focus_prev_client = function()
+M.focus_prev_client = function()
   awful.client.focus.byidx(-1)
   if client.focus then
     client.focus:lower()
   end
 end
 
- M.swap_with_next_client = function()
+M.swap_with_next_client = function()
   awful.client.swap.byidx(1)
 end
 
- M.swap_with_prev_client = function()
+M.swap_with_prev_client = function()
   awful.client.swap.byidx(-1)
 end
-
 
 M.kill_client = function(c)
   c:kill()

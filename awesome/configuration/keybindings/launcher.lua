@@ -22,10 +22,10 @@ M.spawn_notes = function()
   awful.spawn.with_shell(notes)
 end
 M.spawn_dropdown_term = function()
-  awful.spawn.with_shell("tdrop -ma -w 63% -h 60% -x 2% alacritty")
+  awful.spawn.with_shell "tdrop -ma -w 63% -h 60% -x 2% alacritty"
 end
 M.spawn_logout = function()
-  awful.spawn.with_shell"arcolinux-logout"
+  awful.spawn.with_shell "arcolinux-logout"
 end
 
 return M
