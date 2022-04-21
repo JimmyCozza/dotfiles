@@ -1,5 +1,7 @@
 local awful = require "awful"
 
+local M = {}
+
 local function focus_next_screen()
   awful.screen.focus_relative(1)
 end

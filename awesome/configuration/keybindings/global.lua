@@ -2,7 +2,9 @@ local awful = require "awful"
 local gears = require "gears"
 local hotkeys_popup = require "awful.hotkeys_popup"
 
-local function showPanel()
+local M = {}
+
+M.showPanel = function()
   awesome.emit_signal "panel:open"
 end
 
@@ -18,6 +20,5 @@ local g_keys = {
 }
 -- stylua: ignore end
 
-
-
-return setKeys(g_keys, "awesome")
+return M
+--return setKeys(g_keys, "awesome")

@@ -1,6 +1,8 @@
 local awful = require "awful"
 
-local function raise_volume()
+local M = {}
+
+M.raise_volume = function()
     awful.spawn "pamixer -i 3"
     awesome.emit_signal("widget::volume")
     awesome.emit_signal("module::volume_osd:show", true)
@@ -8,7 +10,7 @@ local function raise_volume()
     awesome.emit_signal("widget::volume_osd:rerun")
 end
 
-local function lower_volume()
+M.lower_volume = function()
     awful.spawn "pamixer -d 3"
     awesome.emit_signal("widget::volume")
     awesome.emit_signal("module::volume_osd:show", true)
@@ -16,7 +18,7 @@ local function lower_volume()
     awesome.emit_signal("widget::volume_osd:rerun")
 end
 
-local function mute()
+M.mute = function()
     awful.spawn "pamixer -t"
     awesome.emit_signal("widget::volume")
     awesome.emit_signal("module::volume_osd:show", true)
@@ -24,30 +26,20 @@ local function mute()
     awesome.emit_signal("widget::volume_osd:rerun")
 end
 
-local function open_pavucontrol()
+M.open_pavucontrol = function()
     awful.spawn "pavucontrol"
 end
 
-local function play_pause()
+M.play_pause = function()
   awful.spawn "playerctl play-pause"
 end
 
-local function next_track()
+M.next_track = function()
   awful.spawn "playerctl next"
 end
 
-local function prev_track()
+M.prev_track = function()
   awful.spawn "playerctl previous"
 end
 
-local media_keys = {
-  {{},         "XF86AudioRaiseVolume", raise_volume,     "increase volume"   },
-  {{},         "XF86AudioLowerVolume", lower_volume,     "decrease volume"   },
-  {{},         "XF86AudioMute",        mute,             "mute volume"       },
-  {{},         "XF86AudioPlay",        play_pause,       "toggle playerctl"  },
-  {{},         "XF86AudioPrev",        prev_track,       "playerctl previous"},
-  {{},         "XF86AudioNext",        next_track,       "playerctl next"    },
-  {{ modkey }, "v",                    open_pavucontrol, "open pavucontrol"  },
-}
-
-return setKeys(media_keys, "media")
+return M
