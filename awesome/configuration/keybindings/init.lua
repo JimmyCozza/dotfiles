@@ -29,6 +29,7 @@ local global_keys = {
   {{},                "F11",                  launcher_fns.spawn_dropdown_term, "dropdown terminal",                     "launcher"},
   {{},                "F12",                  launcher_fns.spawn_notes,         "emacs tdrop",                           "launcher"},
   {{},                "XF86AudioLowerVolume", media_fns.lower_volume,           "decrease volume",                       "media"   },
+-- stylua: ignore end
   {{},                "XF86AudioMute",        media_fns.mute,                   "mute volume",                           "media"   },
   {{},                "XF86AudioNext",        media_fns.next_track,             "playerctl next",                        "media"   },
   {{},                "XF86AudioPlay",        media_fns.play_pause,             "toggle playerctl",                      "media"   },
