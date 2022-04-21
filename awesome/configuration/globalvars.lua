@@ -29,8 +29,8 @@ altkey = "Mod1"
 shift = "Shift"
 ctrl = "Control"
 
-local awful = require("awful")
-local home = os.getenv("HOME")
+local awful = require "awful"
+local home = os.getenv "HOME"
 
 -- If you want different default programs, wallpaper path or modkey; edit this file.
 user_vars = {
@@ -48,7 +48,7 @@ user_vars = {
   -- Type 'ip a' and check your wlan and ethernet name
   network = {
     wlan = "wlan0",
-    ethernet = "eno1"
+    ethernet = "eno1",
   },
 
   -- Set your font with this format:
@@ -60,7 +60,7 @@ user_vars = {
   font = {
     regular = "Sarasa UI K, 14",
     bold = "Sarasa UI K, bold 14",
-    extrabold = "Sarasa UI K, ExtraBold 14"
+    extrabold = "Sarasa UI K, ExtraBold 14",
   },
 
   -- This is your default Terminal
@@ -100,5 +100,5 @@ user_vars = {
     { "discord", "discord", "Discord" },
     { "Steam", "steam", "Steams" },
     { "zoom", "zoom", "Zoom" },
-  }
+  },
 }
