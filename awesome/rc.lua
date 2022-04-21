@@ -8,12 +8,11 @@
 -----------------------------------------------------------------------------------------
 -- Initialising, order is important!
 local awful = require "awful"
-require "configuration.globalvars"
+require "configuration"
 require "src.theme"
 require "src.core.error_handling"
 require "src.core.rules"
 require "src.core.signals"
-require "configuration.keybindings"
 require "crylia_bar"
 
 -- Shell applications

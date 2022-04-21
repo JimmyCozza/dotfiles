@@ -28,6 +28,7 @@ function convert_bindings(bindings)
 end
 
 --{modifier(s) table, key string,             function function,                description string,                      group string}
+-- stylua: ignore start
 local global_keys = {
   {{},                "F11",                  launcher_fns.spawn_dropdown_term, "dropdown terminal",                     "launcher"},
   {{},                "F12",                  launcher_fns.spawn_notes,         "emacs tdrop",                           "launcher"},
@@ -88,6 +89,7 @@ local client_keys = {
 
 -- I want to lay these out like the other ones above, but I am struggling to think of how to make it look nice.
 -- At least these all have names properties as a table
+-- TODO: Make the keybinding definitions uniform. Maybe this is the better constructor for readability in the long run.
 local odd_balls = {
   awful.key {
     modifiers = { modkey },
@@ -118,6 +120,7 @@ local odd_balls = {
     on_press = tag_fns.toggle_focused_client_on_tag,
   },
 }
+-- stylua: ignore end
 
 awful.keyboard.append_global_keybindings(convert_bindings(global_keys))
 awful.keyboard.append_global_keybindings(odd_balls)
