@@ -3,21 +3,21 @@
 --------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local naughty = require("naughty")
-local wibox = require("wibox")
-require("src.core.signals")
+local gears = require "gears"
+local naughty = require "naughty"
+local wibox = require "wibox"
+require "src.core.signals"
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/network/"
+local icondir = awful.util.getdir "config" .. "src/assets/icons/network/"
 
 -- Insert your interfaces here, get the from ip a
 local interfaces = {
   wlan_interface = user_vars.network.wlan,
-  lan_interface = user_vars.network.ethernet
+  lan_interface = user_vars.network.ethernet,
 }
 
 local network_mode = nil
@@ -33,17 +33,17 @@ return function()
         {
           {
             {
-              id = 'icon',
+              id = "icon",
               image = gears.color.recolor_image(icondir .. "no-internet" .. ".svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
-              resize = false
+              resize = false,
             },
             id = "icon_layout",
-            widget = wibox.container.place
+            widget = wibox.container.place,
           },
           id = "icon_margin",
           top = dpi(2),
-          widget = wibox.container.margin
+          widget = wibox.container.margin,
         },
         spacing = dpi(10),
         {
@@ -51,22 +51,22 @@ return function()
           visible = false,
           valign = "center",
           align = "center",
-          widget = wibox.widget.textbox
+          widget = wibox.widget.textbox,
         },
         id = "network_layout",
-        layout = wibox.layout.fixed.horizontal
+        layout = wibox.layout.fixed.horizontal,
       },
       id = "container",
       left = dpi(8),
       right = dpi(8),
-      widget = wibox.container.margin
+      widget = wibox.container.margin,
     },
     bg = color.xresources_colors.red,
     fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
-    widget = wibox.container.background
+    widget = wibox.container.background,
   }
 
   local network_tooltip = awful.tooltip {
@@ -74,7 +74,7 @@ return function()
     objects = { network_widget },
     mode = "inside",
     preferred_alignments = "middle",
-    margins = dpi(10)
+    margins = dpi(10),
   }
 
   local check_for_internet = [=[
@@ -107,13 +107,13 @@ return function()
   end
 
   local network_notify = function(message, title, app_name, icon)
-    naughty.notify({
+    naughty.notify {
       text = message,
       title = title,
       app_name = app_name,
       icon = gears.color.recolor_image(icon, color.xresources_colors.white),
-      timeout = 3
-    })
+      timeout = 3,
+    }
   end
 
   local update_wireless = function()
@@ -128,46 +128,49 @@ return function()
     end
 
     local update_wireless_data = function(healthy)
-      awful.spawn.easy_async_with_shell(
-        [[ iw dev ]] .. interfaces.wlan_interface .. [[ link ]],
-        function(stdout)
-          local essid = stdout:match("SSID: (.-)\n") or "N/A"
-          local bitrate = stdout:match("tx bitrate: (.+/s)") or "N/A"
-          local message = "Connected to <b>" .. essid .. "</b>\nSignal strength <b>" .. tostring(wifi_strength) .. "%</b>\n" .. "Bit rate <b>" .. tostring(bitrate) .. "</b>"
+      awful.spawn.easy_async_with_shell([[ iw dev ]] .. interfaces.wlan_interface .. [[ link ]], function(stdout)
+        local essid = stdout:match "SSID: (.-)\n" or "N/A"
+        local bitrate = stdout:match "tx bitrate: (.+/s)" or "N/A"
+        local message = "Connected to <b>"
+          .. essid
+          .. "</b>\nSignal strength <b>"
+          .. tostring(wifi_strength)
+          .. "%</b>\n"
+          .. "Bit rate <b>"
+          .. tostring(bitrate)
+          .. "</b>"
 
-          if healthy then
-            update_tooltip(message)
-          else
-            update_tooltip("You are connected but have no internet" .. message)
-          end
-
-          if reconnect_startup or startup then
-            notify_connected(essid)
-            update_reconnect_startup(false)
-          end
+        if healthy then
+          update_tooltip(message)
+        else
+          update_tooltip("You are connected but have no internet" .. message)
         end
-      )
+
+        if reconnect_startup or startup then
+          notify_connected(essid)
+          update_reconnect_startup(false)
+        end
+      end)
     end
 
     local update_wireless_icon = function(strength)
-      awful.spawn.easy_async_with_shell(
-        check_for_internet,
-        function(stdout)
-          local icon = "wifi-strength"
-          if not stdout:match("Connected but no internet") then
-            if startup or reconnect_startup then
-              awesome.emit_signal("system::network_connected")
-            end
-            icon = icon .. '-' .. tostring(strength)
-            update_wireless_data(true)
-          else
-            icon = icon .. "-" .. tostring(strength)
-            update_wireless_data(false)
+      awful.spawn.easy_async_with_shell(check_for_internet, function(stdout)
+        local icon = "wifi-strength"
+        if not stdout:match "Connected but no internet" then
+          if startup or reconnect_startup then
+            awesome.emit_signal "system::network_connected"
           end
-          network_widget.container.network_layout.spacing = dpi(8)
-          network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg))
+          icon = icon .. "-" .. tostring(strength)
+          update_wireless_data(true)
+        else
+          icon = icon .. "-" .. tostring(strength)
+          update_wireless_data(false)
         end
-      )
+        network_widget.container.network_layout.spacing = dpi(8)
+        network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(
+          gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg)
+        )
+      end)
     end
 
     local update_wireless_strength = function()
@@ -202,31 +205,25 @@ return function()
       network_notify(message, title, app_name, icon)
     end
 
-    awful.spawn.easy_async_with_shell(
-      check_for_internet,
-      function(stdout)
-        local icon = "ethernet"
+    awful.spawn.easy_async_with_shell(check_for_internet, function(stdout)
+      local icon = "ethernet"
 
-        if stdout:match("Connected but no internet") then
-          icon = "no-internet"
-          update_tooltip(
-            "No internet"
-          )
-        else
-          update_tooltip("You are connected to:\nEthernet Interface <b>" .. interfaces.lan_interface .. "</b>")
-          if startup or reconnect_startup then
-            awesome.emit_signal("system::network_connected")
-            notify_connected()
-            update_startup()
-          end
-          update_reconnect_startup(false)
+      if stdout:match "Connected but no internet" then
+        icon = "no-internet"
+        update_tooltip "No internet"
+      else
+        update_tooltip("You are connected to:\nEthernet Interface <b>" .. interfaces.lan_interface .. "</b>")
+        if startup or reconnect_startup then
+          awesome.emit_signal "system::network_connected"
+          notify_connected()
+          update_startup()
         end
-        network_widget.container.network_layout.label.visible = false
-        network_widget.container.network_layout.spacing = dpi(0)
-        network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(icondir .. icon .. ".svg")
+        update_reconnect_startup(false)
       end
-    )
-
+      network_widget.container.network_layout.label.visible = false
+      network_widget.container.network_layout.spacing = dpi(0)
+      network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(icondir .. icon .. ".svg")
+    end)
   end
 
   local update_disconnected = function()
@@ -259,14 +256,15 @@ return function()
       end
     end
     network_widget.container.network_layout.label.visible = false
-    update_tooltip("Network unreachable")
+    update_tooltip "Network unreachable"
     network_widget.container.network_layout.spacing = dpi(0)
-    network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg))
+    network_widget.container.network_layout.icon_margin.icon_layout.icon:set_image(
+      gears.color.recolor_image(icondir .. icon .. ".svg", color.xresources_colors.bg)
+    )
   end
 
   local check_network_mode = function()
-    awful.spawn.easy_async_with_shell(
-      [=[
+    awful.spawn.easy_async_with_shell([=[
                 wireless="]=] .. tostring(interfaces.wlan_interface) .. [=["
                 wired="]=] .. tostring(interfaces.lan_interface) .. [=["
                 net="/sys/class/net/"
@@ -300,18 +298,16 @@ return function()
                     print "${network_mode}"
                 }
                 print_network_mode
-            ]=],
-      function(stdout)
-        local mode = stdout:gsub("%\n", "")
-        if stdout:match("No internet connected") then
-          update_disconnected()
-        elseif stdout:match("wireless") then
-          update_wireless()
-        elseif stdout:match("wired") then
-          update_wired()
-        end
+            ]=], function(stdout)
+      local mode = stdout:gsub("%\n", "")
+      if stdout:match "No internet connected" then
+        update_disconnected()
+      elseif stdout:match "wireless" then
+        update_wireless()
+      elseif stdout:match "wired" then
+        update_wired()
       end
-    )
+    end)
   end
 
   local network_updater = gears.timer {
@@ -320,18 +316,15 @@ return function()
     call_now = true,
     callback = function()
       check_network_mode()
-    end
+    end,
   }
 
   -- Signals
   Hover_signal(network_widget, color.xresources_colors.red)
 
-  network_widget:connect_signal(
-    "button::press",
-    function()
-      awful.spawn("gnome-control-center wlan")
-    end
-  )
+  network_widget:connect_signal("button::press", function()
+    awful.spawn "gnome-control-center wlan"
+  end)
 
   return network_widget
 end

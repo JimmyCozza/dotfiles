@@ -49,10 +49,13 @@ return require("packer").startup(function()
 
   -- Local tinkering
   --use "~/projects/npmInfo"
-  --use {
-  --"~/projects/youtrack",
-  --requires = { "trip-zip/plenary.nvim" },
-  --}
+  use {
+  "~/projects/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+  }
   use "trip-zip/npmInfo.nvim"
 
   --Navigation

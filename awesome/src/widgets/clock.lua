@@ -3,19 +3,18 @@
 ------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
-require("src.core.signals")
+local gears = require "gears"
+local wibox = require "wibox"
+require "src.core.signals"
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/clock/"
+local icondir = awful.util.getdir "config" .. "src/assets/icons/clock/"
 
 -- Returns the clock widget
 return function()
-
   local clock_widget = wibox.widget {
     {
       {
@@ -25,40 +24,40 @@ return function()
               id = "icon",
               image = gears.color.recolor_image(icondir .. "clock.svg", color.xresources_colors.bg),
               widget = wibox.widget.imagebox,
-              resize = false
+              resize = false,
             },
             id = "icon_layout",
-            widget = wibox.container.place
+            widget = wibox.container.place,
           },
           id = "icon_margin",
           top = dpi(2),
-          widget = wibox.container.margin
+          widget = wibox.container.margin,
         },
         spacing = dpi(10),
         {
           id = "label",
           align = "center",
           valign = "center",
-          widget = wibox.widget.textbox
+          widget = wibox.widget.textbox,
         },
         id = "clock_layout",
-        layout = wibox.layout.fixed.horizontal
+        layout = wibox.layout.fixed.horizontal,
       },
       id = "container",
       left = dpi(8),
       right = dpi(8),
-      widget = wibox.container.margin
+      widget = wibox.container.margin,
     },
     bg = color.xresources_colors.peach,
     fg = color.xresources_colors.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
-    widget = wibox.container.background
+    widget = wibox.container.background,
   }
 
   local set_clock = function()
-    clock_widget.container.clock_layout.label:set_text(os.date("%I:%M"))
+    clock_widget.container.clock_layout.label:set_text(os.date "%I:%M")
   end
 
   -- Updates the clock every 5 seconds, worst case you are 5 seconds behind
@@ -69,7 +68,7 @@ return function()
     call_now = true,
     callback = function()
       set_clock()
-    end
+    end,
   }
 
   Hover_signal(clock_widget, color.xresources_colors.peach)

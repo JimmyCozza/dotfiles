@@ -111,12 +111,25 @@ local servers = {
             [vim.fn.stdpath "config" .. "/lua"] = true,
           },
         },
+        -- This has potential, but I can't ignore blocks of code like I can with stylua/eslint.
+        format = {
+          enable = false,
+          defaultConfig = {
+            align_table_field_to_first_field = true,
+            call_arg_parentheses = "remove",
+            indent_size = "2",
+            indent_style = "space",
+            line_endings = "Unix",
+            max_line_length = "120",
+            quote_style = "double",
+          }
+        }
       },
     },
-    on_attach = function(client)
-      vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
-      custom_attach(client)
-    end,
+    --on_attach = function(client)
+      --vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+      --custom_attach(client)
+    --end,
   },
   gopls = {
     root_dir = function(fname)

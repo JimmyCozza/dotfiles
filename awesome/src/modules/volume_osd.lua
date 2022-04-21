@@ -3,18 +3,17 @@
 -----------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
+local gears = require "gears"
+local wibox = require "wibox"
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/audio/"
+local icondir = awful.util.getdir "config" .. "src/assets/icons/audio/"
 
 -- Returns the volume_osd
 return function(s)
-
   local volume_osd_widget = wibox.widget {
     {
       {
@@ -27,17 +26,17 @@ return function(s)
                 id = "icon",
                 forced_height = dpi(220),
                 image = icondir .. "volume-high.svg",
-                widget = wibox.widget.imagebox
+                widget = wibox.widget.imagebox,
               },
               nil,
               expand = "none",
               id = "icon_margin2",
-              layout = wibox.layout.align.vertical
+              layout = wibox.layout.align.vertical,
             },
             nil,
             id = "icon_margin1",
             expand = "none",
-            layout = wibox.layout.align.horizontal
+            layout = wibox.layout.align.horizontal,
           },
           {
             {
@@ -45,7 +44,7 @@ return function(s)
               text = "Volume",
               align = "left",
               valign = "center",
-              widget = wibox.widget.textbox
+              widget = wibox.widget.textbox,
             },
             nil,
             {
@@ -53,7 +52,7 @@ return function(s)
               text = "0%",
               align = "center",
               valign = "center",
-              widget = wibox.widget.textbox
+              widget = wibox.widget.textbox,
             },
             id = "label_value_layout",
             forced_height = dpi(48),
@@ -71,25 +70,25 @@ return function(s)
               handle_width = dpi(10),
               handle_border_color = color["White"],
               maximum = 100,
-              widget = wibox.widget.slider
+              widget = wibox.widget.slider,
             },
             id = "slider_layout",
             forced_height = dpi(24),
-            widget = wibox.container.place
+            widget = wibox.container.place,
           },
           id = "icon_slider_layout",
           spacing = dpi(0),
-          layout = wibox.layout.align.vertical
+          layout = wibox.layout.align.vertical,
         },
         id = "osd_layout",
-        layout = wibox.layout.align.vertical
+        layout = wibox.layout.align.vertical,
       },
       id = "container",
       left = dpi(24),
       right = dpi(24),
-      widget = wibox.container.margin
+      widget = wibox.container.margin,
     },
-    bg = color["Grey900"] .. '88',
+    bg = color["Grey900"] .. "88",
     widget = wibox.container.background,
     ontop = true,
     visible = true,
@@ -100,20 +99,15 @@ return function(s)
   }
 
   local function update_osd()
-    local volume_level = volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:get_value()
-    awesome.emit_signal("widget::volume")
+    local volume_level =
+      volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:get_value()
+    awesome.emit_signal "widget::volume"
     volume_osd_widget.container.osd_layout.icon_slider_layout.label_value_layout.value:set_text(volume_level .. "%")
 
-    awesome.emit_signal(
-      "widget::volume:update",
-      volume_level
-    )
+    awesome.emit_signal("widget::volume:update", volume_level)
 
     if awful.screen.focused().show_volume_osd then
-      awesome.emit_signal(
-        "module::volume_osd:show",
-        true
-      )
+      awesome.emit_signal("module::volume_osd:show", true)
     end
 
     local icon = icondir .. "volume"
@@ -137,44 +131,39 @@ return function(s)
   )
 
   local update_slider = function()
-    awful.spawn.easy_async_with_shell(
-      [[ pacmd list-sinks | grep "muted" ]],
-      function(stdout)
-        if stdout:match("yes") then
-          volume_osd_widget.container.osd_layout.icon_slider_layout.label_value_layout.value:set_text("0%")
-          volume_osd_widget.container.osd_layout.icon_slider_layout.icon_margin1.icon_margin2.icon:set_image(icondir .. "volume-mute" .. ".svg")
-        else
-          awful.spawn.easy_async_with_shell(
-            [[ 
+    awful.spawn.easy_async_with_shell([[ pacmd list-sinks | grep "muted" ]], function(stdout)
+      if stdout:match "yes" then
+        volume_osd_widget.container.osd_layout.icon_slider_layout.label_value_layout.value:set_text "0%"
+        volume_osd_widget.container.osd_layout.icon_slider_layout.icon_margin1.icon_margin2.icon:set_image(
+          icondir .. "volume-mute" .. ".svg"
+        )
+      else
+        awful.spawn.easy_async_with_shell(
+          [[ 
                 SINK="$(pacmd stat | awk -F": " '/^Default sink name: /{print $2}')"
 
 echo $(pacmd list-sinks | awk '/^\s+name: /{indefault = $2 == "<'$SINK'>"} /^\s+volume: / && indefault {print $5; exit}')
                         ]],
-            function(stdout2)
-              stdout2 = stdout2:sub(1, -3)
-              volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:set_value(tonumber(stdout2))
-              update_osd()
-            end
-          )
-        end
+          function(stdout2)
+            stdout2 = stdout2:sub(1, -3)
+            volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:set_value(
+              tonumber(stdout2)
+            )
+            update_osd()
+          end
+        )
       end
-    )
+    end)
   end
 
   -- Signals
-  awesome.connect_signal(
-    "module::slider:update",
-    function()
-      update_slider()
-    end
-  )
+  awesome.connect_signal("module::slider:update", function()
+    update_slider()
+  end)
 
-  awesome.connect_signal(
-    "widget::volume:update",
-    function(value)
-      volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:set_value(tonumber(value))
-    end
-  )
+  awesome.connect_signal("widget::volume:update", function(value)
+    volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:set_value(tonumber(value))
+  end)
 
   update_slider()
 
@@ -185,10 +174,12 @@ echo $(pacmd list-sinks | awk '/^\s+name: /{indefault = $2 == "<'$SINK'>"} /^\s+
     stretch = false,
     visible = false,
     screen = s,
-    placement = function(c) awful.placement.centered(c, { margins = { top = dpi(200) } }) end,
+    placement = function(c)
+      awful.placement.centered(c, { margins = { top = dpi(200) } })
+    end,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 15)
-    end
+    end,
   }
 
   local hide_volume_osd = gears.timer {
@@ -196,47 +187,35 @@ echo $(pacmd list-sinks | awk '/^\s+name: /{indefault = $2 == "<'$SINK'>"} /^\s+
     autostart = true,
     callback = function()
       volume_container.visible = false
-    end
+    end,
   }
 
   volume_container:setup {
     volume_osd_widget,
-    layout = wibox.layout.fixed.horizontal
+    layout = wibox.layout.fixed.horizontal,
   }
 
-  awesome.connect_signal(
-    "module::volume_osd:show",
-    function()
-      if s == mouse.screen then
-        volume_container.visible = true
-      end
-    end
-  )
-
-  volume_container:connect_signal(
-    "mouse::enter",
-    function()
+  awesome.connect_signal("module::volume_osd:show", function()
+    if s == mouse.screen then
       volume_container.visible = true
-      hide_volume_osd:stop()
     end
-  )
+  end)
 
-  volume_container:connect_signal(
-    "mouse::leave",
-    function()
-      volume_container.visible = true
+  volume_container:connect_signal("mouse::enter", function()
+    volume_container.visible = true
+    hide_volume_osd:stop()
+  end)
+
+  volume_container:connect_signal("mouse::leave", function()
+    volume_container.visible = true
+    hide_volume_osd:again()
+  end)
+
+  awesome.connect_signal("widget::volume_osd:rerun", function()
+    if hide_volume_osd.started then
       hide_volume_osd:again()
+    else
+      hide_volume_osd:start()
     end
-  )
-
-  awesome.connect_signal(
-    "widget::volume_osd:rerun",
-    function()
-      if hide_volume_osd.started then
-        hide_volume_osd:again()
-      else
-        hide_volume_osd:start()
-      end
-    end
-  )
+  end)
 end

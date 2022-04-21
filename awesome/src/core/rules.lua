@@ -3,8 +3,8 @@
 -------------------------------------------------------------------------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local beautiful = require("beautiful")
+local awful = require "awful"
+local beautiful = require "beautiful"
 
 awful.rules.rules = {
   {
@@ -14,11 +14,11 @@ awful.rules.rules = {
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
-      keys = require("../../mappings/client_keys"),
-      buttons = require("../../mappings/client_buttons"),
+      keys = require "../../mappings/client_keys",
+      buttons = require "../../mappings/client_buttons",
       screen = awful.screen.preferred,
-      placement = awful.placement.no_overlap + awful.placement.no_offscreen
-    }
+      placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+    },
   },
   -- Clients should always start as slave instead of master
   { rule = {}, properties = {}, callback = awful.client.setslave },
@@ -31,22 +31,22 @@ awful.rules.rules = {
         "kdeconnect.app",
         "zoom",
         "file-roller",
-        "File-roller"
+        "File-roller",
       },
       name = {},
       role = {
         "AlarmWindow",
         "ConfigManager",
-        "pop-up"
-      }
+        "pop-up",
+      },
     },
-    properties = { floating = true, titlebars_enabled = true }
+    properties = { floating = true, titlebars_enabled = true },
   },
   {
     id = "titlebar",
     rule_any = {
-      type = { "normal", "dialog", "modal", "utility" }
+      type = { "normal", "dialog", "modal", "utility" },
     },
-    properties = { titlebars_enabled = true }
-  }
+    properties = { titlebars_enabled = true },
+  },
 }

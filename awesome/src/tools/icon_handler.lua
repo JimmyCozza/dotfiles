@@ -7,7 +7,6 @@ local icon_cache = {}
 -- as uppercase, this should get almost all icons to work with the papirus theme atleast
 -- TODO: try with more icon themes
 function Get_icon(theme, client, program_string, class_string, is_steam)
-
   client = client or nil
   program_string = program_string or nil
   class_string = class_string or nil

@@ -3,33 +3,31 @@
 --------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
-require("src.core.signals")
-
+local gears = require "gears"
+local wibox = require "wibox"
+require "src.core.signals"
 
 return function(s)
-
   local systray = wibox.widget {
     {
       {
         wibox.widget.systray(),
         margins = dpi(6),
         widget = wibox.container.margin,
-        id = 'st'
+        id = "st",
       },
       strategy = "exact",
       layout = wibox.container.constraint,
-      id = "container"
+      id = "container",
     },
     widget = wibox.container.background,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
-    bg = color["BlueGrey800"]
+    bg = color["BlueGrey800"],
   }
   -- Signals
   Hover_signal(systray.container, color.xresources_colors.red)

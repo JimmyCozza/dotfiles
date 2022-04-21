@@ -2,14 +2,13 @@
 -- This is the statusbar, every widget, module and so on is combined to all the stuff you see on the screen --
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
+local gears = require "gears"
+local wibox = require "wibox"
 
 return function(screen, programs)
-
   local function create_dock_element(class, program, name, is_steam, size)
     if program == nil or class == nil then
       return
@@ -25,23 +24,23 @@ return function(screen, programs)
             forced_height = size,
             image = Get_icon(user_vars.icon_theme, nil, program, class, is_steam),
             widget = wibox.widget.imagebox,
-            id = "icon"
+            id = "icon",
           },
           margins = dpi(5),
           widget = wibox.container.margin,
-          id = "margin"
+          id = "margin",
         },
         shape = function(cr, width, height)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
         bg = color.xresources_colors.bg,
         widget = wibox.container.background,
-        id = "background"
+        id = "background",
       },
       top = dpi(5),
       left = dpi(5),
       right = dpi(5),
-      widget = wibox.container.margin
+      widget = wibox.container.margin,
     }
 
     for k, c in ipairs(client.get()) do
@@ -52,23 +51,20 @@ return function(screen, programs)
 
     Hover_signal(dock_element.background, color.xresources_colors.grey1, color.xresources_colors.white)
 
-    dock_element:connect_signal(
-      "button::press",
-      function()
-        if is_steam then
-          awful.spawn("steam steam://rungameid/" .. program)
-        else
-          awful.spawn(program)
-        end
+    dock_element:connect_signal("button::press", function()
+      if is_steam then
+        awful.spawn("steam steam://rungameid/" .. program)
+      else
+        awful.spawn(program)
       end
-    )
+    end)
 
     awful.tooltip {
       objects = { dock_element },
       text = name,
       mode = "outside",
       preferred_alignments = "middle",
-      margins = dpi(10)
+      margins = dpi(10),
     }
 
     return dock_element
@@ -82,22 +78,26 @@ return function(screen, programs)
     screen = screen,
     type = "dock",
     height = user_vars.dock_icon_size + 10,
-    placement = function(c) awful.placement.bottom(c, { margins = dpi(10) }) end,
+    placement = function(c)
+      awful.placement.bottom(c, { margins = dpi(10) })
+    end,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 15)
-    end
+    end,
   }
 
   local fakedock = awful.popup {
     widget = wibox.container.background,
     ontop = true,
-    bg = '#00000000',
+    bg = "#00000000",
     visible = true,
     screen = screen,
     type = "dock",
     id = "fakedock",
     height = dpi(10),
-    placement = function(c) awful.placement.bottom(c, { margins = dpi(0) }) end,
+    placement = function(c)
+      awful.placement.bottom(c, { margins = dpi(0) })
+    end,
   }
 
   local function get_dock_elements(pr)
@@ -117,10 +117,10 @@ return function(screen, programs)
 
     for i = 0, amount, 1 do
       fake_elements[i] = wibox.widget {
-        bg = '00000000',
+        bg = "00000000",
         forced_width = user_vars.dock_icon_size + dpi(20),
         forced_height = dpi(10),
-        widget = wibox.container.background
+        widget = wibox.container.background,
       }
     end
     return fake_elements
@@ -175,8 +175,8 @@ return function(screen, programs)
 
   fakedock:setup {
     get_fake_elements(#programs),
-    type = 'dock',
-    layout = wibox.layout.fixed.vertical
+    type = "dock",
+    layout = wibox.layout.fixed.vertical,
   }
 
   local function check_for_dock_hide(s)
@@ -203,41 +203,32 @@ return function(screen, programs)
     end
   end
 
-  client.connect_signal(
-    "manage",
-    function()
-      check_for_dock_hide(screen)
-      dock:setup {
-        dock_elements,
-        create_incicator_widget(programs),
-        layout = wibox.layout.fixed.vertical
-      }
-    end
-  )
+  client.connect_signal("manage", function()
+    check_for_dock_hide(screen)
+    dock:setup {
+      dock_elements,
+      create_incicator_widget(programs),
+      layout = wibox.layout.fixed.vertical,
+    }
+  end)
 
-  client.connect_signal(
-    "unmanage",
-    function()
-      check_for_dock_hide(screen)
-      dock:setup {
-        dock_elements,
-        create_incicator_widget(programs),
-        layout = wibox.layout.fixed.vertical
-      }
-    end
-  )
+  client.connect_signal("unmanage", function()
+    check_for_dock_hide(screen)
+    dock:setup {
+      dock_elements,
+      create_incicator_widget(programs),
+      layout = wibox.layout.fixed.vertical,
+    }
+  end)
 
-  client.connect_signal(
-    "focus",
-    function()
-      check_for_dock_hide(screen)
-      dock:setup {
-        dock_elements,
-        create_incicator_widget(programs),
-        layout = wibox.layout.fixed.vertical
-      }
-    end
-  )
+  client.connect_signal("focus", function()
+    check_for_dock_hide(screen)
+    dock:setup {
+      dock_elements,
+      create_incicator_widget(programs),
+      layout = wibox.layout.fixed.vertical,
+    }
+  end)
 
   local dock_intelligent_hide = gears.timer {
     timeout = 1,
@@ -245,26 +236,20 @@ return function(screen, programs)
     call_now = true,
     callback = function()
       check_for_dock_hide(screen)
-    end
+    end,
   }
 
-  dock:connect_signal(
-    "mouse::enter",
-    function()
-      dock_intelligent_hide:stop()
-    end
-  )
+  dock:connect_signal("mouse::enter", function()
+    dock_intelligent_hide:stop()
+  end)
 
-  dock:connect_signal(
-    "mouse::leave",
-    function()
-      dock_intelligent_hide:again()
-    end
-  )
+  dock:connect_signal("mouse::leave", function()
+    dock_intelligent_hide:again()
+  end)
 
   dock:setup {
     get_dock_elements(programs),
     create_incicator_widget(programs),
-    layout = wibox.layout.fixed.vertical
+    layout = wibox.layout.fixed.vertical,
   }
 end

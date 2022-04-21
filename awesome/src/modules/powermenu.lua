@@ -3,18 +3,17 @@
 --------------------------------
 
 -- Awesome Libs
-local awful = require("awful")
-local color = require("src.theme.colors")
+local awful = require "awful"
+local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
-require("src.core.signals")
+local gears = require "gears"
+local wibox = require "wibox"
+require "src.core.signals"
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/powermenu/"
+local icondir = awful.util.getdir "config" .. "src/assets/icons/powermenu/"
 
 return function(s)
-
   -- Profile picture imagebox
   local profile_picture = wibox.widget {
     image = icondir .. "defaultpfp.svg",
@@ -23,16 +22,16 @@ return function(s)
     clip_shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 30)
     end,
-    widget = wibox.widget.imagebox
+    widget = wibox.widget.imagebox,
   }
 
   -- Username textbox
   local profile_name = wibox.widget {
-    align = 'center',
-    valign = 'center',
+    align = "center",
+    valign = "center",
     text = " ",
     font = "JetBrains Mono Bold 30",
-    widget = wibox.widget.textbox
+    widget = wibox.widget.textbox,
   }
 
   -- Get the profile script from /var/lib/AccountsService/icons/${USER}
@@ -80,8 +79,7 @@ return function(s)
   local namestyle = user_vars.namestyle
   -- Get the full username(if set) and the username + hostname
   local update_user_name = function()
-    awful.spawn.easy_async_with_shell(
-      [=[
+    awful.spawn.easy_async_with_shell([=[
                 fullname="$(getent passwd `whoami` | cut -d ':' -f 5)"
                 user="$(whoami)"
                 host="$(hostname)"
@@ -94,14 +92,12 @@ return function(s)
                 else
                     printf "Rick Astley"
                 fi
-            ]=],
-      function(stdout)
-        if stdout:gsub("\n", "") == "Rick Astley" then
-          profile_picture:set_image(awful.util.getdir("config") .. "src/assets/userpfp/" .. "rickastley.jpg")
-        end
-        profile_name:set_text(stdout)
+            ]=], function(stdout)
+      if stdout:gsub("\n", "") == "Rick Astley" then
+        profile_picture:set_image(awful.util.getdir "config" .. "src/assets/userpfp/" .. "rickastley.jpg")
       end
-    )
+      profile_name:set_text(stdout)
+    end)
   end
   update_user_name()
 
@@ -120,24 +116,24 @@ return function(s)
                 image = icon,
                 resize = true,
                 forced_height = dpi(30),
-                widget = wibox.widget.imagebox
+                widget = wibox.widget.imagebox,
               },
               margins = dpi(0),
-              widget = wibox.container.margin
+              widget = wibox.container.margin,
             },
             {
               {
                 text = name,
                 font = "JetBrains Mono Bold 30",
-                widget = wibox.widget.textbox
+                widget = wibox.widget.textbox,
               },
               margins = dpi(0),
-              widget = wibox.container.margin
+              widget = wibox.container.margin,
             },
-            widget = wibox.layout.fixed.horizontal
+            widget = wibox.layout.fixed.horizontal,
           },
           margins = dpi(10),
-          widget = wibox.container.margin
+          widget = wibox.container.margin,
         },
         fg = color["Grey900"],
         bg = bg_color,
@@ -145,26 +141,23 @@ return function(s)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
         widget = wibox.container.background,
-        id = 'background'
+        id = "background",
       },
       spacing = dpi(0),
-      layout = wibox.layout.align.vertical
+      layout = wibox.layout.align.vertical,
     }
 
-    item:connect_signal(
-      "button::release",
-      function()
-        callback()
-      end
-    )
+    item:connect_signal("button::release", function()
+      callback()
+    end)
 
     return item
   end
 
   -- Create the power menu actions
   local suspend_command = function()
-    awful.spawn("dm-tool lock & systemctl suspend")
-    awesome.emit_signal("module::powermenu:hide")
+    awful.spawn "dm-tool lock & systemctl suspend"
+    awesome.emit_signal "module::powermenu:hide"
   end
 
   local logout_command = function()
@@ -172,18 +165,18 @@ return function(s)
   end
 
   local lock_command = function()
-    awful.spawn("dm-tool lock")
-    awesome.emit_signal("module::powermenu:hide")
+    awful.spawn "dm-tool lock"
+    awesome.emit_signal "module::powermenu:hide"
   end
 
   local shutdown_command = function()
-    awful.spawn("shutdown now")
-    awesome.emit_signal("module::powermenu:hide")
+    awful.spawn "shutdown now"
+    awesome.emit_signal "module::powermenu:hide"
   end
 
   local reboot_command = function()
-    awful.spawn("reboot")
-    awesome.emit_signal("module::powermenu:hide")
+    awful.spawn "reboot"
+    awesome.emit_signal "module::powermenu:hide"
   end
 
   -- Create the buttons with their command and name etc
@@ -216,27 +209,27 @@ return function(s)
               {
                 profile_picture,
                 margins = dpi(0),
-                widget = wibox.container.margin
+                widget = wibox.container.margin,
               },
               nil,
               expand = "none",
-              layout = wibox.layout.align.horizontal
+              layout = wibox.layout.align.horizontal,
             },
             nil,
             layout = wibox.layout.align.vertical,
-            expand = "none"
+            expand = "none",
           },
           spacing = dpi(50),
           {
             profile_name,
             margins = dpi(0),
-            widget = wibox.container.margin
+            widget = wibox.container.margin,
           },
-          layout = wibox.layout.fixed.vertical
+          layout = wibox.layout.fixed.vertical,
         },
         nil,
         expand = "none",
-        layout = wibox.layout.align.horizontal
+        layout = wibox.layout.align.horizontal,
       },
       {
         nil,
@@ -248,18 +241,18 @@ return function(s)
             lock_button,
             suspend_button,
             spacing = dpi(30),
-            layout = wibox.layout.fixed.horizontal
+            layout = wibox.layout.fixed.horizontal,
           },
           margins = dpi(0),
-          widget = wibox.container.margin
+          widget = wibox.container.margin,
         },
         nil,
         expand = "none",
-        layout = wibox.layout.align.horizontal
+        layout = wibox.layout.align.horizontal,
       },
-      layout = wibox.layout.align.vertical
+      layout = wibox.layout.align.vertical,
     },
-    nil
+    nil,
   }
 
   -- Container for the widget, covers the entire screen
@@ -273,49 +266,35 @@ return function(s)
     height = s.geometry.height,
     width = s.geometry.width,
     x = s.geometry.x,
-    y = s.geometry.y
+    y = s.geometry.y,
   }
 
   -- Close on rightclick
-  powermenu_container:buttons(
-    gears.table.join(
-      awful.button(
-        {},
-        3,
-        function()
-          awesome.emit_signal("module::powermenu:hide")
-        end
-      )
-    )
-  )
+  powermenu_container:buttons(gears.table.join(awful.button({}, 3, function()
+    awesome.emit_signal "module::powermenu:hide"
+  end)))
 
   -- Close on Escape
   local powermenu_keygrabber = awful.keygrabber {
     autostart = false,
-    stop_event = 'release',
+    stop_event = "release",
     keypressed_callback = function(self, mod, key, command)
-      if key == 'Escape' then
-        awesome.emit_signal("module::powermenu:hide")
+      if key == "Escape" then
+        awesome.emit_signal "module::powermenu:hide"
       end
-    end
+    end,
   }
 
   -- Signals
-  awesome.connect_signal(
-    "module::powermenu:show",
-    function()
-      if s == mouse.screen then
-        powermenu_container.visible = true
-        powermenu_keygrabber:start()
-      end
+  awesome.connect_signal("module::powermenu:show", function()
+    if s == mouse.screen then
+      powermenu_container.visible = true
+      powermenu_keygrabber:start()
     end
-  )
+  end)
 
-  awesome.connect_signal(
-    "module::powermenu:hide",
-    function()
-      powermenu_keygrabber:stop()
-      powermenu_container.visible = false
-    end
-  )
+  awesome.connect_signal("module::powermenu:hide", function()
+    powermenu_keygrabber:stop()
+    powermenu_container.visible = false
+  end)
 end
