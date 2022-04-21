@@ -3,15 +3,7 @@ local naughty = require "naughty"
 local mymainmenu = require "configuration.menu"
 
 local mouse_bindings = {
-  awful.button({}, 1, function()
-    naughty.destroy_all_notifications()
-    if mymainmenu then
-      mymainmenu:hide()
-    end
-  end),
-  --awful.button({}, 2, function()
-  --dashboard_toggle()
-  --end),
+  awful.button({}, 1, naughty.destroy_all_notifications),
   awful.button({}, 3, function()
     mymainmenu:toggle()
   end),

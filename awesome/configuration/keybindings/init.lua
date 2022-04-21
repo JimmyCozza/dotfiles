@@ -1,25 +1,7 @@
 -- keys.lua
--- Contains Global Keys
+local naughty = require("naughty")
 local awful = require "awful"
 local hotkeys_popup = require "awful.hotkeys_popup"
--- Custom modules
-
--- I want to be able to glance at keybindings and see what they do a little easier.
--- This function just wraps a stupid table so each keybinding declaration can just be a 
--- table of tables aligned for readability like this:
--- {modifier(s) table, key string, function function, description string, group string}
-function setKeys(keys)
-  local key_set = {}
-  for _, g_key in ipairs(keys) do
-    table.insert(key_set, awful.key(
-      g_key[1],
-      g_key[2],
-      g_key[3],
-      { description = g_key[4], group = g_key[5] })
-    )
-  end
-  return key_set
-end
 
 local client_fns = require "configuration.keybindings.client"
 local global_fns = require "configuration.keybindings.global"
@@ -27,7 +9,23 @@ local launcher_fns = require "configuration.keybindings.launcher"
 local layout_fns = require "configuration.keybindings.layout"
 local media_fns = require "configuration.keybindings.media"
 local mouse_bindings = require "configuration.keybindings.mouse"
-local tag_bindings = require "configuration.keybindings.tags"
+local screen_fns = require "configuration.keybindings.screen"
+local tag_fns = require "configuration.keybindings.tags"
+
+-- I want to be able to glance at keybindings and see what they do a little easier.
+-- This function just wraps a stupid table so each keybinding declaration can just be a
+-- table of tables aligned for readability
+function convert_bindings(bindings)
+  local key_bindings = {}
+  for _, g_key in ipairs(bindings) do
+    table.insert(key_bindings, awful.key(
+      g_key[1],
+      g_key[2], g_key[3],
+      { description = g_key[4], group = g_key[5] })
+    )
+  end
+  return key_bindings
+end
 
 --{modifier(s) table, key string,             function function,                description string,                      group string}
 local global_keys = {
@@ -46,6 +44,7 @@ local global_keys = {
   {{ modkey },        "l",                    layout_fns.increase_width,        "increase master width factor",          "layout"  },
   {{ modkey },        "p",                    launcher_fns.spawn_launcher,      "launch rofi",                           "launcher"},
   {{ modkey },        "s",                    hotkeys_popup.show_help,          "show help",                             "awesome" },
+  {{ modkey },        "Escape",               awful.tag.history.restore,        "go back",                               "tag"     },
   {{ modkey },        "t",                    launcher_fns.spawn_terminal,      "open a terminal",                       "launcher"},
   {{ modkey },        "u",                    awful.client.urgent.jumpto,       "jump to urgent client",                 "client"  },
   {{ modkey },        "v",                    media_fns.open_pavucontrol,       "open pavucontrol",                      "media"   },
@@ -54,11 +53,16 @@ local global_keys = {
   {{ modkey },        "Return",               launcher_fns.spawn_terminal,      "open a terminal",                       "launcher"},
   {{ modkey },        "XF86AudioLowerVolume", awful.spawn"brightnessctl s 5%-", "decrease brightness",                   "media"   },
   {{ modkey },        "XF86AudioRaiseVolume", awful.spawn"brightnessctl s +5%", "increase brightness",                   "media"   },
+  {{ modkey, ctrl },  "f",                    tag_fns.set_floating_layout,      "set floating layout",                   "tag"     },
   {{ modkey, ctrl },  "h",                    layout_fns.increase_columns,      "increase the number of columns",        "layout"  },
+  {{ modkey, ctrl },  "j",                    screen_fns.focus_next_screen,     "focus the next screen",                 "screen" },
+  {{ modkey, ctrl },  "k",                    screen_fns.focus_prev_screen,     "focus the previous screen",             "screen" },
   {{ modkey, ctrl },  "l",                    layout_fns.decrease_columns,      "decrease the number of columns",        "layout"  },
   {{ modkey, ctrl },  "n",                    client_fns.restore_client,        "restore minimized",                     "client"  },
   {{ modkey, ctrl },  "p",                    launcher_fns.spawn_screenshot,    "flameshot gui",                         "launcher"},
   {{ modkey, ctrl },  "r",                    awesome.restart,                  "reload awesome",                        "awesome" },
+  {{ modkey, ctrl },  "t",                    tag_fns.set_tile_layout,          "set tile layout",                       "tag"     },
+  {{ modkey, ctrl },  "w",                    tag_fns.set_max_layout,           "set max layout",                        "tag"     },
   {{ modkey, shift }, "d",                    global_fns.showPanel,             "show panel",                            "awesome" },
   {{ modkey, shift }, "h",                    layout_fns.increase_masters,      "increase the number of master clients", "layout"  },
   {{ modkey, shift }, "j",                    client_fns.swap_with_next_client, "swap with next client (index)",         "client"  },
@@ -81,15 +85,45 @@ local client_keys = {
   {{ modkey, shift }, "m",      client_fns.maximize_horizontally, "maximize horizontally", "client"},
 }
 
-awful.keyboard.append_global_keybindings(setKeys(global_keys))
---awful.keyboard.append_global_keybindings(launcher_bindings)
---awful.keyboard.append_global_keybindings(layout_bindings)
---awful.keyboard.append_global_keybindings(media_bindings)
-awful.keyboard.append_global_keybindings(tag_bindings)
+-- I want to lay these out like the other ones above, but I am struggling to think of how to make it look nice.
+-- At least these all have names properties as a table
+local odd_balls = {
+  awful.key {
+    modifiers = { modkey },
+    keygroup = "numrow",
+    description = "only view tag",
+    group = "tag",
+    on_press = tag_fns.view_only_tag,
+  },
+  awful.key {
+    modifiers = { modkey, ctrl },
+    keygroup = "numrow",
+    description = "toggle tag",
+    group = "tag",
+    on_press = tag_fns.toggle_tag,
+  },
+  awful.key {
+    modifiers = { modkey, shift },
+    keygroup = "numrow",
+    description = "move focused client to tag",
+    group = "tag",
+    on_press = tag_fns.move_focused_client_to_tag,
+  },
+  awful.key {
+    modifiers = { modkey, ctrl, shift },
+    keygroup = "numrow",
+    description = "toggle focused client on tag",
+    group = "tag",
+    on_press = tag_fns.toggle_focused_client_on_tag,
+  },
+}
+
+awful.keyboard.append_global_keybindings(convert_bindings(global_keys))
+awful.keyboard.append_global_keybindings(odd_balls)
 awful.mouse.append_global_mousebindings(mouse_bindings.standard)
 
 client.connect_signal("request::default_keybindings", function()
-  awful.keyboard.append_client_keybindings(setKeys(client_keys))
+  awful.keyboard.append_client_keybindings(convert_bindings(client_keys))
 end)
 client.connect_signal("request::default_mousebindings", function()
   awful.mouse.append_client_mousebindings(mouse_bindings.signal)
