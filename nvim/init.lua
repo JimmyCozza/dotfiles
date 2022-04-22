@@ -22,11 +22,9 @@ require "lsp"
 
 
 
---vim.opt.background = "dark"
 vim.g.gruvbox_contrast_dark = "medium"
 vim.g.gruvbox_italics = true
---vim.g.gruvbox_transparent_bg = true
 vim.cmd [[colorscheme gruvbox]]
-vim.cmd[[highlight Normal ctermbg=none]]
-vim.cmd[[highlight NonText ctermbg=none]]
-vim.cmd[[highlight normal guibg=000000]]
+vim.cmd[[hi Normal ctermbg=none]]
+vim.cmd[[hi NonText ctermbg=none]]
+vim.cmd[[hi Normal guibg=000000]]

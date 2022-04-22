@@ -52,7 +52,7 @@ awful.screen.connect_for_each_screen(
     -- Bars
 
     require "crylia_bar.left_bar"(s, { s.layoutlist, s.systray, s.taglist })
-    require "crylia_bar.center_bar"(s, s.tasklist)
+    --require "crylia_bar.center_bar"(s, s.tasklist)
     require "crylia_bar.right_bar"(s, { s.battery, s.network, s.bluetooth, s.audio, s.date, s.clock, s.powerbutton })
     --require("crylia_bar.dock")(s, user_vars.dock_programs)
   end

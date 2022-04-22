@@ -41,7 +41,7 @@ return require("packer").startup(function()
   --use "lukas-reineke/indent-blankline.nvim"
 
   -- color
-  use "morhetz/gruvbox"
+  use "gruvbox-community/gruvbox"
   --use "ellisonleao/gruvbox.nvim"
   --use "~/projects/gruvbox.nvim"
   use "shaunsingh/nord.nvim"
