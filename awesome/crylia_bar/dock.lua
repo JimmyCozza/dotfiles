@@ -131,7 +131,7 @@ return function(screen, programs)
     local clients = client.get()
     for index, pr in ipairs(prog) do
       local indicators = { layout = wibox.layout.flex.horizontal, spacing = dpi(5) }
-      local col = color.gray2
+      local col = color.grey2
       for i, c in ipairs(clients) do
         if string.lower(c.class or c.name):match(string.lower(pr[1]) or string.lower(pr[2])) then
           if c == client.focus then
