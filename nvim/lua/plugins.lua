@@ -36,16 +36,19 @@ return require("packer").startup(function()
   -- Visualization
   use "ryanoasis/vim-devicons"
   use "kyazdani42/nvim-web-devicons"
+  use "ap/vim-css-color"
+  use "norcalli/nvim-colorizer.lua"
+  use "lukas-reineke/indent-blankline.nvim"
+
+  -- color
+  --use "ellisonleao/gruvbox.nvim"
+  use "~/projects/gruvbox.nvim"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
   use {
     "catppuccin/nvim",
     as = "catppuccin",
   }
-  use "eddyekofo94/gruvbox-flat.nvim"
-  use "ap/vim-css-color"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "norcalli/nvim-colorizer.lua"
 
   -- Local tinkering
   --use "~/projects/npmInfo"
@@ -89,6 +92,31 @@ return require("packer").startup(function()
 
   --Utilities
   use "nvim-treesitter/nvim-treesitter"
+  use {
+    "nvim-treesitter/playground",
+    config = function()
+      require "nvim-treesitter.configs".setup {
+        playground = {
+          enable = true,
+          disable = {},
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          persist_queries = false, -- Whether the query persists across vim sessions
+          keybindings = {
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
+            show_help = '?',
+          },
+        }
+      }
+    end
+  }
   use {
     "rcarriga/nvim-notify",
     disable = false,

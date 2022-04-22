@@ -387,36 +387,36 @@ schemes:
       magenta: '0xd3869b'
       cyan:    '0x89b482'
       white:   '0xdfbf8e'
-  gruvbox_flat: &gruvbox_flat
+  gruvbox: &gruvbox
     primary:
-      background: '0x1d2021'
-      foreground: '0xd4be98'
+      background: '#282828'
+      foreground: '#ebdbb2'
 
     # Normal colors
     normal:
-      black:   '0x1D2021'
-      red:     '0xea6962'
-      green:   '0xa9b665'
-      yellow:  '0xd8a657'
-      blue:    '0x7daea3'
-      magenta: '0xd3869b'
-      aqua:    '0x89b482'
-      white:   '0xd4be98'
+      black:   '#1d2021'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      aqua:    '#689d6a'
+      white:   '#d4be98'
 
     # Bright colors
     bright:
-      black:   '0x17191a'
-      red:     '0xea6962'
-      green:   '0xa9b665'
-      yellow:  '0xd8a657'
-      blue:    '0x7daea3'
-      magenta: '0xd3869b'
-      aqua:    '0x89b482'
-      white:   '0xd4be98'
+      black:   '#17191a'
+      red:     '#fb4934'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      aqua:    '#8ec07c'
+      white:   '#fbf1c7'
 
     indexed_colors:
-      - { index: 16, color: '0xe78a4e' }
-      - { index: 17, color: '0xc14a4a' }
+      - { index: 16, color: '#e78a4e' }
+      - { index: 17, color: '#c14a4a' }
   catppucin: &catppucin
     # Default colors
     primary:
@@ -454,7 +454,7 @@ schemes:
       - { index: 16, color: '0xF8BD96' }
       - { index: 17, color: '0xF5E0DC' }
 
-colors: *catppucin
+colors: *gruvbox
 
 # Visual Bell
 #

@@ -19,6 +19,9 @@ require "configs.treesitter"
 require "configs.which-key"
 require "lsp"
 -- Color themes
-require "colors.catppuccin"
 
-vim.cmd [[colorscheme catppuccin]]
+vim.g.gruvbox_contrast = true
+vim.g.gruvbox_borders = false
+vim.g.gruvbox_disable_background = true
+vim.g.gruvbox_italic = false
+require("gruvbox").set()
