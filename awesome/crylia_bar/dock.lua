@@ -33,7 +33,7 @@ return function(screen, programs)
         shape = function(cr, width, height)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
-        bg = color.xresources_colors.bg,
+        bg = color.bg,
         widget = wibox.container.background,
         id = "background",
       },
@@ -45,11 +45,11 @@ return function(screen, programs)
 
     for k, c in ipairs(client.get()) do
       if string.lower(c.class):match(program) and c == client.focus then
-        dock_element.background.bg = color.xresources_colors.grey1
+        dock_element.background.bg = color.grey1
       end
     end
 
-    Hover_signal(dock_element.background, color.xresources_colors.grey1, color.xresources_colors.white)
+    Hover_signal(dock_element.background, color.grey1, color.white)
 
     dock_element:connect_signal("button::press", function()
       if is_steam then
@@ -73,7 +73,7 @@ return function(screen, programs)
   local dock = awful.popup {
     widget = wibox.container.background,
     ontop = true,
-    bg = color.xresources_colors.bg,
+    bg = color.bg,
     visible = true,
     screen = screen,
     type = "dock",
@@ -131,21 +131,21 @@ return function(screen, programs)
     local clients = client.get()
     for index, pr in ipairs(prog) do
       local indicators = { layout = wibox.layout.flex.horizontal, spacing = dpi(5) }
-      local col = color.xresources_colors.grey2
+      local col = color.gray2
       for i, c in ipairs(clients) do
         if string.lower(c.class or c.name):match(string.lower(pr[1]) or string.lower(pr[2])) then
           if c == client.focus then
-            col = color.xresources_colors.yellow
+            col = color.yellow
           elseif c.urgent then
-            col = color.xresources_colors.red
+            col = color.red
           elseif c.maximized then
-            col = color.xresources_colors.green
+            col = color.green
           elseif c.minimized then
-            col = color.xresources_colors.blue
+            col = color.blue
           elseif c.fullscreen then
-            col = color.xresources_colors.pink
+            col = color.pink
           else
-            col = color.xresources_colors.grey2
+            col = color.grey2
           end
           indicators[i] = wibox.widget {
             widget = wibox.container.background,

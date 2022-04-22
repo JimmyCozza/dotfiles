@@ -13,7 +13,7 @@ return function(s, widgets)
     screen = s,
     widget = wibox.container.background,
     ontop = false,
-    bg = color.xresources_colors.bg,
+    bg = color.bg,
     visible = true,
     maximum_width = dpi(650),
     placement = function(c)
