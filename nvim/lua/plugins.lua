@@ -38,11 +38,12 @@ return require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "ap/vim-css-color"
   use "norcalli/nvim-colorizer.lua"
-  use "lukas-reineke/indent-blankline.nvim"
+  --use "lukas-reineke/indent-blankline.nvim"
 
   -- color
+  use "morhetz/gruvbox"
   --use "ellisonleao/gruvbox.nvim"
-  use "~/projects/gruvbox.nvim"
+  --use "~/projects/gruvbox.nvim"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
   use {

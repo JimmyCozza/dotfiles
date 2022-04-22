@@ -20,8 +20,13 @@ require "configs.which-key"
 require "lsp"
 -- Color themes
 
-vim.g.gruvbox_contrast = true
-vim.g.gruvbox_borders = false
-vim.g.gruvbox_disable_background = true
-vim.g.gruvbox_italic = false
-require("gruvbox").set()
+
+
+--vim.opt.background = "dark"
+vim.g.gruvbox_contrast_dark = "medium"
+vim.g.gruvbox_italics = true
+--vim.g.gruvbox_transparent_bg = true
+vim.cmd [[colorscheme gruvbox]]
+vim.cmd[[highlight Normal ctermbg=none]]
+vim.cmd[[highlight NonText ctermbg=none]]
+vim.cmd[[highlight normal guibg=000000]]
