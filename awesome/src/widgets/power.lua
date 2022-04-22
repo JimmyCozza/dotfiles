@@ -40,7 +40,7 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.red,
+    bg = color.green,
     fg = color.grey1,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
@@ -49,7 +49,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(power_widget, color.red)
+  Hover_signal(power_widget, color.green)
 
   power_widget:connect_signal("button::release", function()
     awesome.emit_signal "module::powermenu:show"

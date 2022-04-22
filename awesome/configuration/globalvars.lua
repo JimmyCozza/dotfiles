@@ -34,7 +34,9 @@ local home = os.getenv "HOME"
 
 -- If you want different default programs, wallpaper path or modkey; edit this file.
 user_vars = {
-  colorscheme = "catppuccin",
+  -- TODO: Add nord & others
+  -- gruvbox, catppuccin
+  colorscheme = "gruvbox",
 
   -- Autotiling layouts
   layouts = {

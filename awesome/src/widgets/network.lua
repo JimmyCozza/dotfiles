@@ -61,7 +61,7 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.red,
+    bg = color.green,
     fg = color.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
@@ -320,7 +320,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(network_widget, color.red)
+  Hover_signal(network_widget, color.green)
 
   network_widget:connect_signal("button::press", function()
     awful.spawn "gnome-control-center wlan"

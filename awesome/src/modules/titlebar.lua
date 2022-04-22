@@ -62,7 +62,7 @@ local create_titlebar = function(c, bg, size)
         {
           awful.titlebar.widget.closebutton(c),
           widget = wibox.container.background,
-          bg = color.xresources_colors.red,
+          bg = color.red,
           shape = function(cr, height, width)
             gears.shape.rounded_rect(cr, width, height, 4)
           end,
@@ -71,7 +71,7 @@ local create_titlebar = function(c, bg, size)
         {
           awful.titlebar.widget.maximizedbutton(c),
           widget = wibox.container.background,
-          bg = color.xresources_colors.yellow1,
+          bg = color.yellow,
           shape = function(cr, height, width)
             gears.shape.rounded_rect(cr, width, height, 4)
           end,
@@ -80,7 +80,7 @@ local create_titlebar = function(c, bg, size)
         {
           awful.titlebar.widget.minimizebutton(c),
           widget = wibox.container.background,
-          bg = color.xresources_colors.green,
+          bg = color.green,
           shape = function(cr, height, width)
             gears.shape.rounded_rect(cr, width, height, 4)
           end,
@@ -108,9 +108,9 @@ local create_titlebar = function(c, bg, size)
     layout = wibox.layout.align.vertical,
     id = "main",
   }
-  Hover_signal(titlebar.main.margin.spacing.closebutton, color.xresources_colors.red)
-  Hover_signal(titlebar.main.margin.spacing.maximizebutton, color.xresources_colors.yellow1)
-  Hover_signal(titlebar.main.margin.spacing.minimizebutton, color.xresources_colors.green)
+  Hover_signal(titlebar.main.margin.spacing.closebutton, color.red)
+  Hover_signal(titlebar.main.margin.spacing.maximizebutton, color.yellow)
+  Hover_signal(titlebar.main.margin.spacing.minimizebutton, color.green)
 end
 
 local create_titlebar_dialog = function(c, bg, size)
@@ -126,7 +126,7 @@ local create_titlebar_dialog = function(c, bg, size)
         {
           awful.titlebar.widget.closebutton(c),
           widget = wibox.container.background,
-          bg = color.xresources_colors.red,
+          bg = color.red,
           shape = function(cr, height, width)
             gears.shape.rounded_rect(cr, width, height, 4)
           end,
@@ -135,7 +135,7 @@ local create_titlebar_dialog = function(c, bg, size)
         {
           awful.titlebar.widget.minimizebutton(c),
           widget = wibox.container.background,
-          bg = color.xresources_colors.green,
+          bg = color.green,
           shape = function(cr, height, width)
             gears.shape.rounded_rect(cr, width, height, 4)
           end,
@@ -163,8 +163,8 @@ local create_titlebar_dialog = function(c, bg, size)
     layout = wibox.layout.align.vertical,
     id = "main",
   }
-  Hover_signal(titlebar.main.margin.spacing.closebutton, color.xresources_colors.red)
-  Hover_signal(titlebar.main.margin.spacing.minimizebutton, color.xresources_colors.green)
+  Hover_signal(titlebar.main.margin.spacing.closebutton, color.red)
+  Hover_signal(titlebar.main.margin.spacing.minimizebutton, color.green)
 end
 
 local draw_titlebar = function(c)

@@ -18,4 +18,5 @@ require "crylia_bar"
 -- Shell applications
 awful.spawn.with_shell "~/.config/awesome/autostart.sh"
 awful.spawn.with_shell "picom -b --config  $HOME/.config/awesome/picom.conf"
-awful.spawn.with_shell "feh --bg-fill --randomize ~/Pictures/wallpapers/catppuccin/forrest.png"
+awful.spawn.with_shell("feh --bg-fill --randomize ~/Pictures/wallpapers/gruvbox/spaceman.jpg")
+--awful.spawn.with_shell("feh --bg-fill --randomize ~/Pictures/wallpapers/" .. user_vars.colorscheme)

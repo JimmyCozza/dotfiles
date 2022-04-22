@@ -1,43 +1,43 @@
 return {
-	dark = {
-		gruvbox0_gui = "#282828", -- bg0 in palette
-		gruvbox1_gui = "#3c3836", -- bg1 in palette
-		gruvbox2_gui = "#504945", -- bg2 in palette
-		gruvbox3_gui = "#665c54", -- bg3 in palette
-		gruvbox3_gui_bright = "#bdae93", -- bg3 light mode of palette
-		gruvbox4_gui = "#fb4934", -- red2 in palette
-		gruvbox5_gui = "#d5c4a1", -- fg2 in palette
-		gruvbox6_gui = "#fabd2f", -- yellow2 in palette
-		gruvbox7_gui = "#83a598", -- blue2 in palette
-		gruvbox8_gui = "#d3869b", -- purple2 in palette
-		gruvbox9_gui = "#8ec07c", -- aqua2 in palette
-		gruvbox10_gui = "#fe8019", -- orange2 in palette
-		gruvbox11_gui = "#928374", -- gray in palette
-		gruvbox12_gui = "#ebdbb2", -- fg in palette
-		gruvbox13_gui = "#fbf1c7", -- fg1 in palette
-		gruvbox14_gui = "#b8bb26", -- green2 in palette
-		gruvbox15_gui = "#bdae93", -- fg3 in palette
-		none = "NONE",
-	},
-	light = {
-		--16 colors
-		gruvbox0_gui = "#fbf1c7", -- bg0 in palette
-		gruvbox1_gui = "#ebdbb2", -- bg1 in palette
-		gruvbox2_gui = "#d5c4a1", -- bg2 in palette
-		gruvbox3_gui = "#bdae93", -- bg3 in palette
-		gruvbox3_gui_bright = "#bdae93", -- bg3 light mode of palette
-		gruvbox4_gui = "#cc241d", -- red in palette
-		gruvbox5_gui = "#98971a", -- green in palette
-		gruvbox6_gui = "#d79921", -- yellow in palette
-		gruvbox7_gui = "#458588", -- blue in palette
-		gruvbox8_gui = "#b16286", -- purple in palette
-		gruvbox9_gui = "#689d6a", -- aqua in palette
-		gruvbox10_gui = "#d65d0e", -- orange in palette
-		gruvbox11_gui = "#928374", -- gray in palette
-		gruvbox12_gui = "#3c3836", -- fg in palette
-		gruvbox13_gui = "#282828", -- fg0 in palette
-		gruvbox14_gui = "#504945", -- fg2 in palette
-		gruvbox15_gui = "#665c54", -- fg3 in palette
-		none = "NONE",
-	},
+		bg = "#282828", -- bg0 in palette
+		fg = "#ebdbb2", -- fg in palette
+		grey1 = "#928374", -- gray in palette
+		grey2 = "#3c3836", -- bg1 in palette
+		red = "#cc241d", -- red in palette
+		soft_red = "#fb4934", -- red in palette
+		green = "#98971a", -- green in palette
+		soft_green = "#b8bb26", -- green in palette
+		yellow = "#d79921", -- yellow in palette
+		soft_yellow = "#fabd2f", -- yellow in palette
+		blue = "#458588", -- blue in palette
+		soft_blue = "#83a598", -- blue in palette
+		soft_blue2 = "#8ec07c", -- blue in palette
+		purple = "#b16286", -- purple in palette
+		softpurple = "#d3869b", -- purple in palette
+		pink = "#689d6a", -- purple in palette
+		white = "#ebdbb2", -- purple in palette
+		white2 = "#fbf1c7", -- purple in palette
+		orange = "#d65d0e", -- orange in palette
 }
+--return {
+  --bg = "#1E1E2E",
+  --fg = "#D9E0EE",
+  --grey1 =  "#6E6C7E",
+  --grey2 ="#988BA2",
+  --red = "#F28FAD",
+  --soft_red =  "#E8A2AF",
+  --soft_red2 =  "#F5E0DC",
+  --green = '#ABE9B3',
+  --soft_green = '#ABE9B3',
+  --yellow =  "#FAE3B0",
+  --soft_yellow =  "#FAE3B0",
+  --blue =  "#96CDFB",
+  --soft_blue =  "#B5E8E0",
+  --soft_blue2 =  "#89DCEB",
+  --purple =  "#DDB6F2",
+  --soft_purple =  "#C9CBFF",
+  --pink =  "#F5C2E7",
+  --white =  "#C3BAC6",
+  --white2 =  "#F2CDCD",
+  --orange =  "#F8BD96",
+--}
