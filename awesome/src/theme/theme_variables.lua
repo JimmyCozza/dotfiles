@@ -4,13 +4,13 @@
 ------------------------------------------------------------------------------------------
 
 -- Awesome Libs
-local color = require "src.theme.colors"
+local color = require("src.theme.colors")
 local dpi = require("beautiful.xresources").apply_dpi
-local gears = require "gears"
-local awful = require "awful"
+local gears = require("gears")
+local awful = require("awful")
 
 -- Icon directory path
-local icondir = awful.util.getdir "config" .. "src/assets/icons/titlebar/"
+local icondir = awful.util.getdir("config") .. "src/assets/icons/titlebar/"
 
 Theme.font = user_vars.font.bold
 
@@ -40,7 +40,7 @@ Theme.menu_fg_focus = color["White"]
 Theme.menu_border_color = color["Grey800"]
 Theme.menu_border_width = dpi(0)
 Theme.menu_shape = function(cr, width, heigth)
-  gears.shape.rounded_rect(cr, width, heigth, 5)
+	gears.shape.rounded_rect(cr, width, heigth, 5)
 end
 
 Theme.taglist_fg_focus = color["Grey900"]
@@ -51,7 +51,7 @@ Theme.tooltip_bg = color["Grey800"]
 Theme.tooltip_fg = color["White"]
 Theme.tooltip_border_width = dpi(0)
 Theme.tooltip_shape = function(cr, width, heigth)
-  gears.shape.rounded_rect(cr, width, heigth, 5)
+	gears.shape.rounded_rect(cr, width, heigth, 5)
 end
 
 Theme.notification_bg = color["Grey900"]
@@ -59,7 +59,7 @@ Theme.notification_fg = color["White"]
 Theme.notification_border_width = dpi(0)
 Theme.notification_border_color = color["Grey900"]
 Theme.notification_shape = function(cr, width, heigth)
-  gears.shape.rounded_rect(cr, width, heigth, 10)
+	gears.shape.rounded_rect(cr, width, heigth, 10)
 end
 Theme.notification_margin = dpi(10)
 Theme.notification_max_width = dpi(400)
@@ -79,7 +79,7 @@ Theme.hotkeys_bg = color["Grey900"]
 Theme.hotkeys_fg = color["White"]
 Theme.hotkeys_border_width = 0
 Theme.hotkeys_shape = function(cr, width, height)
-  gears.shape.rounded_rect(cr, width, height, 10)
+	gears.shape.rounded_rect(cr, width, height, 10)
 end
 Theme.hotkeys_description_font = user_vars.font.bold
 
