@@ -53,7 +53,7 @@ local list_update = function(widget, buttons, label, data, objects)
         layout = wibox.layout.fixed.horizontal,
       },
 
-      fg = color.xresources_colors.white,
+      fg = color.white,
       shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 5)
       end,
@@ -85,11 +85,11 @@ local list_update = function(widget, buttons, label, data, objects)
     local text, bg_color, bg_image, icon, args = label(object, tag_label)
     tag_label:set_text(object.index)
     if object.urgent == true then
-      tag_widget:set_bg(color.xresources_colors.red)
-      tag_widget:set_fg(color.xresources_colors.bg)
+      tag_widget:set_bg(color.red)
+      tag_widget:set_fg(color.bg)
     elseif object == awful.screen.focused().selected_tag then
-      tag_widget:set_bg(color.xresources_colors.white)
-      tag_widget:set_fg(color.xresources_colors.bg)
+      tag_widget:set_bg(color.white)
+      tag_widget:set_fg(color.bg)
     else
       tag_widget:set_bg(color["BlueGrey800"])
     end

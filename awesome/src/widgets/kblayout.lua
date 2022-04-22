@@ -23,7 +23,7 @@ return function(s)
               id = "icon",
               widget = wibox.widget.imagebox,
               resize = false,
-              image = gears.color.recolor_image(icondir .. "keyboard.svg", color.xresources_colors.bg),
+              image = gears.color.recolor_image(icondir .. "keyboard.svg", color.bg),
             },
             id = "icon_layout",
             widget = wibox.container.place,
@@ -47,8 +47,8 @@ return function(s)
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.xresources_colors.green,
-    fg = color.xresources_colors.bg,
+    bg = color.green,
+    fg = color.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -206,15 +206,15 @@ return function(s)
         shape = function(cr, width, height)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
-        bg = color.xresources_colors.gray1,
-        fg = color.xresources_colors.white,
+        bg = color.grey1,
+        fg = color.white,
         widget = wibox.container.background,
         id = "background",
       },
       margins = dpi(5),
       widget = wibox.container.margin,
     }
-    Hover_signal(kb_layout_item.background, color.xresources_colors.white, color.xresources_colors.bg)
+    Hover_signal(kb_layout_item.background, color.white, color.bg)
     kb_layout_item:connect_signal("button::press", function()
       awful.spawn.easy_async_with_shell("setxkbmap " .. keymap, function(stdout)
         awesome.emit_signal "kblayout::hide:kbmenu"
@@ -240,8 +240,8 @@ return function(s)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
     widget = wibox.container.background,
-    bg = color.xresources_colors.bg,
-    fg = color.xresources_colors.white,
+    bg = color.bg,
+    fg = color.white,
     width = dpi(100),
     max_height = dpi(600),
     visible = false,
@@ -277,7 +277,7 @@ return function(s)
 
   --kb_menu_widget:move_next_to(mouse.current_widget_geometry)
   -- Signals
-  Hover_signal(kblayout_widget, color.xresources_colors.green)
+  Hover_signal(kblayout_widget, color.green)
 
   local kblayout_keygrabber = awful.keygrabber {
     autostart = false,

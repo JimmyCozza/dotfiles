@@ -22,7 +22,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "calendar.svg", color.xresources_colors.bg),
+              image = gears.color.recolor_image(icondir .. "calendar.svg", color.bg),
               widget = wibox.widget.imagebox,
               resize = false,
             },
@@ -48,8 +48,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.xresources_colors.teal,
-    fg = color.xresources_colors.bg,
+    bg = color.soft_blue,
+    fg = color.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -71,7 +71,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(date_widget, color.xresources_colors.teal)
+  Hover_signal(date_widget, color.soft_blue)
 
   date_widget:connect_signal("mouse::enter", function()
     awesome.emit_signal("widget::calendar_osd:stop", true)

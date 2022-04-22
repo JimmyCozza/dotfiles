@@ -33,8 +33,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.xresources_colors.blue,
-    fg = color.xresources_colors.bg,
+    bg = color.blue,
+    fg = color.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -75,12 +75,12 @@ return function()
       end)
     end
     bluetooth_widget.icon_margin.icon_layout.icon:set_image(
-      gears.color.recolor_image(icon .. ".svg", color.xresources_colors.bg)
+      gears.color.recolor_image(icon .. ".svg", color.bg)
     )
   end, bluetooth_widget)
 
   -- Signals
-  Hover_signal(bluetooth_widget, color.xresources_colors.blue)
+  Hover_signal(bluetooth_widget, color.blue)
 
   bluetooth_widget:connect_signal("button::press", function()
     awful.spawn.easy_async_with_shell("rfkill list bluetooth", function(stdout)

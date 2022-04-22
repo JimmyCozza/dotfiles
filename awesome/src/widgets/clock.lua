@@ -22,7 +22,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "clock.svg", color.xresources_colors.bg),
+              image = gears.color.recolor_image(icondir .. "clock.svg", color.bg),
               widget = wibox.widget.imagebox,
               resize = false,
             },
@@ -48,8 +48,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.xresources_colors.peach,
-    fg = color.xresources_colors.bg,
+    bg = color.orange,
+    fg = color.bg,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -71,7 +71,7 @@ return function()
     end,
   }
 
-  Hover_signal(clock_widget, color.xresources_colors.peach)
+  Hover_signal(clock_widget, color.orange)
 
   return clock_widget
 end

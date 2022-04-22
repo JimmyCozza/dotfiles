@@ -21,7 +21,7 @@ return function()
           {
             {
               id = "icon",
-              image = gears.color.recolor_image(icondir .. "power.svg", color.xresources_colors.bg),
+              image = gears.color.recolor_image(icondir .. "power.svg", color.bg),
               widget = wibox.widget.imagebox,
               resize = false,
             },
@@ -40,8 +40,8 @@ return function()
       right = dpi(8),
       widget = wibox.container.margin,
     },
-    bg = color.xresources_colors.red,
-    fg = color.xresources_colors.grey1,
+    bg = color.red,
+    fg = color.grey1,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
@@ -49,7 +49,7 @@ return function()
   }
 
   -- Signals
-  Hover_signal(power_widget, color.xresources_colors.red)
+  Hover_signal(power_widget, color.red)
 
   power_widget:connect_signal("button::release", function()
     awesome.emit_signal "module::powermenu:show"

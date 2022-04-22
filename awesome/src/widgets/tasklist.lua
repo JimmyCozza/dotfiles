@@ -45,8 +45,8 @@ local list_update = function(widget, buttons, label, data, objects)
         widget = wibox.container.margin,
         id = "container",
       },
-      bg = color.xresources_colors.white,
-      fg = color.xresources_colors.bg,
+      bg = color.white,
+      fg = color.bg,
       shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 5)
       end,
@@ -100,8 +100,8 @@ local list_update = function(widget, buttons, label, data, objects)
           task_tool_tip:remove_from_object(task_widget)
         end
       end
-      task_widget:set_bg(color.xresources_colors.white)
-      task_widget:set_fg(color.xresources_colors.bg)
+      task_widget:set_bg(color.white)
+      task_widget:set_fg(color.bg)
       task_widget.container.layout_it.title:set_text(text)
     else
       task_widget:set_bg(color["BlueGrey800"])
@@ -115,7 +115,7 @@ local list_update = function(widget, buttons, label, data, objects)
     task_widget:connect_signal("mouse::enter", function()
       old_bg = task_widget.bg
       if object == client.focus then
-        task_widget.bg = color.xresources_colors.white
+        task_widget.bg = color.white
       else
         task_widget.bg = color["BlueGrey800"] .. "dd"
       end
@@ -128,7 +128,7 @@ local list_update = function(widget, buttons, label, data, objects)
 
     task_widget:connect_signal("button::press", function()
       if object == client.focus then
-        task_widget.bg = color.xresources_colors.white
+        task_widget.bg = color.white
       else
         task_widget.bg = "#3A475Caa"
       end
