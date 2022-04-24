@@ -12,7 +12,8 @@ require "configuration"
 require "src.theme"
 require "src.core.error_handling"
 require "src.core.rules"
-require "src.core.signals"
+--require "src.core.signals"
+require "signals"
 
 require "ui"
 
