@@ -74,9 +74,7 @@ return function()
         end
       end)
     end
-    bluetooth_widget.icon_margin.icon_layout.icon:set_image(
-      gears.color.recolor_image(icon .. ".svg", color.bg)
-    )
+    bluetooth_widget.icon_margin.icon_layout.icon:set_image(gears.color.recolor_image(icon .. ".svg", color.bg))
   end, bluetooth_widget)
 
   -- Signals
