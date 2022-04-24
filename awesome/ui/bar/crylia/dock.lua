@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
 local awful = require "awful"
-local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
 local gears = require "gears"
 local wibox = require "wibox"
@@ -33,7 +32,7 @@ return function(screen, programs)
         shape = function(cr, width, height)
           gears.shape.rounded_rect(cr, width, height, 10)
         end,
-        bg = color.bg,
+        bg = global_colors.bg,
         widget = wibox.container.background,
         id = "background",
       },
@@ -45,11 +44,11 @@ return function(screen, programs)
 
     for k, c in ipairs(client.get()) do
       if string.lower(c.class):match(program) and c == client.focus then
-        dock_element.background.bg = color.grey1
+        dock_element.background.bg = global_colors.grey1
       end
     end
 
-    Hover_signal(dock_element.background, color.grey1, color.white)
+    Hover_signal(dock_element.background, global_colors.grey1, global_colors.white)
 
     dock_element:connect_signal("button::press", function()
       if is_steam then
@@ -73,7 +72,7 @@ return function(screen, programs)
   local dock = awful.popup {
     widget = wibox.container.background,
     ontop = true,
-    bg = color.bg,
+    bg = global_colors.bg,
     visible = true,
     screen = screen,
     type = "dock",
@@ -131,21 +130,21 @@ return function(screen, programs)
     local clients = client.get()
     for index, pr in ipairs(prog) do
       local indicators = { layout = wibox.layout.flex.horizontal, spacing = dpi(5) }
-      local col = color.grey2
+      local col = global_colors.grey2
       for i, c in ipairs(clients) do
         if string.lower(c.class or c.name):match(string.lower(pr[1]) or string.lower(pr[2])) then
           if c == client.focus then
-            col = color.yellow
+            col = global_colors.yellow
           elseif c.urgent then
-            col = color.red
+            col = global_colors.red
           elseif c.maximized then
-            col = color.green
+            col = global_colors.green
           elseif c.minimized then
-            col = color.blue
+            col = global_colors.blue
           elseif c.fullscreen then
-            col = color.pink
+            col = global_colors.pink
           else
-            col = color.grey2
+            col = global_colors.grey2
           end
           indicators[i] = wibox.widget {
             widget = wibox.container.background,

@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
 local awful = require "awful"
-local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
 local gears = require "gears"
 local wibox = require "wibox"
@@ -13,7 +12,7 @@ return function(s, widgets)
     screen = s,
     widget = wibox.container.background,
     ontop = false,
-    bg = color.bg,
+    bg = global_colors.bg,
     visible = true,
     maximum_width = dpi(650),
     placement = function(c)
