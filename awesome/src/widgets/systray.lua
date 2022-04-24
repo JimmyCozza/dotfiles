@@ -3,8 +3,6 @@
 --------------------------------
 
 -- Awesome Libs
-local awful = require "awful"
-local color = require "src.theme.colors"
 local dpi = require("beautiful").xresources.apply_dpi
 local gears = require "gears"
 local wibox = require "wibox"
@@ -27,10 +25,10 @@ return function(s)
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end,
-    bg = color["BlueGrey800"],
+    bg = global_colors["BlueGrey800"],
   }
   -- Signals
-  Hover_signal(systray.container, color.red)
+  Hover_signal(systray.container, global_colors.red)
 
   systray.container.st.widget:set_base_size(dpi(20))
 

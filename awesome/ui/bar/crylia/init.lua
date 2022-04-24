@@ -1,8 +1,11 @@
+-- Statusbar courtesy of @crylia https://github.com/Crylia/crylia-theme
+
 --------------------------------------------------------------------------------------------------------------
 -- This is the statusbar, every widget, module and so on is combined to all the stuff you see on the screen --
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
 local awful = require "awful"
+local widgets = require "src.widgets"
 local dock = require "ui/bar/crylia/dock"
 local left_bar = require "ui/bar/crylia/left_bar"
 local center_bar = require "ui/bar/crylia/center_bar"
@@ -25,18 +28,18 @@ awful.screen.connect_for_each_screen(
     require "src.modules.titlebar"
 
     -- Widgets
-    s.battery = require "src.widgets.battery"()
-    s.network = require "src.widgets.network"()
-    s.audio = require "src.widgets.audio"()
-    s.date = require "src.widgets.date"()
-    s.clock = require "src.widgets.clock"()
-    s.bluetooth = require "src.widgets.bluetooth"()
-    s.layoutlist = require "src.widgets.layout_list"()
-    s.powerbutton = require "src.widgets.power"()
-    s.kblayout = require "src.widgets.kblayout"(s)
-    s.taglist = require "src.widgets.taglist"(s)
-    s.tasklist = require "src.widgets.tasklist"(s)
-    s.systray = require "src.widgets.systray"(s)
+    s.battery = widgets.battery()
+    s.network = widgets.network()
+    s.audio = widgets.audio()
+    s.date = widgets.date()
+    s.clock = widgets.clock()
+    s.bluetooth = widgets.bluetooth()
+    s.layoutlist = widgets.layout_list()
+    s.powerbutton = widgets.power()
+    s.kblayout = widgets.kblayout(s)
+    s.taglist = widgets.taglist(s)
+    s.tasklist = widgets.tasklist(s)
+    s.systray = widgets.systray(s)
 
     -- Add more of these if statements if you want to change
     -- the modules/widgets per screen.
