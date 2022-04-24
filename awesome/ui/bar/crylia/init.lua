@@ -3,10 +3,10 @@
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
 local awful = require "awful"
-local dock = require"ui/bar/crylia/dock"
-local left_bar = require"ui/bar/crylia/left_bar"
-local center_bar = require"ui/bar/crylia/center_bar"
-local right_bar = require"ui/bar/crylia/right_bar"
+local dock = require "ui/bar/crylia/dock"
+local left_bar = require "ui/bar/crylia/left_bar"
+local center_bar = require "ui/bar/crylia/center_bar"
+local right_bar = require "ui/bar/crylia/right_bar"
 
 awful.screen.connect_for_each_screen(
   -- For each screen this function is called once
