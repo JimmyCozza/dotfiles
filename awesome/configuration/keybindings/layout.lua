@@ -1,4 +1,5 @@
 local awful = require "awful"
+local naughty = require "naughty"
 
 local M = {}
 
@@ -22,6 +23,12 @@ M.increase_masters = function()
 end
 M.decrease_masters = function()
   awful.tag.incnmaster(-1, nil, true)
+end
+M.reset_layout = function()
+  local s = awful.screen.focused()
+  local count = #s.tiled_clients
+  awful.client.setwfact(1/count)
+  awful.setmwfact(0.5)
 end
 
 return M

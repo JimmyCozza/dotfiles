@@ -37,7 +37,9 @@ user_vars = {
   -- TODO: Add nord & others
   -- gruvbox, catppuccin
   colorscheme = "gruvbox",
-
+  bar_ui = "crylia",
+  layout_ui = "crylia",
+  widget_ui = "crylia",
   -- Autotiling layouts
   layouts = {
     awful.layout.suit.tile,

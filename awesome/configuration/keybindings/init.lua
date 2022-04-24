@@ -34,6 +34,7 @@ local global_keys = {
   {{},                "XF86AudioPlay",        media_fns.play_pause,             "toggle playerctl",                      "media"   },
   {{},                "XF86AudioPrev",        media_fns.prev_track,             "playerctl previous",                    "media"   },
   {{},                "XF86AudioRaiseVolume", media_fns.raise_volume,           "increase volume",                       "media"   },
+  {{ modkey },        "a",                    layout_fns.reset_layout,          "reset layout",                          "layout"  },
   {{ modkey },        "f",                    launcher_fns.spawn_filemanager,   "open file browser",                     "launcher"},
   {{ modkey },        "h",                    layout_fns.decrease_width,        "decrease master width factor",          "layout"  },
   {{ modkey },        "j",                    client_fns.focus_next_client,     "focus next client",                     "client"  },

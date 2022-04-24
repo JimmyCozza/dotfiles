@@ -3,6 +3,10 @@
 --------------------------------------------------------------------------------------------------------------
 -- Awesome Libs
 local awful = require "awful"
+local dock = require"ui/bar/crylia/dock"
+local left_bar = require"ui/bar/crylia/left_bar"
+local center_bar = require"ui/bar/crylia/center_bar"
+local right_bar = require"ui/bar/crylia/right_bar"
 
 awful.screen.connect_for_each_screen(
   -- For each screen this function is called once
@@ -38,22 +42,22 @@ awful.screen.connect_for_each_screen(
     -- the modules/widgets per screen.
     -- uncomment this example and dont forget to remove/comment the other code below
     --[[ if s.index == 1 then
-            require("crylia_bar.left_bar")(s, {s.layoutlist, s.systray, s.taglist})
-            require("crylia_bar.center_bar")(s, s.tasklist)
-            require("crylia_bar.right_bar")(s, {s.date, s.clock,s.powerbutton})
-            require("crylia_bar.dock")(s, user_vars.dock_programs)
+            left_bar(s, {s.layoutlist, s.systray, s.taglist})
+            center_bar(s, s.tasklist)
+            right_bar(s, {s.date, s.clock,s.powerbutton})
+            dock(s, user_vars.dock_programs)
         end ]]
 
     --[[ if s.index == 2 then
-            require("crylia_bar.left_bar")(s, {s.layoutlist, s.systray, s.taglist})
-            require("crylia_bar.center_bar")(s, s.tasklist)
-            require("crylia_bar.right_bar")(s, {s.battery, s.network, s.bluetooth, s.audio, s.kblayout, s.date, s.clock,s.powerbutton})
+            left_bar(s, {s.layoutlist, s.systray, s.taglist})
+            center_bar(s, s.tasklist)
+            right_bar(s, {s.battery, s.network, s.bluetooth, s.audio, s.kblayout, s.date, s.clock,s.powerbutton})
         end ]]
     -- Bars
 
-    require "crylia_bar.left_bar"(s, { s.layoutlist, s.systray, s.taglist })
-    --require "crylia_bar.center_bar"(s, s.tasklist)
-    require "crylia_bar.right_bar"(s, { s.battery, s.network, s.bluetooth, s.audio, s.date, s.clock, s.powerbutton })
+    left_bar(s, { s.layoutlist, s.systray, s.taglist })
+    -- center_bar(s, s.tasklist)
+    right_bar(s, { s.battery, s.network, s.bluetooth, s.audio, s.date, s.clock, s.powerbutton })
     --require("crylia_bar.dock")(s, user_vars.dock_programs)
   end
 )

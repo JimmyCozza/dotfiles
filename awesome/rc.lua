@@ -13,7 +13,7 @@ require "src.theme"
 require "src.core.error_handling"
 require "src.core.rules"
 require "src.core.signals"
-require "crylia_bar"
+require "ui"
 
 -- Shell applications
 awful.spawn.with_shell "~/.config/awesome/autostart.sh"
