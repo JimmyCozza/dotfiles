@@ -1,21 +1,8 @@
---------------------------------------------------
---  ██████╗██████╗ ██╗   ██╗██╗     ██╗ █████╗  --
--- ██╔════╝██╔══██╗╚██╗ ██╔╝██║     ██║██╔══██╗ --
--- ██║     ██████╔╝ ╚████╔╝ ██║     ██║███████║ --
--- ██║     ██╔══██╗  ╚██╔╝  ██║     ██║██╔══██║ --
--- ╚██████╗██║  ██║   ██║   ███████╗██║██║  ██║ --
---  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝╚═╝  ╚═╝ --
---------------------------------------------------
-local awful = require "awful"
-local beautiful = require "beautiful"
 local gears = require "gears"
 
-Theme_path = awful.util.getdir "config" .. "/src/theme/"
-Theme = {}
+local base_colors = require "src.theme.crylia"
+local user_colors = require("src.theme." .. user_vars.colorscheme)
 
-dofile(Theme_path .. "theme_variables.lua")
+global_colors = (gears.table.join(base_colors, user_colors))
 
-Theme.awesome_icon = Theme_path .. "../assets/icons/ArchLogo.png"
-Theme.awesome_subicon = Theme_path .. "../assets/icons/ArchLogo.png"
-
-beautiful.init(Theme)
+return gears.table.join(global_colors)

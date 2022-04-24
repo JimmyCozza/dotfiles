@@ -13,6 +13,7 @@ require "src.theme"
 require "src.core.error_handling"
 require "src.core.rules"
 require "src.core.signals"
+
 require "ui"
 
 -- Shell applications
