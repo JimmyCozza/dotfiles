@@ -47,23 +47,23 @@ nvimtree.setup {
   disable_netrw = true,
   hijack_netrw = true,
   ignore_ft_on_setup = { "dashboard" },
-  auto_close = false,
+  --auto_close = false,
   open_on_tab = false,
   hijack_cursor = true,
   hijack_unnamed_buffer_when_opening = false,
   update_cwd = true,
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
   },
   view = {
-    allow_resize = true,
+    --allow_resize = true,
     side = "left",
     width = 25,
     hide_root_folder = false,
     mappings = {
       list = {
-        { key = "g?", action = "" },
+        { key = "g?", action = "toggle_help" },
         { key = "?", action = "toggle_help" },
       },
     },
