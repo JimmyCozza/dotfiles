@@ -163,7 +163,7 @@ return require("packer").startup(function()
   use "othree/yajs.vim"
   use "othree/javascript-libraries-syntax.vim"
   use "leafgarland/typescript-vim"
-  use "jose-elias-alvarez/typescript.nvim"
+  --use "jose-elias-alvarez/typescript.nvim"
 
   -- LSP
   use "jose-elias-alvarez/null-ls.nvim"
