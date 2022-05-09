@@ -59,8 +59,8 @@ options.icon_styles = {
    },
 
    block = {
-      left = " ",
-      right = " ",
+      left = "",
+      right = "",
       main_icon = "   ",
       vi_mode_icon = "  ",
       position_icon = "  ",
@@ -188,7 +188,7 @@ options.diagnostic = {
          return options.lsp.diagnostics_exist(options.lsp_severity.ERROR)
       end,
 
-      hl = { fg = options.colors.red },
+      hl = { fg = options.colors.orange },
       icon = "  ",
    },
 
@@ -267,8 +267,8 @@ options.lsp_icon = {
 }
 
 options.mode_colors = {
-   ["n"] = { "NORMAL", options.colors.red },
-   ["no"] = { "N-PENDING", options.colors.red },
+   ["n"] = { "NORMAL", options.colors.yellow },
+   ["no"] = { "N-PENDING", options.colors.yellow },
    ["i"] = { "INSERT", options.colors.dark_purple },
    ["ic"] = { "INSERT", options.colors.dark_purple },
    ["t"] = { "TERMINAL", options.colors.green },
