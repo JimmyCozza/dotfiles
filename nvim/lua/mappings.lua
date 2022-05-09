@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
-local map = vim.keymap.set
+
+local map = require"helpers".map
 -- ****************************
 -- General
 -- ****************************

@@ -154,8 +154,8 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
   }
-  use "hoob3rt/lualine.nvim"
-  --use "feline-nvim/feline.nvim"
+  --use "hoob3rt/lualine.nvim"
+  use "feline-nvim/feline.nvim"
 
   -- Javascript/Node
   use "pangloss/vim-javascript"
@@ -170,6 +170,7 @@ return require("packer").startup(function()
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "folke/lsp-colors.nvim"
   use "neovim/nvim-lspconfig"
+  use "williamboman/nvim-lsp-installer"
   use "nvim-lua/lsp-status.nvim"
 
   -- Completion
