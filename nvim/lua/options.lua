@@ -20,6 +20,7 @@ local opts = {
   splitright = true,
   termguicolors = true,
   scrolloff = 8,
+  laststatus = 3,
 }
 
 vim.opt.shortmess:append "c"

@@ -18,10 +18,8 @@ require "configs.todo-comments"
 require "configs.treesitter"
 require "configs.which-key"
 require "lsp"
+
 -- Color themes
-
-
-
 vim.g.gruvbox_contrast_dark = "medium"
 vim.g.gruvbox_italics = true
 vim.cmd [[colorscheme gruvbox]]
