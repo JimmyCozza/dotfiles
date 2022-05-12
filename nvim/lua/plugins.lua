@@ -53,16 +53,16 @@ return require("packer").startup(function()
 
   -- Local tinkering
   --use "~/projects/npmInfo"
-  use {
-  "~/projects/refactoring.nvim",
-    config = function()
-      require"refactoring".setup()
-    end,
-    requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-    }
-  }
+  --use {
+  --"~/projects/refactoring.nvim",
+    --config = function()
+      --require"refactoring".setup()
+    --end,
+    --requires = {
+        --{"nvim-lua/plenary.nvim"},
+        --{"nvim-treesitter/nvim-treesitter"}
+    --}
+  --}
   use "trip-zip/npmInfo.nvim"
 
   --Navigation
