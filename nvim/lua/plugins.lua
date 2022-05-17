@@ -67,7 +67,7 @@ return require("packer").startup(function()
 
   --Navigation
   use "nvim-lua/popup.nvim"
-  use "trip-zip/plenary.nvim"
+  use "nvim-lua/plenary.nvim"
   use {
     "nvim-telescope/telescope.nvim",
   }
@@ -87,7 +87,7 @@ return require("packer").startup(function()
   use {
     "lewis6991/gitsigns.nvim",
     requires = {
-      "trip-zip/plenary.nvim",
+      "nvim-lua/plenary.nvim",
     },
   }
 
@@ -133,13 +133,13 @@ return require("packer").startup(function()
     end,
   }
   use "scrooloose/nerdcommenter"
-  use {
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      "kyazdani42/nvim-web-devicons",
-    },
-  }
-  --use "preservim/nerdtree"
+  --use {
+    --"kyazdani42/nvim-tree.lua",
+    --requires = {
+      --"kyazdani42/nvim-web-devicons",
+    --},
+  --}
+  use "preservim/nerdtree"
 
   use "junegunn/vim-easy-align"
   use "windwp/nvim-autopairs"
