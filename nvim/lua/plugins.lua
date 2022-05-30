@@ -38,39 +38,21 @@ return require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "ap/vim-css-color"
   use "norcalli/nvim-colorizer.lua"
-  --use "lukas-reineke/indent-blankline.nvim"
 
   -- color
-  use "gruvbox-community/gruvbox"
-  --use "ellisonleao/gruvbox.nvim"
-  --use "~/projects/gruvbox.nvim"
+  use "ellisonleao/gruvbox.nvim"
   use "shaunsingh/nord.nvim"
   use "shaunsingh/seoul256.nvim"
   use {
     "catppuccin/nvim",
     as = "catppuccin",
   }
-
-  -- Local tinkering
-  --use "~/projects/npmInfo"
-  --use {
-  --"~/projects/refactoring.nvim",
-    --config = function()
-      --require"refactoring".setup()
-    --end,
-    --requires = {
-        --{"nvim-lua/plenary.nvim"},
-        --{"nvim-treesitter/nvim-treesitter"}
-    --}
-  --}
   use "trip-zip/npmInfo.nvim"
 
   --Navigation
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
-  use {
-    "nvim-telescope/telescope.nvim",
-  }
+  use "nvim-telescope/telescope.nvim"
 
   -- tpope
   use "tpope/vim-abolish"
@@ -118,10 +100,7 @@ return require("packer").startup(function()
       }
     end
   }
-  use {
-    "rcarriga/nvim-notify",
-    disable = false,
-  }
+  use "rcarriga/nvim-notify"
   use {
     "vimwiki/vimwiki",
     config = function()
@@ -133,23 +112,12 @@ return require("packer").startup(function()
     end,
   }
   use "scrooloose/nerdcommenter"
-  --use {
-    --"kyazdani42/nvim-tree.lua",
-    --requires = {
-      --"kyazdani42/nvim-web-devicons",
-    --},
-  --}
   use "preservim/nerdtree"
 
   use "junegunn/vim-easy-align"
   use "windwp/nvim-autopairs"
-  use {
-    "folke/which-key.nvim",
-  }
-  use {
-    "folke/trouble.nvim",
-    disable = false,
-  }
+  use "folke/which-key.nvim"
+  use "folke/trouble.nvim"
   use {
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
@@ -194,9 +162,8 @@ return require("packer").startup(function()
     "fatih/vim-go",
     ft = "go",
   }
-  use {
-    "numtostr/FTerm.nvim",
-  }
+  use "numtostr/FTerm.nvim"
+
   -- DAP
   use "mfussenegger/nvim-dap"
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
