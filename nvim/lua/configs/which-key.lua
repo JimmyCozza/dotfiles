@@ -68,7 +68,7 @@ local mappings = {
     r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
     s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
     t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    u = { "<cmd>lua require'dapui'.open()<cr>", "Open DAPui" },
+    u = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAPui" },
   },
   e = {
     name = "+Quick edit files",
