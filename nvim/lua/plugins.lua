@@ -166,7 +166,14 @@ return require("packer").startup(function()
 
   -- DAP
   use "mfussenegger/nvim-dap"
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup()
+    end
+  }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function() require("dapui").setup() end }
+  use {"theHamsta/nvim-dap-virtual-text", config = function() require ("nvim-dap-virtual-text").setup() end}
   use "nvim-telescope/telescope-dap.nvim"
   use {
     "zbirenbaum/copilot.lua",
