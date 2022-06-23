@@ -33,6 +33,17 @@ return require("packer").startup(function()
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
 
+  use {
+    "~/projects/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    },
+    config = function()
+      require("refactoring").setup({})
+    end
+}
+
   -- Visualization
   use "ryanoasis/vim-devicons"
   use "kyazdani42/nvim-web-devicons"
@@ -149,10 +160,6 @@ return require("packer").startup(function()
   use "hrsh7th/cmp-cmdline"
   use "quangnguyen30192/cmp-nvim-ultisnips"
   use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-  }
-  use {
     "hrsh7th/nvim-cmp",
     disable = false,
   }
@@ -175,13 +182,4 @@ return require("packer").startup(function()
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function() require("dapui").setup() end }
   use {"theHamsta/nvim-dap-virtual-text", config = function() require ("nvim-dap-virtual-text").setup() end}
   use "nvim-telescope/telescope-dap.nvim"
-  use {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function()
-      vim.schedule(function()
-        require("copilot").setup()
-      end)
-    end,
-  }
 end)
