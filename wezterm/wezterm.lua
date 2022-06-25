@@ -8,8 +8,8 @@ end
 local font_name = "JetBrains Mono Nerd Font"
 return {
 	automatically_reload_config = true,
-  color_scheme = "Gruvbox Dark",
-  disable_default_key_bindings = true,
+	color_scheme = "Gruvbox Dark",
+	disable_default_key_bindings = true,
 	font = font_with_fallback(font_name),
 	font_rules = {
 		{ italic = true, font = font_with_fallback(font_name, { italic = true }) },
@@ -24,13 +24,13 @@ return {
 		},
 	},
 	font_size = 15,
-  keys = {
-    {key="d", mods="CTRL",        action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
-    {key="n", mods="LEADER|CTRL", action=wezterm.action{ActivateTabRelative=1}},
-    {key="o", mods="LEADER|CTRL", action="ActivateLastTab"},
-    {key="p", mods="LEADER|CTRL", action=wezterm.action{ActivateTabRelative=-1}},
-  },
-  leader = { key="b", mods="CTRL", timeout_milliseconds=1000 },
+	keys = {
+		{ key = "d", mods = "CTRL", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+		{ key = "n", mods = "LEADER|CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
+		{ key = "o", mods = "LEADER|CTRL", action = "ActivateLastTab" },
+		{ key = "p", mods = "LEADER|CTRL", action = wezterm.action({ ActivateTabRelative = -1 }) },
+	},
+	leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
 	line_height = 1.0,
-  window_background_opacity = 0.6,
+	window_background_opacity = 0.7,
 }
