@@ -16,7 +16,7 @@
 
 ** Gruvbox is king
 #+begin_src emacs-lisp
-(setq doom-theme 'nord)
+(setq doom-theme 'gruvbox)
 (setq doom-themes-treemacs-theme "doom-colors")
 #+end_src
 ** Transparent Background
