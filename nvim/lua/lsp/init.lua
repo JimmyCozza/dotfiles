@@ -39,4 +39,9 @@ lspconfig.sumneko_lua.setup {
    },
 }
 
+lspconfig.gopls.setup {
+   on_attach = M.on_attach,
+   capabilities = capabilities,
+}
+
 return M
