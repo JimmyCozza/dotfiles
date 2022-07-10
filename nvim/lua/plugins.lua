@@ -33,16 +33,16 @@ return require("packer").startup(function()
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
 
-  use {
-    "~/projects/refactoring.nvim",
-    requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-    },
-    config = function()
-      require("refactoring").setup({})
-    end
-}
+  --use {
+    --"~/projects/refactoring.nvim",
+    --requires = {
+        --{"nvim-lua/plenary.nvim"},
+        --{"nvim-treesitter/nvim-treesitter"}
+    --},
+    --config = function()
+      --require("refactoring").setup({})
+    --end
+--}
 
   -- Visualization
   use "ryanoasis/vim-devicons"

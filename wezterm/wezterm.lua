@@ -9,7 +9,8 @@ end
 local font_name = "JetBrains Mono Nerd Font"
 return {
 	automatically_reload_config = true,
-	color_scheme = "Gruvbox Dark",
+	color_scheme = "Gruvbox Light",
+	--color_scheme = "Gruvbox Dark",
 	disable_default_key_bindings = true,
 	font = font_with_fallback(font_name),
 	font_rules = {
