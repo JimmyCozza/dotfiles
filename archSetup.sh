@@ -12,7 +12,7 @@ mkdir -p $HOME/tools
 
 ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer xclip brightnessctl"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer xclip"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -34,7 +34,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
-cd $HOME/tools/neovim && make
+cd $HOME/tools/neovim && make CMAKE_BUILD_TYPE=Release
 sudo make install
 
  rm -rf $HOME/.emacs.d

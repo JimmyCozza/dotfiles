@@ -64,7 +64,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 *** Neovim Nightly
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
-cd $HOME/tools/neovim && make
+cd $HOME/tools/neovim && make CMAKE_BUILD_TYPE=Release
 sudo make install
 #+end_src
 *** Doom Emacs
