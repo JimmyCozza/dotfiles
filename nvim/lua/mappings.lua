@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-local map = require"helpers".map
+local map = require("helpers").map
 -- ****************************
 -- General
 -- ****************************

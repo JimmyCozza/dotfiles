@@ -34,15 +34,15 @@ return require("packer").startup(function()
   use "wbthomason/packer.nvim"
 
   --use {
-    --"~/projects/refactoring.nvim",
-    --requires = {
-        --{"nvim-lua/plenary.nvim"},
-        --{"nvim-treesitter/nvim-treesitter"}
-    --},
-    --config = function()
-      --require("refactoring").setup({})
-    --end
---}
+  --"~/projects/refactoring.nvim",
+  --requires = {
+  --{"nvim-lua/plenary.nvim"},
+  --{"nvim-treesitter/nvim-treesitter"}
+  --},
+  --config = function()
+  --require("refactoring").setup({})
+  --end
+  --}
 
   -- Visualization
   use "ryanoasis/vim-devicons"
@@ -89,27 +89,27 @@ return require("packer").startup(function()
   use {
     "nvim-treesitter/playground",
     config = function()
-      require "nvim-treesitter.configs".setup {
+      require("nvim-treesitter.configs").setup {
         playground = {
           enable = true,
           disable = {},
           updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
           persist_queries = false, -- Whether the query persists across vim sessions
           keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?',
+            toggle_query_editor = "o",
+            toggle_hl_groups = "i",
+            toggle_injected_languages = "t",
+            toggle_anonymous_nodes = "a",
+            toggle_language_display = "I",
+            focus_language = "f",
+            unfocus_language = "F",
+            update = "R",
+            goto_node = "<cr>",
+            show_help = "?",
           },
-        }
+        },
       }
-    end
+    end,
   }
   use "rcarriga/nvim-notify"
   use {
@@ -177,9 +177,20 @@ return require("packer").startup(function()
     "leoluz/nvim-dap-go",
     config = function()
       require("dap-go").setup()
-    end
+    end,
   }
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function() require("dapui").setup() end }
-  use {"theHamsta/nvim-dap-virtual-text", config = function() require ("nvim-dap-virtual-text").setup() end}
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dapui").setup()
+    end,
+  }
+  use {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+  }
   use "nvim-telescope/telescope-dap.nvim"
 end)
