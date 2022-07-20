@@ -19,9 +19,13 @@ require "configs.which-key"
 require "lsp"
 
 -- Color themes
-vim.g.gruvbox_contrast_dark = "medium"
-vim.g.gruvbox_italics = true
-vim.cmd [[colorscheme gruvbox]]
+--vim.g.gruvbox_contrast_dark = "medium"
+--vim.g.gruvbox_italics = true
+local catppuccin = require("catppuccin")
+
+catppuccin.setup()
+
+--vim.cmd [[colorscheme gruvbox]]
 vim.cmd [[hi Normal ctermbg=none]]
 vim.cmd [[hi NonText ctermbg=none]]
 vim.cmd [[hi Normal guibg=000000]]
