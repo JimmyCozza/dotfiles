@@ -53,7 +53,7 @@ lualine.setup {
     icons_enabled = true,
     section_separators = { left = "", right = icon_styles.round.left },
     --section_separators = { left = icon_styles.round.right, right = icon_styles.round.left },
-    theme = "gruvbox",
+    theme = "catppuccin",
   },
   sections = {
     lualine_a = { "mode" },
