@@ -133,7 +133,7 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
   }
-  --use "hoob3rt/lualine.nvim"
+  use "hoob3rt/lualine.nvim"
   use "feline-nvim/feline.nvim"
 
   -- Javascript/Node

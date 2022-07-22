@@ -2,7 +2,8 @@ local ok, lualine = pcall(require, "lualine")
 if not ok then
   return
 end
-icon_styles = {
+
+local icon_styles = {
   default = {
     left = "",
     right = " ",
@@ -43,32 +44,44 @@ icon_styles = {
   },
 }
 
+local style = icon_styles.block
+
 lualine.setup {
   options = {
-    always_divide_middle = true,
-    component_separators = { left = icon_styles.block.left, right = icon_styles.block.right },
-    --component_separators = { left = icon_styles.arrow.position_icon, right = icon_styles.round.left },
-    disabled_filetypes = {},
-    globalstatus = true,
     icons_enabled = true,
-    section_separators = { left = "", right = icon_styles.round.left },
-    --section_separators = { left = icon_styles.round.right, right = icon_styles.round.left },
-    theme = "catppuccin",
+    theme = 'auto',
+    component_separators = { left = style.left, right = style.right},
+    section_separators = { left = style.left, right = style.right},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    always_divide_middle = true,
+    globalstatus = true,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
   },
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { "filename" },
-    lualine_x = { "filetype" },
-    lualine_y = { "progress" },
-    lualine_z = { "location" },
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
     lualine_y = {},
-    lualine_z = {},
+    lualine_z = {}
   },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
 }
