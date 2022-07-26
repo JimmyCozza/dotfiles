@@ -149,7 +149,8 @@ return require("packer").startup(function()
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "folke/lsp-colors.nvim"
   use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   use "nvim-lua/lsp-status.nvim"
 
   -- Completion

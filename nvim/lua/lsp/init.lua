@@ -1,7 +1,8 @@
 local present, lspconfig = pcall(require, "lspconfig")
 local set_lsp_mappings = require "lsp.mappings"
 local lsp_handlers = require "lsp.handlers"
-require "lsp.lsp_installer"
+require "lsp.mason"
+--require "lsp.lsp_installer"
 
 if not present then
   return

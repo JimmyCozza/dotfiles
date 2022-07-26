@@ -90,4 +90,3 @@ catppuccin.setup {
     mini = false,
   },
 }
-
