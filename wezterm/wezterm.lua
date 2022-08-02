@@ -9,8 +9,8 @@ end
 local font_name = "JetBrains Mono Nerd Font"
 return {
   automatically_reload_config = true,
-  --color_scheme = "Gruvbox Dark",
-  color_scheme = "Catppuccin macchiato",
+  color_scheme = "Gruvbox Dark",
+  --color_scheme = "Catppuccin Frappe",
   disable_default_key_bindings = true,
   font = font_with_fallback(font_name),
   font_rules = {
@@ -32,6 +32,8 @@ return {
       mods = "CTRL",
       action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } },
     },
+    { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.Copy },
+    { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.Paste },
     { key = "w", mods = "CTRL", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
     { key = "d", mods = "CTRL|SHIFT", action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
     { key = "h", mods = "LEADER", action = action { ActivatePaneDirection = "Left" } },

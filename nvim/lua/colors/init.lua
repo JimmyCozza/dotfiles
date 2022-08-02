@@ -1,7 +1,14 @@
 -- Colorschemes
 require "colors.catppuccin"
+require "colors.gruvbox"
 
-vim.cmd [[colorscheme catppuccin]]
+local scheme = "gruvbox"
+local theme = "dark"
+
+--vim.cmd [[colorscheme catppuccin]]
+vim.cmd("colorscheme " .. scheme)
+
+vim.o.background = theme
 
 -- Highlight goodies
 vim.cmd [[hi Normal ctermbg=none]]
