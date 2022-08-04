@@ -21,6 +21,11 @@ local opts = {
   termguicolors = true,
   scrolloff = 8,
   laststatus = 3,
+  foldmethod='expr',
+  foldexpr='nvim_treesitter#foldexpr()',
+  foldenable = false,
+  foldnestmax = 10,
+  foldlevel = 10,
 }
 
 vim.opt.shortmess:append "c"

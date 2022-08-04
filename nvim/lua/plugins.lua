@@ -137,7 +137,7 @@ return require("packer").startup(function()
   use "feline-nvim/feline.nvim"
 
   -- Javascript/Node
-  use "pangloss/vim-javascript"
+  --use "pangloss/vim-javascript"
   use "mxw/vim-jsx"
   use "othree/yajs.vim"
   use "othree/javascript-libraries-syntax.vim"

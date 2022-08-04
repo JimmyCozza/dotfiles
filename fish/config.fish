@@ -12,4 +12,4 @@ direnv hook fish | source
 # Bun
 set -Ux BUN_INSTALL "/home/jimmy/.bun"
 set -px --path PATH "/home/jimmy/.bun/bin"
-
+setenv EDITOR nvim
