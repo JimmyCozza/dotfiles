@@ -138,10 +138,10 @@ return require("packer").startup(function()
 
   -- Javascript/Node
   --use "pangloss/vim-javascript"
-  use "mxw/vim-jsx"
-  use "othree/yajs.vim"
-  use "othree/javascript-libraries-syntax.vim"
-  use "leafgarland/typescript-vim"
+  --use "mxw/vim-jsx"
+  --use "othree/yajs.vim"
+  --use "othree/javascript-libraries-syntax.vim"
+  --use "leafgarland/typescript-vim"
   --use "jose-elias-alvarez/typescript.nvim"
 
   -- LSP
