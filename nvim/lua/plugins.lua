@@ -33,17 +33,6 @@ return require("packer").startup(function()
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
 
-  --use {
-  --"~/projects/refactoring.nvim",
-  --requires = {
-  --{"nvim-lua/plenary.nvim"},
-  --{"nvim-treesitter/nvim-treesitter"}
-  --},
-  --config = function()
-  --require("refactoring").setup({})
-  --end
-  --}
-
   -- Visualization
   use "ryanoasis/vim-devicons"
   use "kyazdani42/nvim-web-devicons"
@@ -135,14 +124,6 @@ return require("packer").startup(function()
   }
   use "hoob3rt/lualine.nvim"
   use "feline-nvim/feline.nvim"
-
-  -- Javascript/Node
-  --use "pangloss/vim-javascript"
-  --use "mxw/vim-jsx"
-  --use "othree/yajs.vim"
-  --use "othree/javascript-libraries-syntax.vim"
-  --use "leafgarland/typescript-vim"
-  --use "jose-elias-alvarez/typescript.nvim"
 
   -- LSP
   use "jose-elias-alvarez/null-ls.nvim"
