@@ -36,6 +36,11 @@ end
 
 require("telescope").setup {
   defaults = {
+    border = {},
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    color_devicons = true,
+    dynamic_preview_title = true,
+    entry_prefix = "  ",
     find_command = {
       "rg",
       "--no-heading",
@@ -45,13 +50,14 @@ require("telescope").setup {
       "--smart-case",
       "--trim",
     },
-    prompt_prefix = " ",
-    selection_caret = " ",
-    entry_prefix = "  ",
+    file_ignore_patterns = {
+      ".git/*",
+    },
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    file_sorter = require("telescope.sorters").get_fzy_sorter,
+    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
     layout_config = {
       width = 0.75,
       prompt_position = "bottom",
@@ -59,21 +65,7 @@ require("telescope").setup {
       horizontal = { mirror = false },
       vertical = { mirror = false },
     },
-    file_sorter = require("telescope.sorters").get_fzy_sorter,
-    file_ignore_patterns = {
-      ".git/*",
-    },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = smartTruncate,
-    winblend = 0,
-    border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ["COLORTERM"] = "truecolor" },
-    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    layout_strategy = "horizontal",
     mappings = {
       i = {
         ["<C-c>"] = actions.close,
@@ -91,6 +83,15 @@ require("telescope").setup {
         ["?"] = actions.which_key,
       },
     },
+    path_display = smartTruncate,
+    prompt_prefix = " ",
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    selection_caret = " ",
+    selection_strategy = "reset",
+    set_env = { ["COLORTERM"] = "truecolor" },
+    sorting_strategy = "descending",
+    use_less = true,
+    winblend = 0,
   },
   extensions = {
     fzy_native = {

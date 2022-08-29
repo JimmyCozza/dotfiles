@@ -4,8 +4,8 @@
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
 
-(setq doom-font (font-spec :family "JetBrains Mono Nerd Font" :size 16)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono Nerd Font" :size 18))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
 
 (setq doom-theme 'catppuccin)
 (setq doom-themes-treemacs-theme "doom-colors")
@@ -104,7 +104,7 @@
                   (org-level-6 . 0.9)
                   (org-level-7 . 0.9)
                   (org-level-8 . 0.9)))
-  (set-face-attribute (car face) nil :font "JetBrains Mono Nerd Font" :weight 'regular :height (cdr face)))
+  (set-face-attribute (car face) nil :font "JetBrainsMono Nerd Font" :weight 'regular :height (cdr face)))
   (setq org-ellipsis " ▾")
   (org-add-link-type "youtrack" #'make-youtrack-link))
 
