@@ -32,6 +32,7 @@ return {
       mods = "CTRL",
       action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } },
     },
+    { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
     { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.Copy },
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.Paste },
