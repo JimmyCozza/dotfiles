@@ -7,11 +7,11 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
 
-(setq doom-theme 'catppuccin)
+(setq doom-theme 'gruvbox-dark-hard)
 (setq doom-themes-treemacs-theme "doom-colors")
 
- (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
- (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
 (setq display-line-numbers-type t)
 

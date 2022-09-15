@@ -7,6 +7,7 @@ local function font_with_fallback(name, params)
 end
 
 local font_name = "JetBrainsMono Nerd Font"
+
 return {
   automatically_reload_config = true,
   color_scheme = "Gruvbox Dark",

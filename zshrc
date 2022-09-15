@@ -13,6 +13,7 @@ export VISUAL=nvim
 export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 
 ZSH_THEME="muse"
+#ZSH_THEME="robbyrussell"
 plugins=(
   git
   macos

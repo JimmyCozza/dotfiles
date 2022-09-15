@@ -74,6 +74,7 @@ return require("packer").startup(function()
   }
 
   --Utilities
+  use "nvim-orgmode/orgmode"
   use "nvim-treesitter/nvim-treesitter"
   use {
     "nvim-treesitter/playground",
@@ -101,6 +102,33 @@ return require("packer").startup(function()
     end,
   }
   use "rcarriga/nvim-notify"
+  use "nvim-neotest/neotest-plenary"
+  use "haydenmeade/neotest-jest"
+  use "nvim-neotest/neotest-go"
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    },
+    config = function()
+      require("neotest").setup{
+        adapters = {
+          require("neotest-plenary"),
+          require("neotest-go"),
+          require('neotest-jest')({
+            jestCommand = "npm test --",
+            jestConfigFile = "custom.jest.config.ts",
+            env = { CI = true },
+            cwd = function(path)
+              return vim.fn.getcwd()
+            end,
+          }),
+        }
+      }
+    end
+  }
   use {
     "vimwiki/vimwiki",
     config = function()
@@ -152,6 +180,23 @@ return require("packer").startup(function()
     ft = "go",
   }
   use "numtostr/FTerm.nvim"
+  --use "github/copilot.vim"
+  use {
+    "zbirenbaum/copilot.lua",
+    event = {"VimEnter"},
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  }
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
 
   -- DAP
   use "mfussenegger/nvim-dap"

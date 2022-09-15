@@ -46,6 +46,7 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
+      print(vim.inspect(entry.source.name))
       if entry.source.name == "copilot" then
         vim_item.dup = 0
         vim_item.kind = "Copilot"
@@ -105,12 +106,13 @@ cmp.setup {
     ghost_text = true,
   },
   sources = {
+    { name = "buffer" },
     { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "ultisnips" },
-    { name = "buffer" },
+    { name = "orgmode" },
     { name = "path" },
+    { name = "ultisnips" },
   },
   sorting = {
     comparators = {
