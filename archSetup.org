@@ -25,7 +25,7 @@ ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi flamesh
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer xclip"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip"
 #+end_src
 ** Install packages.  This will take a while.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
@@ -95,6 +95,9 @@ ln -s "$CONFIG_FILES_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 source "$HOME/.zshrc"
 #+END_SRC
