@@ -1,4 +1,11 @@
-require("which-key").setup {
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+
+local org = require('configs.org')
+
+wk.setup {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -14,8 +21,6 @@ require("which-key").setup {
       g = true, -- bindings for prefixed with g
     },
   },
-  -- add operators that will trigger motion and text object completion
-  -- to enable all native operators, set the preset / operators plugin above
   operators = { gc = "Comments" },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -27,6 +32,7 @@ require("which-key").setup {
     position = "bottom", -- bottom, top
     margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+    winblend = 20
   },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -37,7 +43,6 @@ require("which-key").setup {
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
   triggers = "auto", -- automatically setup triggers
-  -- triggers = {"<leader>"} -- or specifiy a list manually
 }
 
 local mappings = {
@@ -47,11 +52,11 @@ local mappings = {
   },
   ["b"] = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
-  c = {
-    name = "Comment",
-    ["l"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
-    ["space"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
-  },
+  --c = {
+    --name = "Comment",
+    --["l"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
+    --["space"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
+  --},
   d = {
     name = "+Debug",
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
@@ -121,8 +126,6 @@ local mappings = {
   },
   m = {
     name = "Language Mode", --hardcoded for now just for go.  Make this use an autocmd and be dynamic based on filetype?
-    b = { "<cmd>!go test -bench=.<cr>", "Go Benchmark" },
-    t = { "<cmd>GoTest<cr>", "Go Test" },
   },
   n = {
     name = "+NERDTree",
@@ -175,5 +178,28 @@ local opts = {
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
-local wk = require "which-key"
+
+local mode_mappings = {
+  org = org.which_key_mappings,
+  go = {
+    b = { "<cmd>!go test -bench=.<cr>", "Go Benchmark" },
+    t = { "<cmd>GoTest<cr>", "Go Test" },
+  },
+}
+
+local group = vim.api.nvim_create_augroup("Language mode", {clear = true})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"go", "org"},
+  callback = function()
+    local type = vim.fn.expand("<amatch>")
+    print(vim.inspect(type))
+    vim.schedule(function()
+      mappings["m"] = mode_mappings[type]
+      opts["buffer"] = 0
+      wk.register(mappings, opts)
+    end)
+  end,
+  group = group,
+})
+
 wk.register(mappings, opts)
