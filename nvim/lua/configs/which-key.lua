@@ -192,7 +192,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {"go", "org"},
   callback = function()
     local type = vim.fn.expand("<amatch>")
-    print(vim.inspect(type))
     vim.schedule(function()
       mappings["m"] = mode_mappings[type]
       opts["buffer"] = 0
