@@ -75,6 +75,14 @@ return require("packer").startup(function()
 
   --Utilities
   use "nvim-orgmode/orgmode"
+  use {
+      "nvim-neorg/neorg",
+      config = function()
+          require('neorg').setup {
+          }
+      end,
+      requires = "nvim-lua/plenary.nvim"
+  }
   use "nvim-treesitter/nvim-treesitter"
   use {
     "nvim-treesitter/playground",

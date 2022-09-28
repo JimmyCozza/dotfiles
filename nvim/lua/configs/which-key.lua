@@ -62,7 +62,7 @@ local mappings = {
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
     c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
     C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-    d = { "<cmd>lua _G.__fterm_lazydocker()<CR>", "Lazydocker" },
+    d = { "<cmd>lua _G.__floating_tui('lazydocker')<CR>", "Lazydocker" },
     D = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
     g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
     i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
@@ -91,7 +91,7 @@ local mappings = {
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
     d = { "<cmd>Git diff<cr>", "Git diff" },
-    g = { "<CMD>lua _G.__fterm_lazygit()<CR>", "Lazygit" },
+    g = { "<CMD>lua _G.__floating_tui('lazygit')<CR>", "Lazygit" },
     j = { "<cmd>NextHunk<cr>", "Next Hunk" },
     k = { "<cmd>PrevHunk<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame Line" },
@@ -104,7 +104,7 @@ local mappings = {
   },
   h = {
     name = "+Help",
-    b = { "<cmd>lua _G.__fterm_bpytop()<cr>", "Bpytop" },
+    b = { "<cmd>lua _G.__floating_tui('htop')<cr>", "Htop" },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
   },
@@ -153,7 +153,8 @@ local mappings = {
   },
   t = {
     name = "+Todo",
-    t = { "<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List" },
+    l = { "<cmd>TodoTrouble<cr>", "Send TODOs to Trouble List" },
+    t = { "<cmd>lua _G.__floating_tui('taskwarrior-tui')<CR>", "Taskwarrior TUI" },
   },
   w = {
     name = "Vim Wiki",
