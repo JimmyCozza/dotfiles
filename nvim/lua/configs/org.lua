@@ -122,4 +122,5 @@ M.which_key_mappings = {
     name = "org-toggle-checkbox",
   },
 }
+
 return M
