@@ -77,12 +77,12 @@ local mappings = {
   },
   e = {
     name = "+Quick edit files",
-    a = { "<cmd>:e $HOME/dotfiles/alacritty/alacritty.yml<cr>", "Edit Alacritty.yml" },
-    A = { "<cmd>:e $HOME/awesome/rc.lua<cr>", "Edit Awesome rc.lua" },
+    a = { "<cmd>:e $HOME/awesome/rc.lua<cr>", "Edit Awesome rc.lua" },
     p = { "<cmd>:e $HOME/dotfiles/nvim/lua/plugins.lua<cr>", "Edit Plugfile" },
+    t = { "<cmd>:e $HOME/dotfiles/wezterm/wezterm.lua<cr>", "Edit Terminal Config" },
     v = { "<cmd>:e $HOME/.config/nvim/init.lua<cr>", "Edit Vimrc" },
     w = { "<cmd>:e $HOME/dotfiles/nvim/lua/configs/which-key.lua<cr>", "Edit Which Key" },
-    z = { "<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit Zshrc" },
+    z = { "<cmd>:e $HOME/dotfiles/zshrc<cr>", "Edit zshrc" },
   },
   g = {
     name = "+Git",
