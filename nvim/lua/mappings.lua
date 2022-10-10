@@ -19,11 +19,6 @@ map("n", "n", "nzz", opts)
 map("n", "N", "Nzz", opts)
 map("n", "<C-b>", ":NvimTreeToggle<cr>", opts)
 
--- ****************************
--- Telescope
--- ****************************
---map('n', '<C-p>', '<cmd>Telescope find_files<cr>', opts)
---map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', opts)
 
 -- ****************************
 -- Splits

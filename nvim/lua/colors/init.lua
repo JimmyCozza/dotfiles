@@ -5,7 +5,6 @@ require "colors.gruvbox"
 local scheme = "gruvbox"
 local theme = "dark"
 
---vim.cmd [[colorscheme catppuccin]]
 vim.cmd("colorscheme " .. scheme)
 
 vim.o.background = theme
