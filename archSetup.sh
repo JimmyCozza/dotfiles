@@ -10,9 +10,9 @@ mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip python2"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
