@@ -10,9 +10,9 @@ mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-ARCH_LIST="alacritty ripgrep tmux bat discord docker docker-compose rofi flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx python2 base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git playerctl arcolinux-logout feh pamixer xclip"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -49,16 +49,18 @@ echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 source "$HOME/.zshrc"
 
-ln -s "$CONFIG_FILES_PATH/alacritty" "$HOME/.config/alacritty"
 ln -s "$CONFIG_FILES_PATH/awesome" "$HOME/.config/awesome"
 ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
 ln -s "$CONFIG_FILES_PATH/autostart" "$HOME/.config/autostart"
-ln -s "$CONFIG_FILES_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+ln -s "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 source "$HOME/.zshrc"
 
@@ -75,7 +77,6 @@ source "$HOME/.zshrc"
 xdg-mime default google-chrome-unstable.desktop x-scheme-handler/https x-scheme-handler/http
 
 echo "I have exercised the demons.  This house is clean"
-echo "Start TMUX and run tmux-plugin-manager install"
 echo "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'" #I don't care enough to make this work right now...
 echo "Reboot"
 echo "install emacs-git sometime, but do it when the system is up and running because that takes as long as the rest of this install combined."
