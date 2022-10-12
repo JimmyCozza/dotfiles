@@ -30,6 +30,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+yay -R grml-zsh-config
+
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 cd $HOME/tools/1password && makepkg -si

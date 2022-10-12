@@ -48,9 +48,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 #+end_src
 *** oh-my-zsh
-**** I don't know why I keep using this.  But I can't be bothered to set up zsh from scratch right now.
+**** Arch come with grml-zsh-config and I don't care for that nonsense.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+yay -R grml-zsh-config
 #+end_src
 *** 1password
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
