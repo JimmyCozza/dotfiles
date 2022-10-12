@@ -27,7 +27,7 @@ cd $HOME/tools/yay && makepkg -si
 ** I just use pacman & yay for package management.  Pamac was sort of neat, but not really needed in my regular flow.
 ** Standard Arch Packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm lua-lgi wezterm"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm lua-lgi wezterm imagemagick"
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
