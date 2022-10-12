@@ -67,6 +67,10 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 #+end_src
 *** awesome
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone https://github.com/JimmyCozza/awe.git $HOME/awe
+git clone https://github.com/BlingCorp/bling.git $HOME/awe/modules/bling
+git clone https://github.com/andOrlando/rubato.git $HOME/awe/modules/rubato
+
 git clone https://github.com/JimmyCozza/awesome.git $HOME/tools/awesome
 cd $HOME/tools/awesome && make && sudo make install
 #+end_src

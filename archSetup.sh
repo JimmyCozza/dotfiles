@@ -39,6 +39,10 @@ cd $HOME/tools/1password && makepkg -si
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+git clone https://github.com/JimmyCozza/awe.git $HOME/awe
+git clone https://github.com/BlingCorp/bling.git $HOME/awe/modules/bling
+git clone https://github.com/andOrlando/rubato.git $HOME/awe/modules/rubato
+
 git clone https://github.com/JimmyCozza/awesome.git $HOME/tools/awesome
 cd $HOME/tools/awesome && make && sudo make install
 
