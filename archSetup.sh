@@ -56,7 +56,7 @@ echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 source "$HOME/.zshrc"
 
-ln -s "$CONFIG_FILES_PATH/awesome" "$HOME/.config/awesome"
+ln -s "$HOME/awe" "$HOME/.config/awesome"
 ln -s "$CONFIG_FILES_PATH/doom" "$HOME/.doom.d"
 ln -s "$CONFIG_FILES_PATH/picom" "$HOME/.config/picom"
 ln -s "$CONFIG_FILES_PATH/rofi" "$HOME/.config/rofi"
