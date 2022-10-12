@@ -59,8 +59,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 #+end_src
 *** awesome
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-git clone https://github.com/JimmyCozza/awesome.git ~/awesome
-cd $HOME/awesome && make && sudo make install
+git clone https://github.com/JimmyCozza/awesome.git $HOME/tools/awesome
+cd $HOME/tools/awesome && make && sudo make install
 #+end_src
 *** Neovim Nightly
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
