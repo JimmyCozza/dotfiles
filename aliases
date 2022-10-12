@@ -1,7 +1,7 @@
 alias vi="nvim"
 alias sphp="php -S localhost:8000 -t public"
 alias app="cd $HOME/work/cleanclaims/app"
-alias awe="cd $HOME/awesome"
+alias awe="cd $HOME/awe"
 alias gg="lazygit"
 alias tt="taskwarrior-tui"
 alias l="ls -la"
