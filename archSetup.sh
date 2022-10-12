@@ -31,8 +31,8 @@ cd $HOME/tools/1password && makepkg -si
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-git clone https://github.com/JimmyCozza/awesome.git ~/awesome
-cd $HOME/awesome && make && sudo make install
+git clone https://github.com/JimmyCozza/awesome.git $HOME/tools/awesome
+cd $HOME/tools/awesome && make && sudo make install
 
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make CMAKE_BUILD_TYPE=Release
