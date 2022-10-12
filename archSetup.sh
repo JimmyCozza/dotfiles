@@ -10,9 +10,9 @@ mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm"
 
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip python2"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git feh xclip python2"
 
 echo "Fetching standard arch packages"
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -24,14 +24,15 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
 cd $HOME/tools/1password && makepkg -si
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+git clone https://github.com/JimmyCozza/awesome.git ~/awesome
+cd $HOME/awesome && make && sudo make install
 
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make CMAKE_BUILD_TYPE=Release

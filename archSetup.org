@@ -21,11 +21,11 @@ mkdir -p $HOME/tools
 ** I just use pacman & yay for package management.  Pamac was sort of neat, but not really needed in my regular flow.
 ** Standard Arch Packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm"
 #+end_src
 ** AUR packages
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git awesome-git feh xclip python2"
+AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git feh xclip python2"
 #+end_src
 ** Install packages.  This will take a while.
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
@@ -46,10 +46,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 #+end_src
-*** tmux plugin manager.  I love the resurrect plugin and I use a little nord plugin for the statusbar
-#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-#+end_src
 *** 1password
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
@@ -60,6 +56,11 @@ cd $HOME/tools/1password && makepkg -si
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+#+end_src
+*** awesome
+#+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
+git clone https://github.com/JimmyCozza/awesome.git ~/awesome
+cd $HOME/awesome && make && sudo make install
 #+end_src
 *** Neovim Nightly
 #+BEGIN_SRC sh :tangle ~/dotfiles/archSetup.sh
