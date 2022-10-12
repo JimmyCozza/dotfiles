@@ -12,9 +12,15 @@
 #########################################################
 #########################################################
 echo "Setup directories"
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Downloads
 mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
+
+sudo pacman -Syu --needed base-devel
+git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
+cd $HOME/tools/yay && makepkg -si
 #+end_src
 ** Also, I need to learn about tangling...I'm just kind of copying this offline right now from what I am reading in the doom literate module's readme and adapting it for this file.  Do I need to define the tangle output file in each src block?  Doubt it.  Is there a more elegant way?  probably.  Does this output the file right now?  Yup.
 * Packages

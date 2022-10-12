@@ -6,9 +6,15 @@
 #########################################################
 #########################################################
 echo "Setup directories"
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Downloads
 mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
+
+sudo pacman -Syu --needed base-devel
+git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
+cd $HOME/tools/yay && makepkg -si
 
 ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm lua-lgi wezterm"
 
