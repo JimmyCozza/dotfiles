@@ -40,11 +40,13 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 git clone https://github.com/JimmyCozza/awe.git $HOME/awe
-git clone https://github.com/BlingCorp/bling.git $HOME/awe/modules/bling
-git clone https://github.com/andOrlando/rubato.git $HOME/awe/modules/rubato
+git clone https://github.com/BlingCorp/bling.git $HOME/tools/bling
+git clone https://github.com/andOrlando/rubato.git $HOME/tools/rubato
 
 git clone https://github.com/JimmyCozza/awesome.git $HOME/tools/awesome
 cd $HOME/tools/awesome && make && sudo make install
+sudo mkdir /usr/share/xsessions && sudo cp $HOME/tools/awesome/awesome.desktop /usr/share/xsessions
+sudo systemctl enable lightdm.service
 
 git clone https://github.com/neovim/neovim $HOME/tools/neovim
 cd $HOME/tools/neovim && make CMAKE_BUILD_TYPE=Release
@@ -71,6 +73,8 @@ ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ln -s "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
+ln -s "$HOME/tools/bling" "$HOME/awe/modules/bling"
+ln -s "$HOME/tools/rubato" "$HOME/awe/modules/rubato"
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
