@@ -16,7 +16,7 @@ function M.on_attach(client, _)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 lspconfig.sumneko_lua.setup {
   on_attach = M.on_attach,
