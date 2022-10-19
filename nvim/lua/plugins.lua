@@ -160,6 +160,8 @@ return require("packer").startup(function()
   }
   use "hoob3rt/lualine.nvim"
   use "feline-nvim/feline.nvim"
+  -- Formatting
+  use "gpanders/editorconfig.nvim"
 
   -- LSP
   use "jose-elias-alvarez/null-ls.nvim"

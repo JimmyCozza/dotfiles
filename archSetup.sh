@@ -16,7 +16,7 @@ sudo pacman -Syu --needed base-devel
 git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
 cd $HOME/tools/yay && makepkg -si
 
-ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm lua-lgi wezterm imagemagick qemu-full lightdm-gtk-greeter pulseaudio pamixer brightnessctl"
+ARCH_LIST="ripgrep bat discord docker docker-compose rofi flameshot aws-cli nginx base-devel cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv emacs lightdm lua-lgi wezterm imagemagick qemu-full lightdm-gtk-greeter pulseaudio pamixer brightnessctl thunar thunar-volman gvfs"
 
 AUR_LIST="fnm-bin lazydocker nerd-fonts-complete zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage tdrop-git feh xclip python2"
 
