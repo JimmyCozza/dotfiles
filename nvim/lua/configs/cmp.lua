@@ -67,7 +67,7 @@ cmp.setup {
   },
   window = {
     completion = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
       scrollbar = "║",
       autocomplete = {
         require("cmp.types").cmp.TriggerEvent.InsertEnter,
@@ -75,7 +75,7 @@ cmp.setup {
       },
     },
     documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
       scrollbar = "║",
     },
