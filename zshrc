@@ -13,14 +13,12 @@ export VISUAL=nvim
 export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 
 ZSH_THEME="muse"
-#ZSH_THEME="robbyrussell"
 plugins=(
   git
   macos
 )
 
 source $ZSH/oh-my-zsh.sh
-#source $CONFIG_FILES_PATH/growvars
 source $CONFIG_FILES_PATH/aliases
 
 #Workflow improvements
@@ -37,9 +35,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# The next line updates PATH for the Google Cloud SDK.
-#if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then source '$HOME/google-cloud-sdk/path.zsh.inc'; fi
-
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then source '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
@@ -47,10 +42,8 @@ gitclone() {
  git clone "$1" && cd "$(basename "$1" .git)" || return
 }
 
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-#export PATH="/usr/local/opt/awscli@1/bin:$PATH"
 eval "$(direnv hook zsh)"
 
 # fnm
