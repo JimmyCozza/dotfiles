@@ -159,7 +159,6 @@ return require("packer").startup(function()
     requires = "trip-zip/plenary.nvim",
   })
   use("hoob3rt/lualine.nvim")
-  use("feline-nvim/feline.nvim")
   -- Formatting
   use("gpanders/editorconfig.nvim")
 
