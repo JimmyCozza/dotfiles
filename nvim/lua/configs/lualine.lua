@@ -1,57 +1,14 @@
-local ok, lualine = pcall(require, "lualine")
+ local ok, lualine = pcall(require, "lualine")
 if not ok then
   return
 end
-
-local icon_styles = {
-  default = {
-    left = "",
-    right = " ",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-  arrow = {
-    left = "",
-    right = "",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-
-  block = {
-    left = " ",
-    right = " ",
-    main_icon = "   ",
-    vi_mode_icon = "  ",
-    position_icon = "  ",
-  },
-
-  round = {
-    left = "",
-    right = "",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-
-  slant = {
-    left = " ",
-    right = " ",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-}
-
-local style = icon_styles.block
 
 lualine.setup({
   options = {
     icons_enabled = true,
     theme = "auto",
-    component_separators = { left = style.left, right = style.right },
-    section_separators = { left = style.left, right = style.right },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -66,9 +23,9 @@ lualine.setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_b = { "branch", "diagnostics" },
     lualine_c = { "filename" },
-    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_x = { "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
@@ -79,9 +36,5 @@ lualine.setup({
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {},
+  }
 })
