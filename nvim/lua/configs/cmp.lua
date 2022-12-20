@@ -18,13 +18,13 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      print(vim.inspect(entry.source.name))
+      vim_item.kind = string.format("%s", icons.kind[vim_item.kind])
+
       if entry.source.name == "copilot" then
         vim_item.dup = 0
         vim_item.kind = icons.git.Octoface
       end
       -- Kind icons
-      vim_item.kind = string.format("%s", icons.kind[vim_item.kind])
       vim_item.menu = ({
         copilot = "[Copilot]",
         nvim_lsp = "[LSP]",
@@ -78,7 +78,33 @@ cmp.setup({
   },
   sources = {
     { name = "buffer" },
-    { name = "copilot" },
+    {
+      name = "copilot",
+      max_item_count = 3,
+      trigger_characters = {
+        {
+          ".",
+          ":",
+          "(",
+          "'",
+          '"',
+          "[",
+          ",",
+          "#",
+          "*",
+          "@",
+          "|",
+          "=",
+          "-",
+          "{",
+          "/",
+          "\\",
+          "+",
+          "?",
+          " ",
+        },
+      },
+    },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "orgmode" },
@@ -101,24 +127,24 @@ cmp.setup({
 --set max height of items
 vim.cmd([[ set pumheight=6 ]])
 --set highlights
-local highlights = {
-  CmpItemKindText = { fg = "LightGrey" },
-  CmpItemKindFunction = { fg = "#C586C0" },
-  CmpItemKindClass = { fg = "Orange" },
-  CmpItemKindKeyword = { fg = "#f90c71" },
-  CmpItemKindSnippet = { fg = "#565c64" },
-  CmpItemKindConstructor = { fg = "#ae43f0" },
-  CmpItemKindVariable = { fg = "#9CDCFE", bg = "NONE" },
-  CmpItemKindInterface = { fg = "#f90c71", bg = "NONE" },
-  CmpItemKindFolder = { fg = "#2986cc" },
-  CmpItemKindReference = { fg = "#922b21" },
-  CmpItemKindMethod = { fg = "#C586C0" },
-  CmpItemMenu = { fg = "#C586C0", bg = "#C586C0" },
-  CmpItemAbbr = { fg = "#565c64", bg = "NONE" },
-  CmpItemAbbrMatch = { fg = "#569CD6", bg = "NONE" },
-  CmpItemAbbrMatchFuzzy = { fg = "#569CD6", bg = "NONE" },
-}
-vim.api.nvim_set_hl(0, "CmpBorderedWindow_FloatBorder", { fg = "#565c64" })
-for group, hl in pairs(highlights) do
-  vim.api.nvim_set_hl(0, group, hl)
-end
+--local highlights = {
+  --CmpItemKindText = { fg = "LightGrey" },
+  --CmpItemKindFunction = { fg = "#C586C0" },
+  --CmpItemKindClass = { fg = "Orange" },
+  --CmpItemKindKeyword = { fg = "#f90c71" },
+  --CmpItemKindSnippet = { fg = "#565c64" },
+  --CmpItemKindConstructor = { fg = "#ae43f0" },
+  --CmpItemKindVariable = { fg = "#9CDCFE", bg = "NONE" },
+  --CmpItemKindInterface = { fg = "#f90c71", bg = "NONE" },
+  --CmpItemKindFolder = { fg = "#2986cc" },
+  --CmpItemKindReference = { fg = "#922b21" },
+  --CmpItemKindMethod = { fg = "#C586C0" },
+  --CmpItemMenu = { fg = "#C586C0", bg = "#C586C0" },
+  --CmpItemAbbr = { fg = "#565c64", bg = "NONE" },
+  --CmpItemAbbrMatch = { fg = "#569CD6", bg = "NONE" },
+  --CmpItemAbbrMatchFuzzy = { fg = "#569CD6", bg = "NONE" },
+--}
+--vim.api.nvim_set_hl(0, "CmpBorderedWindow_FloatBorder", { fg = "#565c64" })
+--for group, hl in pairs(highlights) do
+  --vim.api.nvim_set_hl(0, group, hl)
+--end

@@ -37,7 +37,7 @@ end
 require("telescope").setup({
   defaults = {
     border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    borderchars = nil,
     color_devicons = true,
     dynamic_preview_title = true,
     entry_prefix = "  ",
