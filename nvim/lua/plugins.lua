@@ -163,8 +163,6 @@ return require("packer").startup(function()
   use("gpanders/editorconfig.nvim")
 
   -- LSP
-  --use "jose-elias-alvarez/null-ls.nvim"
-  --use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use("folke/lsp-colors.nvim")
   use("neovim/nvim-lspconfig")
   use("williamboman/mason.nvim")
