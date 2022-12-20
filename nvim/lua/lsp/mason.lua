@@ -3,12 +3,14 @@ if not ok then
   return
 end
 
+local icons = require("icons")
+
 mason.setup({
   ui = {
     icons = {
-      package_installed = "",
-      package_pending = "",
-      package_uninstalled = "ﮊ",
+      package_installed = icons.git.LineAdded,
+      package_pending = icons.git.LineModified,
+      package_uninstalled = icons.git.FileDeleted,
     },
   },
 })
