@@ -5,7 +5,7 @@ end
 
 vim.g.catppuccin_flavour = "macchiato"
 
-catppuccin.setup {
+catppuccin.setup({
   dim_inactive = {
     enabled = false,
     shade = "dark",
@@ -15,7 +15,7 @@ catppuccin.setup {
   term_colors = false,
   compile = {
     enabled = false,
-    path = vim.fn.stdpath "cache" .. "/catppuccin",
+    path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
   styles = {
     comments = { "italic" },
@@ -89,4 +89,4 @@ catppuccin.setup {
     symbols_outline = true,
     mini = false,
   },
-}
+})

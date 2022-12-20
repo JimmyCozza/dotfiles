@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-gruvbox.setup {
+gruvbox.setup({
   undercurl = true,
   underline = true,
   bold = true,
@@ -16,4 +16,4 @@ gruvbox.setup {
   inverse = true, -- invert background for search, diffs, statuslines and errors
   contrast = "", -- can be "hard", "soft" or empty string
   overrides = {},
-}
+})

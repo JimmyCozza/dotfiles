@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-notify.setup {
+notify.setup({
   stages = "fade_in_slide_out",
   on_open = nil,
   on_close = nil,
@@ -18,6 +18,6 @@ notify.setup {
     DEBUG = "",
     TRACE = "✎",
   },
-}
+})
 
 vim.notify = notify

@@ -5,10 +5,10 @@ end
 
 local builtins = null_ls.builtins
 
-null_ls.setup {
+null_ls.setup({
   on_attach = function(client)
     if client.server_capabilities.document_formatting then
-      vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
   end,
   debug = true,
@@ -18,4 +18,4 @@ null_ls.setup {
     builtins.formatting.stylua,
     --builtins.formatting.gofmt,
   },
-}
+})

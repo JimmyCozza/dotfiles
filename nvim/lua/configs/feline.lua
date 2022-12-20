@@ -38,7 +38,7 @@ local options = {
     pmenu_bg = "#83a598",
     folder_bg = "#83a598",
   },
-  lsp = require "feline.providers.lsp",
+  lsp = require("feline.providers.lsp"),
   lsp_severity = vim.diagnostic.severity,
 }
 
@@ -104,8 +104,8 @@ options.main_icon = {
 
 options.file_name = {
   provider = function()
-    local filename = vim.fn.expand "%:t"
-    local extension = vim.fn.expand "%:e"
+    local filename = vim.fn.expand("%:t")
+    local extension = vim.fn.expand("%:e")
     local icon = require("nvim-web-devicons").get_icon(filename, extension)
     if icon == nil then
       icon = " "
@@ -359,12 +359,12 @@ options.position_icon = {
 
 options.current_line = {
   provider = function()
-    local current_line = vim.fn.line "."
-    local total_line = vim.fn.line "$"
+    local current_line = vim.fn.line(".")
+    local total_line = vim.fn.line("$")
 
     if current_line == 1 then
       return " Top "
-    elseif current_line == vim.fn.line "$" then
+    elseif current_line == vim.fn.line("$") then
       return " Bot "
     end
     local result, _ = math.modf((current_line / total_line) * 100)
@@ -426,7 +426,7 @@ options.theme = {
   fg = options.colors.fg,
 }
 
-feline.setup {
+feline.setup({
   theme = options.theme,
   components = options.components,
-}
+})

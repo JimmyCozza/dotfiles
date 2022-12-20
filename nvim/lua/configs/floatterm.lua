@@ -1,7 +1,7 @@
-local term = require "FTerm.terminal"
+local term = require("FTerm.terminal")
 
 local function new_tui(cmd)
-  return term:new():setup {
+  return term:new():setup({
     cmd = cmd,
     dimensions = {
       height = 0.85,
@@ -9,7 +9,7 @@ local function new_tui(cmd)
       x = 0.5,
       y = 0.5,
     },
-  }
+  })
 end
 
 function _G.__floating_tui(cmd)

@@ -6,23 +6,23 @@ end
 local M = {}
 
 orgmode.setup_ts_grammar()
-orgmode.setup{
-  org_agenda_files = {'~/notes/org/*'},
-  org_default_notes_file = '~/notes/org/notes.org',
-  org_todo_keywords = {'TODO', 'WAITING', '|', 'DONE', 'DELEGATED'},
+orgmode.setup({
+  org_agenda_files = { "~/notes/org/*" },
+  org_default_notes_file = "~/notes/org/notes.org",
+  org_todo_keywords = { "TODO", "WAITING", "|", "DONE", "DELEGATED" },
   org_todo_keyword_faces = {
-    WAITING = ':foreground blue :weight bold',
-    DELEGATED = ':background #FFFFFF :slant italic :underline on',
-    TODO = ':background #000000 :foreground red', -- overrides builtin color for `TODO` keyword
+    WAITING = ":foreground blue :weight bold",
+    DELEGATED = ":background #FFFFFF :slant italic :underline on",
+    TODO = ":background #000000 :foreground red", -- overrides builtin color for `TODO` keyword
   },
   mappings = {
     disable_all = true, -- Set these in which-key directly
-  }
-}
+  },
+})
 
 local function remapper(action, desc)
   local mapping = {}
-  mapping[1] = "<cmd>lua require('orgmode').action('org_mappings."..action.."')<cr>"
+  mapping[1] = "<cmd>lua require('orgmode').action('org_mappings." .. action .. "')<cr>"
   mapping[2] = desc
   return mapping
 end
@@ -110,7 +110,7 @@ M.which_key_mappings = {
   },
   t = {
     name = "org-todo",
-    t = remapper("todo_next_state", "[t] TODO")
+    t = remapper("todo_next_state", "[t] TODO"),
   },
   T = {
     name = "org-todo-list",

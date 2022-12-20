@@ -28,7 +28,7 @@ local opts = {
   foldlevel = 10,
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
 for k, v in pairs(opts) do
   vim.o[k] = v

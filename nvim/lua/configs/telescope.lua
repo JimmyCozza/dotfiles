@@ -1,5 +1,5 @@
-local actions = require "telescope.actions"
-local trouble = require "trouble.providers.telescope"
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 
 -- Split on / character:
 --   local parts = utils.split(path, '([^/]+)')
@@ -34,7 +34,7 @@ local function smartTruncate(opts, path)
   return path
 end
 
-require("telescope").setup {
+require("telescope").setup({
   defaults = {
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -99,4 +99,4 @@ require("telescope").setup {
       override_file_sorter = true,
     },
   },
-}
+})

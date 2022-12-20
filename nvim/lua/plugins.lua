@@ -1,19 +1,19 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system { "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path }
-  execute "packadd packer.nvim"
+  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+  execute("packadd packer.nvim")
 end
 
-vim.cmd [[
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]]
+]])
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -21,73 +21,72 @@ if not status_ok then
 end
 
 -- Have packer use a popup window
-packer.init {
+packer.init({
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require("packer.util").float({ border = "rounded" })
     end,
   },
-}
+})
 
 return require("packer").startup(function()
   -- Packer can manage itself
-  use "wbthomason/packer.nvim"
+  use("wbthomason/packer.nvim")
 
   -- Visualization
-  use "ryanoasis/vim-devicons"
-  use "kyazdani42/nvim-web-devicons"
-  use "ap/vim-css-color"
-  use "norcalli/nvim-colorizer.lua"
+  use("ryanoasis/vim-devicons")
+  use("kyazdani42/nvim-web-devicons")
+  use("ap/vim-css-color")
+  use("norcalli/nvim-colorizer.lua")
 
   -- color
-  use "ellisonleao/gruvbox.nvim"
-  use "shaunsingh/nord.nvim"
-  use "shaunsingh/seoul256.nvim"
-  use {
+  use("ellisonleao/gruvbox.nvim")
+  use("shaunsingh/nord.nvim")
+  use("shaunsingh/seoul256.nvim")
+  use({
     "catppuccin/nvim",
     as = "catppuccin",
-  }
-  use "trip-zip/npmInfo.nvim"
+  })
+  use("trip-zip/npmInfo.nvim")
 
   --Navigation
-  use "nvim-lua/popup.nvim"
-  use "nvim-lua/plenary.nvim"
-  use "nvim-telescope/telescope.nvim"
+  use("nvim-lua/popup.nvim")
+  use("nvim-lua/plenary.nvim")
+  use("nvim-telescope/telescope.nvim")
 
   -- tpope
-  use "tpope/vim-abolish"
-  use "tpope/vim-surround"
-  use "tpope/vim-repeat"
-  use "tpope/vim-fugitive"
-  use "tpope/vim-endwise"
+  use("tpope/vim-abolish")
+  use("tpope/vim-surround")
+  use("tpope/vim-repeat")
+  use("tpope/vim-fugitive")
+  use("tpope/vim-endwise")
 
   -- Undo
-  use "mbbill/undotree"
-  use "simnalamburt/vim-mundo"
+  use("mbbill/undotree")
+  use("simnalamburt/vim-mundo")
 
   -- Git
-  use {
+  use({
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
     },
-  }
+  })
 
   --Utilities
-  use "nvim-orgmode/orgmode"
-  use {
-      "nvim-neorg/neorg",
-      config = function()
-          require('neorg').setup {
-          }
-      end,
-      requires = "nvim-lua/plenary.nvim"
-  }
-  use "nvim-treesitter/nvim-treesitter"
-  use {
+  use("nvim-orgmode/orgmode")
+  use({
+    "nvim-neorg/neorg",
+    config = function()
+      require("neorg").setup({})
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  })
+  use("nvim-treesitter/nvim-treesitter")
+  use({
     "nvim-treesitter/playground",
     config = function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter.configs").setup({
         playground = {
           enable = true,
           disable = {},
@@ -106,26 +105,26 @@ return require("packer").startup(function()
             show_help = "?",
           },
         },
-      }
+      })
     end,
-  }
-  use "rcarriga/nvim-notify"
-  use "nvim-neotest/neotest-plenary"
-  use "haydenmeade/neotest-jest"
-  use "nvim-neotest/neotest-go"
-  use {
+  })
+  use("rcarriga/nvim-notify")
+  use("nvim-neotest/neotest-plenary")
+  use("haydenmeade/neotest-jest")
+  use("nvim-neotest/neotest-go")
+  use({
     "nvim-neotest/neotest",
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim"
+      "antoinemadec/FixCursorHold.nvim",
     },
     config = function()
-      require("neotest").setup{
+      require("neotest").setup({
         adapters = {
           require("neotest-plenary"),
           require("neotest-go"),
-          require('neotest-jest')({
+          require("neotest-jest")({
             jestCommand = "npm test --",
             jestConfigFile = "custom.jest.config.ts",
             env = { CI = true },
@@ -133,11 +132,11 @@ return require("packer").startup(function()
               return vim.fn.getcwd()
             end,
           }),
-        }
-      }
-    end
-  }
-  use {
+        },
+      })
+    end,
+  })
+  use({
     "vimwiki/vimwiki",
     config = function()
       vim.g.vimwiki_list = {
@@ -146,88 +145,88 @@ return require("packer").startup(function()
         },
       }
     end,
-  }
-  use "scrooloose/nerdcommenter"
-  use "preservim/nerdtree"
+  })
+  use("scrooloose/nerdcommenter")
+  use("preservim/nerdtree")
 
-  use "junegunn/vim-easy-align"
-  use "windwp/nvim-autopairs"
-  use "folke/which-key.nvim"
-  use "folke/trouble.nvim"
-  use {
+  use("junegunn/vim-easy-align")
+  use("windwp/nvim-autopairs")
+  use("folke/which-key.nvim")
+  use("folke/trouble.nvim")
+  use({
     "folke/todo-comments.nvim",
     requires = "trip-zip/plenary.nvim",
-  }
-  use "hoob3rt/lualine.nvim"
-  use "feline-nvim/feline.nvim"
+  })
+  use("hoob3rt/lualine.nvim")
+  use("feline-nvim/feline.nvim")
   -- Formatting
-  use "gpanders/editorconfig.nvim"
+  use("gpanders/editorconfig.nvim")
 
   -- LSP
   --use "jose-elias-alvarez/null-ls.nvim"
   --use "jose-elias-alvarez/nvim-lsp-ts-utils"
-  use "folke/lsp-colors.nvim"
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "nvim-lua/lsp-status.nvim"
+  use("folke/lsp-colors.nvim")
+  use("neovim/nvim-lspconfig")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use("nvim-lua/lsp-status.nvim")
 
   -- Completion
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-cmdline"
-  use "quangnguyen30192/cmp-nvim-ultisnips"
-  use {
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-nvim-lua")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-cmdline")
+  use("quangnguyen30192/cmp-nvim-ultisnips")
+  use({
     "hrsh7th/nvim-cmp",
     disable = false,
-  }
-  use "SirVer/ultisnips"
-  use "rafamadriz/friendly-snippets"
-  use {
+  })
+  use("SirVer/ultisnips")
+  use("rafamadriz/friendly-snippets")
+  use({
     "fatih/vim-go",
     ft = "go",
-  }
-  use "numtostr/FTerm.nvim"
+  })
+  use("numtostr/FTerm.nvim")
   --use "github/copilot.vim"
-  use {
+  use({
     "zbirenbaum/copilot.lua",
-    event = {"VimEnter"},
+    event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
         require("copilot").setup()
       end, 100)
     end,
-  }
-  use {
+  })
+  use({
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
-    config = function ()
+    config = function()
       require("copilot_cmp").setup()
-    end
-  }
+    end,
+  })
 
   -- DAP
-  use "mfussenegger/nvim-dap"
-  use {
+  use("mfussenegger/nvim-dap")
+  use({
     "leoluz/nvim-dap-go",
     config = function()
       require("dap-go").setup()
     end,
-  }
-  use {
+  })
+  use({
     "rcarriga/nvim-dap-ui",
     requires = { "mfussenegger/nvim-dap" },
     config = function()
       require("dapui").setup()
     end,
-  }
-  use {
+  })
+  use({
     "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("nvim-dap-virtual-text").setup()
     end,
-  }
-  use "nvim-telescope/telescope-dap.nvim"
+  })
+  use("nvim-telescope/telescope-dap.nvim")
 end)

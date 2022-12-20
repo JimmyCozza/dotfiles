@@ -19,7 +19,6 @@ map("n", "n", "nzz", opts)
 map("n", "N", "Nzz", opts)
 map("n", "<C-b>", ":NvimTreeToggle<cr>", opts)
 
-
 -- ****************************
 -- Splits
 -- ****************************

@@ -9,14 +9,14 @@ local function lsp_handlers()
   lspSymbol("Hint", "")
   lspSymbol("Warn", "")
 
-  vim.diagnostic.config {
+  vim.diagnostic.config({
     virtual_text = {
       prefix = "",
     },
     signs = true,
     underline = true,
     update_in_insert = false,
-  }
+  })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "single",
@@ -27,7 +27,7 @@ local function lsp_handlers()
 
   -- suppress error messages from lang servers
   vim.notify = function(msg, log_level)
-    if msg:match "exit code" then
+    if msg:match("exit code") then
       return
     end
     if log_level == vim.log.levels.ERROR then

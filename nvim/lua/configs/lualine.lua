@@ -46,7 +46,7 @@ local icon_styles = {
 
 local style = icon_styles.block
 
-lualine.setup {
+lualine.setup({
   options = {
     icons_enabled = true,
     theme = "auto",
@@ -84,4 +84,4 @@ lualine.setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {},
-}
+})
