@@ -51,7 +51,7 @@ require("telescope").setup({
       "--trim",
     },
     file_ignore_patterns = {
-      ".git/*",
+      ".git/.*",
     },
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     file_sorter = require("telescope.sorters").get_fzy_sorter,

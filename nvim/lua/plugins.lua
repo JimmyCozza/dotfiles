@@ -146,7 +146,8 @@ return require("packer").startup(function()
       }
     end,
   })
-  use("scrooloose/nerdcommenter")
+  --use("scrooloose/nerdcommenter")
+  use("numToStr/Comment.nvim")
   use("preservim/nerdtree")
 
   use("junegunn/vim-easy-align")

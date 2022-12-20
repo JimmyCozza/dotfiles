@@ -45,6 +45,21 @@ wk.setup({
   triggers = "auto", -- automatically setup triggers
 })
 
+local vopts = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local vmappings = {
+  c = {
+    name = "Comment",
+    ["l"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment Blockwise" },
+    ["<space>"] = { "<Plug>(comment_toggle_blockwise_visual)", "Comment Blockwise" },
+  },
+}
 local mappings = {
   ["/"] = {
     "<cmd>lua require('telescope.builtin').live_grep({ additional_args = function() return { '--glob=!package-lock.json' } end })<cr>",
@@ -52,11 +67,11 @@ local mappings = {
   },
   ["b"] = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
-  --c = {
-  --name = "Comment",
-  --["l"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
-  --["space"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment Line" },
-  --},
+  c = {
+    name = "Comment",
+    ["l"] = { "<Plug>(comment_toggle_linewise_current)", "Comment Line" },
+    ["<space>"] = { "<Plug>(comment_toggle_blockwise_current)", "Comment Line" },
+  },
   d = {
     name = "+Debug",
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
@@ -180,7 +195,7 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
-local mode_mappings = {
+--[[ local mode_mappings = {
   org = org.which_key_mappings,
   go = {
     b = { "<cmd>!go test -bench=.<cr>", "Go Benchmark" },
@@ -200,6 +215,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
   group = group,
-})
+}) ]]
 
 wk.register(mappings, opts)
+wk.register(vmappings, vopts)
