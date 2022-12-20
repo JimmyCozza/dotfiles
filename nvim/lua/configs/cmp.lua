@@ -4,35 +4,7 @@ if not ok then
 end
 
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-
-local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-  Copilot = "",
-}
+local icons = require("icons")
 
 cmp.setup({
   snippet = {
@@ -49,11 +21,10 @@ cmp.setup({
       print(vim.inspect(entry.source.name))
       if entry.source.name == "copilot" then
         vim_item.dup = 0
-        vim_item.kind = "Copilot"
+        vim_item.kind = icons.git.Octoface
       end
       -- Kind icons
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format("%s", icons.kind[vim_item.kind])
       vim_item.menu = ({
         copilot = "[Copilot]",
         nvim_lsp = "[LSP]",
@@ -67,7 +38,7 @@ cmp.setup({
   },
   window = {
     completion = {
-      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+      border = icons.borders.RoundedRect,
       scrollbar = "║",
       autocomplete = {
         require("cmp.types").cmp.TriggerEvent.InsertEnter,
@@ -75,7 +46,7 @@ cmp.setup({
       },
     },
     documentation = {
-      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+      border = icons.borders.RoundedRect,
       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
       scrollbar = "║",
     },

@@ -10,14 +10,7 @@ local function set_lsp_mappings(client)
   end)
 
   map("n", "K", function()
-    local lineNum = vim.api.nvim_win_get_cursor(0)[1]
-    local diagnosticsOnLine = vim.diagnostic.get(0, { lnum = lineNum - 1 })
-
-    if not next(diagnosticsOnLine) then
-      vim.lsp.buf.hover()
-    else
-      vim.diagnostic.open_float({ source = true }, { focus = false })
-    end
+    vim.lsp.buf.hover()
   end)
 
   map("n", "gi", function()
