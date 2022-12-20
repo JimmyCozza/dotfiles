@@ -7,21 +7,18 @@ if not present then
   return
 end
 
-local M = {}
-
 lsp_handlers()
 
-function M.on_attach(client, _)
-  set_lsp_mappings()
+local function on_attach(client)
+  set_lsp_mappings(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 lspconfig.sumneko_lua.setup({
-  on_attach = M.on_attach,
+  on_attach = on_attach,
   capabilities = capabilities,
-
   settings = {
     Lua = {
       diagnostics = {
@@ -40,8 +37,6 @@ lspconfig.sumneko_lua.setup({
 })
 
 lspconfig.gopls.setup({
-  on_attach = M.on_attach,
+  on_attach = on_attach,
   capabilities = capabilities,
 })
-
-return M
