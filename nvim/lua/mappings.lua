@@ -52,5 +52,3 @@ map("v", "<A-k>", "<Esc>:move .-2<cr>gv-gv", opts)
 --Quickfix List stuff
 map("n", "<UP>", "<cmd>cprevious<cr>", opts)
 map("n", "<DOWN>", "<cmd>cnext<cr>", opts)
-
-map("n", "<leader>ni", "<cmd>lua require'npmInfo'.npmInfo()<cr>", opts)

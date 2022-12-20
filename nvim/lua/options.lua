@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.UltiSnipsSnippetDirectories = { os.getenv("HOME") .. "/dotfiles/UltiSnips" }
+
 local opts = {
   cmdheight = 1,
   number = true,

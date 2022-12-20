@@ -47,7 +47,6 @@ return require("packer").startup(function()
     "catppuccin/nvim",
     as = "catppuccin",
   })
-  use("trip-zip/npmInfo.nvim")
 
   --Navigation
   use("nvim-lua/popup.nvim")
