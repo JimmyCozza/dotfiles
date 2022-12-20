@@ -92,7 +92,7 @@ local mappings = {
   },
   e = {
     name = "+Quick edit files",
-    a = { "<cmd>:e $HOME/awesome/rc.lua<cr>", "Edit Awesome rc.lua" },
+    a = { "<cmd>:e $HOME/.config/awesome/rc.lua<cr>", "Edit Awesome rc.lua" },
     p = { "<cmd>:e $HOME/dotfiles/nvim/lua/plugins.lua<cr>", "Edit Plugfile" },
     t = { "<cmd>:e $HOME/dotfiles/wezterm/wezterm.lua<cr>", "Edit Terminal Config" },
     v = { "<cmd>:e $HOME/.config/nvim/init.lua<cr>", "Edit Vimrc" },
