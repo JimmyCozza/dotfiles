@@ -1,6 +1,6 @@
 local present, lspconfig = pcall(require, "lspconfig")
-local set_lsp_mappings = require("lsp.mappings")
 local lsp_handlers = require("lsp.handlers")
+local map = require("helpers").map
 require("lsp.mason")
 
 if not present then
@@ -9,8 +9,15 @@ end
 
 lsp_handlers()
 
-local function on_attach(client)
-  set_lsp_mappings(client)
+local function on_attach(client, bufnr)
+  local opts = { buffer = bufnr, remap = false }
+  map("n", "gD", vim.lsp.buf.declaration, opts)
+  map("n", "gd", vim.lsp.buf.definition, opts)
+  map("n", "K", vim.lsp.buf.hover, opts)
+  map("n", "gi", vim.lsp.buf.implementation, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
+  map("n", "[d", vim.diagnostic.goto_prev, opts)
+  map("n", "d]", vim.diagnostic.goto_next, opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
