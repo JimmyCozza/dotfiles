@@ -35,6 +35,7 @@ lspconfig.sumneko_lua.setup({
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+          ["/usr/local/share/awesome/lib"] = true,
         },
         maxPreload = 100000,
         preloadFileSize = 10000,
