@@ -74,13 +74,6 @@ return require("packer").startup(function()
 
   --Utilities
   use("nvim-orgmode/orgmode")
-  use({
-    "nvim-neorg/neorg",
-    config = function()
-      require("neorg").setup({})
-    end,
-    requires = "nvim-lua/plenary.nvim",
-  })
   use("nvim-treesitter/nvim-treesitter")
   use({
     "nvim-treesitter/playground",
@@ -145,7 +138,6 @@ return require("packer").startup(function()
       }
     end,
   })
-  --use("scrooloose/nerdcommenter")
   use("numToStr/Comment.nvim")
   use("preservim/nerdtree")
 
@@ -175,10 +167,7 @@ return require("packer").startup(function()
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-cmdline")
   use("quangnguyen30192/cmp-nvim-ultisnips")
-  use({
-    "hrsh7th/nvim-cmp",
-    disable = false,
-  })
+  use("hrsh7th/nvim-cmp")
   use("SirVer/ultisnips")
   use("rafamadriz/friendly-snippets")
   use({
@@ -206,36 +195,11 @@ return require("packer").startup(function()
 
   -- DAP
   use("mfussenegger/nvim-dap")
-  use({
-    "leoluz/nvim-dap-go",
-    config = function()
-      require("dap-go").setup({
-        dap_configurations = {
-          {
-            type = "go",
-            name = "Attach remote",
-            mode = "remote",
-            request = "attach",
-          },
-        },
-        delve = {
-          port = "2345",
-        },
-      })
-    end,
-  })
+  use("leoluz/nvim-dap-go")
   use({
     "rcarriga/nvim-dap-ui",
     requires = { "mfussenegger/nvim-dap" },
-    config = function()
-      require("dapui").setup()
-    end,
   })
-  use({
-    "theHamsta/nvim-dap-virtual-text",
-    config = function()
-      require("nvim-dap-virtual-text").setup()
-    end,
-  })
+  use("theHamsta/nvim-dap-virtual-text")
   use("nvim-telescope/telescope-dap.nvim")
 end)

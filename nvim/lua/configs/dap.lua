@@ -1,4 +1,8 @@
 local dap = require("dap")
+local dap_go = require("dap-go")
+local dap_ui = require("dapui")
+local dap_virtual_text = require("nvim-dap-virtual-text")
+
 dap.adapters.node2 = {
   type = "executable",
   command = "node",
@@ -23,3 +27,19 @@ dap.configurations["javascript.jsx"] = {
     processId = require("dap.utils").pick_process,
   },
 }
+
+dap_go.setup({
+  dap_configurations = {
+    {
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+    },
+  },
+  delve = {
+    port = "2345",
+  },
+})
+dap_ui.setup()
+dap_virtual_text.setup()
