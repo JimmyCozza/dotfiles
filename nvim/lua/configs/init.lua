@@ -11,4 +11,3 @@ require("configs.org")
 require("configs.todo-comments")
 require("configs.treesitter")
 require("configs.which-key")
-

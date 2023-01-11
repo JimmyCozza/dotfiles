@@ -209,7 +209,19 @@ return require("packer").startup(function()
   use({
     "leoluz/nvim-dap-go",
     config = function()
-      require("dap-go").setup()
+      require("dap-go").setup({
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Attach remote",
+            mode = "remote",
+            request = "attach",
+          },
+        },
+        delve = {
+          port = "2345",
+        },
+      })
     end,
   })
   use({

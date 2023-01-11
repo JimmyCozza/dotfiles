@@ -1,4 +1,4 @@
- local ok, lualine = pcall(require, "lualine")
+local ok, lualine = pcall(require, "lualine")
 if not ok then
   return
 end
@@ -36,5 +36,5 @@ lualine.setup({
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},
-  }
+  },
 })
