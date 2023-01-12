@@ -65,7 +65,7 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').live_grep({ additional_args = function() return { '--glob=!package-lock.json' } end })<cr>",
     "Search project",
   },
-  ["b"] = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
+  ["b"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
   ["%"] = { "<cmd>luafile %<cr>", "Run luafile" },
   c = {
     name = "Comment",
@@ -143,9 +143,9 @@ local mappings = {
     name = "Language Mode", --hardcoded for now just for go.  Make this use an autocmd and be dynamic based on filetype?
   },
   n = {
-    name = "+NERDTree",
-    n = { "<cmd>NERDTreeToggle<cr>", "Toggle Explorer" },
-    t = { "<cmd>NERDTreeFind<cr>", "Find at file" },
+    name = "+NvimTree",
+    n = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
+    t = { "<cmd>NvimTreeFindFile<cr>", "Find at file" },
   },
   p = {
     name = "+Project",

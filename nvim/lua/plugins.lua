@@ -139,7 +139,7 @@ return require("packer").startup(function()
     end,
   })
   use("numToStr/Comment.nvim")
-  use("preservim/nerdtree")
+  use("nvim-tree/nvim-tree.lua")
 
   use("junegunn/vim-easy-align")
   use("windwp/nvim-autopairs")
