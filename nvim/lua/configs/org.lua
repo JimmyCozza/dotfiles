@@ -107,6 +107,12 @@ M.which_key_mappings = {
   },
   s = {
     name = "+tree/subtree",
+    h = remapper("do_promote", "org-promote-subtree"),
+    l = remapper("do_demote", "org-demote-subtree"),
+    k = remapper("move_subtree_up", "org-move-subtree-up"),
+    j = remapper("move_subtree_down", "org-mode-subtree-down"),
+    o = remapper("insert_heading_respect_content", "org-insert-heading"),
+    O = remapper("insert_heading_respect_content", "org-insert-heading"),
   },
   t = {
     name = "org-todo",

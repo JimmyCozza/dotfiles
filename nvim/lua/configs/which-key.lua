@@ -4,6 +4,7 @@ if not ok then
 end
 
 local org = require("configs.org")
+local map = require("helpers").map
 
 wk.setup({
   plugins = {
@@ -140,7 +141,7 @@ local mappings = {
     W = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble Diagnostics" },
   },
   m = {
-    name = "Language Mode", --hardcoded for now just for go.  Make this use an autocmd and be dynamic based on filetype?
+    name = "Language Mode",
   },
   n = {
     name = "+NvimTree",
@@ -195,7 +196,7 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
---[[ local mode_mappings = {
+local mode_mappings = {
   org = org.which_key_mappings,
   go = {
     b = { "<cmd>!go test -bench=.<cr>", "Go Benchmark" },
@@ -209,13 +210,15 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     local type = vim.fn.expand("<amatch>")
     vim.schedule(function()
+      map("n", "<C-CR>", "<cmd>lua require('orgmode').action('org_mappings.insert_heading_respect_content')<cr>", {})
+      map("i", "<C-CR>", "<cmd>lua require('orgmode').action('org_mappings.insert_heading_respect_content')<cr>", {})
       mappings["m"] = mode_mappings[type]
       opts["buffer"] = 0
       wk.register(mappings, opts)
     end)
   end,
   group = group,
-}) ]]
+})
 
 wk.register(mappings, opts)
 wk.register(vmappings, vopts)
