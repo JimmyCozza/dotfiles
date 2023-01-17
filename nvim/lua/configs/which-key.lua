@@ -156,6 +156,7 @@ local mappings = {
       name = "Lazy",
       i = { "<cmd>Lazy install<cr>", "Install" },
       s = { "<cmd>Lazy sync<cr>", "Sync" },
+      p = { "<cmd>Lazy profile<cr>", "Profile" },
       u = { "<cmd>Lazy update<cr>", "Update" },
     },
     q = { "<cmd>TodoQuickFix<cr>", "Send TODOs to QuickFix List" },
