@@ -61,16 +61,17 @@ require("lazy").setup({
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  {
-    "vimwiki/vimwiki",
-    config = function()
-      vim.g.vimwiki_list = {
-        {
-          path = "~/notes/vimwiki",
-        },
-      }
-    end,
-  },
+  -- {
+  --   "vimwiki/vimwiki",
+  --   enabled = true,
+  --   config = function()
+  --     vim.g.vimwiki_list = {
+  --       {
+  --         path = "~/notes/vimwiki",
+  --       },
+  --     }
+  --   end,
+  -- },
   { "numToStr/Comment.nvim" },
   { "nvim-tree/nvim-tree.lua" },
   { "junegunn/vim-easy-align" },
