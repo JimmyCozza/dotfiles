@@ -11,6 +11,8 @@ local font_name = "JetBrainsMono Nerd Font"
 return {
   automatically_reload_config = true,
   color_scheme = "Gruvbox Dark",
+  enable_scroll_bar = false,
+  enable_tab_bar = true,
   disable_default_key_bindings = true,
   font = font_with_fallback(font_name),
   font_rules = {
@@ -49,5 +51,13 @@ return {
   },
   leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
   line_height = 1.0,
+  tab_bar_at_bottom = true,
+  warn_about_missing_glyphs = false,
   window_background_opacity = 0.9,
+	window_padding = {
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
+	},
 }

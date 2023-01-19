@@ -36,16 +36,22 @@ M.config_switcher = function(config)
   awesome.restart()
 end
 
-M.basic_notify = function(message, title)
+M.basic_notify = function(title, message)
   naughty.notify {
-    text = message,
     title = title,
+    text = message,
     timeout = 3,
   }
 end
 
 -- Awesome notification with icon on the left
-M.fancy_notify = function(title, message) end
+M.fancy_notify = function(title, message)
+  naughty.notify {
+    title = title,
+    text = message,
+    timeout = 3,
+  }
+end
 
 -- Elenapan helpers
 M.color = function(text, color)
