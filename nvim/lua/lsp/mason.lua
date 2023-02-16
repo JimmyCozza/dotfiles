@@ -20,5 +20,5 @@ if not ok then
   return
 end
 mason_lsp_config.setup({
-  ensure_installed = { "sumneko_lua", "gopls", "tsserver" },
+  ensure_installed = { "gopls", "tsserver" },
 })
