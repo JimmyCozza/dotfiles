@@ -5,7 +5,6 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH=$PATH:$HOME/projects/wsome/wsome
 export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
-export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
