@@ -2,7 +2,7 @@
 require("colors.catppuccin")
 require("colors.gruvbox")
 
-local scheme = "seoul256"
+local scheme = "gruvbox"
 local theme = "dark"
 
 vim.cmd("colorscheme " .. scheme)

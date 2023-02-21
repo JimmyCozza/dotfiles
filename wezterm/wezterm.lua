@@ -10,8 +10,7 @@ local font_name = "JetBrainsMono Nerd Font"
 
 return {
   automatically_reload_config = true,
-  -- color_scheme = "Gruvbox Dark",
-  color_scheme = "seoulbones_dark",
+  color_scheme = "Gruvbox Dark",
   enable_scroll_bar = false,
   enable_tab_bar = true,
   disable_default_key_bindings = true,
