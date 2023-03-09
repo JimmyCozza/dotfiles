@@ -19,6 +19,7 @@ local opts = {
 }
 
 require("lazy").setup({
+  { "echasnovski/mini.nvim", version = false },
   { "ryanoasis/vim-devicons" },
   { "kyazdani42/nvim-web-devicons" },
   { "ap/vim-css-color" },
@@ -26,10 +27,6 @@ require("lazy").setup({
   { "ellisonleao/gruvbox.nvim" },
   { "shaunsingh/nord.nvim" },
   { "shaunsingh/seoul256.nvim" },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-  },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
@@ -61,17 +58,6 @@ require("lazy").setup({
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  -- {
-  --   "vimwiki/vimwiki",
-  --   enabled = true,
-  --   config = function()
-  --     vim.g.vimwiki_list = {
-  --       {
-  --         path = "~/notes/vimwiki",
-  --       },
-  --     }
-  --   end,
-  -- },
   { "numToStr/Comment.nvim" },
   { "nvim-tree/nvim-tree.lua" },
   { "junegunn/vim-easy-align" },
