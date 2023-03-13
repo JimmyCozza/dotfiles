@@ -46,7 +46,6 @@ require("lazy").setup({
   { "nvim-orgmode/orgmode" },
   { "nvim-treesitter/nvim-treesitter" },
   { "nvim-treesitter/playground" },
-  { "rcarriga/nvim-notify" },
   { "nvim-neotest/neotest-plenary" },
   { "haydenmeade/neotest-jest" },
   { "nvim-neotest/neotest-go" },
