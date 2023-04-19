@@ -88,7 +88,7 @@ require("lazy").setup({
     ft = { "go" },
   },
   { "numtostr/FTerm.nvim" },
-  --use "github/copilot.vim"
+  -- {"github/copilot.vim"},
   {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
