@@ -119,7 +119,10 @@ require("lazy").setup({
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
   { "quangnguyen30192/cmp-nvim-ultisnips" },
-  { "hrsh7th/nvim-cmp" },
+  {
+    "hrsh7th/nvim-cmp",
+    commit = "1cad30fcffa282c0a9199c524c821eadc24bf939", -- This commit is the latest commit before they broke ghost-texthttps://github.com/hrsh7th/nvim-cmp/commit/1cad30fcffa282c0a9199c524c821eadc24bf939  https://github.com/hrsh7th/nvim-cmp/issues/1565
+  },
   { "SirVer/ultisnips" },
   { "rafamadriz/friendly-snippets" },
   {
