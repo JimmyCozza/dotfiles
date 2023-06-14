@@ -1,25 +1,12 @@
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
-
--- Split on / character:
---   local parts = utils.split(path, '([^/]+)')
-local function split(inputStr, pattern)
-  local parts = {}
-  for part in string.gmatch(inputStr, pattern) do
-    table.insert(parts, part)
-  end
-  return parts
-end
-
-local function splitOnSlash(inputStr)
-  return split(inputStr, "([^/]+)")
-end
+local helpers = require("helpers")
 
 local function smartTruncate(opts, path)
   local pathLength = string.len(path)
   local maxLength = 60
   if pathLength > maxLength then
-    local parts = splitOnSlash(path)
+    local parts = helpers.splitOnSlash(path)
     local letters = {}
     for index, value in ipairs(parts) do
       local shifted = { unpack(parts, index + 1) }

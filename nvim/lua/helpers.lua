@@ -16,4 +16,16 @@ M.map = function(mode, keys, command, opt)
   vim.keymap.set(mode, keys, command, opt)
 end
 
+M.split = function(inputStr, pattern)
+  local parts = {}
+  for part in string.gmatch(inputStr, pattern) do
+    table.insert(parts, part)
+  end
+  return parts
+end
+
+M.splitOnSlash = function(inputStr)
+  return M.split(inputStr, "([^/]+)")
+end
+
 return M
