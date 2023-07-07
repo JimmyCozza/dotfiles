@@ -1,6 +1,5 @@
 alias vi="nvim"
 alias sphp="php -S localhost:8000 -t public"
-alias app="cd $HOME/work/cleanclaims/app"
 alias awe="cd $HOME/awesome/jimmy"
 alias afs="cd $HOME/awesome/awesome-from-scratch"
 alias gg="lazygit"
