@@ -4,4 +4,6 @@ if status is-interactive
 end
 
 source $CONFIG_FILES_PATH/aliases
-# alias vi="nvim"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end
