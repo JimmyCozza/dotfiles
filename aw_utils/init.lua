@@ -1,5 +1,5 @@
-local awful = require ("awful")
-local gears = require ("gears")
+local awful = require("awful")
+local gears = require("gears")
 local naughty = require("naughty")
 local wibox = require("wibox")
 
@@ -17,16 +17,16 @@ M.list_configs = function()
 
   awful.spawn.easy_async("ls " .. AWESOME_CONFIGS_PATH, function(stdout)
     local config_items = stdout:gmatch("[^\r\n]+")
-      for s in config_items do
-        gears.table.merge(configs, {
-          {
-            s,
-            function()
-              M.switch_configs(s)
-            end,
-          },
-        })
-      end
+    for s in config_items do
+      gears.table.merge(configs, {
+        {
+          s,
+          function()
+            M.switch_configs(s)
+          end,
+        },
+      })
+    end
   end)
   return configs
 end
@@ -37,20 +37,20 @@ M.config_switcher = function(config)
 end
 
 M.basic_notify = function(title, message)
-  naughty.notify {
+  naughty.notify({
     title = title,
     text = message,
     timeout = 3,
-  }
+  })
 end
 
 -- Awesome notification with icon on the left
 M.fancy_notify = function(title, message)
-  naughty.notify {
+  naughty.notify({
     title = title,
     text = message,
     timeout = 3,
-  }
+  })
 end
 
 -- Elenapan helpers
@@ -59,11 +59,10 @@ M.color = function(text, color)
 end
 
 M.vertical_pad = function(height)
-  return wibox.widget {
+  return wibox.widget({
     forced_height = height,
     layout = wibox.layout.fixed.vertical,
-  }
+  })
 end
-
 
 return M
