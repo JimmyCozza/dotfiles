@@ -14,10 +14,6 @@ export VISUAL=nvim
 export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 
 ZSH_THEME="muse"
-plugins=(
-  git
-  macos
-)
 
 source $ZSH/oh-my-zsh.sh
 source $CONFIG_FILES_PATH/aliases
@@ -48,18 +44,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(direnv hook zsh)"
 
 # fnm
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 export PATH=$PATH:$HOME/bin
-autoload -U add-zsh-hook
-      _fnm_autoload_hook () {
-        if [[ -f .node-version && -r .node-version ]]; then
-          echo "fnm: Found .node-version"
-          fnm use
-        elif [[ -f .nvmrc && -r .nvmrc ]]; then
-          echo "fnm: Found .nvmrc"
-          fnm use
-        fi
-      }
-
-      add-zsh-hook chpwd _fnm_autoload_hook \
-        && _fnm_autoload_hook
