@@ -36,9 +36,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then source '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
-
 gitclone() {
  git clone "$1" && cd "$(basename "$1" .git)" || return
 }
@@ -48,8 +45,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(direnv hook zsh)"
 
 # fnm
-eval "$(fnm env)"
-export PATH=$PATH:$HOME/bin
+export PATH="/home/jimmy/.local/share/fnm:$PATH"
+eval "`fnm env`"
 autoload -U add-zsh-hook
       _fnm_autoload_hook () {
         if [[ -f .node-version && -r .node-version ]]; then
@@ -63,3 +60,11 @@ autoload -U add-zsh-hook
 
       add-zsh-hook chpwd _fnm_autoload_hook \
         && _fnm_autoload_hook
+
+# fnm
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi

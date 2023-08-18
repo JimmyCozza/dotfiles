@@ -10,4 +10,4 @@ set -x GOPATH (go env GOPATH)
 set -x PATH $PATH (go env GOPATH)/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end
