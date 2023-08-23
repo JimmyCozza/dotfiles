@@ -85,17 +85,17 @@ require("lazy").setup({
   },
   { "nvim-treesitter/nvim-treesitter" },
   { "nvim-treesitter/playground" },
-  { "nvim-neotest/neotest-plenary" },
-  { "haydenmeade/neotest-jest" },
-  { "nvim-neotest/neotest-go" },
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-    },
-  },
+  -- { "nvim-neotest/neotest-plenary" },
+  -- { "haydenmeade/neotest-jest" },
+  -- { "nvim-neotest/neotest-go" },
+  -- {
+  --   "nvim-neotest/neotest",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --   },
+  -- },
   { "numToStr/Comment.nvim" },
   { "nvim-tree/nvim-tree.lua" },
   { "junegunn/vim-easy-align" },
