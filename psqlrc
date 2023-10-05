@@ -1,0 +1,26 @@
+\set QUIET 1
+\pset null '[NULL]'
+
+-- Returning timing info with results
+\timing
+
+-- auto expand
+\x auto
+
+-- Host specific histfiles
+\set HISTFILE ~/.psql_history- :HOST
+\set HISTSIZE 2000
+
+-- Use nvim for pager
+\setenv PAGER 'nvim -R'
+
+\set PROMPT1 '%001%[%033[0;32m%][PROD] %002%n@carketa%001%[%033[0m%]%002% | '
+\set PROMPT2 '%001%[%033[0;32m%][PROD]               ➜ %033[0m%]%001%| '
+
+\pset border 2
+\pset linestyle unicode
+\pset unicode_border_linestyle double
+\pset unicode_header_linestyle double
+
+\unset QUIET
+
