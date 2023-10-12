@@ -1,3 +1,8 @@
+if [[ -v ZSH_PROF ]]; then
+  # run the following command to use this zsh/zprof stuff
+  # "env ZSH_PROF=1 zsh -ic zprof"
+  zmodload zsh/zprof
+fi
 export CONFIG_FILES_PATH=$HOME/dotfiles
 ZSH_DISABLE_COMPFIX=true
 export ZSH=~/.oh-my-zsh
@@ -45,26 +50,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(direnv hook zsh)"
 
 # fnm
-export PATH="/home/jimmy/.local/share/fnm:$PATH"
-eval "`fnm env`"
-autoload -U add-zsh-hook
-      _fnm_autoload_hook () {
-        if [[ -f .node-version && -r .node-version ]]; then
-          echo "fnm: Found .node-version"
-          fnm use
-        elif [[ -f .nvmrc && -r .nvmrc ]]; then
-          echo "fnm: Found .nvmrc"
-          fnm use
-        fi
-      }
-
-      add-zsh-hook chpwd _fnm_autoload_hook \
-        && _fnm_autoload_hook
-
-# fnm
+eval "$(fnm env --use-on-cd)"
+export PATH=$PATH:$HOME/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jimmy/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jimmy/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

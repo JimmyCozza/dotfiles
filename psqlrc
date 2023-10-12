@@ -14,7 +14,7 @@
 -- Use nvim for pager
 \setenv PAGER 'nvim -R'
 
-\set PROMPT1 '%001%[%033[0;32m%][PROD] %002%n@carketa%001%[%033[0m%]%002% | '
+\set PROMPT1 '%001%[%033[0;32m%][PROD] %n@carketa%001%[%033[0m%]%002% | '
 \set PROMPT2 '%001%[%033[0;32m%][PROD]               ➜ %033[0m%]%001%| '
 
 \pset border 2

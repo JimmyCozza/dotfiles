@@ -44,58 +44,8 @@ require("lazy").setup({
     },
   },
   { "nvim-orgmode/orgmode" },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    opts = {
-      load = {
-        ["core.defaults"] = {}, -- Loads default behaviour
-        ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
-        ["core.concealer"] = {
-          config = {
-            icons = {
-              todo = {
-                uncertain = {
-                  icon = "🤷",
-                },
-              },
-            },
-          },
-        }, -- Adds pretty icons to your documents
-        ["core.dirman"] = { -- Manages Neorg workspaces
-          config = {
-            workspaces = {
-              notes = "~/notes/neorg",
-            },
-            default_workspace = "notes",
-          },
-        },
-        ["core.export"] = {},
-        ["core.integrations.nvim-cmp"] = {},
-        ["core.keybinds"] = {
-          -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
-          config = {
-            default_keybinds = true,
-            neorg_leader = "<Leader><Leader>",
-          },
-        },
-      },
-    },
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-  },
   { "nvim-treesitter/nvim-treesitter" },
   { "nvim-treesitter/playground" },
-  -- { "nvim-neotest/neotest-plenary" },
-  -- { "haydenmeade/neotest-jest" },
-  -- { "nvim-neotest/neotest-go" },
-  -- {
-  --   "nvim-neotest/neotest",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "antoinemadec/FixCursorHold.nvim",
-  --   },
-  -- },
   { "numToStr/Comment.nvim" },
   { "nvim-tree/nvim-tree.lua" },
   { "junegunn/vim-easy-align" },
