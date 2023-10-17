@@ -19,6 +19,7 @@ map("n", "<Left>", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 map("n", "n", "nzz", opts)
 map("n", "N", "Nzz", opts)
 map("n", "<C-b>", ":NvimTreeToggle<cr>", opts)
+map("n", "<leader>sc", "<cmd>nohlsearch<cr>", { desc = "Clear Search Highlighting" })
 
 -- ****************************
 -- Splits
