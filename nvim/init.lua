@@ -4,4 +4,4 @@ require("plugins")
 -- Plugin configuration
 require("configs")
 require("lsp")
-require("colors")
+-- require("colors")

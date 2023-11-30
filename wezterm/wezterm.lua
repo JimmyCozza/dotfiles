@@ -22,7 +22,7 @@ end
 
 -- For example, changing the color scheme:
 config.automatically_reload_config = true
-config.color_scheme = "GruvboxDark"
+config.color_scheme = "Bamboo Multiplex"
 config.enable_scroll_bar = false
 config.enable_tab_bar = true
 config.disable_default_key_bindings = true
@@ -65,7 +65,7 @@ config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 config.line_height = 1.0
 config.tab_bar_at_bottom = true
 config.warn_about_missing_glyphs = false
-config.window_background_opacity = 0.9
+-- config.window_background_opacity = 0.9
 config.window_padding = {
   left = 0,
   right = 0,

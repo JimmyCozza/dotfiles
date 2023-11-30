@@ -25,6 +25,17 @@ require("lazy").setup({
   { "ap/vim-css-color" },
   { "norcalli/nvim-colorizer.lua" },
   { "ellisonleao/gruvbox.nvim" },
+  {
+    "ribru17/bamboo.nvim",
+    config = function()
+      require("bamboo").setup{
+        style = "multiplex",
+        -- transparent = true,
+        dim_inactive = true,
+      }
+      require("bamboo").load()
+    end,
+  },
   { "shaunsingh/nord.nvim" },
   { "shaunsingh/seoul256.nvim" },
   { "nvim-lua/popup.nvim" },
@@ -86,7 +97,11 @@ require("lazy").setup({
     event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup()
+        require("copilot").setup({
+          filetypes = {
+            markdown = true,
+          },
+        })
       end, 100)
     end,
   },
