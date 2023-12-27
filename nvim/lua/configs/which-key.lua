@@ -133,6 +133,7 @@ local mappings = {
     k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     i = { "<cmd>LspInfo<cr>", "LSP Info" },
     l = { "<cmd>LspLog<cr>", "LSP Log" },
+    m = { "<cmd>Mason<cr>", "Launch Mason" },
     q = { "<cmd>lua vim.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>LspStart<cr>", "LSP Start" },
