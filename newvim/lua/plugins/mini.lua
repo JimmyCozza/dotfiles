@@ -8,7 +8,6 @@ return {
       require("mini.pairs").setup()
       require("mini.align").setup()
 
-
       -- Search/Navigation
       local miniclue = require("mini.clue")
 
@@ -64,6 +63,6 @@ return {
         },
         window = { config = { border = "double" } },
       })
-    end
+    end,
   },
 }

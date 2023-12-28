@@ -1,4 +1,4 @@
-local helpers = require('helpers')
+local helpers = require("helpers")
 local map = helpers.map
 local appendLabel = helpers.appendLabel
 return {
@@ -89,7 +89,7 @@ return {
         },
       })
       vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format)
-      appendLabel({mode = "n", keys = "<Leader>lf", desc = "LSP Format"})
+      appendLabel({ mode = "n", keys = "<Leader>lf", desc = "LSP Format" })
     end,
   },
 }
