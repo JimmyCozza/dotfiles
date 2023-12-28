@@ -46,4 +46,23 @@ M.leaderMap = function(binding)
   M.map(binding.mode, "<Leader>" .. binding.keys, cmd, opts)
 end
 
+M.smartTruncate = function(opts, path)
+  local pathLength = string.len(path)
+  local maxLength = 60
+  if pathLength > maxLength then
+    local parts = helpers.splitOnSlash(path)
+    local letters = {}
+    for index, value in ipairs(parts) do
+      local shifted = { unpack(parts, index + 1) }
+      local short = table.concat(shifted, "/")
+      table.insert(letters, string.sub(value, 1, 1))
+      local smartShortPath = table.concat(letters, "/") .. "/" .. short
+      if string.len(smartShortPath) < maxLength then
+        return smartShortPath
+      end
+    end
+  end
+  return path
+end
+
 return M

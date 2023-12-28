@@ -2,10 +2,11 @@
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "bamboo.nvim": { "branch": "master", "commit": "5dc395e17f713691d02e511951ff7ba81df6e051" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "56e435e09f8729af2d41973e81a0db440f8fe9c9" },
+  "mason.nvim": { "branch": "main", "commit": "41e75af1f578e55ba050c863587cffde3556ffa6" },
   "mini.nvim": { "branch": "main", "commit": "fd5d244647cf1f37e85ba3e490d5968df33ef430" },
   "nvim-treesitter": { "branch": "master", "commit": "7a2c6211d6f550988fccd8800de8426d5e480a2d" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "telescope.nvim": { "branch": "master", "commit": "e0651458f2ced647f3ff3c89d5663244b3cf45af" },
-  "todo-comments.nvim": { "branch": "main", "commit": "4a6737a8d70fe1ac55c64dfa47fcb189ca431872" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" }
 }
