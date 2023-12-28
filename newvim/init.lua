@@ -1,4 +1,6 @@
+_G.JC = {}
+
 require("options")
-require("mappings")
 require("plugins")
+require("mappings")
 require("configs")

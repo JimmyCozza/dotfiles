@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "bash", "csv", "go", "javascript", "json", "lua", "make", "org", "sql", "typescript", "vim" },
+  ensure_installed = { "bash", "csv", "go", "javascript", "json", "lua", "make", "org", "sql", "typescript", "vim", "vimdoc" },
   sync_install = false,
   indent = { enable = true },
   highlight = {

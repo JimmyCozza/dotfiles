@@ -29,17 +29,13 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim"},
   },
   {"folke/trouble.nvim"},
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
 
   -- Code
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  { "numToStr/Comment.nvim" },
 
   -- Plenary
   {"echasnovski/mini.nvim", version = false },
-  {"nvim-lua/plenary.nvim"}
 }
 
 require("lazy").setup(plugins, opts)

@@ -17,6 +17,7 @@ M.map = function(mode, keys, command, opt)
 
   if opt then
     options = vim.tbl_extend("force", options, opt)
+    
   end
 
   if type(keys) == "table" then
@@ -30,8 +31,19 @@ M.map = function(mode, keys, command, opt)
 end
 
 
-M.leaderMap = function(path, cmd)
-  M.map("n", "<Leader>" .. path, "<cmd>" .. cmd .. "<cr>")
+M.leaderMap = function(binding)
+  cmd = ""
+  opts = binding.opts or {}
+  opts.desc = binding.desc
+
+  if string.find(binding.cmd, "<") == 1
+  then
+    cmd = binding.cmd
+  else
+    cmd = "<cmd>" .. binding.cmd .. "<cr>"
+  end
+
+  M.map(binding.mode, "<Leader>" .. binding.keys, cmd, opts)
 end
 
 return M
