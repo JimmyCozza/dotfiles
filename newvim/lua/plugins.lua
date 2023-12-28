@@ -24,8 +24,14 @@ local plugins = {
   },
 
   -- Search/Navigate
-  {"nvim-telescope/telescope.nvim"},
+  {"nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim"},
+  },
   {"folke/trouble.nvim"},
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   -- Plenary
   {"nvim-lua/plenary.nvim"}

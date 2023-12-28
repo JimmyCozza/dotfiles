@@ -65,12 +65,14 @@ leaderMap("ez", ":e $HOME/dotfiles/zshrc")
 
 --Telescope
 leaderMap("/", "lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})")
-leaderMap("pf", "Telescope find_files")
 leaderMap("hh", "Telescope help_tags")
 leaderMap("hm", "Telescope man_pages")
+leaderMap("pb", "Telescope buffers")
+leaderMap("pf", "Telescope find_files")
+leaderMap("ps", "Telescope grep_string")
+leaderMap("pt", "TodoTelescope")
 
 -- File Tree
-
 
 
 leaderMap("sc", "nohlsearch")
