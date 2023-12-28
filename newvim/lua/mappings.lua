@@ -1,21 +1,7 @@
 local opts = { noremap = true, silent = true } 
-
-local function map(mode, keys, command, opt)
-  local options = { silent = true }
-
-  if opt then
-    options = vim.tbl_extend("force", options, opt)
-  end
-
-  if type(keys) == "table" then
-    for _, keymap in ipairs(keys) do
-      M.map(mode, keymap, command, opt)
-    end
-    return
-  end
-
-  vim.keymap.set(mode, keys, command, opt)
-end
+local h = require("helpers")
+local map = h.map
+local leaderMap = h.leaderMap
 
 -- ****************************
 -- General
@@ -42,7 +28,7 @@ map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
 -- ****************************
--- COMPLETION
+-- Completion
 -- ****************************
 map("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 map("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
@@ -66,4 +52,26 @@ map("v", "<A-k>", "<Esc>:move .-2<cr>gv-gv", opts)
 --Quickfix List stuff
 map("n", "<UP>", "<cmd>cprevious<cr>", opts)
 map("n", "<DOWN>", "<cmd>cnext<cr>", opts)
+
+-- ****************************
+-- Navigation/Search
+-- ****************************
+-- Quick File edits
+leaderMap("ea", ":e $HOME/.config/awesome/rc.lua")
+leaderMap("ep", ":e $HOME/.config/nvim/lua/plugins.lua")
+leaderMap("et", ":e $HOME/dotfiles/wezterm/wezterm.lua")
+leaderMap("ev", ":e $HOME/.config/nvim/init.lua")
+leaderMap("ez", ":e $HOME/dotfiles/zshrc")
+
+--Telescope
+leaderMap("/", "lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})")
+leaderMap("pf", "Telescope find_files")
+leaderMap("hh", "Telescope help_tags")
+leaderMap("hm", "Telescope man_pages")
+
+-- File Tree
+
+
+
+leaderMap("sc", "nohlsearch")
 
