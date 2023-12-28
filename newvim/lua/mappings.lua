@@ -62,6 +62,7 @@ JC.leader_group_clues = {
   { mode = "n", keys = "<Leader>g", desc = "+Git" },
   { mode = "n", keys = "<Leader>h", desc = "+Help" },
   { mode = "n", keys = "<Leader>l", desc = "+LSP" },
+  { mode = "n", keys = "<Leader>lf", desc = "LSP Format" },
   { mode = "n", keys = "<Leader>n", desc = "+NvimTree" },
   { mode = "n", keys = "<Leader>p", desc = "+Project" },
   { mode = "n", keys = "<Leader>T", desc = "+Test" },
@@ -90,6 +91,9 @@ local leaderBindings = {
 
   {mode = "n", keys = "hh",       cmd = "Telescope help_tags",                            desc = "Help Tags"},
   {mode = "n", keys = "hm",       cmd = "Telescope man_pages",                            desc = "Man Pages"},
+
+  {mode = "n", keys = "li",       cmd = "LspInfo", desc = "LSP Info"},
+  {mode = "n", keys = "li",       cmd = "LspInfo", desc = "LSP Info"},
 
   {mode = "n", keys = "pb",       cmd = "Telescope buffers",                              desc = "Find Buffers"},
   {mode = "n", keys = "pf",       cmd = "Telescope find_files",                           desc = "Find Files in Project"},

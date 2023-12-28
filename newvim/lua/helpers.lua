@@ -30,8 +30,8 @@ M.map = function(mode, keys, command, opt)
 end
 
 M.leaderMap = function(binding)
-  cmd = ""
-  opts = binding.opts or {}
+  local cmd = ""
+  local opts = binding.opts or {}
   opts.desc = binding.desc
 
   if string.find(binding.cmd, "<") == 1 then
@@ -47,7 +47,7 @@ M.smartTruncate = function(opts, path)
   local pathLength = string.len(path)
   local maxLength = 60
   if pathLength > maxLength then
-    local parts = helpers.splitOnSlash(path)
+    local parts = M.splitOnSlash(path)
     local letters = {}
     for index, value in ipairs(parts) do
       local shifted = { unpack(parts, index + 1) }
@@ -60,6 +60,11 @@ M.smartTruncate = function(opts, path)
     end
   end
   return path
+end
+
+-- Label needs mode, keys, and desc
+M.appendLabel = function(label)
+  table.insert(JC.leader_group_clues, label)
 end
 
 return M
