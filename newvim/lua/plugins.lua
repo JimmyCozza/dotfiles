@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local opts = {}
+
 local plugins = {
   -- Style/Visual
   {"ribru17/bamboo.nvim",
@@ -33,7 +34,11 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
+  -- Code
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+
   -- Plenary
+  {"echasnovski/mini.nvim", version = false },
   {"nvim-lua/plenary.nvim"}
 }
 
