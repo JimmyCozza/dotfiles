@@ -25,6 +25,8 @@ local plugins = {
 
   -- Search/Navigate
   {"nvim-telescope/telescope.nvim"},
+  {"folke/which-key.nvim"},
+  {"folke/trouble.nvim"},
 
   -- Plenary
   {"nvim-lua/plenary.nvim"}
