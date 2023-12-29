@@ -8,6 +8,9 @@ return {
       require("mini.pairs").setup()
       require("mini.align").setup()
 
+      -- Visual
+      require("mini.indentscope").setup()
+
       -- Search/Navigation
       local miniclue = require("mini.clue")
 
