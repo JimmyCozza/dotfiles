@@ -4,16 +4,21 @@ return {
     config = function()
       -- Text objects
       require("mini.ai").setup()
-      require("mini.surround").setup()
+      require("mini.surround").setup({
+        mappings = {
+          delete = "ds",
+        },
+      })
       require("mini.pairs").setup()
       require("mini.align").setup()
 
       -- Visual
       require("mini.indentscope").setup()
+      require("mini.statusline").setup()
 
       -- Search/Navigation
+      require("mini.files").setup()
       local miniclue = require("mini.clue")
-
       miniclue.setup({
         clues = {
           JC.leader_group_clues,
