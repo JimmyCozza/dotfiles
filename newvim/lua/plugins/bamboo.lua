@@ -6,6 +6,7 @@ return {
         style = "multiplex",
         dim_inactive = true,
       })
+      require("bamboo").load()
     end,
   },
 }
