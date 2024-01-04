@@ -28,11 +28,11 @@ require("lazy").setup({
   {
     "ribru17/bamboo.nvim",
     config = function()
-      require("bamboo").setup{
+      require("bamboo").setup({
         style = "multiplex",
         -- transparent = true,
         dim_inactive = true,
-      }
+      })
       require("bamboo").load()
     end,
   },

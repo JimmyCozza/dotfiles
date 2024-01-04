@@ -70,7 +70,7 @@ JC.leader_group_clues = {
 }
 
 local grep_cmd =
-"lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})"
+  "lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})"
 
 -- stylua: ignore start
 local leaderBindings = {
