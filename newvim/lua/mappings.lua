@@ -69,43 +69,35 @@ JC.leader_group_clues = {
   { mode = "x", keys = "<Leader>l", desc = "+LSP" },
 }
 
--- stylua: ignore start
 local grep_cmd =
 "lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})"
 
+-- stylua: ignore start
 local leaderBindings = {
   { mode = "n", keys = "/",        cmd = grep_cmd,                                   desc = "Search Project" },
-  { mode = "n", keys = "b",        cmd = "Neotree toggle",                           desc = "Toggle File Tree" },
-
+  { mode = "n", keys = "b",        cmd = "NvimTreeToggle",                           desc = "Toggle File Tree" },
   { mode = "n", keys = "cl",       cmd = "<Plug>(comment_toggle_linewise_current)",  desc = "Comment Line" },
   { mode = "n", keys = "c<space>", cmd = "<Plug>(comment_toggle_blockwise_current)", desc = "Comment Line (Block)" },
   { mode = "v", keys = "cl",       cmd = "<Plug>(comment_toggle_linewise_visual)",   desc = "Comment Line" },
   { mode = "v", keys = "c<space>", cmd = "<Plug>(comment_toggle_blockwise_visual)",  desc = "Comment Line (Block)" },
-
   { mode = "n", keys = "ea",       cmd = ":e $HOME/.config/awesome/rc.lua",          desc = "Edit Awesome Config" },
   { mode = "n", keys = "ep",       cmd = ":e $HOME/.config/nvim/lua/plugins.lua",    desc = "Edit Neovim Plugins" },
   { mode = "n", keys = "et",       cmd = ":e $HOME/dotfiles/wezterm/wezterm.lua",    desc = "Edit Wezterm Config" },
   { mode = "n", keys = "ev",       cmd = ":e $HOME/.config/nvim/init.lua",           desc = "Edit Neovim Config" },
   { mode = "n", keys = "ez",       cmd = ":e $HOME/dotfiles/zshrc",                  desc = "Edit Zshrc" },
-
   { mode = "n", keys = "gb",       cmd = "Telescope git_branches",                   desc = "Checkout Branch" },
   { mode = "n", keys = "gc",       cmd = "Telescope git_commits",                    desc = "Checkout Commit" },
   { mode = "n", keys = "gC",       cmd = "Telescope git_bcommits",                   desc = "Checkout Commit (Current file)" },
   { mode = "n", keys = "go",       cmd = "Telescope git_status",                     desc = "Git Status" },
-
   { mode = "n", keys = "hh",       cmd = "Telescope help_tags",                      desc = "Help Tags" },
   { mode = "n", keys = "hm",       cmd = "Telescope man_pages",                      desc = "Man Pages" },
-
   { mode = "n", keys = "li",       cmd = "LspInfo",                                  desc = "LSP Info" },
   { mode = "n", keys = "li",       cmd = "LspInfo",                                  desc = "LSP Info" },
-
-  { mode = "n", keys = "nn",       cmd = "Neotree toggle",                           desc = "Toggle File Tree" },
-  { mode = "n", keys = "nt",       cmd = "Neotree reveal",                           desc = "File Tree at File" },
-
+  { mode = "n", keys = "nn",       cmd = "NvimTreeToggle",                           desc = "Toggle File Tree" },
+  { mode = "n", keys = "nt",       cmd = "NvimTreeFindFileToggle",                   desc = "File Tree at File" },
   { mode = "n", keys = "pb",       cmd = "Telescope buffers",                        desc = "Find Buffers" },
   { mode = "n", keys = "pf",       cmd = "Telescope find_files",                     desc = "Find Files in Project" },
   { mode = "n", keys = "ps",       cmd = "Telescope grep_string",                    desc = "Search in Project" },
-
   { mode = "n", keys = "sc",       cmd = "nohlsearch",                               desc = "Clear Search Higlighting" },
 }
 -- stylua: ignore end

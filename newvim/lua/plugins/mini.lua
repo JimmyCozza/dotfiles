@@ -15,9 +15,10 @@ return {
       -- Visual
       require("mini.indentscope").setup()
       require("mini.statusline").setup()
+      require("mini.notify").setup()
 
       -- Search/Navigation
-      require("mini.files").setup()
+      -- require("mini.files").setup()
       local miniclue = require("mini.clue")
       miniclue.setup({
         clues = {
