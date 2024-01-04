@@ -1,11 +1,6 @@
 return {
   -- {"github/copilot.vim"},
   {
-    "sourcegraph/sg.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    build = "nvim -l build/init.lua",
-  },
-  {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
     config = function()
