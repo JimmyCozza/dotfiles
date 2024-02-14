@@ -11,6 +11,18 @@ return {
       local trouble = require("trouble.providers.telescope")
       require("telescope").setup({
         defaults = {
+          find_command = {
+            "rg",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim",
+          },
+          file_ignore_patterns = {
+            ".git/.*",
+          },
           path_display = helpers.smartTruncate,
           mappings = {
             i = {

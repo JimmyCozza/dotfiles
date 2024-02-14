@@ -86,6 +86,7 @@ local leaderBindings = {
   { mode = "n", keys = "ev",       cmd = ":e $HOME/.config/nvim/init.lua",           desc = "Edit Neovim Config" },
   { mode = "n", keys = "ez",       cmd = ":e $HOME/dotfiles/zshrc",                  desc = "Edit Zshrc" },
   { mode = "n", keys = "gb",       cmd = "Telescope git_branches",                   desc = "Checkout Branch" },
+  { mode = "n", keys = "gB",       cmd = "Git blame",                                desc = "Git Blame" },
   { mode = "n", keys = "gc",       cmd = "Telescope git_commits",                    desc = "Checkout Commit" },
   { mode = "n", keys = "gC",       cmd = "Telescope git_bcommits",                   desc = "Checkout Commit (Current file)" },
   { mode = "n", keys = "go",       cmd = "Telescope git_status",                     desc = "Git Status" },
@@ -98,6 +99,7 @@ local leaderBindings = {
   { mode = "n", keys = "pb",       cmd = "Telescope buffers",                        desc = "Find Buffers" },
   { mode = "n", keys = "pf",       cmd = "Telescope find_files",                     desc = "Find Files in Project" },
   { mode = "n", keys = "ps",       cmd = "Telescope grep_string",                    desc = "Search in Project" },
+  { mode = "n", keys = "pps",      cmd = "Lazy sync",                                desc = "Lazy Sync" },
   { mode = "n", keys = "sc",       cmd = "nohlsearch",                               desc = "Clear Search Higlighting" },
 }
 -- stylua: ignore end

@@ -11,6 +11,7 @@ return {
       })
       require("mini.pairs").setup()
       require("mini.align").setup()
+      require("mini.splitjoin").setup()
 
       -- Visual
       require("mini.indentscope").setup()
