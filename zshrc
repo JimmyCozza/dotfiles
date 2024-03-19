@@ -31,12 +31,12 @@ source $CONFIG_FILES_PATH/aliases
 bindkey '\C-e' edit-command-line
 
 #Uses bat to print git diff
-batdiff() {
-    git diff --name-only --diff-filter=d | xargs bat --diff
-}
+# batdiff() {
+#     git diff --name-only --diff-filter=d | xargs bat --diff
+# }
 
 #Uses bat to print man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
@@ -54,7 +54,7 @@ eval "$(fnm env --use-on-cd)"
 export PATH=$PATH:$HOME/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jimmy/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/jimmy/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jimmy/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi
