@@ -10,7 +10,7 @@ sudo pacman -Syu --needed base-devel
 git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
 cd $HOME/tools/yay && makepkg -si
 
-ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv wezterm pipewire pipewire-audio brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf"
+ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv wezterm pipewire pipewire-audio brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland firefox"
 
 AUR_LIST="fnm-bin lazydocker ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2"
 
