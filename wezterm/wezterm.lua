@@ -39,7 +39,7 @@ config.font_rules = {
     font = font_with_fallback(font_name, { bold = true }),
   },
 }
-config.font_size = 15
+config.font_size = 13
 config.keys = {
   {
     key = "d",

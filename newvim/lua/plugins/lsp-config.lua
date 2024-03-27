@@ -77,6 +77,11 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
       })
+
+      lspconfig.zls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
     end,
   },
   {
