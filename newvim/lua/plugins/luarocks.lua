@@ -16,7 +16,7 @@ return {
           ["core.dirman"] = {
             config = {
               workspaces = {
-                notes = "~/notes",
+                notes = "~/notes/neorg/",
               },
               default_workspace = "notes",
             },
