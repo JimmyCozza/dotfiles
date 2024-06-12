@@ -10,7 +10,7 @@ sudo pacman -Syu --needed base-devel
 git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
 cd $HOME/tools/yay && makepkg -si
 
-ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl zsh python-pip ruby lazygit picom direnv wezterm pipewire pipewire-audio brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland firefox"
+ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl fish python-pip ruby lazygit direnv wezterm pipewire pipewire-audio brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland firefox"
 
 AUR_LIST="fnm-bin lazydocker ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim"
 
@@ -22,7 +22,7 @@ yay -Syu $AUR_LIST
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
@@ -60,7 +60,7 @@ sudo pip3 install neovim
 sudo pip3 install neovim-remote
 sudo gem install neovim
 
-chsh -s $(which zsh)
+chsh -s $(which fish)
 source "$HOME/.zshrc"
 
 echo "I have exercised the demons.  This house is clean"
