@@ -1,4 +1,9 @@
 return {
   { "folke/trouble.nvim" },
-  { "folke/todo-comments.nvim" },
+  {
+    "folke/todo-comments.nvim",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
 }

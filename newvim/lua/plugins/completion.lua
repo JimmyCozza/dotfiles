@@ -47,6 +47,7 @@ return {
               nvim_lsp = "[LSP]",
               nvim_lua = "[NVIM_LUA]",
               ultisnips = "[Snippet]",
+              ['vim-dadbod-completion'] = "[DB]",
               buffer = "[Buffer]",
               path = "[Path]",
             })[entry.source.name]

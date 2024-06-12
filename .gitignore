@@ -5,3 +5,4 @@ emacs-from-scratch/transient
 emacs-from-scratch/auto-save-list
 emacs-from-scratch/projectile-bookmarks.eld
 emacs-from-scratch/forge-database.sqlite
+.env
