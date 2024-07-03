@@ -123,6 +123,7 @@ return {
               },
             },
           },
+          { name = "neorg" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "orgmode" },

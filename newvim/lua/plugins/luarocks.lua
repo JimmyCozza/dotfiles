@@ -2,7 +2,7 @@ return {
   {
     "vhyrro/luarocks.nvim",
     priority = 1000, -- We'd like this plugin to load first out of the rest
-    config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+    config = true,   -- This automatically runs `require("luarocks-nvim").setup()`
   },
   {
     "nvim-neorg/neorg",
@@ -12,6 +12,12 @@ return {
       require("neorg").setup {
         load = {
           ["core.defaults"] = {},
+          ["core.qol.todo_items"] = {},
+          ["core.completion"] = {
+            config = {
+              engine = "nvim-cmp",
+            }
+          },
           ["core.concealer"] = {},
           ["core.dirman"] = {
             config = {
@@ -21,6 +27,7 @@ return {
               default_workspace = "notes",
             },
           },
+          ["core.integrations.nvim-cmp"] = {},
         },
       }
 

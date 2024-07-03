@@ -19,14 +19,7 @@ sudo pacman -Syu --noconfirm $ARCH_LIST
 echo "Fetching AUR packages"
 yay -Syu $AUR_LIST
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-git clone https://aur.archlinux.org/1password.git $HOME/tools/1password
-cd $HOME/tools/1password && makepkg -si
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -56,8 +49,6 @@ fnm install 18
 fnm default 18
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
-sudo pip3 install neovim
-sudo pip3 install neovim-remote
 sudo gem install neovim
 
 chsh -s $(which fish)
