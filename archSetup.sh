@@ -45,8 +45,8 @@ sudo usermod -aG docker $USER
 
 source "$HOME/.zshrc"
 
-fnm install 18
-fnm default 18
+fnm install 20
+fnm default 20
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 sudo gem install neovim
