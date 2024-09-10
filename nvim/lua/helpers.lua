@@ -1,4 +1,17 @@
 local M = {}
+
+M.split = function(inputStr, pattern)
+  local parts = {}
+  for part in string.gmatch(inputStr, pattern) do
+    table.insert(parts, part)
+  end
+  return parts
+end
+
+M.splitOnSlash = function(inputStr)
+  return M.split(inputStr, "([^/]+)")
+end
+
 M.map = function(mode, keys, command, opt)
   local options = { silent = true }
 
@@ -16,16 +29,42 @@ M.map = function(mode, keys, command, opt)
   vim.keymap.set(mode, keys, command, opt)
 end
 
-M.split = function(inputStr, pattern)
-  local parts = {}
-  for part in string.gmatch(inputStr, pattern) do
-    table.insert(parts, part)
+M.leaderMap = function(binding)
+  local cmd = ""
+  local opts = binding.opts or {}
+  opts.desc = binding.desc
+
+  if string.find(binding.cmd, "<") == 1 then
+    cmd = binding.cmd
+  else
+    cmd = "<cmd>" .. binding.cmd .. "<cr>"
   end
-  return parts
+
+  M.map(binding.mode, "<Leader>" .. binding.keys, cmd, opts)
 end
 
-M.splitOnSlash = function(inputStr)
-  return M.split(inputStr, "([^/]+)")
+M.smartTruncate = function(opts, path)
+  local pathLength = string.len(path)
+  local maxLength = 60
+  if pathLength > maxLength then
+    local parts = M.splitOnSlash(path)
+    local letters = {}
+    for index, value in ipairs(parts) do
+      local shifted = { unpack(parts, index + 1) }
+      local short = table.concat(shifted, "/")
+      table.insert(letters, string.sub(value, 1, 1))
+      local smartShortPath = table.concat(letters, "/") .. "/" .. short
+      if string.len(smartShortPath) < maxLength then
+        return smartShortPath
+      end
+    end
+  end
+  return path
+end
+
+-- Label needs mode, keys, and desc
+M.appendLabel = function(label)
+  table.insert(JC.leader_group_clues, label)
 end
 
 return M

@@ -67,4 +67,4 @@ if test -f '/home/jimmy/google-cloud-sdk/completion.fish.inc'
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/tools/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/tools/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end

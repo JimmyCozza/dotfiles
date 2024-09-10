@@ -12,7 +12,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "gopls", "jsonls", "lua_ls", "marksman", "tsserver" },
+        ensure_installed = { "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls" },
       })
     end,
   },
@@ -45,6 +45,7 @@ return {
                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                 ["/usr/local/share/awesome/lib"] = true,
+                ["$HOME/tools/lgi"] = true,
               },
               maxPreload = 100000,
               preloadFileSize = 10000,
@@ -59,8 +60,10 @@ return {
       })
 
       lspconfig.clangd.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
+        cmd = { "clangd", "--background-index" },
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+        root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
       })
 
       lspconfig.gopls.setup({
@@ -68,7 +71,7 @@ return {
         capabilities = capabilities,
       })
 
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })
