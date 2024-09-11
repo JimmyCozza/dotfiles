@@ -21,6 +21,8 @@ yay -Syu $AUR_LIST
 
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
+chsh -s $(which fish)
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
@@ -51,8 +53,22 @@ sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 sudo gem install neovim
 
-chsh -s $(which fish)
 source "$HOME/.zshrc"
+
+read -p "Do you want to generate an SSH key for GitHub? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # Prompt for email address
+    read -p "Please enter your email address for the SSH key: " email_address
+
+    echo "Generating SSH key"
+    ssh-keygen -t ed25519 -C "$email_address"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
+    echo "Your public SSH key:"
+    cat ~/.ssh/id_ed25519.pub
+    echo "Please add this key to your GitHub account."
+fi
 
 echo "I have exercised the demons.  This house is clean"
 echo "Reboot"
