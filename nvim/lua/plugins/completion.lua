@@ -7,7 +7,14 @@ return {
       vim.defer_fn(function()
         require("copilot").setup({
           filetypes = {
+            lua = true,
             markdown = true,
+            json = true,
+            yaml = true,
+            zig = false,
+            javascript = true,
+            typescript = true,
+            go = true,
           },
         })
       end, 100)
@@ -47,7 +54,7 @@ return {
               nvim_lsp = "[LSP]",
               nvim_lua = "[NVIM_LUA]",
               ultisnips = "[Snippet]",
-              ['vim-dadbod-completion'] = "[DB]",
+              ["vim-dadbod-completion"] = "[DB]",
               buffer = "[Buffer]",
               path = "[Path]",
             })[entry.source.name]
