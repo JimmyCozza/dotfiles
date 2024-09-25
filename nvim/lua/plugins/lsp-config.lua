@@ -1,6 +1,27 @@
 local helpers = require("helpers")
 local map = helpers.map
 local appendLabel = helpers.appendLabel
+
+local function eslint_config_exists(bufnr)
+  local function find_eslintrc(path)
+    local eslint_path = path .. "/.eslintrc.js"
+    local f = io.open(eslint_path, "r")
+    if f ~= nil then
+      io.close(f)
+      return true
+    end
+    local parent = vim.fn.fnamemodify(path, ":h")
+    if parent == path then
+      return false
+    end
+    return find_eslintrc(parent)
+  end
+
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  local dir = vim.fn.fnamemodify(bufname, ":h")
+  return find_eslintrc(dir)
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -29,9 +50,10 @@ return {
         map("n", "[d", vim.diagnostic.goto_prev, opts)
         map("n", "d]", vim.diagnostic.goto_next, opts)
       end
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
+
       lspconfig.lua_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -64,6 +86,7 @@ return {
         filetypes = { "c", "cpp", "objc", "objcpp" },
         root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        on_attach = on_attach,
       })
 
       lspconfig.gopls.setup({
@@ -89,17 +112,34 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
       local null_ls = require("null-ls")
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.eslint_d,
-          null_ls.builtins.formatting.prettierd,
+          require("none-ls.formatting.eslint"),
         },
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                if eslint_config_exists(bufnr) then
+                  vim.lsp.buf.format({ bufnr = bufnr })
+                end
+              end,
+            })
+          end
+        end,
       })
-      vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format)
-      appendLabel({ mode = "n", keys = "<Leader>lf", desc = "LSP Format" })
+      vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "LSP Format" })
     end,
   },
 }
