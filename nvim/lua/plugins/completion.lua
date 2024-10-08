@@ -11,7 +11,7 @@ return {
             markdown = true,
             json = true,
             yaml = true,
-            zig = false,
+            zig = true,
             javascript = true,
             typescript = true,
             go = true,
