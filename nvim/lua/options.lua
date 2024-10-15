@@ -4,7 +4,7 @@ vim.g.UltiSnipsSnippetDirectories = { os.getenv("HOME") .. "/dotfiles/UltiSnips"
 vim.g.loaded_perl_provider = 0
 
 local opts = {
-  clipboard = "unnamedplus",
+  -- clipboard = "unnamedplus",
   cmdheight = 1,
   completeopt = "menu,noselect",
   cursorline = true,

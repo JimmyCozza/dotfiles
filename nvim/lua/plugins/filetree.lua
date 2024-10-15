@@ -7,6 +7,9 @@ return {
     "nvim-tree/nvim-tree.lua",
     config = function()
       require("nvim-tree").setup({
+        actions = {
+        use_system_clipboard = false,
+        },
         renderer = {
           indent_markers = {
             enable = false,
