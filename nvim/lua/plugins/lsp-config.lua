@@ -1,6 +1,5 @@
 local helpers = require("helpers")
 local map = helpers.map
-local appendLabel = helpers.appendLabel
 
 local function eslint_config_exists(bufnr)
   local function find_eslintrc(path)
