@@ -6,7 +6,9 @@ return {
       require("mini.ai").setup()
       require("mini.surround").setup({
         mappings = {
+          add = 'ys',
           delete = "ds",
+          replace = 'cs',
         },
       })
       require("mini.pairs").setup()
