@@ -131,7 +131,7 @@ return {
               buffer = bufnr,
               callback = function()
                 if eslint_config_exists(bufnr) then
-                  vim.lsp.buf.format({ bufnr = bufnr })
+                  -- vim.lsp.buf.format({ bufnr = bufnr })
                 end
               end,
             })
