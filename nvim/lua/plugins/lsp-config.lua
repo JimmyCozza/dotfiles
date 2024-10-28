@@ -1,26 +1,6 @@
 local helpers = require("helpers")
 local map = helpers.map
 
-local function eslint_config_exists(bufnr)
-  local function find_eslintrc(path)
-    local eslint_path = path .. "/.eslintrc.js"
-    local f = io.open(eslint_path, "r")
-    if f ~= nil then
-      io.close(f)
-      return true
-    end
-    local parent = vim.fn.fnamemodify(path, ":h")
-    if parent == path then
-      return false
-    end
-    return find_eslintrc(parent)
-  end
-
-  local bufname = vim.api.nvim_buf_get_name(bufnr)
-  local dir = vim.fn.fnamemodify(bufname, ":h")
-  return find_eslintrc(dir)
-end
-
 return {
   {
     "williamboman/mason.nvim",
@@ -122,6 +102,24 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           require("none-ls.formatting.eslint"),
+          null_ls.builtins.formatting.prettierd.with({
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "typescript",
+              "typescriptreact",
+              "vue",
+              "css",
+              "scss",
+              "less",
+              "html",
+              "json",
+              "jsonc",
+              "yaml",
+              "markdown",
+              "graphql",
+            },
+          }),
         },
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
@@ -130,9 +128,16 @@ return {
               group = augroup,
               buffer = bufnr,
               callback = function()
-                if eslint_config_exists(bufnr) then
-                  -- vim.lsp.buf.format({ bufnr = bufnr })
-                end
+                vim.lsp.buf.format({
+                  bufnr = bufnr,
+                  filter = function(client)
+                    if vim.bo[bufnr].filetype:match("javascript") or vim.bo[bufnr].filetype:match("typescript") then
+                      return client.name == "null-ls"
+                    end
+                    -- For other files, use their respective formatters
+                    return true
+                  end,
+                })
               end,
             })
           end

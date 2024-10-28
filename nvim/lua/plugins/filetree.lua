@@ -8,7 +8,7 @@ return {
     config = function()
       require("nvim-tree").setup({
         actions = {
-        use_system_clipboard = false,
+          use_system_clipboard = false,
         },
         renderer = {
           indent_markers = {
