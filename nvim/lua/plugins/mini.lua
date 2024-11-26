@@ -19,6 +19,7 @@ return {
       require("mini.indentscope").setup()
       require("mini.statusline").setup()
       require("mini.notify").setup()
+      -- require("mini.icons").setup()
 
       -- Search/Navigation
       -- require("mini.files").setup()
