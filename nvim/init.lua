@@ -22,6 +22,7 @@ local lazyOpts = {
     notify = false,
   },
 }
+
 require("options")
 require("mappings")
 require("lazy").setup("plugins", lazyOpts)
@@ -42,5 +43,6 @@ require("lazy").setup("plugins", lazyOpts)
 -- }
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  command = "Dotenv ~/dotfiles/.env",
+
+    command = "Dotenv ~/dotfiles/.env",
 })
