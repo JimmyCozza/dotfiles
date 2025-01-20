@@ -12,7 +12,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls" },
+        ensure_installed = { "biome", "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls" },
       })
     end,
   },
@@ -59,7 +59,8 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
       })
-      lspconfig.biome.setup{}
+
+      lspconfig.biome.setup({})
 
       lspconfig.clangd.setup({
         cmd = { "clangd", "--background-index" },
@@ -74,11 +75,6 @@ return {
         capabilities = capabilities,
       })
 
-      -- lspconfig.ts_ls.setup({
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      -- })
-
       lspconfig.marksman.setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -90,67 +86,4 @@ return {
       })
     end,
   },
-  -- {
-  --   "nvimtools/none-ls.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvimtools/none-ls-extras.nvim",
-  --   },
-  --   config = function()
-  --     local null_ls = require("null-ls")
-  --     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  --
-  --     null_ls.setup({
-  --       sources = {
-  --         -- Lua formatting
-  --         null_ls.builtins.formatting.stylua,
-  --
-  --         -- JavaScript/TypeScript formatting
-  --         null_ls.builtins.formatting.prettierd.with({
-  --           filetypes = {
-  --             "javascript",
-  --             "javascriptreact",
-  --             "typescript",
-  --             "typescriptreact",
-  --             "vue",
-  --             "css",
-  --             "scss",
-  --             "less",
-  --             "html",
-  --             "json",
-  --             "jsonc",
-  --             "yaml",
-  --             "markdown",
-  --             "graphql",
-  --           },
-  --         }),
-  --       },
-  --       on_attach = function(client, bufnr)
-  --         if client.supports_method("textDocument/formatting") then
-  --           vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  --           vim.api.nvim_create_autocmd("BufWritePre", {
-  --             group = augroup,
-  --             buffer = bufnr,
-  --             callback = function()
-  --               vim.lsp.buf.format({
-  --                 bufnr = bufnr,
-  --                 filter = function(client)
-  --                   -- Use null-ls for JavaScript/TypeScript
-  --                   if vim.bo[bufnr].filetype:match("javascript") or vim.bo[bufnr].filetype:match("typescript") then
-  --                     return client.name == "null-ls"
-  --                   end
-  --                   -- For other files, use their respective formatters
-  --                   return true
-  --                 end,
-  --               })
-  --             end,
-  --           })
-  --         end
-  --       end,
-  --     })
-  --
-  --     -- Keep your existing LSP format keybinding
-  --     vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "LSP Format" })
-  --   end,
-  -- },
 }
