@@ -5,7 +5,6 @@ local opts = { noremap = true, silent = true }
 local h = require("helpers")
 local map = h.map
 local leaderMap = h.leaderMap
-vim.keymap.del("n", "<leader>cl", {})
 
 -- ****************************
 -- General
@@ -15,6 +14,8 @@ map("v", "dp", "_dP", opts)
 map("t", "<esc>", "<C-\\><C-n>", { silent = true })
 map("n", "<Right>", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
 map("n", "<Left>", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
+map("v", "<Leader>c<space>", "gc", { remap = true })
+map("n", "<Leader>c<space>", "gcc", { remap = true })
 
 -- ****************************
 -- Search
@@ -60,7 +61,7 @@ map("n", "<DOWN>", "<cmd>cnext<cr>", opts)
 -- Leader Based Bindings
 JC.leader_group_clues = {
   { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
-  --{ mode = "n", keys = "<Leader>c", desc = "+Comment" },
+  { mode = "n", keys = "<Leader>c", desc = "+Comment" },
   { mode = "n", keys = "<Leader>d", desc = "Database" },
   { mode = "n", keys = "<Leader>e", desc = "+Quick Edit Files" },
   { mode = "n", keys = "<Leader>f", desc = "+Find" },
@@ -80,7 +81,7 @@ local grep_cmd =
 local leaderBindings = {
   { mode = "n", keys = "/",        cmd = grep_cmd,                                   desc = "Search Project" },
   { mode = "n", keys = "b",        cmd = "NvimTreeToggle",                           desc = "Toggle File Tree" },
-  --{ mode = "n", keys = "cl",       cmd = "<Plug>(comment_toggle_linewise_current)",  desc = "Comment Line" },
+  -- { mode = "n", keys = "cl",       cmd = "<Plug>(comment_toggle_linewise_current)",  desc = "Comment Line" },
   -- { mode = "n", keys = "c<space>", cmd = "<Plug>(comment_toggle_blockwise_current)", desc = "Comment Line (Block)" },
   --{ mode = "v", keys = "cl",       cmd = "<Plug>(comment_toggle_linewise_visual)",   desc = "Comment Line" },
   --{ mode = "v", keys = "c<space>", cmd = "<Plug>(comment_toggle_blockwise_visual)",  desc = "Comment Line (Block)" },
