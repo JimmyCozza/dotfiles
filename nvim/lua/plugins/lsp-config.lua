@@ -61,6 +61,10 @@ return {
       })
 
       lspconfig.biome.setup({})
+      -- lspconfig.denols.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      -- })
 
       lspconfig.clangd.setup({
         cmd = { "clangd", "--background-index" },
