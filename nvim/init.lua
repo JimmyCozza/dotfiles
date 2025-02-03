@@ -33,5 +33,5 @@ require("lazy").setup("plugins", lazyOpts)
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
-    command = "Dotenv ~/dotfiles/.env",
+  command = "Dotenv ~/dotfiles/.env",
 })

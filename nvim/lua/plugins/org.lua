@@ -30,14 +30,14 @@ return {
         mappings = {
           global = {
             -- Doom-like global mappings
-            org_agenda = "<leader>oa",  -- SPC o a
+            org_agenda = "<leader>oa", -- SPC o a
             org_capture = "<leader>nn", -- SPC X (like doom's capture)
           },
           capture = {
             -- Capture window mappings
             org_capture_finalize = "<leader>mc", -- Complete capture
-            org_capture_refile = "<leader>mr",   -- Refile capture
-            org_capture_kill = "<leader>mk",     -- Kill capture
+            org_capture_refile = "<leader>mr", -- Refile capture
+            org_capture_kill = "<leader>mk", -- Kill capture
           },
         },
 
