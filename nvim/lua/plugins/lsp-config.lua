@@ -90,4 +90,46 @@ return {
       })
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        javascript = { "biome" },
+        typescript = { "biome" },
+        javascriptreact = { "biome" },
+        typescriptreact = { "biome" },
+        go = { "gofmt" },
+        lua = { "stylua" },
+      },
+      -- Format on save
+      format_on_save = {
+        -- Timeout for formatting in milliseconds
+        timeout_ms = 500,
+        lsp_format = "fallback",
+      },
+      -- Formatter configurations
+      formatters = {
+        biome = {
+          -- Ensure biome respects project configuration
+          command = "biome",
+          args = { "format", "--stdin-file-path", "$FILENAME" },
+          stdin = true,
+        },
+      },
+    },
+    config = function(_, opts)
+      require("conform").setup(opts)
+
+      -- Set up format on save
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function(args)
+          require("conform").format({ bufnr = args.buf })
+        end,
+      })
+
+      -- Set formatexpr
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+  },
 }
