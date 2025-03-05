@@ -20,7 +20,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- Configure diagnostic icons and styling
       local diagnostic_signs = {
         Error = icons.diagnostics.Error,
         Warn = icons.diagnostics.Warning,
@@ -33,10 +32,9 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
 
-      -- Configure diagnostic appearance
       vim.diagnostic.config({
         virtual_text = {
-          prefix = "●", -- Could also use icons.ui.Circle here
+          prefix = icons.ui.Circle,
           source = "if_many",
         },
         float = {
@@ -51,7 +49,6 @@ return {
         severity_sort = true,
       })
 
-      -- Handler overrides for better UI
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
       })
