@@ -14,7 +14,6 @@ return {
           "make",
           "markdown",
           "markdown_inline",
-          "org",
           "sql",
           "typescript",
           "vim",
@@ -25,7 +24,6 @@ return {
         highlight = {
           enable = true,
           disable = { "c", "csv" },
-          additional_vim_regex_highlighting = { "org" },
         },
       })
     end,

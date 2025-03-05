@@ -1,5 +1,6 @@
 local helpers = require("helpers")
 local map = helpers.map
+local icons = require("icons")
 
 return {
   {
@@ -19,6 +20,46 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      -- Configure diagnostic icons and styling
+      local diagnostic_signs = {
+        Error = icons.diagnostics.Error,
+        Warn = icons.diagnostics.Warning,
+        Hint = icons.diagnostics.Hint,
+        Info = icons.diagnostics.Information,
+      }
+
+      for type, icon in pairs(diagnostic_signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
+      -- Configure diagnostic appearance
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●", -- Could also use icons.ui.Circle here
+          source = "if_many",
+        },
+        float = {
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
+      -- Handler overrides for better UI
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+      })
+
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+      })
+
       local function on_attach(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
         map("n", "gD", vim.lsp.buf.declaration, opts)

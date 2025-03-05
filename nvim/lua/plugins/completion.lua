@@ -132,7 +132,6 @@ return {
           },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
-          { name = "orgmode" },
           { name = "path" },
           { name = "ultisnips" },
         },
