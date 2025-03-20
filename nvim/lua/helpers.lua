@@ -12,37 +12,6 @@ M.splitOnSlash = function(inputStr)
   return M.split(inputStr, "([^/]+)")
 end
 
-M.map = function(mode, keys, command, opt)
-  local options = { silent = true }
-
-  if opt then
-    options = vim.tbl_extend("force", options, opt)
-  end
-
-  if type(keys) == "table" then
-    for _, keymap in ipairs(keys) do
-      M.map(mode, keymap, command, opt)
-    end
-    return
-  end
-
-  vim.keymap.set(mode, keys, command, opt)
-end
-
-M.leaderMap = function(binding)
-  local cmd = ""
-  local opts = binding.opts or {}
-  opts.desc = binding.desc
-
-  if string.find(binding.cmd, "<") == 1 then
-    cmd = binding.cmd
-  else
-    cmd = "<cmd>" .. binding.cmd .. "<cr>"
-  end
-
-  M.map(binding.mode, "<Leader>" .. binding.keys, cmd, opts)
-end
-
 M.smartTruncate = function(opts, path)
   local pathLength = string.len(path)
   local maxLength = 60
@@ -62,9 +31,92 @@ M.smartTruncate = function(opts, path)
   return path
 end
 
--- Label needs mode, keys, and desc
-M.appendLabel = function(label)
-  table.insert(JC.leader_group_clues, label)
+-- --------------------------------
+-- Key mapping functions
+-- --------------------------------
+
+M.map = function(mode, lhs, rhs, opts)
+  -- Set default options
+  opts = opts or { silent = true, noremap = true }
+
+  if type(lhs) == "table" then
+    for _, keymap in ipairs(lhs) do
+      M.map(mode, keymap, rhs, opts)
+    end
+    return
+  end
+
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+_G.Keymap = _G.Keymap or {
+  groups = {},
+  mappings = {},
+}
+
+M.group = function(prefix, name)
+  if not prefix:match("^<Leader>") and not prefix:match("^g") then
+    prefix = "<Leader>" .. prefix
+  end
+
+  Keymap.groups[prefix] = name
+  return prefix
+end
+
+M.lmap = function(mode, keys, command, desc, opts)
+  opts = opts or {}
+  opts.desc = desc
+
+  table.insert(Keymap.mappings, {
+    mode = mode,
+    keys = "<Leader>" .. keys,
+    command = command,
+    desc = desc,
+  })
+
+  local rhs
+  if type(command) == "string" then
+    if command:match("^<") then
+      rhs = command
+    elseif command:match("^:") then
+      rhs = command .. "<CR>"
+    else
+      rhs = "<cmd>" .. command .. "<CR>"
+    end
+  else
+    rhs = command
+  end
+
+  M.map(mode, "<Leader>" .. keys, rhs, opts)
+end
+
+M.init_which_key = function()
+  local clues = {}
+
+  for prefix, name in pairs(Keymap.groups) do
+    table.insert(clues, {
+      mode = "n",
+      keys = prefix,
+      desc = name,
+    })
+  end
+
+  if _G.JC and _G.JC.leader_group_clues then
+    _G.JC.leader_group_clues = clues
+  end
+
+  return clues
+end
+
+M.map_group = function(mappings)
+  for _, mapping in ipairs(mappings) do
+    if #mapping == 3 then
+      M.lmap("n", mapping[1], mapping[2], mapping[3])
+    else
+      M.lmap(mapping.mode or "n", mapping.keys, mapping.cmd, mapping.desc, mapping.opts)
+    end
+  end
 end
 
 return M
+
