@@ -2,7 +2,6 @@
 echo "Setup directories"
 mkdir -p $HOME/Pictures
 mkdir -p $HOME/Downloads
-mkdir -p $HOME/work
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 

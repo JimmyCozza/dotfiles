@@ -12,9 +12,9 @@ set -gx GOPATH $HOME/go
 
 # Set up PATH
 set -gx PATH $PATH /usr/local/go/bin $GOPATH/bin
-set -gx PATH $PATH $HOME/projects/wsome/wsome
+set -gx PATH $PATH $HOME/tools/wsome/wsome
 set -gx PATH $PATH /usr/local/opt/rabbitmq/sbin
-set -gx PATH $HOME/.emacs.d/bin $PATH
+set -gx PATH $HOME/.config/emacs/bin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH $HOME/.local/bin $PATH
 
