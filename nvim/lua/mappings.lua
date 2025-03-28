@@ -134,4 +134,3 @@ h.lmap("n", "sc", "nohlsearch", "Clear Search Highlighting")
 
 -- Initialize which-key integration
 h.init_which_key()
-

@@ -101,7 +101,15 @@ return {
       lspconfig.biome.setup({})
 
       lspconfig.clangd.setup({
-        cmd = { "clangd", "--background-index" },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--suggest-missing-includes",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+        },
         filetypes = { "c", "cpp", "objc", "objcpp" },
         root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
         capabilities = require("cmp_nvim_lsp").default_capabilities(),

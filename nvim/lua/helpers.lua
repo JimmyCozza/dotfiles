@@ -119,4 +119,3 @@ M.map_group = function(mappings)
 end
 
 return M
-
