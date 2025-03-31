@@ -6,7 +6,16 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
     end,
   },
   {
@@ -14,25 +23,22 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = { "biome", "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls" },
+        automatic_installation = true,
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local diagnostic_signs = {
-        Error = icons.diagnostics.Error,
-        Warn = icons.diagnostics.Warning,
-        Hint = icons.diagnostics.Hint,
-        Info = icons.diagnostics.Information,
-      }
-
-      for type, icon in pairs(diagnostic_signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
-
       vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+          },
+        },
         virtual_text = {
           prefix = icons.ui.Circle,
           source = "if_many",
@@ -43,7 +49,6 @@ return {
           header = "",
           prefix = "",
         },
-        signs = true,
         underline = true,
         update_in_insert = false,
         severity_sort = true,
@@ -59,16 +64,38 @@ return {
 
       local function on_attach(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
+
         map("n", "gD", vim.lsp.buf.declaration, opts)
         map("n", "gd", vim.lsp.buf.definition, opts)
-        map("n", "K", vim.lsp.buf.hover, opts)
         map("n", "gi", vim.lsp.buf.implementation, opts)
         map("n", "gr", vim.lsp.buf.references, opts)
+        map("n", "K", vim.lsp.buf.hover, opts)
+
         map("n", "[d", vim.diagnostic.goto_prev, opts)
-        map("n", "d]", vim.diagnostic.goto_next, opts)
+        map("n", "]d", vim.diagnostic.goto_next, opts)
+        map("n", "<leader>e", vim.diagnostic.open_float, opts)
+        map("n", "<leader>q", vim.diagnostic.setloclist, opts)
+
+        map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+        map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+        map("n", "<leader>wl", function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+
+        map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        map("n", "<leader>f", function()
+          vim.lsp.buf.format({ async = true })
+        end, opts)
+
+        if client.server_capabilities.inlayHintProvider then
+          map("n", "<leader>th", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, opts)
+        end
       end
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
@@ -89,6 +116,7 @@ return {
               maxPreload = 100000,
               preloadFileSize = 10000,
             },
+            telemetry = { enable = false },
           },
         },
       })
@@ -96,9 +124,18 @@ return {
       lspconfig.jsonls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+          },
+        },
       })
 
-      lspconfig.biome.setup({})
+      lspconfig.biome.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
 
       lspconfig.clangd.setup({
         cmd = {
@@ -112,13 +149,22 @@ return {
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
         root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = capabilities,
         on_attach = on_attach,
       })
 
       lspconfig.gopls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
       })
 
       lspconfig.marksman.setup({
@@ -130,7 +176,20 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
       })
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+          end
+        end,
+      })
     end,
+    dependencies = {
+      "b0o/schemastore.nvim",
+    },
   },
   {
     "stevearc/conform.nvim",
@@ -143,16 +202,12 @@ return {
         go = { "gofmt" },
         lua = { "stylua" },
       },
-      -- Format on save
       format_on_save = {
-        -- Timeout for formatting in milliseconds
         timeout_ms = 500,
         lsp_format = "fallback",
       },
-      -- Formatter configurations
       formatters = {
         biome = {
-          -- Ensure biome respects project configuration
           command = "biome",
           args = { "format", "--stdin-file-path", "$FILENAME" },
           stdin = true,
@@ -162,7 +217,6 @@ return {
     config = function(_, opts)
       require("conform").setup(opts)
 
-      -- Set up format on save
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function(args)
@@ -170,7 +224,6 @@ return {
         end,
       })
 
-      -- Set formatexpr
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
