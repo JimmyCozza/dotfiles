@@ -1,0 +1,8 @@
+nvim/plugin/packer_compiled.lua
+emacs-from-scratch/elpa
+emacs-from-scratch/eshell
+emacs-from-scratch/transient
+emacs-from-scratch/auto-save-list
+emacs-from-scratch/projectile-bookmarks.eld
+emacs-from-scratch/forge-database.sqlite
+node_modules

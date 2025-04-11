@@ -22,7 +22,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "biome", "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls" },
+        ensure_installed = { "biome", "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls", "prismals" },
         automatic_installation = true,
       })
     end,
@@ -173,6 +173,31 @@ return {
       })
 
       lspconfig.zls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
+      lspconfig.ts_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
+        settings = {
+          -- typescript = {
+          --   inlayHints = {
+          --     includeInlayParameterNameHints = "all",
+          --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          --     includeInlayFunctionParameterTypeHints = true,
+          --     includeInlayVariableTypeHints = true,
+          --     includeInlayPropertyDeclarationTypeHints = true,
+          --     includeInlayFunctionLikeReturnTypeHints = true,
+          --     includeInlayEnumMemberValueHints = true,
+          --   },
+          -- },
+        },
+      })
+
+      lspconfig.prismals.setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })

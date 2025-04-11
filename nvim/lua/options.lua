@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.UltiSnipsSnippetDirectories = { os.getenv("HOME") .. "/dotfiles/UltiSnips" }
 
 vim.g.loaded_perl_provider = 0
+vim.g.augment_workspace_folders = { "/home/jimmy/dotfiles/nvim" }
 
 local opts = {
   clipboard = "unnamedplus",
