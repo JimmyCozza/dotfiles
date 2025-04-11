@@ -1,5 +1,4 @@
 return {
-  -- {"github/copilot.vim"},
   {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
@@ -20,144 +19,112 @@ return {
       end, 100)
     end,
   },
-  { "zbirenbaum/copilot-cmp" },
   { "augmentcode/augment.vim" },
-  {
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require("cmp")
-      require("copilot_cmp").setup()
 
-      local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+  {
+    "saghen/blink.cmp",
+    version = "1.*",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
+    opts = {
+      keymap = {
+        preset = "default",
+      },
+      appearance = {
+        nerd_font_variant = "mono",
+      },
+      completion = {
+        documentation = { auto_show = true },
+        menu = {
+          border = "rounded",
+          draw = {
+            columns = {
+              { "kind_icon" },
+              { "label", "label_description", gap = 1 },
+            },
+          },
+        },
+        ghost_text = { enabled = true },
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = true,
+          },
+        },
+      },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+      signature = { enabled = true },
+    },
+    config = function(_, opts)
       local icons = require("icons")
 
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-          end,
-        },
-        style = {
-          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-        },
-        formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            vim_item.kind = string.format("%s", icons.kind[vim_item.kind])
+      opts.appearance = opts.appearance or {}
+      opts.appearance.kind_icons = {
+        Text = icons.kind.Text or "󰉿",
+        Method = icons.kind.Method or "󰊕",
+        Function = icons.kind.Function or "󰊕",
+        Constructor = icons.kind.Constructor or "󰒓",
+        Field = icons.kind.Field or "󰜢",
+        Variable = icons.kind.Variable or "󰆦",
+        Class = icons.kind.Class or "󱡠",
+        Interface = icons.kind.Interface or "󱡠",
+        Module = icons.kind.Module or "󰅩",
+        Property = icons.kind.Property or "󰖷",
+        Unit = icons.kind.Unit or "󰪚",
+        Value = icons.kind.Value or "󰦨",
+        Enum = icons.kind.Enum or "󰦨",
+        Keyword = icons.kind.Keyword or "󰻾",
+        Snippet = icons.kind.Snippet or "󱄽",
+        Color = icons.kind.Color or "󰏘",
+        File = icons.kind.File or "󰈔",
+        Reference = icons.kind.Reference or "󰬲",
+        Folder = icons.kind.Folder or "󰉋",
+        EnumMember = icons.kind.EnumMember or "󰦨",
+        Constant = icons.kind.Constant or "󰏿",
+        Struct = icons.kind.Struct or "󱡠",
+        Event = icons.kind.Event or "󱐋",
+        Operator = icons.kind.Operator or "󰪚",
+        TypeParameter = icons.kind.TypeParameter or "󰬛",
+      }
 
-            if entry.source.name == "copilot" then
-              vim_item.dup = 0
-              vim_item.kind = icons.git.Octoface
-            end
-            -- Kind icons
-            vim_item.menu = ({
-              copilot = "[Copilot]",
-              nvim_lsp = "[LSP]",
-              nvim_lua = "[NVIM_LUA]",
-              ultisnips = "[Snippet]",
-              ["vim-dadbod-completion"] = "[DB]",
-              buffer = "[Buffer]",
-              path = "[Path]",
-            })[entry.source.name]
-            return vim_item
-          end,
-        },
-        window = {
-          completion = {
-            border = icons.borders.RoundedRect,
-            scrollbar = "║",
-            autocomplete = {
-              require("cmp.types").cmp.TriggerEvent.InsertEnter,
-              require("cmp.types").cmp.TriggerEvent.TextChanged,
-            },
-          },
-          documentation = {
-            border = icons.borders.RoundedRect,
-            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-            scrollbar = "║",
-          },
-        },
-        mapping = {
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-          ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-          ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-          ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-          }),
-          -- Accept currently selected item. If none selected, `select` first item.
-          -- Set `select` to `false` to only confirm explicitly selected items.
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.jump_backwards(fallback)
-          end, { "i", "s" }),
-        },
-        experimental = {
-          native_menu = false,
-          ghost_text = true,
-        },
-        sources = {
-          { name = "buffer" },
-          {
-            name = "copilot",
-            max_item_count = 3,
-            trigger_characters = {
-              {
-                ".",
-                ":",
-                "(",
-                "'",
-                '"',
-                "[",
-                ",",
-                "#",
-                "*",
-                "@",
-                "|",
-                "=",
-                "-",
-                "{",
-                "/",
-                "\\",
-                "+",
-                "?",
-                " ",
-              },
-            },
-          },
-          { name = "nvim_lsp" },
-          { name = "nvim_lua" },
-          { name = "path" },
-          { name = "ultisnips" },
-        },
-        sorting = {
-          comparators = {
-            cmp.config.compare.recently_used,
-            cmp.config.compare.offset,
-            cmp.config.compare.score,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
-        },
-        preselect = cmp.PreselectMode.Item,
+      require("blink.cmp").setup(opts)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuOpen",
+        callback = function()
+          if package.loaded["copilot"] and package.loaded["copilot.suggestion"] then
+            require("copilot.suggestion").dismiss()
+            vim.b.copilot_suggestion_hidden = true
+          end
+        end,
       })
 
-      --set max height of items
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuClose",
+        callback = function()
+          vim.b.copilot_suggestion_hidden = false
+        end,
+      })
+
       vim.cmd([[ set pumheight=10 ]])
     end,
   },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-nvim-lua" },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-cmdline" },
-  { "quangnguyen30192/cmp-nvim-ultisnips" },
-  { "SirVer/ultisnips" },
+
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
+    config = function()
+      local lspconfig = require("lspconfig")
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+      for _, server in ipairs({}) do
+        if lspconfig[server] then
+          lspconfig[server].setup({ capabilities = capabilities })
+        end
+      end
+    end,
+  },
 }
