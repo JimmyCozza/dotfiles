@@ -61,6 +61,9 @@ fnm env --use-on-cd | source
 # Add custom bin directory to PATH
 set -gx PATH $PATH $HOME/bin
 
+# Add Ruby gems bin directory to PATH
+set -gx PATH $PATH $HOME/.local/share/gem/ruby/3.3.0/bin
+
 # Set up Google Cloud SDK
 if test -f '/home/jimmy/google-cloud-sdk/path.fish.inc'
     source '/home/jimmy/google-cloud-sdk/path.fish.inc'
