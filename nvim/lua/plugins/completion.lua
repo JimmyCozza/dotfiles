@@ -19,17 +19,18 @@ return {
       end, 100)
     end,
   },
-  { "augmentcode/augment.vim" },
-
   {
     "saghen/blink.cmp",
-    version = "1.*",
     dependencies = {
       "rafamadriz/friendly-snippets",
+      "giuxtaposition/blink-cmp-copilot",
     },
     opts = {
       keymap = {
         preset = "default",
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
       },
       appearance = {
         nerd_font_variant = "mono",
@@ -54,7 +55,15 @@ return {
         },
       },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
       },
       signature = { enabled = true },
     },
@@ -112,7 +121,6 @@ return {
       vim.cmd([[ set pumheight=10 ]])
     end,
   },
-
   {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp" },
