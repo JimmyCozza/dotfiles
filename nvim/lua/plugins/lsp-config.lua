@@ -178,22 +178,97 @@ return {
       })
 
       lspconfig.ts_ls.setup({
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+          -- Call the base on_attach function first
+          on_attach(client, bufnr)
+          
+          -- Add TypeScript specific keymaps
+          local opts = { buffer = bufnr, remap = false }
+          map("n", "<leader>tR", ":TypescriptRenameFile<CR>", opts)        -- Rename file and update imports
+          map("n", "<leader>tI", ":TypescriptOrganizeImports<CR>", opts)   -- Organize imports
+          map("n", "<leader>tA", ":TypescriptAddMissingImports<CR>", opts) -- Add missing imports
+          map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts)            -- Fix all auto-fixable problems
+        end,
         capabilities = capabilities,
-        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
         settings = {
-          -- typescript = {
-          --   inlayHints = {
-          --     includeInlayParameterNameHints = "all",
-          --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          --     includeInlayFunctionParameterTypeHints = true,
-          --     includeInlayVariableTypeHints = true,
-          --     includeInlayPropertyDeclarationTypeHints = true,
-          --     includeInlayFunctionLikeReturnTypeHints = true,
-          --     includeInlayEnumMemberValueHints = true,
-          --   },
-          -- },
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            updateImportsOnFileMove = {
+              enabled = "always",
+            },
+          },
+          javascript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            updateImportsOnFileMove = {
+              enabled = "always",
+            },
+          },
+        },
+        commands = {
+          TypescriptOrganizeImports = {
+            function()
+              vim.lsp.buf.execute_command({
+                command = "_typescript.organizeImports",
+                arguments = {vim.api.nvim_buf_get_name(0)},
+              })
+            end,
+            description = "Organize Imports",
+          },
+          TypescriptRenameFile = {
+            function()
+              local current_file = vim.api.nvim_buf_get_name(0)
+              local target_file = vim.fn.input("New name: ", current_file, "file")
+              if target_file ~= "" and target_file ~= current_file then
+                vim.lsp.buf.execute_command({
+                  command = "_typescript.moveToFile",
+                  arguments = {current_file, target_file},
+                })
+              end
+            end,
+            description = "Rename File",
+          },
+          TypescriptAddMissingImports = {
+            function()
+              vim.lsp.buf.execute_command({
+                command = "_typescript.addMissingImports",
+                arguments = {vim.api.nvim_buf_get_name(0)},
+              })
+            end,
+            description = "Add Missing Imports",
+          },
+          TypescriptFixAll = {
+            function()
+              vim.lsp.buf.execute_command({
+                command = "_typescript.fixAll",
+                arguments = {vim.api.nvim_buf_get_name(0)},
+              })
+            end,
+            description = "Fix All Auto-fixable Problems",
+          },
         },
       })
 
@@ -209,9 +284,11 @@ return {
           -- Set up mini.completion's LSP integration
           vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
           
-          -- Enable inlay hints if supported
+          -- Don't enable inlay hints by default, but set up client capability
+          -- Use <leader>th to toggle hints when needed
           if client and client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+            -- vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+            -- Disabled by default now
           end
         end,
       })
