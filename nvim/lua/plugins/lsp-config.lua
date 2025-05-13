@@ -181,13 +181,13 @@ return {
         on_attach = function(client, bufnr)
           -- Call the base on_attach function first
           on_attach(client, bufnr)
-          
+
           -- Add TypeScript specific keymaps
           local opts = { buffer = bufnr, remap = false }
-          map("n", "<leader>tR", ":TypescriptRenameFile<CR>", opts)        -- Rename file and update imports
-          map("n", "<leader>tI", ":TypescriptOrganizeImports<CR>", opts)   -- Organize imports
+          map("n", "<leader>tR", ":TypescriptRenameFile<CR>", opts) -- Rename file and update imports
+          map("n", "<leader>tI", ":TypescriptOrganizeImports<CR>", opts) -- Organize imports
           map("n", "<leader>tA", ":TypescriptAddMissingImports<CR>", opts) -- Add missing imports
-          map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts)            -- Fix all auto-fixable problems
+          map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts) -- Fix all auto-fixable problems
         end,
         capabilities = capabilities,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
@@ -233,7 +233,7 @@ return {
             function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.organizeImports",
-                arguments = {vim.api.nvim_buf_get_name(0)},
+                arguments = { vim.api.nvim_buf_get_name(0) },
               })
             end,
             description = "Organize Imports",
@@ -245,7 +245,7 @@ return {
               if target_file ~= "" and target_file ~= current_file then
                 vim.lsp.buf.execute_command({
                   command = "_typescript.moveToFile",
-                  arguments = {current_file, target_file},
+                  arguments = { current_file, target_file },
                 })
               end
             end,
@@ -255,7 +255,7 @@ return {
             function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.addMissingImports",
-                arguments = {vim.api.nvim_buf_get_name(0)},
+                arguments = { vim.api.nvim_buf_get_name(0) },
               })
             end,
             description = "Add Missing Imports",
@@ -264,7 +264,7 @@ return {
             function()
               vim.lsp.buf.execute_command({
                 command = "_typescript.fixAll",
-                arguments = {vim.api.nvim_buf_get_name(0)},
+                arguments = { vim.api.nvim_buf_get_name(0) },
               })
             end,
             description = "Fix All Auto-fixable Problems",
@@ -282,8 +282,8 @@ return {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           -- Set up mini.completion's LSP integration
-          vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
-          
+          vim.bo[args.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+
           -- Don't enable inlay hints by default, but set up client capability
           -- Use <leader>th to toggle hints when needed
           if client and client.server_capabilities.inlayHintProvider then
@@ -335,3 +335,4 @@ return {
     end,
   },
 }
+
