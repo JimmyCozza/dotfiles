@@ -1,4 +1,5 @@
 return {
+  -- { "github/copilot.vim" },
   {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
@@ -112,9 +113,9 @@ return {
 
       -- Handle Enter key in completion menu
       local keys = vim.keycode and vim.keycode
-        or function(x)
-          return vim.api.nvim_replace_termcodes(x, true, true, true)
-        end
+          or function(x)
+            return vim.api.nvim_replace_termcodes(x, true, true, true)
+          end
 
       local cr_keys = {
         ["cr"] = keys("<CR>"),
