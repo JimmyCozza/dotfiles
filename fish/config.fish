@@ -17,6 +17,7 @@ set -gx PATH $PATH /usr/local/opt/rabbitmq/sbin
 set -gx PATH $HOME/.config/emacs/bin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH $HOME/.local/bin $PATH
+set -gx PATH /opt/postgresql16/bin $PATH
 
 # Set the path to your todo file
 set -gx TODO_PATH $HOME/notes/vimwiki/todo/
