@@ -184,10 +184,10 @@ return {
 
           -- Add TypeScript specific keymaps
           local opts = { buffer = bufnr, remap = false }
-          map("n", "<leader>tR", ":TypescriptRenameFile<CR>", opts) -- Rename file and update imports
-          map("n", "<leader>tI", ":TypescriptOrganizeImports<CR>", opts) -- Organize imports
+          map("n", "<leader>tR", ":TypescriptRenameFile<CR>", opts)        -- Rename file and update imports
+          map("n", "<leader>tI", ":TypescriptOrganizeImports<CR>", opts)   -- Organize imports
           map("n", "<leader>tA", ":TypescriptAddMissingImports<CR>", opts) -- Add missing imports
-          map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts) -- Fix all auto-fixable problems
+          map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts)            -- Fix all auto-fixable problems
         end,
         capabilities = capabilities,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
@@ -335,4 +335,3 @@ return {
     end,
   },
 }
-
