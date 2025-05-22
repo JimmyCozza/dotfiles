@@ -95,7 +95,7 @@ return {
         end
       end
 
-      local capabilities = require("mini.completion").get_lsp_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
@@ -281,21 +281,14 @@ return {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          -- Set up mini.completion's LSP integration
-          vim.bo[args.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-
-          -- Don't enable inlay hints by default, but set up client capability
-          -- Use <leader>th to toggle hints when needed
           if client and client.server_capabilities.inlayHintProvider then
-            -- vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
-            -- Disabled by default now
           end
         end,
       })
     end,
     dependencies = {
       "b0o/schemastore.nvim",
-      "echasnovski/mini.nvim",
+      "saghen/blink.cmp",
     },
   },
   {
