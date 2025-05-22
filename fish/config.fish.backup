@@ -12,11 +12,12 @@ set -gx GOPATH $HOME/go
 
 # Set up PATH
 set -gx PATH $PATH /usr/local/go/bin $GOPATH/bin
-set -gx PATH $PATH $HOME/projects/wsome/wsome
+set -gx PATH $PATH $HOME/tools/wsome/wsome
 set -gx PATH $PATH /usr/local/opt/rabbitmq/sbin
-set -gx PATH $HOME/.emacs.d/bin $PATH
+set -gx PATH $HOME/.config/emacs/bin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH $HOME/.local/bin $PATH
+set -gx PATH /opt/postgresql16/bin $PATH
 
 # Set the path to your todo file
 set -gx TODO_PATH $HOME/notes/vimwiki/todo/
@@ -39,6 +40,10 @@ end
 # Set up fzf
 set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 
+# Use .env from dotfiles
+if test -f ~/dotfiles/.env
+    load_dotenv
+end
 # Git clone function
 function gitclone
     git clone $argv[1]
@@ -57,6 +62,9 @@ fnm env --use-on-cd | source
 # Add custom bin directory to PATH
 set -gx PATH $PATH $HOME/bin
 
+# Add Ruby gems bin directory to PATH
+set -gx PATH $PATH $HOME/.local/share/gem/ruby/3.3.0/bin
+
 # Set up Google Cloud SDK
 if test -f '/home/jimmy/google-cloud-sdk/path.fish.inc'
     source '/home/jimmy/google-cloud-sdk/path.fish.inc'
@@ -66,5 +74,12 @@ if test -f '/home/jimmy/google-cloud-sdk/completion.fish.inc'
     source '/home/jimmy/google-cloud-sdk/completion.fish.inc'
 end
 
+set -gx NPM_TOKEN (cat ~/.npmrc | grep _authToken | cut -d'=' -f2)
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/tools/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/tools/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+alias claude="/home/jimmy/.claude/local/claude"

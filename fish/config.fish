@@ -76,9 +76,10 @@ end
 
 set -gx NPM_TOKEN (cat ~/.npmrc | grep _authToken | cut -d'=' -f2)
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/Downloads/google-cloud-sdk/path.fish.inc'; end
-
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+alias claude="/home/jimmy/.claude/local/claude"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jimmy/tools/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/tools/google-cloud-sdk/path.fish.inc'; end
