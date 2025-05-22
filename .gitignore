@@ -7,3 +7,4 @@ emacs-from-scratch/projectile-bookmarks.eld
 emacs-from-scratch/forge-database.sqlite
 .env
 fish/conf.d/database.fish
+CLAUDE.md

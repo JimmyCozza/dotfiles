@@ -54,6 +54,7 @@ h.map("n", "<DOWN>", "<cmd>cnext<cr>", opts)
 -- ****************************
 -- Define which-key groups
 -- ****************************
+h.group("a", "+AI")
 h.group("b", "+Buffer")
 h.group("c", "+Comment")
 h.group("d", "+Database")
@@ -131,6 +132,14 @@ h.map_group({
 
 -- Search clear
 h.lmap("n", "sc", "nohlsearch", "Clear Search Highlighting")
+
+-- CodeCompanion mappings
+h.map_group({
+  { "ac", ":CodeCompanionChat Toggle", "Toggle Chat" },
+  { "aa", ":CodeCompanionActions", "Actions Menu" },
+  { mode = "v", keys = "as", cmd = ":CodeCompanionChat Add", desc = "Send Selection to Chat" },
+  { mode = "v", keys = "ai", cmd = ":'<,'>CodeCompanion", desc = "Inline Edit Selection" },
+})
 
 -- Initialize which-key integration
 h.init_which_key()
