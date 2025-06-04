@@ -22,6 +22,7 @@ end
 
 -- For example, changing the color scheme:
 config.automatically_reload_config = true
+-- config.color_scheme = "Bamboo Light"
 config.color_scheme = "Bamboo Multiplex"
 config.enable_scroll_bar = false
 config.enable_tab_bar = true
@@ -46,20 +47,20 @@ config.keys = {
     mods = "CTRL",
     action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
   },
-  { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
-  { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
+  { key = "-", mods = "CTRL",       action = wezterm.action.DecreaseFontSize },
+  { key = "=", mods = "CTRL",       action = wezterm.action.IncreaseFontSize },
   { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
   { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
-  { key = "w", mods = "CTRL", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
+  { key = "w", mods = "CTRL",       action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
   { key = "d", mods = "CTRL|SHIFT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-  { key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-  { key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-  { key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-  { key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-  { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "DefaultDomain" }) },
-  { key = "n", mods = "LEADER", action = wezterm.action({ ActivateTabRelative = 1 }) },
-  { key = "o", mods = "LEADER", action = "ActivateLastTab" },
-  { key = "p", mods = "LEADER", action = wezterm.action({ ActivateTabRelative = -1 }) },
+  { key = "h", mods = "LEADER",     action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+  { key = "l", mods = "LEADER",     action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+  { key = "k", mods = "LEADER",     action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+  { key = "j", mods = "LEADER",     action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+  { key = "c", mods = "LEADER",     action = wezterm.action({ SpawnTab = "DefaultDomain" }) },
+  { key = "n", mods = "LEADER",     action = wezterm.action({ ActivateTabRelative = 1 }) },
+  { key = "o", mods = "LEADER",     action = "ActivateLastTab" },
+  { key = "p", mods = "LEADER",     action = wezterm.action({ ActivateTabRelative = -1 }) },
 }
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 config.line_height = 1.0
