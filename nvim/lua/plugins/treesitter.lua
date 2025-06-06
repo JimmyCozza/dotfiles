@@ -15,6 +15,7 @@ return {
           "make",
           "markdown",
           "markdown_inline",
+          "prisma",
           "sql",
           "typescript",
           "vim",

@@ -40,9 +40,9 @@ end
 # Set up fzf
 set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 
-# Use .env from dotfiles
-if test -f ~/dotfiles/.env
-    load_dotenv
+# Use .env.local from dotfiles for system-wide environment variables
+if test -f ~/dotfiles/.env.local
+    load_dotenv ~/.env.local
 end
 # Git clone function
 function gitclone
@@ -79,7 +79,7 @@ set -gx NPM_TOKEN (cat ~/.npmrc | grep _authToken | cut -d'=' -f2)
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-alias claude="/home/jimmy/.claude/local/claude"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/jimmy/tools/google-cloud-sdk/path.fish.inc' ]; . '/home/jimmy/tools/google-cloud-sdk/path.fish.inc'; end
+alias claude="/home/jimmy/.claude/local/claude"

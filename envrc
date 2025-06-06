@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Load environment variables from dotfiles/.env.local for system-wide access
+dotenv ~/dotfiles/.env
