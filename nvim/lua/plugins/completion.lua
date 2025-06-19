@@ -1,30 +1,8 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup({
-          filetypes = {
-            lua = true,
-            markdown = true,
-            json = true,
-            yaml = true,
-            zig = true,
-            javascript = true,
-            typescript = true,
-            go = true,
-          },
-        })
-      end, 100)
-    end,
-  },
-  { "zbirenbaum/copilot-cmp" },
-  {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
-      require("copilot_cmp").setup()
 
       local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
       local icons = require("icons")
@@ -43,13 +21,8 @@ return {
           format = function(entry, vim_item)
             vim_item.kind = string.format("%s", icons.kind[vim_item.kind])
 
-            if entry.source.name == "copilot" then
-              vim_item.dup = 0
-              vim_item.kind = icons.git.Octoface
-            end
             -- Kind icons
             vim_item.menu = ({
-              copilot = "[Copilot]",
               nvim_lsp = "[LSP]",
               nvim_lua = "[NVIM_LUA]",
               ultisnips = "[Snippet]",
@@ -102,33 +75,6 @@ return {
         },
         sources = {
           { name = "buffer" },
-          {
-            name = "copilot",
-            max_item_count = 3,
-            trigger_characters = {
-              {
-                ".",
-                ":",
-                "(",
-                "'",
-                '"',
-                "[",
-                ",",
-                "#",
-                "*",
-                "@",
-                "|",
-                "=",
-                "-",
-                "{",
-                "/",
-                "\\",
-                "+",
-                "?",
-                " ",
-              },
-            },
-          },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "path" },

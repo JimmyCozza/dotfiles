@@ -10,6 +10,9 @@ set -gx CONFIG_FILES_PATH $HOME/dotfiles
 # Set the path to your Go workspace
 set -gx GOPATH $HOME/go
 
+# Set up PKG_CONFIG_PATH for local wlroots installation
+set -gx PKG_CONFIG_PATH $HOME/.local/lib/pkgconfig $PKG_CONFIG_PATH
+
 # Set up PATH
 set -gx PATH $PATH /usr/local/go/bin $GOPATH/bin
 set -gx PATH $PATH $HOME/tools/wsome/wsome

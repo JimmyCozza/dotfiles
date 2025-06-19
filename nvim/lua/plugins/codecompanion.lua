@@ -8,7 +8,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "github/copilot.vim",
       "stevearc/dressing.nvim",
     },
     config = function()
