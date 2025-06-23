@@ -95,7 +95,7 @@ return {
         end
       end
 
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
@@ -288,7 +288,6 @@ return {
     end,
     dependencies = {
       "b0o/schemastore.nvim",
-      "saghen/blink.cmp",
     },
   },
   {
