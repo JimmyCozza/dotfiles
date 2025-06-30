@@ -6,8 +6,8 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
-local font_name = "GoMono Nerd Font Mono"
--- local font_name = "JetBrainsMono NFM"
+-- local font_name = "GoMono Nerd Font Mono"
+local font_name = "JetBrainsMono NFM"
 
 -- This table will hold the configuration.
 local config = {}
