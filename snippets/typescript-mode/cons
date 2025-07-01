@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Console log with variable
+# key: cons
+# --
+console.log('${1:variable}: ', $1);$0

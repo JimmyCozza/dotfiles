@@ -8,6 +8,14 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 (package! helpful)
+(package! drag-stuff)       ; For moving lines up/down with Alt+j/k
+(package! format-all)       ; Universal code formatter
+(package! consult)          ; Consulting completing-read
+(package! typescript-mode)  ; TypeScript major mode  
+(package! git-timemachine)  ; Git time machine for file history
+(package! marginalia)       ; Rich annotations for minibuffer
+(package! all-the-icons)    ; Icon fonts for UI elements
+(package! nerd-icons)       ; Modern nerd font icons
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
