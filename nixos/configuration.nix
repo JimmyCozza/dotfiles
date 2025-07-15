@@ -124,9 +124,12 @@ in
     neovim
     nodejs
     ripgrep
+    wezterm
     wget
     zsh
+
     pkgs.jq
+    pkgs.nerd-fonts.jetbrains-mono
     pkgs.slack
     claudeCodePackage
   ];
