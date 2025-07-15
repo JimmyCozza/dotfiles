@@ -22,7 +22,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "biome", "clangd", "gopls", "jsonls", "lua_ls", "marksman", "ts_ls", "prismals" },
+        ensure_installed = { "biome", "jsonls", "lua_ls", "marksman", "ts_ls", "prismals" },
         automatic_installation = true,
       })
     end,
