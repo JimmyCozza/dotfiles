@@ -90,12 +90,15 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Docker
+  virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.jimmy = {
     isNormalUser = true;
     description = "jimmy";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -114,10 +117,12 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     direnv
+    docker-compose
     fzf
     git
     lazygit
