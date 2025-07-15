@@ -125,6 +125,8 @@ in
     docker-compose
     fzf
     git
+    gnumake
+    lazydocker
     lazygit
     neovim
     nodejs
