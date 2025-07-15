@@ -124,8 +124,10 @@ in
     direnv
     docker-compose
     fzf
+    gcc
     git
     gnumake
+    go
     lazydocker
     lazygit
     neovim
