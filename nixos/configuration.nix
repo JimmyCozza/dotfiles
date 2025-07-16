@@ -129,6 +129,8 @@ in
     git
     gnumake
     go
+    go-tools
+    google-cloud-sdk
     lazydocker
     lazygit
     neovim
@@ -140,6 +142,7 @@ in
 
     pkgs.jq
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.postgresql_16
     pkgs.slack
     claudeCodePackage
   ];
