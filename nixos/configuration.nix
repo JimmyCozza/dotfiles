@@ -10,6 +10,9 @@ let
   claudeCodePackage = import ./packages/claude-code.nix {
     inherit pkgs;
   };
+  geminiCliPackage = import ./packages/gemini-cli.nix {
+    inherit pkgs;
+  };
 in
 
 {
@@ -145,6 +148,7 @@ in
     pkgs.postgresql_16
     pkgs.slack
     claudeCodePackage
+    geminiCliPackage
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
