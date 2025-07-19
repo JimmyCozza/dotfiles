@@ -87,10 +87,6 @@ fnm default lts-latest
 echo "Installing Ruby gems..."
 sudo gem install neovim
 
-# Install Python packages
-echo "Installing Python packages..."
-python3 -m pip install --user pynvim
-
 # Generate SSH key for GitHub (optional)
 read -p "Do you want to generate an SSH key for GitHub? (y/n) " -n 1 -r
 echo
