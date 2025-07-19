@@ -5,11 +5,12 @@ mkdir -p $HOME/Downloads
 mkdir -p $HOME/projects
 mkdir -p $HOME/tools
 
-sudo pacman -Syu --needed base-devel
+sudo pacman -Rdd linux-firmware
+sudo pacman -Syu --needed base-devel linux-firmware
 git clone https://aur.archlinux.org/yay.git $HOME/tools/yay
 cd $HOME/tools/yay && makepkg -si
 
-ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl fish python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman-manager noto-fonts-emoji noto-fonts-cjk"
+ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman-manager noto-fonts-emoji noto-fonts-cjk"
 AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim"
 
 echo "Fetching standard arch packages"
@@ -17,9 +18,7 @@ sudo pacman -Syu --noconfirm $ARCH_LIST
 echo "Fetching AUR packages"
 yay -Syu $AUR_LIST
 
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-
-chsh -s $(which fish)
+chsh -s $(which zsh)
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -35,7 +34,7 @@ echo "symlinking dotfiles"
 ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 source "$HOME/.zshrc"
 
-ln -s "$CONFIG_FILES_PATH/newvim" "$HOME/.config/nvim"
+ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ln -s "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
@@ -45,8 +44,8 @@ sudo usermod -aG docker $USER
 
 source "$HOME/.zshrc"
 
-fnm install 20
-fnm default 20
+fnm install 22
+fnm default 22
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 sudo gem install neovim
