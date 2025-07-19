@@ -11,6 +11,7 @@ mkdir -p "$HOME/tools"
 
 echo "Updating system and installing base-devel and linux-firmware"
 # Ensure linux-firmware is installed, and system is up-to-date
+sudo pacman -Rdd linux-firmware
 sudo pacman -Syu --needed base-devel linux-firmware
 
 # Install yay (AUR helper)
