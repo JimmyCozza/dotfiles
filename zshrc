@@ -9,6 +9,9 @@ setopt INC_APPEND_HISTORY
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
+#
+# Disable grml prompt
+prompt off
 
 # Enable prompt substitution
 setopt PROMPT_SUBST
@@ -31,6 +34,7 @@ git_prompt_dirty() {
 
 # Simple prompt with git info
 PROMPT='%F{117}%~%f$(git_prompt_info) %F{077}%f '
+
 
 
 # Environment Variables
@@ -78,4 +82,3 @@ if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/googl
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi
 
-# eval "$(starship init zsh)"
