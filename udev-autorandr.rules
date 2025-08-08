@@ -1,0 +1,5 @@
+# Udev rule for autorandr - automatically switch display profiles on hotplug
+# This file should be symlinked or copied to /etc/udev/rules.d/99-autorandr.rules
+
+# Trigger autorandr when display state changes
+ACTION=="change", SUBSYSTEM=="drm", RUN+="/usr/bin/autorandr --change --default laptop"

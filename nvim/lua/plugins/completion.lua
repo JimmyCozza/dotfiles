@@ -29,6 +29,7 @@ return {
               ["vim-dadbod-completion"] = "[DB]",
               buffer = "[Buffer]",
               path = "[Path]",
+              copilot = "[Copilot]",
             })[entry.source.name]
             return vim_item
           end,
@@ -74,11 +75,12 @@ return {
           ghost_text = true,
         },
         sources = {
-          { name = "buffer" },
-          { name = "nvim_lsp" },
-          { name = "nvim_lua" },
-          { name = "path" },
-          { name = "ultisnips" },
+          { name = "copilot", group_index = 2 },
+          { name = "nvim_lsp", group_index = 2 },
+          { name = "buffer", group_index = 2 },
+          { name = "nvim_lua", group_index = 2 },
+          { name = "path", group_index = 2 },
+          { name = "ultisnips", group_index = 2 },
         },
         sorting = {
           comparators = {

@@ -1,0 +1,11 @@
+[Unit]
+Description=Autorandr display configuration
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/autorandr --change --default laptop
+RemainAfterExit=no
+
+[Install]
+WantedBy=default.target

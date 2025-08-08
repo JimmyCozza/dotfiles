@@ -1,5 +1,22 @@
 return {
-  -- { "github/copilot.vim" },
+  -- { "github/copilot.vim" }, -- Keeping for auth only
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
   {
     "echasnovski/mini.nvim",
     config = function()
