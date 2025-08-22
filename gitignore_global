@@ -5,3 +5,4 @@ CLAUDE.md
 GEMINI.md
 .claude
 /home/jimmy/carketa/carketa-main-app/docker-compose.yml
+docker-compose.override.yml

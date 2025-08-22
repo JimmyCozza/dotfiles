@@ -28,7 +28,7 @@ if ! command -v yay &> /dev/null; then
     exit 1
 fi
 
-ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk"
+ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk autorandr"
 AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim"
 
 echo "Fetching standard Arch packages..."
@@ -75,6 +75,32 @@ sudo usermod -aG docker "$USER"
 # Enable Docker services
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
+
+# Setup autorandr for automatic display configuration
+echo "Setting up autorandr for automatic display management..."
+# Save laptop-only profile (assuming laptop display is eDP-1 or eDP1)
+if xrandr | grep -q "eDP"; then
+    echo "Saving laptop-only display profile..."
+    # Configure laptop display only
+    LAPTOP_OUTPUT=$(xrandr | grep "eDP" | grep " connected" | cut -d' ' -f1)
+    xrandr --output "$LAPTOP_OUTPUT" --auto --primary
+    # Turn off all other outputs
+    for output in $(xrandr | grep -E "^(HDMI|DP-[0-9]|DP[0-9])" | cut -d' ' -f1); do
+        xrandr --output "$output" --off
+    done
+    autorandr --save laptop
+    
+    echo "Laptop profile saved. Connect external display and run setup-docked-profile.sh to configure dual display."
+fi
+
+# Install udev rule for automatic display switching
+if [ -f "$CONFIG_FILES_PATH/udev-autorandr.rules" ]; then
+    echo "Installing udev rule for automatic display switching..."
+    sudo cp "$CONFIG_FILES_PATH/udev-autorandr.rules" /etc/udev/rules.d/99-autorandr.rules
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
+    echo "Autorandr udev rule installed. Display will switch automatically on cable plug/unplug."
+fi
 
 # Setup fnm and Node.js (assuming fnm-bin is installed by yay)
 echo "Setting up Node.js with fnm..."

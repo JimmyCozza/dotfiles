@@ -48,6 +48,29 @@ export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+
+# Mobile-friendly aliases for Claude Code
+alias c="claude"
+alias cc="claude continue"
+alias cs="claude status"
+alias ct="claude test"
+
+# Git shortcuts for mobile
+alias gs="git status"
+alias gd="git diff"
+alias gc="git commit"
+alias gp="git push"
+alias ga="git add"
+
+# Navigation shortcuts
+alias ..="cd .."
+alias ...="cd ../.."
+alias l="ls -la"
+alias ll="ls -l"
+
+# Quick tmux session for Claude
+alias work="tmux attach -t claude || tmux new -s claude"
+alias mobile="mosh jimmy@100.126.105.117 -- tmux attach -t claude || tmux new -s claude"
 export PATH=$HOME/.config/emacs/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
@@ -82,3 +105,4 @@ if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/googl
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi
 
+export PATH="$PATH:/home/jimmy/carketa/syndication/google-cloud-sdk/bin"
