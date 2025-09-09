@@ -48,6 +48,7 @@ export RIPGREP_CONFIG_PATH="$CONFIG_FILES_PATH/ripgreprc"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/dotfiles/google-cloud-sdk/bin:$PATH
 
 # Mobile-friendly aliases for Claude Code
 alias c="claude"
@@ -99,10 +100,10 @@ eval "$(direnv hook zsh)"
 eval "$(fnm env --use-on-cd)"
 export PATH=$PATH:$HOME/bin
 
+export PATH="$PATH:/home/jimmy/carketa/syndication/google-cloud-sdk/bin"
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/jimmy/dotfiles/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/dotfiles/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/jimmy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/google-cloud-sdk/completion.zsh.inc'; fi
-
-export PATH="$PATH:/home/jimmy/carketa/syndication/google-cloud-sdk/bin"
+if [ -f '/home/jimmy/dotfiles/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/dotfiles/google-cloud-sdk/completion.zsh.inc'; fi

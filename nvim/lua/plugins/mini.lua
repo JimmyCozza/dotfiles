@@ -18,7 +18,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     config = function()
       -- Text objects
       require("mini.ai").setup()
