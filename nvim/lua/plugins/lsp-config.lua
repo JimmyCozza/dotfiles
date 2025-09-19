@@ -96,9 +96,9 @@ return {
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
+      -- Using the new vim.lsp.config API (Nvim 0.11+)
+      vim.lsp.config('lua_ls', {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -121,7 +121,7 @@ return {
         },
       })
 
-      lspconfig.jsonls.setup({
+      vim.lsp.config('jsonls', {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -132,12 +132,12 @@ return {
         },
       })
 
-      lspconfig.biome.setup({
+      vim.lsp.config('biome', {
         on_attach = on_attach,
         capabilities = capabilities,
       })
 
-      lspconfig.clangd.setup({
+      vim.lsp.config('clangd', {
         cmd = {
           "clangd",
           "--background-index",
@@ -148,12 +148,12 @@ return {
           "--function-arg-placeholders",
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+        root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
         capabilities = capabilities,
         on_attach = on_attach,
       })
 
-      lspconfig.gopls.setup({
+      vim.lsp.config('gopls', {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -167,17 +167,17 @@ return {
         },
       })
 
-      lspconfig.marksman.setup({
+      vim.lsp.config('marksman', {
         on_attach = on_attach,
         capabilities = capabilities,
       })
 
-      lspconfig.zls.setup({
+      vim.lsp.config('zls', {
         on_attach = on_attach,
         capabilities = capabilities,
       })
 
-      lspconfig.ts_ls.setup({
+      vim.lsp.config('ts_ls', {
         on_attach = function(client, bufnr)
           -- Call the base on_attach function first
           on_attach(client, bufnr)
@@ -191,7 +191,7 @@ return {
         end,
         capabilities = capabilities,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
-        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+        root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
         settings = {
           typescript = {
             inlayHints = {
@@ -272,7 +272,7 @@ return {
         },
       })
 
-      lspconfig.prismals.setup({
+      vim.lsp.config('prismals', {
         on_attach = on_attach,
         capabilities = capabilities,
       })
