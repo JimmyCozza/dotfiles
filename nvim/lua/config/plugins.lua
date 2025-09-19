@@ -22,10 +22,6 @@ M.plugins = {
     name = "nui.nvim",
   },
   {
-    url = "rcarriga/nvim-notify",
-    name = "nvim-notify",
-  },
-  {
     url = "stevearc/dressing.nvim",
     name = "dressing.nvim",
   },
@@ -136,21 +132,14 @@ M.plugins = {
     name = "diffview.nvim",
   },
 
-  -- Comments
-  {
-    url = "numToStr/Comment.nvim",
-    name = "Comment.nvim",
-  },
+  -- Comments (now handled by mini.comment)
 
   -- Folke plugins
   {
     url = "folke/trouble.nvim",
     name = "trouble.nvim",
   },
-  {
-    url = "folke/todo-comments.nvim",
-    name = "todo-comments.nvim",
-  },
+  -- todo-comments replaced with mini.hipatterns
   {
     url = "folke/noice.nvim",
     name = "noice.nvim",

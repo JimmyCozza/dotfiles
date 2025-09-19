@@ -83,11 +83,11 @@ h.lmap("n", "b", "NvimTreeToggle", "Toggle File Tree")
 h.lmap("n", "nn", "NvimTreeToggle", "Toggle File Tree")
 h.lmap("n", "nt", "NvimTreeFindFileToggle", "File Tree at File")
 
--- Comment mappings
-h.lmap("n", "cl", "<Plug>(comment_toggle_linewise_current)", "Comment Line")
-h.lmap("n", "c<space>", "<Plug>(comment_toggle_blockwise_current)", "Comment Line (Block)")
-h.lmap("v", "cl", "<Plug>(comment_toggle_linewise_visual)", "Comment Line")
-h.lmap("v", "c<space>", "<Plug>(comment_toggle_blockwise_visual)", "Comment Line (Block)")
+-- Comment mappings (using mini.comment)
+-- mini.comment uses gcc for line comment and gc for motion
+-- These are set up in mini.lua, but we can add leader mappings here
+h.lmap("n", "cl", "gcc", "Comment Line")
+h.lmap("v", "cl", "gc", "Comment Selection")
 
 -- Database mappings
 h.lmap("n", "dt", ":DBUIToggle", "Toggle DB UI")

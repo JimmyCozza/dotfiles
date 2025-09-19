@@ -32,6 +32,36 @@ return {
       require("mini.pairs").setup()
       require("mini.align").setup()
       require("mini.splitjoin").setup()
+      
+      -- Comment functionality (replacing Comment.nvim)
+      require("mini.comment").setup({
+        options = {
+          custom_commentstring = nil,
+          ignore_blank_line = false,
+          start_of_line = false,
+          pad_comment_parts = true,
+        },
+        mappings = {
+          comment = 'gc',
+          comment_line = 'gcc',
+          comment_visual = 'gc',
+          textobject = 'gc',
+        },
+      })
+      
+      -- Highlight patterns (replacing todo-comments.nvim)
+      require("mini.hipatterns").setup({
+        highlighters = {
+          -- Highlight TODO, FIXME, HACK, NOTE, etc.
+          fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+          hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+          todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+          note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+          
+          -- Highlight hex color strings
+          hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+        },
+      })
 
       require("mini.indentscope").setup()
       require("mini.statusline").setup()

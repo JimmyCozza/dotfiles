@@ -31,19 +31,13 @@ return {
       },
     },
   },
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
+  -- todo-comments replaced with mini.hipatterns in mini.lua
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      -- nvim-notify removed, using mini.notify instead
     },
   },
 }
