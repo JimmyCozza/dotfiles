@@ -67,6 +67,62 @@ return {
       require("mini.statusline").setup()
       require("mini.notify").setup()
       require("mini.icons").setup()
+      
+      -- Git integration (replacing gitsigns.nvim)
+      require("mini.diff").setup({
+        view = {
+          style = 'sign',  -- 'sign' or 'number'
+          signs = { add = '+', change = '~', delete = '-' },
+        },
+        mappings = {
+          -- Apply hunks
+          apply = 'gh',
+          reset = 'gH',
+          
+          -- Navigation
+          goto_first = '[H',
+          goto_prev = '[h',
+          goto_next = ']h',
+          goto_last = ']H',
+          
+          -- Textobject
+          textobject = 'gh',
+        },
+      })
+      
+      require("mini.git").setup({
+        -- General CLI execution
+        command = {
+          split = 'horizontal',  -- or 'vertical', 'tab'
+        },
+      })
+      
+      -- File explorer (replacing nvim-tree.lua)
+      require("mini.files").setup({
+        mappings = {
+          close       = 'q',
+          go_in       = 'l',
+          go_in_plus  = '<CR>',
+          go_out      = 'h',
+          go_out_plus = '-',
+          reset       = '<BS>',
+          reveal_cwd  = '@',
+          show_help   = 'g?',
+          synchronize = '=',
+          trim_left   = '<',
+          trim_right  = '>',
+        },
+        windows = {
+          preview = true,
+          width_focus = 30,
+          width_nofocus = 15,
+          width_preview = 50,
+        },
+        options = {
+          permanent_delete = false,
+          use_as_default_explorer = false,  -- Keep false to not conflict with netrw
+        },
+      })
 
       require("mini.snippets").setup({
         mappings = {

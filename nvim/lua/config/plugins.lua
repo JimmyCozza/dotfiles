@@ -32,11 +32,7 @@ M.plugins = {
     name = "everforest-nvim",
   },
 
-  -- File explorer
-  {
-    url = "nvim-tree/nvim-tree.lua",
-    name = "nvim-tree.lua",
-  },
+  -- File explorer (replaced with mini.files)
 
   -- Telescope
   {
@@ -114,11 +110,7 @@ M.plugins = {
     name = "cmp-nvim-ultisnips",
   },
 
-  -- Git
-  {
-    url = "lewis6991/gitsigns.nvim",
-    name = "gitsigns.nvim",
-  },
+  -- Git (gitsigns replaced with mini.diff and mini.git)
   {
     url = "tpope/vim-fugitive",
     name = "vim-fugitive",
@@ -234,6 +226,30 @@ function M.update()
   print("Update complete. Restart Neovim to load updated plugins.")
 end
 
+-- Generate helptags for all plugins
+function M.generate_helptags()
+  local pack_path = vim.fn.stdpath("data") .. "/site/pack/plugins/opt"
+  local generated = {}
+  
+  for _, plugin in ipairs(M.plugins) do
+    local doc_path = pack_path .. "/" .. plugin.name .. "/doc"
+    if vim.fn.isdirectory(doc_path) == 1 then
+      -- Check if there are any .txt files in the doc directory
+      local txt_files = vim.fn.glob(doc_path .. "/*.txt", false, true)
+      if #txt_files > 0 then
+        vim.cmd("silent! helptags " .. vim.fn.fnameescape(doc_path))
+        table.insert(generated, plugin.name)
+      end
+    end
+  end
+  
+  if #generated > 0 then
+    print("Generated helptags for " .. #generated .. " plugins")
+  end
+  
+  return generated
+end
+
 -- Load all plugins
 function M.load()
   local pack_path = vim.fn.stdpath("data") .. "/site/pack/plugins/opt"
@@ -273,6 +289,9 @@ function M.setup()
   -- Load all plugins first
   M.load()
   
+  -- Generate helptags for all plugins
+  M.generate_helptags()
+  
   -- Load plugin configurations using the loader
   -- This handles the Lazy.nvim format automatically
   require("config.plugin-loader").load_all()
@@ -298,5 +317,13 @@ end
 -- Commands for plugin management
 vim.api.nvim_create_user_command("PluginInstall", M.install, {})
 vim.api.nvim_create_user_command("PluginUpdate", M.update, {})
+vim.api.nvim_create_user_command("PluginHelptags", function()
+  local generated = M.generate_helptags()
+  if #generated > 0 then
+    print("Regenerated helptags for: " .. table.concat(generated, ", "))
+  else
+    print("No plugin documentation found to generate helptags")
+  end
+end, {})
 
 return M

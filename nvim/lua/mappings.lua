@@ -63,7 +63,7 @@ h.group("f", "+Find")
 h.group("g", "+Git")
 h.group("h", "+Help")
 h.group("l", "+LSP")
-h.group("n", "+NvimTree")
+h.group("n", "+Files")
 h.group("p", "+Project")
 h.group("T", "+Test")
 
@@ -78,10 +78,10 @@ local grep_cmd =
   "lua require('telescope.builtin').live_grep({additional_args = function() return {'--glob=!package-lock.json'} end})"
 h.lmap("n", "/", grep_cmd, "Search Project")
 
--- File tree mappings
-h.lmap("n", "b", "NvimTreeToggle", "Toggle File Tree")
-h.lmap("n", "nn", "NvimTreeToggle", "Toggle File Tree")
-h.lmap("n", "nt", "NvimTreeFindFileToggle", "File Tree at File")
+-- File tree mappings (using mini.files)
+h.lmap("n", "b", "<cmd>lua require('mini.files').open()<cr>", "Toggle File Explorer")
+h.lmap("n", "nn", "<cmd>lua require('mini.files').open()<cr>", "Toggle File Explorer")
+h.lmap("n", "nt", "<cmd>lua require('mini.files').open(vim.api.nvim_buf_get_name(0))<cr>", "File Explorer at Current File")
 
 -- Comment mappings (using mini.comment)
 h.lmap("n", "cl", "<cmd>lua require('mini.comment').toggle_lines(vim.fn.line('.'), vim.fn.line('.'))<cr>", "Comment Line")
@@ -104,10 +104,12 @@ h.map_group({
 -- Git mappings
 h.map_group({
   { "gb", "Telescope git_branches", "Checkout Branch" },
-  { "gB", "Git blame", "Git Blame" },
+  { "gB", "<cmd>lua require('mini.git').show_at_cursor()<cr>", "Git Blame/Info at Cursor" },
   { "gc", "Telescope git_commits", "Checkout Commit" },
   { "gC", "Telescope git_bcommits", "Checkout Commit (Current file)" },
   { "go", "Telescope git_status", "Git Status" },
+  { "gh", "<cmd>lua require('mini.diff').toggle_overlay()<cr>", "Toggle Git Diff Overlay" },
+  { "gd", "<cmd>lua require('mini.diff').toggle_overlay()<cr>", "Toggle Git Diff Details" },
 })
 
 -- Help mappings
