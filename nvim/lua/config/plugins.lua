@@ -32,7 +32,11 @@ M.plugins = {
     name = "everforest-nvim",
   },
 
-  -- File explorer (replaced with mini.files)
+  -- File explorer
+  {
+    url = "nvim-tree/nvim-tree.lua",
+    name = "nvim-tree.lua",
+  },
 
   -- Telescope
   {
@@ -110,10 +114,14 @@ M.plugins = {
     name = "cmp-nvim-ultisnips",
   },
 
-  -- Git (gitsigns replaced with mini.diff and mini.git)
+  -- Git
   {
     url = "tpope/vim-fugitive",
     name = "vim-fugitive",
+  },
+  {
+    url = "lewis6991/gitsigns.nvim",
+    name = "gitsigns.nvim",
   },
   {
     url = "tpope/vim-rhubarb",
