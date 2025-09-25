@@ -98,7 +98,10 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Using the new vim.lsp.config API (Nvim 0.11+)
-      vim.lsp.config('lua_ls', {
+      vim.lsp.config['lua_ls'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/lua-language-server') },
+        filetypes = { 'lua' },
+        root_markers = { '.luarc.json', '.luarc.jsonc', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -119,9 +122,12 @@ return {
             telemetry = { enable = false },
           },
         },
-      })
+      }
 
-      vim.lsp.config('jsonls', {
+      vim.lsp.config['jsonls'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/vscode-json-language-server'), '--stdio' },
+        filetypes = { 'json', 'jsonc' },
+        root_markers = { '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -130,14 +136,17 @@ return {
             validate = { enable = true },
           },
         },
-      })
+      }
 
-      vim.lsp.config('biome', {
+      vim.lsp.config['biome'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/biome'), 'lsp-proxy' },
+        filetypes = { 'javascript', 'javascriptreact', 'json', 'jsonc', 'typescript', 'typescriptreact', 'typescript.tsx' },
+        root_markers = { 'biome.json', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
-      })
+      }
 
-      vim.lsp.config('clangd', {
+      vim.lsp.config['clangd'] = {
         cmd = {
           "clangd",
           "--background-index",
@@ -148,12 +157,15 @@ return {
           "--function-arg-placeholders",
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+        root_markers = { 'compile_commands.json', 'compile_flags.txt', '.git' },
         capabilities = capabilities,
         on_attach = on_attach,
-      })
+      }
 
-      vim.lsp.config('gopls', {
+      vim.lsp.config['gopls'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/gopls') },
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        root_markers = { 'go.mod', 'go.work', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -165,19 +177,28 @@ return {
             gofumpt = true,
           },
         },
-      })
+      }
 
-      vim.lsp.config('marksman', {
+      vim.lsp.config['marksman'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/marksman'), 'server' },
+        filetypes = { 'markdown', 'markdown.mdx' },
+        root_markers = { '.marksman.toml', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
-      })
+      }
 
-      vim.lsp.config('zls', {
+      vim.lsp.config['zls'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/zls') },
+        filetypes = { 'zig', 'zir' },
+        root_markers = { 'build.zig', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
-      })
+      }
 
-      vim.lsp.config('ts_ls', {
+      vim.lsp.config['ts_ls'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/typescript-language-server'), '--stdio' },
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+        root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' },
         on_attach = function(client, bufnr)
           -- Call the base on_attach function first
           on_attach(client, bufnr)
@@ -190,8 +211,6 @@ return {
           map("n", "<leader>tF", ":TypescriptFixAll<CR>", opts)            -- Fix all auto-fixable problems
         end,
         capabilities = capabilities,
-        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
-        root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
         settings = {
           typescript = {
             inlayHints = {
@@ -270,12 +289,26 @@ return {
             description = "Fix All Auto-fixable Problems",
           },
         },
-      })
+      }
 
-      vim.lsp.config('prismals', {
+      vim.lsp.config['prismals'] = {
+        cmd = { vim.fn.expand('~/.local/share/nvim/mason/bin/prisma-language-server'), '--stdio' },
+        filetypes = { 'prisma' },
+        root_markers = { 'schema.prisma', '.git' },
         on_attach = on_attach,
         capabilities = capabilities,
-      })
+      }
+
+      -- Enable all configured language servers
+      vim.lsp.enable('lua_ls')
+      vim.lsp.enable('jsonls')
+      vim.lsp.enable('biome')
+      vim.lsp.enable('clangd')
+      vim.lsp.enable('gopls')
+      vim.lsp.enable('marksman')
+      vim.lsp.enable('zls')
+      vim.lsp.enable('ts_ls')
+      vim.lsp.enable('prismals')
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
