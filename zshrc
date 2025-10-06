@@ -103,7 +103,7 @@ export PATH=$PATH:$HOME/bin
 export PATH="$PATH:/home/jimmy/carketa/syndication/google-cloud-sdk/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jimmy/dotfiles/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/dotfiles/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/jimmy/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy/tools/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/jimmy/dotfiles/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/dotfiles/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/jimmy/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/tools/google-cloud-sdk/completion.zsh.inc'; fi
