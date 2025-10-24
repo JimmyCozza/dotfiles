@@ -3,6 +3,14 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
+# Check network connectivity
+echo "Checking network connectivity..."
+if ! ping -c 1 archlinux.org &> /dev/null; then
+    echo "Error: No network connectivity. Please connect to the internet and try again."
+    exit 1
+fi
+echo "Network connectivity confirmed."
+
 echo "Setup directories"
 mkdir -p "$HOME/Pictures"
 mkdir -p "$HOME/Downloads"
@@ -28,8 +36,8 @@ if ! command -v yay &> /dev/null; then
     exit 1
 fi
 
-ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk autorandr"
-AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim"
+ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk autorandr xorg-server xorg-xinit xorg-xrandr xorg-setxkbcommon sddm tmux btop git rsync openssh alsa-utils fd jq gnome-keyring polkit-gnome xclip imagemagick flameshot maim arandr discord postgresql github-cli terraform kubectl terminus-font"
+AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim tableplus postman-bin ghostty"
 
 echo "Fetching standard Arch packages..."
 sudo pacman -Syu --noconfirm $ARCH_LIST
@@ -66,6 +74,9 @@ ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
 ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
 ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
 ln -s "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
+ln -s "$CONFIG_FILES_PATH/xinitrc" "$HOME/.xinitrc"
+ln -s "$CONFIG_FILES_PATH/ghostty" "$HOME/.config/ghostty"
+ln -s "$CONFIG_FILES_PATH/psqlrc" "$HOME/.psqlrc"
 
 # Docker group setup (requires logout/login to take effect for the user)
 echo "Setting up Docker permissions. You may need to log out and log back in for changes to take effect."
@@ -75,6 +86,10 @@ sudo usermod -aG docker "$USER"
 # Enable Docker services
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
+
+# Enable SDDM and Bluetooth
+sudo systemctl enable sddm.service
+sudo systemctl enable bluetooth.service
 
 # Setup autorandr for automatic display configuration
 echo "Setting up autorandr for automatic display management..."
@@ -134,4 +149,26 @@ echo "Setting Zsh as default shell. You will need to log out and log back in, or
 chsh -s "$(which zsh)"
 
 echo "I have exercised the demons. This house is clean"
+echo ""
+echo "============================================"
+echo "  INSTALLATION SUMMARY"
+echo "============================================"
+echo ""
+echo "✓ System packages installed"
+echo "✓ AUR packages installed"
+echo "✓ Neovim built from source"
+echo "✓ Dotfiles symlinked"
+echo "✓ Docker configured"
+echo "✓ SDDM and Bluetooth enabled"
+echo "✓ FZF installed"
+echo "✓ Node.js LTS installed via fnm"
+echo ""
+echo "MANUAL STEPS REQUIRED:"
+echo "  1. Build and install AwesomeWM from ~/awesome-from-scratch"
+echo "  2. Configure PostgreSQL (createuser, createdb)"
+echo "  3. Set up gcloud SDK (if needed)"
+echo "  4. Generate SSH key for GitHub (optional)"
+echo ""
+echo "See POST_INSTALL.md for detailed instructions."
+echo ""
 echo "Please reboot your system or open a new terminal session for all changes to take effect."

@@ -128,7 +128,7 @@ h.map_group({
   { "pb", "Telescope buffers", "Find Buffers" },
   { "pf", "Telescope find_files", "Find Files in Project" },
   { "ps", "Telescope grep_string", "Search in Project" },
-  { "pps", "Lazy sync", "Lazy Sync" },
+  { "pps", "PluginUpdate", "Update Packages" },
 })
 
 -- Search clear
