@@ -11,16 +11,26 @@ if ! ping -c 1 archlinux.org &> /dev/null; then
 fi
 echo "Network connectivity confirmed."
 
+# Fix keyring issues (common on fresh installs)
+echo "Initializing and updating keyring..."
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman -Sy --noconfirm archlinux-keyring
+
+# Ensure system time is correct (keyring verification needs accurate time)
+echo "Syncing system time..."
+sudo timedatectl set-ntp true
+sleep 2
+
 echo "Setup directories"
 mkdir -p "$HOME/Pictures"
 mkdir -p "$HOME/Downloads"
 mkdir -p "$HOME/projects"
 mkdir -p "$HOME/tools"
 
-echo "Updating system and installing base-devel and linux-firmware"
-# Ensure linux-firmware is installed, and system is up-to-date
-sudo pacman -Rdd linux-firmware
-sudo pacman -Syu --needed base-devel linux-firmware
+echo "Updating system and installing base-devel"
+# Update system and install essential packages
+sudo pacman -Syu --noconfirm --needed base-devel linux-firmware
 
 # Install yay (AUR helper)
 echo "Installing yay (AUR helper)..."
@@ -40,10 +50,12 @@ ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl pyth
 AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim tableplus postman-bin ghostty"
 
 echo "Fetching standard Arch packages..."
-sudo pacman -Syu --noconfirm $ARCH_LIST
+sudo pacman -S --noconfirm --needed $ARCH_LIST
 
 echo "Fetching AUR packages..."
-yay -Syu --noconfirm $AUR_LIST
+echo "NOTE: If any AUR package fails, you can install it manually later with: yay -S <package-name>"
+# Use --needed to skip already installed packages, remove --noconfirm to allow user intervention if needed
+yay -S --needed $AUR_LIST
 
 # Install Neovim from source (after cmake, ninja are installed)
 echo "Installing/updating Neovim from source..."
