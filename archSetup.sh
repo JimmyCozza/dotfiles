@@ -33,132 +33,185 @@ echo "Updating system and installing base-devel"
 sudo pacman -Syu --noconfirm --needed base-devel linux-firmware
 
 # Install yay (AUR helper)
-echo "Installing yay (AUR helper)..."
-if [ ! -d "$HOME/tools/yay" ]; then
-    git clone https://aur.archlinux.org/yay.git "$HOME/tools/yay"
-fi
-cd "$HOME/tools/yay"
-makepkg -si --noconfirm
-
-# Check if yay installed successfully
+echo "Checking for yay (AUR helper)..."
 if ! command -v yay &> /dev/null; then
-    echo "Error: yay failed to install. Cannot proceed with AUR packages."
-    exit 1
+    echo "Installing yay..."
+    if [ ! -d "$HOME/tools/yay" ]; then
+        git clone https://aur.archlinux.org/yay.git "$HOME/tools/yay"
+    fi
+    cd "$HOME/tools/yay"
+    makepkg -si --noconfirm
+    cd - > /dev/null
+
+    # Verify installation
+    if ! command -v yay &> /dev/null; then
+        echo "Error: yay failed to install. Cannot proceed with AUR packages."
+        exit 1
+    fi
+else
+    echo "yay is already installed, skipping..."
 fi
 
 ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk autorandr xorg-server xorg-xinit xorg-xrandr xorg-setxkbcommon sddm tmux btop git rsync openssh alsa-utils fd jq gnome-keyring polkit-gnome xclip imagemagick flameshot maim arandr discord postgresql github-cli terraform kubectl terminus-font"
 AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim tableplus postman-bin ghostty"
 
 echo "Fetching standard Arch packages..."
-sudo pacman -S --noconfirm --needed $ARCH_LIST
+sudo pacman -S --noconfirm --needed $ARCH_LIST || echo "Some packages may have failed, continuing..."
 
+echo ""
 echo "Fetching AUR packages..."
 echo "NOTE: If any AUR package fails, you can install it manually later with: yay -S <package-name>"
-# Use --needed to skip already installed packages, remove --noconfirm to allow user intervention if needed
-yay -S --needed $AUR_LIST
+yay -S --noconfirm --needed $AUR_LIST || echo "Some AUR packages may have failed, continuing..."
+
+echo ""
+echo "Package installation complete!"
 
 # Install Neovim from source (after cmake, ninja are installed)
+echo ""
 echo "Installing/updating Neovim from source..."
 if [ ! -d "$HOME/tools/neovim" ]; then
+    echo "  Cloning Neovim repository..."
     git clone https://github.com/neovim/neovim "$HOME/tools/neovim"
 fi
 cd "$HOME/tools/neovim"
+echo "  Building Neovim (this may take a few minutes)..."
 make CMAKE_BUILD_TYPE=Release
+echo "  Installing Neovim..."
 sudo make install
+cd - > /dev/null
+echo "  Neovim installation complete!"
 
 # Setup fzf
+echo ""
 echo "Setting up FZF..."
 if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --all
+else
+    echo "FZF already installed, skipping..."
 fi
 
-# Backup existing zshrc and symlink dotfiles
-echo "Backing up existing configuration files and symlinking dotfiles..."
-[ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
-ln -s "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-
-# Assuming CONFIG_FILES_PATH is set in zshrc or otherwise available.
-# For this script's execution, let's explicitly set it.
+# Backup existing configs and create symlinks
+echo ""
+echo "Setting up dotfile symlinks..."
 export CONFIG_FILES_PATH="$HOME/dotfiles"
 
-ln -s "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
-ln -s "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
-ln -s "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
-ln -s "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
-ln -s "$CONFIG_FILES_PATH/xinitrc" "$HOME/.xinitrc"
-ln -s "$CONFIG_FILES_PATH/ghostty" "$HOME/.config/ghostty"
-ln -s "$CONFIG_FILES_PATH/psqlrc" "$HOME/.psqlrc"
+# Function to safely create symlink
+create_symlink() {
+    local source="$1"
+    local target="$2"
+
+    if [ -L "$target" ]; then
+        echo "  Symlink $target already exists, removing..."
+        rm "$target"
+    elif [ -f "$target" ] || [ -d "$target" ]; then
+        echo "  Backing up existing $target to ${target}.bak..."
+        mv "$target" "${target}.bak"
+    fi
+
+    ln -s "$source" "$target"
+    echo "  Created symlink: $target -> $source"
+}
+
+create_symlink "$CONFIG_FILES_PATH/zshrc" "$HOME/.zshrc"
+create_symlink "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
+create_symlink "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
+create_symlink "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+create_symlink "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
+create_symlink "$CONFIG_FILES_PATH/xinitrc" "$HOME/.xinitrc"
+create_symlink "$CONFIG_FILES_PATH/ghostty" "$HOME/.config/ghostty"
+create_symlink "$CONFIG_FILES_PATH/psqlrc" "$HOME/.psqlrc"
 
 # Docker group setup (requires logout/login to take effect for the user)
-echo "Setting up Docker permissions. You may need to log out and log back in for changes to take effect."
-sudo groupadd docker || true # '|| true' to prevent script from exiting if group already exists
+echo ""
+echo "Setting up Docker..."
+sudo groupadd docker 2>/dev/null || echo "  Docker group already exists"
 sudo usermod -aG docker "$USER"
+echo "  Added $USER to docker group (requires logout to take effect)"
 
-# Enable Docker services
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-
-# Enable SDDM and Bluetooth
-sudo systemctl enable sddm.service
-sudo systemctl enable bluetooth.service
+# Enable system services
+echo ""
+echo "Enabling system services..."
+sudo systemctl enable docker.service 2>/dev/null && echo "  ✓ Docker service enabled" || echo "  Docker service already enabled"
+sudo systemctl enable containerd.service 2>/dev/null && echo "  ✓ Containerd service enabled" || echo "  Containerd already enabled"
+sudo systemctl enable sddm.service 2>/dev/null && echo "  ✓ SDDM display manager enabled" || echo "  SDDM already enabled"
+sudo systemctl enable bluetooth.service 2>/dev/null && echo "  ✓ Bluetooth service enabled" || echo "  Bluetooth already enabled"
 
 # Setup autorandr for automatic display configuration
-echo "Setting up autorandr for automatic display management..."
-# Save laptop-only profile (assuming laptop display is eDP-1 or eDP1)
-if xrandr | grep -q "eDP"; then
-    echo "Saving laptop-only display profile..."
-    # Configure laptop display only
-    LAPTOP_OUTPUT=$(xrandr | grep "eDP" | grep " connected" | cut -d' ' -f1)
-    xrandr --output "$LAPTOP_OUTPUT" --auto --primary
-    # Turn off all other outputs
-    for output in $(xrandr | grep -E "^(HDMI|DP-[0-9]|DP[0-9])" | cut -d' ' -f1); do
-        xrandr --output "$output" --off
-    done
-    autorandr --save laptop
-    
-    echo "Laptop profile saved. Connect external display and run setup-docked-profile.sh to configure dual display."
+echo ""
+echo "Setting up autorandr..."
+# Skip if not in graphical environment
+if command -v xrandr &> /dev/null && xrandr &> /dev/null; then
+    if xrandr | grep -q "eDP"; then
+        echo "  Saving laptop-only display profile..."
+        LAPTOP_OUTPUT=$(xrandr | grep "eDP" | grep " connected" | cut -d' ' -f1)
+        xrandr --output "$LAPTOP_OUTPUT" --auto --primary
+        # Turn off all other outputs
+        for output in $(xrandr | grep -E "^(HDMI|DP-[0-9]|DP[0-9])" | cut -d' ' -f1); do
+            xrandr --output "$output" --off 2>/dev/null || true
+        done
+        autorandr --save laptop 2>/dev/null || echo "  Could not save autorandr profile"
+        echo "  Laptop profile saved!"
+    fi
+else
+    echo "  Skipping (not in graphical environment - run 'autorandr --save laptop' after first X session)"
 fi
 
 # Install udev rule for automatic display switching
 if [ -f "$CONFIG_FILES_PATH/udev-autorandr.rules" ]; then
+    echo ""
     echo "Installing udev rule for automatic display switching..."
     sudo cp "$CONFIG_FILES_PATH/udev-autorandr.rules" /etc/udev/rules.d/99-autorandr.rules
     sudo udevadm control --reload-rules
     sudo udevadm trigger
-    echo "Autorandr udev rule installed. Display will switch automatically on cable plug/unplug."
+    echo "  ✓ Autorandr udev rule installed"
 fi
 
-# Setup fnm and Node.js (assuming fnm-bin is installed by yay)
+# Setup fnm and Node.js
+echo ""
 echo "Setting up Node.js with fnm..."
-# Source fnm environment for current session, required before using fnm commands
-eval "$(fnm env --use-on-cd)"
-fnm install --lts
-fnm default lts-latest
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+    fnm install --lts
+    fnm default lts-latest
+    echo "  ✓ Node.js LTS installed"
+else
+    echo "  fnm not found, skipping Node.js setup"
+fi
 
 # Install Ruby gems
+echo ""
 echo "Installing Ruby gems..."
-sudo gem install neovim
+sudo gem install neovim 2>/dev/null && echo "  ✓ Neovim Ruby gem installed" || echo "  Ruby gem already installed or failed"
 
 # Generate SSH key for GitHub (optional)
+echo ""
 read -p "Do you want to generate an SSH key for GitHub? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     read -p "Please enter your email address for the SSH key: " email_address
-
-    echo "Generating SSH key..."
+    echo "  Generating SSH key..."
     ssh-keygen -t ed25519 -C "$email_address"
-    eval "$(ssh-agent -s)" # Start ssh-agent if not already running
+    eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
-
-    echo "Your public SSH key:"
+    echo ""
+    echo "  Your public SSH key:"
     cat ~/.ssh/id_ed25519.pub
-    echo "Please add this key to your GitHub account."
+    echo ""
+    echo "  Add this key to GitHub: https://github.com/settings/keys"
+else
+    echo "  Skipping SSH key generation"
 fi
 
-# Set Zsh as default shell (moved to the end)
-echo "Setting Zsh as default shell. You will need to log out and log back in, or restart your terminal."
-chsh -s "$(which zsh)"
+# Set Zsh as default shell
+echo ""
+echo "Setting Zsh as default shell..."
+if [ "$SHELL" = "$(which zsh)" ]; then
+    echo "  Zsh is already your default shell"
+else
+    chsh -s "$(which zsh)"
+    echo "  ✓ Zsh set as default shell (logout required to take effect)"
+fi
 
 echo "I have exercised the demons. This house is clean"
 echo ""
