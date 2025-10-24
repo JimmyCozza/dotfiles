@@ -69,17 +69,36 @@ echo "Package installation complete!"
 # Install Neovim from source (after cmake, ninja are installed)
 echo ""
 echo "Installing/updating Neovim from source..."
-if [ ! -d "$HOME/tools/neovim" ]; then
-    echo "  Cloning Neovim repository..."
-    git clone https://github.com/neovim/neovim "$HOME/tools/neovim"
+
+# Verify build dependencies are installed
+if ! command -v cmake &> /dev/null; then
+    echo "  ERROR: cmake not found! Installing cmake..."
+    sudo pacman -S --noconfirm cmake
 fi
-cd "$HOME/tools/neovim"
-echo "  Building Neovim (this may take a few minutes)..."
-make CMAKE_BUILD_TYPE=Release
-echo "  Installing Neovim..."
-sudo make install
-cd - > /dev/null
-echo "  Neovim installation complete!"
+
+if ! command -v ninja &> /dev/null; then
+    echo "  ERROR: ninja not found! Installing ninja..."
+    sudo pacman -S --noconfirm ninja
+fi
+
+# Verify dependencies are now available
+if ! command -v cmake &> /dev/null || ! command -v ninja &> /dev/null; then
+    echo "  ERROR: Required build tools (cmake, ninja) not available. Skipping Neovim build."
+    echo "  You can build it manually later by running:"
+    echo "    cd ~/tools/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install"
+else
+    if [ ! -d "$HOME/tools/neovim" ]; then
+        echo "  Cloning Neovim repository..."
+        git clone https://github.com/neovim/neovim "$HOME/tools/neovim"
+    fi
+    cd "$HOME/tools/neovim"
+    echo "  Building Neovim (this may take a few minutes)..."
+    make CMAKE_BUILD_TYPE=Release
+    echo "  Installing Neovim..."
+    sudo make install
+    cd - > /dev/null
+    echo "  Neovim installation complete!"
+fi
 
 # Setup fzf
 echo ""
