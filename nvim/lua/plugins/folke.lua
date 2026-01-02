@@ -31,13 +31,11 @@ return {
       },
     },
   },
-  -- todo-comments replaced with mini.hipatterns in mini.lua
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      -- nvim-notify removed, using mini.notify instead
     },
   },
 }

@@ -3,7 +3,7 @@ local gears = require("gears")
 local naughty = require("naughty")
 local wibox = require("wibox")
 
-local AWESOME_CONFIGS_PATH = "/home/jimmy/awesome/"
+local AWESOME_CONFIGS_PATH = "/home/jimmy/projects/awesome_configs/"
 
 local M = {}
 
