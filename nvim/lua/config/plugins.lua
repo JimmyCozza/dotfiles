@@ -164,6 +164,10 @@ M.plugins = {
     url = "olimorris/codecompanion.nvim",
     name = "codecompanion.nvim",
   },
+  {
+    url = "ThePrimeagen/99",
+    name = "99",
+  },
 
   -- Database
   {

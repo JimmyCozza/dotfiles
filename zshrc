@@ -107,3 +107,8 @@ if [ -f '/home/jimmy/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jimmy
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jimmy/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jimmy/tools/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f "$HOME/dotfiles/.env" ] && export $(grep -v '^#' "$HOME/dotfiles/.env" | xargs)
+
+# opencode
+export PATH=/home/jimmy/.opencode/bin:$PATH

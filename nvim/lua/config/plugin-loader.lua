@@ -53,6 +53,7 @@ function M.load_all()
     "sql",
     "markdown",
     "languages",
+    "99",
   }
   
   for _, config_name in ipairs(configs) do

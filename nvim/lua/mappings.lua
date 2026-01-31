@@ -66,6 +66,7 @@ h.group("l", "+LSP")
 h.group("n", "+Files")
 h.group("p", "+Project")
 h.group("T", "+Test")
+h.group("9", "+99 AI")
 
 h.group("<Leader>l", "+LSP")
 
@@ -140,6 +141,13 @@ h.map_group({
   { "aa", ":CodeCompanionActions", "Actions Menu" },
   { mode = "v", keys = "as", cmd = ":CodeCompanionChat Add", desc = "Send Selection to Chat" },
   { mode = "v", keys = "ai", cmd = ":'<,'>CodeCompanion", desc = "Inline Edit Selection" },
+})
+
+-- 99 (AI Agent) mappings
+h.map_group({
+  { "9f", "<cmd>lua require('99').fill_in_function()<cr>", "Fill in Function" },
+  { mode = "v", keys = "9v", cmd = "<cmd>lua require('99').visual()<cr>", desc = "Visual Edit" },
+  { mode = "v", keys = "9s", cmd = "<cmd>lua require('99').stop_all_requests()<cr>", desc = "Stop Requests" },
 })
 
 -- Initialize which-key integration
