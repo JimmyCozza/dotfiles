@@ -112,3 +112,6 @@ if [ -f '/home/jimmy/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/home
 
 # opencode
 export PATH=/home/jimmy/.opencode/bin:$PATH
+
+# Boostly prod read replica for Claude Code /issue skill
+export BOOSTLY_REPLICA_DSN="postgresql://jimmy:gbQ0LLBcsiDwUIU25KzEYQ%3D%3D@34.182.101.126/boostly"

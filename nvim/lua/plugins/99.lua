@@ -12,6 +12,15 @@ return {
         -- md_files = { "AGENT.md" },
       })
 
+      -- Add C language support (alias to cpp, or define custom)
+      local Languages = require("99.language")
+      Languages.languages["c"] = {
+        names = {},
+        log_item = function(item_name)
+          return string.format('printf("%%s\\n", %s)', item_name)
+        end,
+      }
+
       -- Fill in function body (cursor inside empty function)
       vim.keymap.set("n", "<leader>9f", function()
         _99.fill_in_function()
