@@ -153,6 +153,14 @@ M.plugins = {
 
   -- AI
   {
+    url = "zbirenbaum/copilot.lua",
+    name = "copilot.lua",
+  },
+  {
+    url = "zbirenbaum/copilot-cmp",
+    name = "copilot-cmp",
+  },
+  {
     url = "olimorris/codecompanion.nvim",
     name = "codecompanion.nvim",
   },
