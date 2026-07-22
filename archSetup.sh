@@ -30,7 +30,8 @@ mkdir -p "$HOME/tools"
 
 echo "Updating system and installing base-devel"
 # Update system and install essential packages
-sudo pacman -Syu --noconfirm --needed base-devel linux-firmware
+# git is required below to clone yay, before ARCH_LIST is installed
+sudo pacman -Syu --noconfirm --needed base-devel linux-firmware git
 
 # Install yay (AUR helper)
 echo "Checking for yay (AUR helper)..."
@@ -53,7 +54,7 @@ else
 fi
 
 ARCH_LIST="ripgrep docker docker-compose cmake unzip ninja tree-sitter curl python-pip ruby lazygit direnv wezterm pipewire pipewire-audio pipewire-alsa brightnessctl thunar thunar-volman gvfs libinput wayland wlroots0.18 libxkbcommon wayland-protocols pkgconf bemenu bemenu-wayland dmenu slurp grim firefox bluez bluez-utils blueman noto-fonts-emoji noto-fonts-cjk autorandr xorg-server xorg-xinit xorg-xrandr xorg-setxkbcommon sddm tmux btop git rsync openssh alsa-utils fd jq gnome-keyring polkit-gnome xclip imagemagick flameshot maim arandr discord postgresql github-cli terraform kubectl terminus-font"
-AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim tableplus postman-bin ghostty"
+AUR_LIST="fnm-bin lazydocker xorg-xwayland lua-lgi ttf-go-nerd ttf-jetbrains-mono-nerd zsh-syntax-highlighting-git slack-desktop beekeeper-studio-appimage feh wl-clipboard python2 python-pynvim tableplus postman-bin ghostty somewm"
 
 echo "Fetching standard Arch packages..."
 sudo pacman -S --noconfirm --needed $ARCH_LIST || echo "Some packages may have failed, continuing..."
