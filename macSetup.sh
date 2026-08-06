@@ -21,7 +21,7 @@ else
 fi
 
 # Essential development tools
-BREW_PACKAGES="ripgrep cmake unzip curl tree-sitter direnv lazygit git fzf bat fnm docker docker-compose golang rust node python ruby"
+BREW_PACKAGES="ripgrep cmake unzip curl tree-sitter direnv lazygit git fzf bat fnm docker docker-compose golang rust node python ruby fd jq btop gh neovim tmux zsh-syntax-highlighting"
 
 # GUI applications
 BREW_CASKS="wezterm firefox docker slack beekeeper-studio"
@@ -43,41 +43,38 @@ brew install --cask $BREW_FONTS
 echo "🔍 Setting up FZF..."
 $(brew --prefix)/opt/fzf/install --all
 
-# Install/Update Neovim to latest
-echo "📝 Installing/updating Neovim..."
-brew install neovim
-
-# Set up fish shell if not already installed
-if ! command -v fish &> /dev/null; then
-    echo "🐟 Installing Fish shell..."
-    brew install fish
-    
-    # Install Oh My Fish
-    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-    
-    # Add Fish to shells and set as default
-    echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-    chsh -s /opt/homebrew/bin/fish
-else
-    echo "🐟 Fish shell already installed"
-fi
-
-# Backup existing config files
-echo "💾 Backing up existing configuration files..."
-[ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
-[ -f "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
-[ -f "$HOME/.gitignore_global" ] && mv "$HOME/.gitignore_global" "$HOME/.gitignore_global.bak"
-
-# Create symlinks for dotfiles
-echo "🔗 Creating symlinks for dotfiles..."
-ln -sf "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-ln -sf "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
-ln -sf "$HOME/dotfiles/gitignore_global" "$HOME/.gitignore_global"
-ln -sf "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
-ln -sf "$HOME/dotfiles/wezterm" "$HOME/.config/wezterm"
-
 # Set up environment variables for this session
 export CONFIG_FILES_PATH=$HOME/dotfiles
+
+# Create symlinks for dotfiles (backing up anything already in place)
+echo "🔗 Creating symlinks for dotfiles..."
+create_symlink() {
+    local source="$1"
+    local target="$2"
+    mkdir -p "$(dirname "$target")"
+    if [ -L "$target" ]; then
+        rm "$target"
+    elif [ -f "$target" ] || [ -d "$target" ]; then
+        mv "$target" "${target}.bak"
+    fi
+    ln -s "$source" "$target"
+}
+
+create_symlink "$CONFIG_FILES_PATH/zshrc" "$HOME/.zshrc"
+create_symlink "$CONFIG_FILES_PATH/gitconfig" "$HOME/.gitconfig"
+create_symlink "$CONFIG_FILES_PATH/gitignore_global" "$HOME/.gitignore_global"
+create_symlink "$CONFIG_FILES_PATH/nvim" "$HOME/.config/nvim"
+create_symlink "$CONFIG_FILES_PATH/wezterm" "$HOME/.config/wezterm"
+create_symlink "$CONFIG_FILES_PATH/ghostty" "$HOME/.config/ghostty"
+create_symlink "$CONFIG_FILES_PATH/psqlrc" "$HOME/.psqlrc"
+create_symlink "$CONFIG_FILES_PATH/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+
+# Set up tmux plugin manager (tmux.conf loads plugins via TPM)
+echo "🧩 Setting up tmux plugin manager..."
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 # Set up Node.js with fnm
 echo "📦 Setting up Node.js with fnm..."
@@ -142,4 +139,3 @@ fi
 
 echo "🎉 macOS development environment setup complete!"
 echo "🔄 Please restart your terminal or run 'source ~/.zshrc' to load the new configuration"
-echo "🐟 If you want to use Fish as your default shell, it has been set up but may require a terminal restart"

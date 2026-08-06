@@ -6,4 +6,4 @@
 [github]
 	user = jimmycozza
 [core]
-	excludesfile = /home/jimmy/.gitignore_global
+	excludesfile = ~/.gitignore_global

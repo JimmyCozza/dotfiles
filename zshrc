@@ -11,6 +11,7 @@ setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 #
 # Disable grml prompt
+autoload -Uz promptinit && promptinit
 prompt off
 
 # Enable prompt substitution
@@ -115,3 +116,7 @@ export PATH=/home/jimmy/.opencode/bin:$PATH
 
 # Boostly prod read replica for Claude Code /issue skill
 export BOOSTLY_REPLICA_DSN="postgresql://jimmy:gbQ0LLBcsiDwUIU25KzEYQ%3D%3D@34.182.101.126/boostly"
+
+# zsh-syntax-highlighting (must be sourced last)
+[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
